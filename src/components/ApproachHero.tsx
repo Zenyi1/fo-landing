@@ -9,7 +9,7 @@ export function ApproachHero() {
         <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/70">
           /approach
         </p>
-        <h1 className="mt-6 font-sans font-black tracking-[-0.02em] text-[56px] md:text-[96px] lg:text-[132px] leading-[1.1]">
+        <h1 className="mt-6 font-serif text-[56px] md:text-[96px] lg:text-[132px] leading-[1.1]">
           Identify de-risked assets.<br />
           Bridge them where they&apos;re needed.
         </h1>
