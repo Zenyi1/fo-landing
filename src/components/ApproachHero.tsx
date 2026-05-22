@@ -9,7 +9,7 @@ export function ApproachHero() {
         <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-brand/70">
           /approach
         </p>
-        <h1 className="mt-6 font-serif text-[56px] md:text-[96px] lg:text-[132px] leading-[0.95]">
+        <h1 className="mt-6 font-serif text-[56px] md:text-[96px] lg:text-[132px] leading-[1.1]">
           Find the best drugs.<br />
           Bridge them where they&apos;re needed.
         </h1>
