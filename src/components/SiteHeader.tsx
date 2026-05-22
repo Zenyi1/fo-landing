@@ -3,20 +3,24 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { SlashIcon, MenuSlashIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const hasDarkHero = pathname === "/";
+  const [scrolled, setScrolled] = useState(!hasDarkHero);
 
   useEffect(() => {
+    if (!hasDarkHero) return;
     const onScroll = () => {
       setScrolled(window.scrollY > window.innerHeight - 100);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [hasDarkHero]);
 
   return (
     <header
@@ -43,7 +47,14 @@ export function SiteHeader() {
           )}
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-8">
+          <Link
+            href="/approach"
+            className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
+          >
+            Approach
+            <SlashIcon className="w-3 h-3" />
+          </Link>
           <a
             href="mailto:info@first-ocean.com"
             className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"

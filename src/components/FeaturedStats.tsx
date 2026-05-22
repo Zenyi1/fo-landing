@@ -6,11 +6,10 @@ import { ImageRotator } from "@/components/ImageRotator";
 import { cn } from "@/lib/utils";
 
 const STATS: { value: string; label: string; align: "left" | "right" }[] = [
-  { value: "78+", label: "Approved Assets", align: "left" },
-  { value: "$1.9BN+", label: "Per Deal", align: "right" },
-  { value: "$148BN+", label: "Total Value", align: "left" },
-  { value: "1.2M+", label: "Patients Treated", align: "right" },
-  { value: "440M+", label: "Population Reach", align: "left" },
+  { value: "444+", label: "Identified Assets", align: "left" },
+  { value: "$1.9BN+", label: "per Asset per Country", align: "right" },
+  { value: "$390BN+", label: "Total Value", align: "left" },
+  { value: "440M+", label: "Patient Reach", align: "left" },
 ];
 
 function SlideIn({
