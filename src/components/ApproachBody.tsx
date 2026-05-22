@@ -64,29 +64,9 @@ export function ApproachBody() {
               <p>
                 Each conservatively represents <span className="font-serif text-brand">$1.9BN+</span> in lifetime per-asset revenue across our target markets. The global rights sit unallocated inside US and European biotechs, NewCo platforms, and venture-backed development funds whose own teams are focused on the next blockbuster, not on Mexico City or Riyadh.
               </p>
-              <p>
-                The model is already validated. Pint Pharma cultivated a portfolio of ~10 in-licensed drugs over 30 years, reached ~$60M ARR, and was acquired in September 2025 by Sobi (Nasdaq Stockholm: SOBI) primarily for its LATAM distribution footprint. We are building the AI-native, parallelised version.
-              </p>
             </div>
           </div>
 
-          <div className="mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 border-t border-brand/15 pt-12">
-            {[
-              { k: '444+', v: 'Identified assets' },
-              { k: '$1.9BN+', v: 'per Asset, per Country' },
-              { k: '$390BN+', v: 'Total addressable value' },
-              { k: '440M+', v: 'Patient reach' },
-            ].map((s) => (
-              <div key={s.v}>
-                <div className="font-serif text-[40px] md:text-[64px] lg:text-[80px] leading-[0.95] text-brand">
-                  {s.k}
-                </div>
-                <div className="mt-3 text-[11px] md:text-xs tracking-[0.18em] uppercase text-brand/70">
-                  {s.v}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
