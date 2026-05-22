@@ -18,16 +18,16 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main className="flex-1 bg-cream text-brand">
+      <main className="flex-1 bg-white text-approach">
         <section className="pt-40 md:pt-48 pb-20 md:pb-32">
           <div className="max-w-[1280px] mx-auto px-6 md:px-10">
-            <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-brand/70">
+            <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/70">
               /contact
             </p>
-            <h1 className="mt-6 font-serif text-[64px] md:text-[112px] lg:text-[140px] leading-[0.95]">
+            <h1 className="mt-6 font-sans font-black text-[64px] md:text-[112px] lg:text-[140px] leading-[0.95] tracking-[-0.02em]">
               Contact
             </h1>
-            <p className="mt-10 md:mt-14 max-w-[760px] text-[20px] md:text-[26px] lg:text-[30px] leading-[1.45] text-brand">
+            <p className="mt-10 md:mt-14 max-w-[760px] text-[20px] md:text-[26px] lg:text-[30px] leading-[1.45] font-medium text-approach">
               Any questions? Want to learn more? We look forward to hearing from you.
             </p>
           </div>
@@ -37,16 +37,16 @@ export default function ContactPage() {
           <div className="max-w-[1280px] mx-auto px-6 md:px-10 grid gap-16 md:gap-20 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
             <div className="space-y-10 md:space-y-12">
               {CATEGORIES.map((c) => (
-                <div key={c.label} className="border-t border-brand/20 pt-6 md:pt-8">
-                  <p className="text-[11px] tracking-[0.25em] uppercase text-brand/70">
+                <div key={c.label} className="border-t border-approach/20 pt-6 md:pt-8">
+                  <p className="text-[11px] tracking-[0.25em] uppercase text-approach/70">
                     /{c.label.toLowerCase().replace(/\s+/g, "-")}
                   </p>
-                  <h2 className="mt-3 font-serif text-[28px] md:text-[36px] leading-[1.1]">
+                  <h2 className="mt-3 font-sans font-bold text-[28px] md:text-[36px] leading-[1.1] tracking-[-0.01em]">
                     {c.label}
                   </h2>
                   <a
                     href={`mailto:${c.email}`}
-                    className="mt-3 inline-block text-[16px] md:text-[18px] text-brand hover:opacity-70 transition-opacity"
+                    className="mt-3 inline-block text-[16px] md:text-[18px] font-medium text-approach hover:opacity-70 transition-opacity"
                   >
                     {c.email}
                   </a>

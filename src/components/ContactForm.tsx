@@ -39,12 +39,12 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-brand/20 p-8 md:p-10">
-        <p className="text-[11px] tracking-[0.25em] uppercase text-brand/70">/received</p>
-        <h2 className="mt-6 font-serif text-[32px] md:text-[44px] leading-[1.1]">
+      <div className="border border-approach/20 p-8 md:p-10">
+        <p className="text-[11px] tracking-[0.25em] uppercase text-approach/70">/received</p>
+        <h2 className="mt-6 font-sans font-bold text-[32px] md:text-[44px] leading-[1.1] tracking-[-0.01em]">
           Thanks, we&apos;ll be in touch.
         </h2>
-        <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6] text-brand/80">
+        <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6] text-approach/80">
           Your message has reached the team. We typically respond within two business days.
         </p>
       </div>
@@ -62,7 +62,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-brand text-base text-brand hover:bg-brand hover:text-white transition-colors w-fit disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-approach text-base font-semibold text-approach hover:bg-approach hover:text-white transition-colors w-fit disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {status === "submitting" ? "Sending..." : "Send Message"}
           <SlashIcon className="w-3 h-3" />
@@ -89,11 +89,11 @@ function Field({
   autoComplete?: string;
 }) {
   const baseClass =
-    "w-full bg-transparent border-b border-brand/30 py-3 text-[16px] md:text-[18px] text-brand placeholder:text-brand/30 focus:outline-none focus:border-brand transition-colors";
+    "w-full bg-transparent border-b border-approach/30 py-3 text-[16px] md:text-[18px] font-medium text-approach placeholder:text-approach/30 focus:outline-none focus:border-approach transition-colors";
 
   return (
     <label className="block">
-      <span className="text-[11px] tracking-[0.25em] uppercase text-brand/70">
+      <span className="text-[11px] tracking-[0.25em] uppercase text-approach/70">
         /{label.toLowerCase()}
         {required ? "" : " (optional)"}
       </span>
