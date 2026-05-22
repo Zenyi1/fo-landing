@@ -5,33 +5,33 @@ import { SlashIcon } from '@/components/icons';
 const PILLARS = [
   {
     n: '01',
-    title: 'AI-native sourcing',
+    title: 'Asset identification',
     body:
-      'Our agents continuously scan FDA, EMA, PMDA and Health Canada approvals against an internal map of unallocated emerging-market rights. From 444+ identified candidates we surface the ~1% that combine clean safety data, a payer-willing indication, and an upstream rights holder with no LATAM, MENA or SEA execution plan.',
+      'Combing the world’s approved-drug registers for therapeutics with the right combination of clinical maturity, indication–payer fit, manufacturing feasibility and unallocated rights. The signal-to-noise is brutal; most candidates fail at least one of these criteria.',
   },
   {
     n: '02',
-    title: 'Bridge analysis',
+    title: 'Clinical and regulatory translation',
     body:
-      'For each shortlisted asset we build the bridge dossier — CMC translation, label crosswalks, comparator standard-of-care benchmarks, KOL mapping, payer access, and patient-population sizing — across multiple jurisdictions in parallel rather than one country at a time.',
+      'Reading an approval issued in one jurisdiction and mapping it onto the evidence expectations, label conventions and standard of care of a market that sees the disease differently. Scientific and legal work in equal measure.',
   },
   {
     n: '03',
-    title: 'Licensing',
+    title: 'Partnerships',
     body:
-      'We approach upstream rights holders — Catalys-style NewCos, specialty biotechs, venture development funds — and sign single-asset deals: small cash, NewCo equity, royalty per market. The rights they were never going to monetise become ours to launch.',
+      'Earning trust with the rights holders who control the original approval, and with the in-country operators who control distribution. Both relationships take years to build and seconds to lose.',
   },
   {
     n: '04',
-    title: 'Regulatory cascade',
+    title: 'Regulatory navigation',
     body:
-      'We file Mexico COFEPRIS under the 45-business-day abbreviated reliance pathway, then cascade the same dossier into Brazil (ANVISA / PAHO reference), Colombia, Argentina, Chile and Peru — and onward into MENA via Saudi SFDA Verification, UAE MOHAP, Egypt EDA — and SEA via Singapore HSA Abridged. One bridge, many markets.',
+      'Working alongside each national authority through dossier preparation, deficiency responses, label localisation and post-market commitments. Every authority on its own clock, in its own language, with its own conventions.',
   },
   {
     n: '05',
-    title: 'Local execution',
+    title: 'Local commercialisation',
     body:
-      'Boots-on-the-ground operations per country: bulk import, local CDMO packaging, distributor partnerships, KOL relationships and payer access. The operational playbook is run by embedded teams while our agents handle dossier translation, deficiency responses and multi-jurisdiction submission tracking.',
+      'Standing up the in-country supply chain, clinical engagement, payer access and patient awareness needed to actually treat people once an approval lands. Approvals on paper aren’t medicine in patients.',
   },
 ];
 
@@ -54,15 +54,15 @@ export function ApproachBody() {
                 /the opportunity
               </p>
               <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
-                A 20-year drug lag, repriced.
+                Decades of unmet need, still waiting.
               </h2>
             </div>
             <div className="md:col-span-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
               <p>
-                Between 2005 and 2022, 78 drugs were approved in Japan that never reached the United States. The broader universe is much larger: hundreds of FDA-, EMA- and PMDA-approved therapeutics have never been bridged into emerging markets where they are clinically needed and commercially viable.
+                Between 2005 and 2022, dozens of drugs were approved in Japan that never reached the United States. The broader universe is much larger: hundreds of therapeutics already cleared by the FDA, EMA, PMDA and Health Canada have never been brought into the emerging markets where they are clinically needed and commercially viable.
               </p>
               <p>
-                Each conservatively represents <span className="font-serif text-brand">$1.9BN+</span> in lifetime per-asset revenue across our target markets. The global rights sit unallocated inside US and European biotechs, NewCo platforms, and venture-backed development funds whose own teams are focused on the next blockbuster, not on Mexico City or Riyadh.
+                The global rights typically sit unallocated inside US and European developers whose teams are focused on the next blockbuster, not on the markets we serve. The therapies are real, the patient populations are real, and the regulatory pathways to reach them now exist; the work that closes the gap is what does not.
               </p>
             </div>
           </div>
@@ -85,17 +85,17 @@ export function ApproachBody() {
                 /sourcing
               </p>
               <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
-                The wedge is finding what others overlook.
+                Finding the right asset is the hard part.
               </h2>
               <div className="mt-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
                 <p>
-                  Big pharma is structurally uninterested in approved assets that don&apos;t look like the next Ozempic. Their thresholds — $250M+ minimum deal value, first-in-class only, global rights — leave high-quality therapies stranded. The arbitrage is real, but it is exceedingly hard to find the asset that combines clean human data, a payer-willing emerging-market indication, and an upstream holder willing to license.
+                  Each year the world&apos;s strictest regulators approve thousands of new therapeutics. Only a small fraction are both clinically meaningful and commercially viable in emerging markets. Identifying that fraction is not a matter of reading a label; it requires reconciling clinical evidence, payer behaviour, treatment standards, manufacturing feasibility and rights availability across jurisdictions with very different healthcare systems, languages and standards of care.
                 </p>
                 <p>
-                  Catalys Pacific runs a 100-to-200-to-1 pass rate and has moved 12 drugs in seven years; the discovery work is the bottleneck. We rebuild it as software. Our agents continuously index global approvals, in-license registers, NewCo portfolios and patent positions. They surface candidates, draft a one-page brief, and score each on regulatory cleanliness, commercial viability per country, and rights availability — at a throughput a manual team cannot match.
+                  Global pharma is structurally uninterested in this work. Their thresholds, including minimum deal size, first-in-class only, and global rights, leave high-quality therapies stranded outside their pipelines. The opportunity is real; the depth of judgement needed to surface it is what keeps the field thin.
                 </p>
                 <p>
-                  The humans focus on the part agents can&apos;t do: the upstream conversation. Most rights holders we approach have never put a serious number on their emerging-market rights — because no one has ever asked.
+                  Doing it well demands equal parts scientific judgement, regulatory fluency and local market intelligence. Most teams have one of the three; building all three under one roof is the work of years.
                 </p>
               </div>
             </div>
@@ -111,17 +111,14 @@ export function ApproachBody() {
                 /bridge &amp; approve
               </p>
               <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
-                One dossier. Many markets.
+                One body of evidence. Many regulators.
               </h2>
               <div className="mt-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
                 <p>
-                  Mexico&apos;s COFEPRIS reliance pathway, opened in September 2025, grants 45-business-day reviews for any drug already approved by FDA, EMA, PMDA or Health Canada within the prior five years. Mexico is a PAHO reference country, which means a Mexican approval cascades into Brazil, Colombia, Argentina, Chile and Peru through abbreviated review.
+                  An approval issued by the FDA, EMA, PMDA or Health Canada is increasingly recognised, in part, by the national authorities of dozens of emerging markets through reliance pathways finalised in the last two years. The same body of clinical evidence can now form the basis of submissions across LATAM, MENA and Southeast Asia.
                 </p>
                 <p>
-                  The same dossier moves into MENA via Saudi SFDA Verification (which accepts FDA + EMA), the UAE MOHAP, Egypt EDA, Jordan and Israel — and into Southeast Asia via Singapore HSA Abridged, which acts as a regional gateway into Malaysia NPRA, Thailand TFDA, the Philippines FDA-PH and Vietnam DAV.
-                </p>
-                <p>
-                  Each new market filing runs in three to six months instead of twelve to eighteen because the bridge dossier and submission templates are already built. Incremental cost per market drops 70–80% after the first launch.
+                  Recognition is not the same as approval. Every authority has its own dossier conventions, language, response cycles and unwritten expectations. Each market has its own standard of care, its own payer dynamics, its own clinical community, its own logistics. Moving an asset cleanly through fifteen jurisdictions is a craft as much as a science. It is done market by market, by people who have done it before.
                 </p>
               </div>
             </div>
@@ -138,7 +135,7 @@ export function ApproachBody() {
             <div>
               <div className="text-[11px] tracking-[0.18em] uppercase text-brand/60">LATAM</div>
               <p className="mt-3 text-brand">
-                Mexico COFEPRIS · Brazil ANVISA (RDC 913/2024) · Colombia · Argentina · Chile · Peru — via PAHO reference cascade.
+                Brazil ANVISA · Mexico COFEPRIS · Colombia · Argentina · Chile · Peru — via PAHO reference cascade.
               </p>
             </div>
             <div>
@@ -165,10 +162,10 @@ export function ApproachBody() {
                 /how we operate
               </p>
               <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
-                Five steps, run in parallel.
+                Work that doesn&apos;t fit in one discipline.
               </h2>
               <p className="mt-8 text-[17px] md:text-[19px] leading-[1.6] text-white/85">
-                Sourcing, bridging, licensing, regulatory cascade and local execution don&apos;t run sequentially — agents run them concurrently across multiple assets and multiple jurisdictions. The first assets are run with embedded ops to instrument every step; as patterns emerge, the work moves in-house.
+                Bringing an approved therapy into an emerging market requires capabilities that rarely sit under one roof: scientific, regulatory, commercial and operational. Each is hard on its own. Sequencing them across multiple assets and multiple jurisdictions is what makes the work defensible.
               </p>
             </div>
             <div className="md:col-span-8">
@@ -217,14 +214,14 @@ export function ApproachBody() {
             <div>
               <h3 className="font-serif text-[24px] md:text-[28px]">Reliance pathways</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
-                Mexico&apos;s COFEPRIS 45-business-day pathway opened in September 2025. Brazil&apos;s ANVISA finalised its reliance framework via RDC 913/2024. Saudi SFDA Verification and Singapore HSA Abridged are now operational. For the first time, a single FDA/EMA/PMDA decision can be parlayed into 15+ market approvals.
+                Brazil&apos;s ANVISA finalised its reliance framework via RDC 913/2024. Mexico&apos;s COFEPRIS, Saudi SFDA Verification and Singapore HSA Abridged are now operational. For the first time, a single FDA, EMA, PMDA or Health Canada decision can form the basis of submissions across more than fifteen emerging markets.
               </p>
             </div>
 
             <div>
               <h3 className="font-serif text-[24px] md:text-[28px]">AI capability</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
-                Bessemer estimates the outsourced pharma-services market at $150B+, with only ~5% of pharma companies capturing measurable AI value. Dossier translation, bridge analysis, deficiency-response drafting and multi-jurisdiction submission tracking are now technically automatable — the field is lagging and we get to compound the gap.
+                Bessemer estimates the outsourced pharma-services market at $150B+, with only ~5% of pharma companies capturing measurable AI value. Dossier translation, regulatory analysis, deficiency-response drafting and multi-jurisdiction submission tracking are now technically automatable — the field is lagging and we get to compound the gap.
               </p>
             </div>
           </div>
