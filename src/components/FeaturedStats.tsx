@@ -92,10 +92,10 @@ export function FeaturedStats() {
           ))}
         </div>
 
-        <SlideIn from="right">
-          <div className="mt-24 md:mt-40 md:ml-auto md:max-w-[80%]">
+        <SlideIn from="left">
+          <div className="mt-24 md:mt-40 max-w-[1100px]">
             <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/70">
-              /our role
+              /our solution
             </p>
             <p className="mt-6 font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2]">
               Firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners.
