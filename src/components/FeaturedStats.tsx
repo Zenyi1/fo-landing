@@ -6,9 +6,9 @@ import { ImageRotator } from "@/components/ImageRotator";
 import { cn } from "@/lib/utils";
 
 const STATS: { value: string; label: string; align: "left" | "right" }[] = [
-  { value: "2 in 3", label: "FDA-approve ddrugs never reach LATAM, MENA, or SEA", align: "left" },
-  { value: "$450+", label: "Identified Assets", align: "right" },
-  { value: "$390BN+", label: "Untapped Value", align: "left" },
+  { value: "2 in 3", label: "FDA-approved drugs never reach LATAM, MENA, or SEA", align: "left" },
+  { value: "450+", label: "Identified Assets", align: "right" },
+  { value: "$390Bn+", label: "Untapped Value", align: "left" },
   { value: "440M+", label: "Potential Patients", align: "right" },
 ];
 
