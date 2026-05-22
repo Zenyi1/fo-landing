@@ -52,7 +52,7 @@ export async function POST(req: Request) {
     <h2>New contact form submission</h2>
     <p><strong>Name:</strong> ${escape(name)}</p>
     <p><strong>Email:</strong> ${escape(email)}</p>
-    <p><strong>Phone:</strong> ${escape(phone) || "—"}</p>
+    <p><strong>Phone:</strong> ${escape(phone) || "(not provided)"}</p>
     <p><strong>Message:</strong></p>
     <p style="white-space:pre-wrap">${escape(message)}</p>
   `;
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
 
 Name: ${name}
 Email: ${email}
-Phone: ${phone || "—"}
+Phone: ${phone || "(not provided)"}
 
 Message:
 ${message}`;
@@ -71,7 +71,7 @@ ${message}`;
       from: FROM,
       to: TO,
       replyTo: email,
-      subject: `Contact form — ${name}`,
+      subject: `Contact form: ${name}`,
       html,
       text,
     });

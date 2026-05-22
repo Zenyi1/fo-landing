@@ -6,7 +6,7 @@ import { ApproachHero } from "@/components/ApproachHero";
 import { ApproachBody } from "@/components/ApproachBody";
 
 export const metadata: Metadata = {
-  title: "Approach — firstocean",
+  title: "Approach · firstocean",
   description:
     "How FirstOcean sources, bridges and globalises approved therapeutics into emerging markets.",
 };

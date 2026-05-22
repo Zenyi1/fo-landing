@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { SlashIcon } from '@/components/icons';
+import { cn } from '@/lib/utils';
 
 const PILLARS = [
   {
     n: '01',
     title: 'Asset identification',
     body:
-      'Combing the world’s approved-drug registers for therapeutics with the right combination of clinical maturity, indication–payer fit, manufacturing feasibility and unallocated rights. The signal-to-noise is brutal; most candidates fail at least one of these criteria.',
+      'Combing the world’s approved-drug registers for therapeutics with the right combination of clinical maturity, indication and payer fit, manufacturing feasibility and unallocated rights. The signal-to-noise is brutal; most candidates fail at least one of these criteria.',
   },
   {
     n: '02',
@@ -41,9 +42,9 @@ export function ApproachBody() {
     <>
       <section className="relative bg-brand">
         <img
-          src="/images/world-dots.png"
-          alt="World map of emerging-market reliance pathways"
-          className="w-full h-auto object-cover opacity-90"
+          src="/images/approach/earth-night.jpg"
+          alt="Earth at night, viewed from orbit"
+          className="w-full h-[60vh] md:h-[80vh] object-cover"
         />
       </section>
 
@@ -71,13 +72,13 @@ export function ApproachBody() {
         </div>
       </section>
 
-      <section className="bg-cream text-brand py-24 md:py-40">
+      <section className="bg-white text-brand py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
             <div className="md:col-span-5">
               <img
-                src="/images/rotator/06-molecule.jpg"
-                alt=""
+                src="/images/approach/pharmacy.jpg"
+                alt="Pharmacy interior with rows of stocked medicine"
                 className="w-full h-auto object-cover aspect-[4/5]"
               />
             </div>
@@ -125,8 +126,8 @@ export function ApproachBody() {
             </div>
             <div className="md:col-span-5 md:order-2 order-1">
               <img
-                src="/images/rotator/08-dna-robot.jpg"
-                alt=""
+                src="/images/approach/medicine.jpg"
+                alt="Labelled medicine bottles arranged on a shelf"
                 className="w-full h-auto object-cover aspect-[4/5]"
               />
             </div>
@@ -136,13 +137,13 @@ export function ApproachBody() {
             <div>
               <div className="text-[11px] tracking-[0.18em] uppercase text-brand/60">LATAM</div>
               <p className="mt-3 text-brand">
-                Brazil ANVISA · Mexico COFEPRIS · Colombia · Argentina · Chile · Peru — via PAHO reference cascade.
+                Brazil ANVISA · Mexico COFEPRIS · Colombia · Argentina · Chile · Peru, via PAHO reference cascade.
               </p>
             </div>
             <div>
               <div className="text-[11px] tracking-[0.18em] uppercase text-brand/60">MENA</div>
               <p className="mt-3 text-brand">
-                Saudi SFDA Verification · UAE MOHAP · Egypt EDA · Jordan · Israel — recognising FDA and EMA decisions.
+                Saudi SFDA Verification · UAE MOHAP · Egypt EDA · Jordan · Israel, recognising FDA and EMA decisions.
               </p>
             </div>
             <div>
@@ -170,25 +171,39 @@ export function ApproachBody() {
               </p>
             </div>
             <div className="md:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-white/15">
-                {PILLARS.map((p) => (
-                  <div key={p.n} className="bg-brand p-8 md:p-10">
-                    <div className="font-serif text-[28px] md:text-[34px] text-white/70">{p.n}</div>
-                    <h3 className="mt-3 font-serif text-[24px] md:text-[28px] leading-[1.15] text-white">
-                      {p.title}
-                    </h3>
-                    <p className="mt-4 text-[14px] md:text-[15px] leading-[1.6] text-white/85">
-                      {p.body}
-                    </p>
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                {PILLARS.map((p, i) => {
+                  const inLastCol = i % 2 === 1;
+                  const hasRightNeighbor = !inLastCol && i + 1 < PILLARS.length;
+                  const hasBelowNeighbor = i + 2 < PILLARS.length;
+                  const isLast = i === PILLARS.length - 1;
+                  return (
+                    <div
+                      key={p.n}
+                      className={cn(
+                        "p-8 md:p-10",
+                        !isLast && "border-b border-white/15 sm:border-b-0",
+                        hasBelowNeighbor && "sm:border-b sm:border-white/15",
+                        hasRightNeighbor && "sm:border-r sm:border-white/15",
+                      )}
+                    >
+                      <div className="font-serif text-[28px] md:text-[34px] text-white/70">{p.n}</div>
+                      <h3 className="mt-3 font-serif text-[24px] md:text-[28px] leading-[1.15] text-white">
+                        {p.title}
+                      </h3>
+                      <p className="mt-4 text-[14px] md:text-[15px] leading-[1.6] text-white/85">
+                        {p.body}
+                      </p>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-cream text-brand py-24 md:py-40">
+      <section className="bg-white text-brand py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-brand/60">
             /why now
@@ -208,7 +223,7 @@ export function ApproachBody() {
             <div>
               <h3 className="font-serif text-[24px] md:text-[28px]">Emerging-market growth</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
-                IQVIA projects LATAM pharma at a 22% CAGR through 2027. MENA pharma is forecast to grow from ~$57B in 2025 to ~$78B by 2033. BCG estimates ~$275B of Western patent-cliff revenue at risk between 2025 and 2030 — capital and demand are rotating into the markets we operate in.
+                IQVIA projects LATAM pharma at a 22% CAGR through 2027. MENA pharma is forecast to grow from ~$57B in 2025 to ~$78B by 2033. BCG estimates ~$275B of Western patent-cliff revenue at risk between 2025 and 2030; capital and demand are rotating into the markets we operate in.
               </p>
             </div>
 

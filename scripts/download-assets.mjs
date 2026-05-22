@@ -22,6 +22,9 @@ const assets = [
   ["images/rotator/06-molecule.jpg", "https://averin-capital.transforms.svdcdn.com/production/homepage-animation/visualelectric-molecule-07.png?w=2200&h=1238&q=80&auto=format%2Cavif&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5&dm=1756040583&s=2f0b531435a1d7876941c072ced467ed"],
   ["images/rotator/07-chip-droplet.jpg", "https://averin-capital.transforms.svdcdn.com/production/homepage-animation/chip-with-droplet.png?w=2200&h=1238&q=80&auto=format%2Cavif&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5&dm=1748867453&s=c1bc601a8fe23db94f09bac19cfe1025"],
   ["images/rotator/08-dna-robot.jpg", "https://averin-capital.transforms.svdcdn.com/production/homepage-animation/Better-DNA-Robot.png?w=2200&h=1238&q=80&auto=format%2Cavif&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.5&dm=1748871298&s=fab93df730d1f124629cee42da112d9c"],
+  ["images/approach/earth-night.jpg", "https://images.unsplash.com/photo-1634176866089-b633f4aec882?w=2400&q=80&auto=format&fit=crop"],
+  ["images/approach/pharmacy.jpg", "https://images.unsplash.com/photo-1642055514517-7b52288890ec?w=2000&q=85&auto=format&fit=crop"],
+  ["images/approach/medicine.jpg", "https://images.unsplash.com/photo-1586015555751-63bb77f4322a?w=2000&q=85&auto=format&fit=crop"],
 ];
 
 async function exists(path) {

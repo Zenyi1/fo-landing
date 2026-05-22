@@ -4,7 +4,7 @@ import { SlashIcon } from '@/components/icons';
 
 export function ApproachHero() {
   return (
-    <section className="relative bg-cream text-brand pt-40 md:pt-48 pb-20 md:pb-32">
+    <section className="relative bg-white text-brand pt-40 md:pt-48 pb-20 md:pb-32">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-brand/70">
           /approach
@@ -14,7 +14,7 @@ export function ApproachHero() {
           Bridge them where they&apos;re needed.
         </h1>
         <p className="mt-10 md:mt-14 max-w-[860px] text-[20px] md:text-[26px] lg:text-[30px] leading-[1.45] text-brand">
-          We identify therapeutics already approved by the world&apos;s strictest regulators — FDA, EMA, PMDA, Health Canada — and bring them to emerging markets where they are commercially viable but have never been launched. Every asset arrives de-risked: years of human safety data, an existing standard of care to beat, and a reliance pathway built to clear it.
+          We identify therapeutics already approved by the world&apos;s strictest regulators, including the FDA, EMA, PMDA and Health Canada, and bring them to emerging markets where they are commercially viable but have never been launched. Every asset arrives de-risked: years of human safety data, an existing standard of care to beat, and a reliance pathway built to clear it.
         </p>
 
         <a

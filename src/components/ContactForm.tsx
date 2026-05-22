@@ -42,7 +42,7 @@ export function ContactForm() {
       <div className="border border-brand/20 p-8 md:p-10">
         <p className="text-[11px] tracking-[0.25em] uppercase text-brand/70">/received</p>
         <h2 className="mt-6 font-serif text-[32px] md:text-[44px] leading-[1.1]">
-          Thanks — we&apos;ll be in touch.
+          Thanks, we&apos;ll be in touch.
         </h2>
         <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6] text-brand/80">
           Your message has reached the team. We typically respond within two business days.

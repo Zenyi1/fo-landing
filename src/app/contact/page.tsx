@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact — firstocean",
+  title: "Contact · firstocean",
   description: "Get in touch with the FirstOcean team.",
 };
 
