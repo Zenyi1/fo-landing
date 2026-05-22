@@ -15,7 +15,7 @@ export function FooterPromo() {
 
       <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-[120px] gap-8 md:gap-10">
         <h2 className="font-serif leading-[0.95] text-white text-[56px] md:text-[96px] lg:text-[140px]">
-          Make an impact
+          Work with us
         </h2>
         <a
           href="mailto:info@first-ocean.com"

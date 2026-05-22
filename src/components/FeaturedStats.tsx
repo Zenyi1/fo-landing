@@ -61,9 +61,14 @@ export function FeaturedStats() {
       <ImageRotator />
       <div className="absolute inset-0 bg-black/45 pointer-events-none" />
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10">
-        <p className="font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2] max-w-[1100px]">
-          Hundreds of de-risked therapies, approved by the FDA, EMA, and PMDA, never reach the emerging markets where demand is greatest. The result is global pharma's largest sourcing inefficiency. Firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners
-        </p>
+        <SlideIn from="left">
+          <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/70">
+            /the problem
+          </p>
+          <p className="mt-6 font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2] max-w-[1100px]">
+            Hundreds of de-risked therapies, approved by the FDA, EMA, and PMDA, never reach the emerging markets where demand is greatest.
+          </p>
+        </SlideIn>
 
         <div className="mt-24 md:mt-40 space-y-16 md:space-y-24">
           {STATS.map((stat) => (
@@ -87,12 +92,22 @@ export function FeaturedStats() {
           ))}
         </div>
 
-        <a
-          href="mailto:info@first-ocean.com"
-          className="inline-flex items-center gap-3 mt-16 md:mt-24 text-base md:text-lg text-white hover:opacity-70 transition-opacity"
-        >
-          Contact Us <SlashIcon className="w-3 h-3" />
-        </a>
+        <SlideIn from="right">
+          <div className="mt-24 md:mt-40 md:ml-auto md:max-w-[80%]">
+            <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/70">
+              /our role
+            </p>
+            <p className="mt-6 font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2]">
+              Firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners.
+            </p>
+            <a
+              href="mailto:info@first-ocean.com"
+              className="inline-flex items-center gap-3 mt-12 md:mt-16 text-base md:text-lg text-white hover:opacity-70 transition-opacity"
+            >
+              Contact Us <SlashIcon className="w-3 h-3" />
+            </a>
+          </div>
+        </SlideIn>
       </div>
     </section>
   );
