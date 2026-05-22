@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Local temp files
 temp/
+
+# Large local videos (not committed)
+public/videos/sizzle-reel.mp4
