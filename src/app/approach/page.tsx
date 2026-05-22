@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 import { FooterPromo } from "@/components/FooterPromo";
 import { ApproachHero } from "@/components/ApproachHero";
 import { ApproachBody } from "@/components/ApproachBody";
@@ -20,7 +19,6 @@ export default function ApproachPage() {
         <ApproachBody />
         <FooterPromo />
       </main>
-      <SiteFooter />
     </>
   );
 }

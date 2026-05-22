@@ -54,7 +54,7 @@
   /* mlp.com brand */
   --brand: #1434CB;
   --brand-light: #7A8AE8;
-  --approach: #7194B4;
+  --approach: #3D5E7E;
   --cream: #FFF7F0;
   --ink-on-dark: #FFFFFF;
 
@@ -120,6 +120,9 @@
   }
   .text-approach {
     color: var(--approach);
+  }
+  .bg-approach {
+    background-color: var(--approach);
   }
   .bg-brand {
     background-color: var(--brand);

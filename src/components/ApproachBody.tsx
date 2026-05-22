@@ -40,7 +40,7 @@ const PILLARS = [
 export function ApproachBody() {
   return (
     <>
-      <section className="relative bg-brand">
+      <section className="relative bg-approach">
         <img
           src="/images/approach/earth-night.jpg"
           alt="Earth at night, viewed from orbit"
@@ -156,7 +156,7 @@ export function ApproachBody() {
         </div>
       </section>
 
-      <section className="bg-brand text-white py-24 md:py-40">
+      <section className="bg-approach text-white py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
             <div className="md:col-span-4">

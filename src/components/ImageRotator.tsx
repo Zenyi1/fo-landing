@@ -31,7 +31,7 @@ export function ImageRotator({ intervalMs = 3500 }: { intervalMs?: number }) {
           src={src}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-contain transition-opacity duration-[1200ms] ease-in-out"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ease-in-out"
           style={{ opacity: i === active ? 1 : 0 }}
         />
       ))}
