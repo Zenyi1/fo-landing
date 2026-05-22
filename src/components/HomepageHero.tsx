@@ -17,11 +17,11 @@ export function HomepageHero() {
 
       <div className="relative z-10 min-h-screen flex flex-col justify-center pl-10 md:pl-20 lg:pl-[120px] pr-6 md:pr-12 py-32">
         <h1 className="font-serif text-[48px] md:text-[72px] lg:text-[90px] leading-[1.15] lg:leading-[1.35] text-white max-w-4xl">
-          Built for treatments<br />without borders
+          Proven medicines<br />new patients
         </h1>
         
         <p className="mt-8 max-w-[600px] text-[22px] md:text-[28px] lg:text-[34px] leading-[1.5] text-white">
-          Defined by sourcing, bridging and developing approved-elsewhere therapeutics.
+           Our team leverages proprietary AI to identify, license, and launch already approved therapeutics into the markets that need them most.
         </p>
         <button
           type="button"

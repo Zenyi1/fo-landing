@@ -6,10 +6,10 @@ import { ImageRotator } from "@/components/ImageRotator";
 import { cn } from "@/lib/utils";
 
 const STATS: { value: string; label: string; align: "left" | "right" }[] = [
-  { value: "444+", label: "Identified Assets", align: "left" },
-  { value: "$1.9BN+", label: "per Asset per Country", align: "right" },
-  { value: "$390BN+", label: "Total Value", align: "left" },
-  { value: "440M+", label: "Patient Reach", align: "left" },
+  { value: "2 in 3", label: "FDA-approve ddrugs never reach LATAM, MENA, or SEA", align: "left" },
+  { value: "$450+", label: "Identified Assets", align: "right" },
+  { value: "$390BN+", label: "Untapped Value", align: "left" },
+  { value: "440M+", label: "Potential Patients", align: "right" },
 ];
 
 function SlideIn({
@@ -62,7 +62,7 @@ export function FeaturedStats() {
       <div className="absolute inset-0 bg-black/45 pointer-events-none" />
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10">
         <p className="font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2] max-w-[1100px]">
-          Firstocean is a pharmaceutical company-creation engine using AI to source, bridge, and globalise therapeutics already approved in Asia.
+          Firstocean is the AI sourcing engine resolving global pharma's largest inefficiency: matching overlooked approved therapeutics with partners ready to commercialise them in untapped markets.
         </p>
 
         <div className="mt-24 md:mt-40 space-y-16 md:space-y-24">
