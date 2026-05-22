@@ -43,21 +43,21 @@ export function SiteHeader() {
               className="w-10 h-10 rounded object-cover"
             />
           ) : (
-            <span className="font-serif text-2xl lowercase">firstocean</span>
+            <span className="font-sans font-black tracking-[-0.02em] text-2xl lowercase">firstocean</span>
           )}
         </Link>
 
         <div className="flex items-center gap-8">
           <Link
             href="/approach"
-            className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
+            className="hidden lg:inline-flex items-center gap-3 text-base font-semibold hover:opacity-70 transition-opacity"
           >
             Approach
             <SlashIcon className="w-3 h-3" />
           </Link>
           <Link
             href="/contact"
-            className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
+            className="hidden lg:inline-flex items-center gap-3 text-base font-semibold hover:opacity-70 transition-opacity"
           >
             Contact Us
             <SlashIcon className="w-3 h-3" />

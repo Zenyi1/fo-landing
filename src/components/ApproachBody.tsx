@@ -55,7 +55,7 @@ export function ApproachBody() {
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /the opportunity
               </p>
-              <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
+              <h2 className="mt-4 font-sans font-black tracking-[-0.02em] text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
                 Decades of unmet need, still waiting.
               </h2>
             </div>
@@ -86,7 +86,7 @@ export function ApproachBody() {
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /sourcing
               </p>
-              <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
+              <h2 className="mt-4 font-sans font-black tracking-[-0.02em] text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
                 Finding the right asset is the hard part.
               </h2>
               <div className="mt-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
@@ -112,7 +112,7 @@ export function ApproachBody() {
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /bridge &amp; approve
               </p>
-              <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
+              <h2 className="mt-4 font-sans font-black tracking-[-0.02em] text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
                 One body of evidence. Many regulators.
               </h2>
               <div className="mt-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
@@ -163,7 +163,7 @@ export function ApproachBody() {
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/60">
                 /how we operate
               </p>
-              <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
+              <h2 className="mt-4 font-sans font-black tracking-[-0.02em] text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
                 Work that doesn&apos;t fit in one discipline.
               </h2>
               <p className="mt-8 text-[17px] md:text-[19px] leading-[1.6] text-white/85">
@@ -187,8 +187,8 @@ export function ApproachBody() {
                         hasRightNeighbor && "sm:border-r sm:border-white/15",
                       )}
                     >
-                      <div className="font-serif text-[28px] md:text-[34px] text-white/70">{p.n}</div>
-                      <h3 className="mt-3 font-serif text-[24px] md:text-[28px] leading-[1.15] text-white">
+                      <div className="font-sans font-black tracking-[-0.02em] text-[28px] md:text-[34px] text-white/70">{p.n}</div>
+                      <h3 className="mt-3 font-sans font-black tracking-[-0.02em] text-[24px] md:text-[28px] leading-[1.15] text-white">
                         {p.title}
                       </h3>
                       <p className="mt-4 text-[14px] md:text-[15px] leading-[1.6] text-white/85">
@@ -208,34 +208,34 @@ export function ApproachBody() {
           <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
             /why now
           </p>
-          <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0] max-w-[1000px]">
+          <h2 className="mt-4 font-sans font-black tracking-[-0.02em] text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0] max-w-[1000px]">
             Four tailwinds converging in the same 24 months.
           </h2>
 
           <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-20 md:gap-y-16">
             <div>
-              <h3 className="font-serif text-[24px] md:text-[28px]">US pricing pressure</h3>
+              <h3 className="font-sans font-black tracking-[-0.02em] text-[24px] md:text-[28px]">US pricing pressure</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
                 The Inflation Reduction Act (Aug 2022) gave Medicare drug-price negotiation power for the first time; ZS Consulting projects ~31% pharma-revenue compression and 135 fewer approvals through 2039. Trump&apos;s May 2025 MFN executive order layered on a further squeeze, with 17 major manufacturers committing to most-favored-nation pricing in Medicaid.
               </p>
             </div>
 
             <div>
-              <h3 className="font-serif text-[24px] md:text-[28px]">Emerging-market growth</h3>
+              <h3 className="font-sans font-black tracking-[-0.02em] text-[24px] md:text-[28px]">Emerging-market growth</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
                 IQVIA projects LATAM pharma at a 22% CAGR through 2027. MENA pharma is forecast to grow from ~$57B in 2025 to ~$78B by 2033. BCG estimates ~$275B of Western patent-cliff revenue at risk between 2025 and 2030; capital and demand are rotating into the markets we operate in.
               </p>
             </div>
 
             <div>
-              <h3 className="font-serif text-[24px] md:text-[28px]">Reliance pathways</h3>
+              <h3 className="font-sans font-black tracking-[-0.02em] text-[24px] md:text-[28px]">Reliance pathways</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
                 Brazil&apos;s ANVISA finalised its reliance framework via RDC 913/2024. Mexico&apos;s COFEPRIS, Saudi SFDA Verification and Singapore HSA Abridged are now operational. For the first time, a single FDA, EMA, PMDA or Health Canada decision can form the basis of submissions across more than fifteen emerging markets.
               </p>
             </div>
 
             <div>
-              <h3 className="font-serif text-[24px] md:text-[28px]">AI capability</h3>
+              <h3 className="font-sans font-black tracking-[-0.02em] text-[24px] md:text-[28px]">AI capability</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
                 Bessemer estimates the outsourced pharma-services market at $150B+, with only ~5% of pharma companies capturing measurable AI value. Dossier translation, regulatory analysis, deficiency-response drafting and multi-jurisdiction submission tracking are now technically automatable — the field is lagging and we get to compound the gap.
               </p>

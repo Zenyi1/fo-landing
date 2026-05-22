@@ -19,7 +19,7 @@ export function HomepageHero() {
       <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 
       <div className="relative z-10 min-h-screen flex flex-col justify-center pl-10 md:pl-20 lg:pl-[120px] pr-6 md:pr-12 py-32">
-        <h1 className="font-serif text-[48px] md:text-[72px] lg:text-[90px] leading-[1.15] lg:leading-[1.35] text-white max-w-4xl">
+        <h1 className="font-sans font-black tracking-[-0.02em] text-[48px] md:text-[72px] lg:text-[90px] leading-[1.15] lg:leading-[1.35] text-white max-w-4xl">
           Proven medicines<br />New patients
         </h1>
 

@@ -66,7 +66,7 @@ export function FeaturedStats() {
           <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/70">
             /the problem
           </p>
-          <p className="mt-6 font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2] max-w-[1100px]">
+          <p className="mt-6 font-sans font-black tracking-[-0.02em] text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2] max-w-[1100px]">
             Hundreds of de-risked therapies, approved by the FDA, EMA, and PMDA, never reach the emerging markets where demand is greatest.
           </p>
         </SlideIn>
@@ -82,7 +82,7 @@ export function FeaturedStats() {
                     : "md:max-w-[55%]"
                 )}
               >
-                <div className="font-serif leading-[0.9] text-white text-[72px] md:text-[120px] lg:text-[165px]">
+                <div className="font-sans font-black tracking-[-0.02em] leading-[0.9] text-white text-[72px] md:text-[120px] lg:text-[165px]">
                   {stat.value}
                 </div>
                 <div className="mt-4 md:mt-6 text-[12px] md:text-sm tracking-[0.15em] uppercase text-white">
@@ -98,7 +98,7 @@ export function FeaturedStats() {
             <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/70">
               /our solution
             </p>
-            <p className="mt-6 font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2]">
+            <p className="mt-6 font-sans font-black tracking-[-0.02em] text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2]">
               Firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners.
             </p>
             <Link
