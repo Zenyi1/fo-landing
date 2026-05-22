@@ -1,8 +1,11 @@
 'use client';
 
-import { SlashIcon, PlayIcon } from '@/components/icons';
+import { PlayIcon } from '@/components/icons';
+import { useRouter } from 'next/navigation';
 
 export function HomepageHero() {
+  const router = useRouter();
+
   return (
     <section className="relative min-h-screen overflow-hidden bg-cream">
       <video
@@ -19,20 +22,16 @@ export function HomepageHero() {
         <h1 className="font-serif text-[48px] md:text-[72px] lg:text-[90px] leading-[1.15] lg:leading-[1.35] text-white max-w-4xl">
           Proven medicines<br />New patients
         </h1>
-        
+
         <p className="mt-8 max-w-[600px] text-[22px] md:text-[28px] lg:text-[34px] leading-[1.5] text-white">
         Firstocean surfaces approved therapeutics overlooked by global pharma and brings them to the partners reaching the markets that need them most
         </p>
         <button
           type="button"
-          onClick={() =>
-            document
-              .getElementById('stats')
-              ?.scrollIntoView({ behavior: 'smooth' })
-          }
-          className="mt-12 inline-flex items-center gap-3 text-white text-base hover:opacity-70 transition-opacity w-fit"
+          onClick={() => router.push('/approach')}
+          className="mt-12 inline-flex items-center gap-2 px-8 py-3 border-2 border-white text-white text-sm md:text-base tracking-wider uppercase hover:bg-white hover:text-brand transition-colors w-fit"
         >
-          Explore what&apos;s possible <SlashIcon className="w-3 h-3" />
+          Read the thesis
         </button>
       </div>
 
