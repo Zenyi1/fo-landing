@@ -21,7 +21,7 @@ export function HomepageHero() {
         </h1>
         
         <p className="mt-8 max-w-[600px] text-[22px] md:text-[28px] lg:text-[34px] leading-[1.5] text-white">
-           Our team leverages proprietary AI to <strong className="font-semibold">identify</strong>, <strong className="font-semibold">license</strong>, and <strong className="font-semibold">launch</strong> already approved therapeutics into the markets that need them most.
+        Firstocean surfaces approved therapeutics overlooked by global pharma and brings them to the partners reaching the markets that need them most.
         </p>
         <button
           type="button"

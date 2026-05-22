@@ -62,7 +62,7 @@ export function FeaturedStats() {
       <div className="absolute inset-0 bg-black/45 pointer-events-none" />
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10">
         <p className="font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2] max-w-[1100px]">
-          Firstocean is the AI sourcing engine resolving global pharma's largest inefficiency: matching overlooked approved therapeutics with partners ready to commercialise them in untapped markets.
+          Hundreds of de-risked therapies, approved by the FDA, EMA, and PMDA, never reach the emerging markets where demand is greatest. The result is global pharma's largest sourcing inefficiency. Firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners
         </p>
 
         <div className="mt-24 md:mt-40 space-y-16 md:space-y-24">
