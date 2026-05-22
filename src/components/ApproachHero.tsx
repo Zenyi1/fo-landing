@@ -10,11 +10,11 @@ export function ApproachHero() {
           /approach
         </p>
         <h1 className="mt-6 font-sans font-black tracking-[-0.02em] text-[56px] md:text-[96px] lg:text-[132px] leading-[1.1]">
-          Find the best drugs.<br />
+          Identify de-risked assets.<br />
           Bridge them where they&apos;re needed.
         </h1>
         <p className="mt-10 md:mt-14 max-w-[860px] text-[20px] md:text-[26px] lg:text-[30px] leading-[1.45] text-approach">
-          We identify therapeutics already approved by the world&apos;s strictest regulators, including the FDA, EMA, PMDA and Health Canada, and bring them to emerging markets where they are commercially viable but have never been launched. Every asset arrives de-risked: years of human safety data, an existing standard of care to beat, and a reliance pathway built to clear it.
+          We source therapeutics already approved by the FDA, EMA, PMDA and Health Canada, and identify emerging markets where they are commercially viable but have never been launched. Every asset arrives de-risked: years of human safety data, an existing standard of care to beat, and a reliance pathway built to clear it
         </p>
 
         <a
