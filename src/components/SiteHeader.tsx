@@ -55,13 +55,13 @@ export function SiteHeader() {
             Approach
             <SlashIcon className="w-3 h-3" />
           </Link>
-          <a
-            href="mailto:info@first-ocean.com"
+          <Link
+            href="/contact"
             className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
           >
             Contact Us
             <SlashIcon className="w-3 h-3" />
-          </a>
+          </Link>
           <button
             type="button"
             className="lg:hidden"

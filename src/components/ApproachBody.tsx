@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { SlashIcon } from '@/components/icons';
 
 const PILLARS = [
@@ -226,12 +227,12 @@ export function ApproachBody() {
             </div>
           </div>
 
-          <a
-            href="mailto:info@first-ocean.com"
+          <Link
+            href="/contact"
             className="mt-20 md:mt-28 inline-flex items-center gap-3 text-base md:text-lg text-brand hover:opacity-70 transition-opacity"
           >
             Talk to us <SlashIcon className="w-3 h-3" />
-          </a>
+          </Link>
         </div>
       </section>
     </>

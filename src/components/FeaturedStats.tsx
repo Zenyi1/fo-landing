@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { SlashIcon } from "@/components/icons";
 import { ImageRotator } from "@/components/ImageRotator";
 import { cn } from "@/lib/utils";
@@ -100,12 +101,12 @@ export function FeaturedStats() {
             <p className="mt-6 font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2]">
               Firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners.
             </p>
-            <a
-              href="mailto:info@first-ocean.com"
+            <Link
+              href="/contact"
               className="inline-flex items-center gap-3 mt-12 md:mt-16 text-base md:text-lg text-white hover:opacity-70 transition-opacity"
             >
               Contact Us <SlashIcon className="w-3 h-3" />
-            </a>
+            </Link>
           </div>
         </SlideIn>
       </div>

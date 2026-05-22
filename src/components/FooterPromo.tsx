@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SlashIcon } from "@/components/icons";
 
 export function FooterPromo() {
@@ -17,12 +18,12 @@ export function FooterPromo() {
         <h2 className="font-serif leading-[0.95] text-white text-[56px] md:text-[96px] lg:text-[140px]">
           Work with us
         </h2>
-        <a
-          href="mailto:info@first-ocean.com"
+        <Link
+          href="/contact"
           className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-white text-base text-white hover:bg-white hover:text-brand transition-colors w-fit"
         >
           Contact Us <SlashIcon className="w-3 h-3" />
-        </a>
+        </Link>
       </div>
     </section>
   );
