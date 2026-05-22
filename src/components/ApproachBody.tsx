@@ -48,11 +48,11 @@ export function ApproachBody() {
         />
       </section>
 
-      <section id="opportunity" className="bg-white text-brand py-24 md:py-40">
+      <section id="opportunity" className="bg-white text-approach py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
             <div className="md:col-span-4">
-              <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-brand/60">
+              <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /the opportunity
               </p>
               <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
@@ -72,7 +72,7 @@ export function ApproachBody() {
         </div>
       </section>
 
-      <section className="bg-white text-brand py-24 md:py-40">
+      <section className="bg-white text-approach py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
             <div className="md:col-span-5">
@@ -83,7 +83,7 @@ export function ApproachBody() {
               />
             </div>
             <div className="md:col-span-7">
-              <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-brand/60">
+              <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /sourcing
               </p>
               <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
@@ -105,11 +105,11 @@ export function ApproachBody() {
         </div>
       </section>
 
-      <section className="bg-white text-brand py-24 md:py-40">
+      <section className="bg-white text-approach py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
             <div className="md:col-span-7 md:order-1 order-2">
-              <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-brand/60">
+              <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /bridge &amp; approve
               </p>
               <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
@@ -135,20 +135,20 @@ export function ApproachBody() {
 
           <div className="mt-20 md:mt-28 grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-brand/15 pt-12 text-[14px] md:text-[15px] leading-[1.55]">
             <div>
-              <div className="text-[11px] tracking-[0.18em] uppercase text-brand/60">LATAM</div>
-              <p className="mt-3 text-brand">
+              <div className="text-[11px] tracking-[0.18em] uppercase text-approach/60">LATAM</div>
+              <p className="mt-3 text-approach">
                 Brazil ANVISA · Mexico COFEPRIS · Colombia · Argentina · Chile · Peru, via PAHO reference cascade.
               </p>
             </div>
             <div>
-              <div className="text-[11px] tracking-[0.18em] uppercase text-brand/60">MENA</div>
-              <p className="mt-3 text-brand">
+              <div className="text-[11px] tracking-[0.18em] uppercase text-approach/60">MENA</div>
+              <p className="mt-3 text-approach">
                 Saudi SFDA Verification · UAE MOHAP · Egypt EDA · Jordan · Israel, recognising FDA and EMA decisions.
               </p>
             </div>
             <div>
-              <div className="text-[11px] tracking-[0.18em] uppercase text-brand/60">SEA</div>
-              <p className="mt-3 text-brand">
+              <div className="text-[11px] tracking-[0.18em] uppercase text-approach/60">SEA</div>
+              <p className="mt-3 text-approach">
                 Singapore HSA Abridged · Malaysia NPRA · Thailand TFDA · Philippines FDA-PH · Vietnam DAV.
               </p>
             </div>
@@ -203,9 +203,9 @@ export function ApproachBody() {
         </div>
       </section>
 
-      <section className="bg-white text-brand py-24 md:py-40">
+      <section className="bg-white text-approach py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
-          <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-brand/60">
+          <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
             /why now
           </p>
           <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0] max-w-[1000px]">
@@ -244,7 +244,7 @@ export function ApproachBody() {
 
           <Link
             href="/contact"
-            className="mt-20 md:mt-28 inline-flex items-center gap-3 text-base md:text-lg text-brand hover:opacity-70 transition-opacity"
+            className="mt-20 md:mt-28 inline-flex items-center gap-3 text-base md:text-lg text-approach hover:opacity-70 transition-opacity"
           >
             Talk to us <SlashIcon className="w-3 h-3" />
           </Link>

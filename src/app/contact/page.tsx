@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
@@ -61,7 +60,6 @@ export default function ContactPage() {
           </div>
         </section>
       </main>
-      <SiteFooter />
     </>
   );
 }
