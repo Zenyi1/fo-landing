@@ -80,7 +80,7 @@ export function SiteHeader() {
           </Link>
           <button
             type="button"
-            className="lg:hidden relative z-[60]"
+            className="lg:hidden relative z-[70]"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((v) => !v)}
@@ -91,29 +91,21 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 top-0 z-40 bg-white text-brand flex flex-col">
-          <div className="flex-1 flex flex-col items-center justify-center gap-10 px-6">
-            <Link
-              href="/"
-              className="font-serif text-3xl lowercase hover:opacity-70 transition-opacity"
-            >
-              Home
-            </Link>
-            <Link
-              href="/approach"
-              className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
-            >
-              Approach
-              <SlashIcon className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
-            >
-              Contact Us
-              <SlashIcon className="w-4 h-4" />
-            </Link>
-          </div>
+        <div className="lg:hidden fixed inset-0 z-[60] bg-white text-brand flex flex-col items-center justify-center gap-10 px-6">
+          <Link
+            href="/approach"
+            className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
+          >
+            Approach
+            <SlashIcon className="w-4 h-4" />
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
+          >
+            Contact Us
+            <SlashIcon className="w-4 h-4" />
+          </Link>
         </div>
       )}
     </header>
