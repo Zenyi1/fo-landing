@@ -10,7 +10,7 @@ export function ApproachHero() {
           Bridge them where they&apos;re needed.
         </h1>
         <p className="mt-10 md:mt-14 max-w-[860px] text-[17px] sm:text-[20px] md:text-[26px] lg:text-[30px] leading-[1.45] text-approach break-words">
-          We source therapeutics already approved by the FDA, EMA, PMDA and Health Canada, and identify emerging markets where they are commercially viable but have never been launched. Every asset arrives de-risked: years of human safety data, an existing standard of care to beat, and a reliance pathway built to clear it
+          We source therapeutics already approved by the FDA, EMA, PMDA or Health Canada, secure the ex-US and ex-EU rights from the originators who hold them, and bring those assets through reliance pathways into LATAM, MENA and Southeast Asian markets where they are clinically needed and commercially viable but have never been launched.
         </p>
       </div>
     </section>
