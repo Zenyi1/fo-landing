@@ -46,48 +46,50 @@ export function SiteHeader() {
   }, [menuOpen]);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(20,52,203,0.1)] text-brand"
-          : "bg-transparent text-white"
-      )}
-    >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center" aria-label="FirstOcean">
-          <span className="font-serif text-2xl lowercase">firstocean</span>
-        </Link>
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+          scrolled
+            ? "bg-white/95 backdrop-blur-md shadow-[0_1px_0_rgba(20,52,203,0.1)] text-brand"
+            : "bg-transparent text-white"
+        )}
+      >
+        <div className="max-w-[1440px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
+          <Link href="/" className="flex items-center" aria-label="FirstOcean">
+            <span className="font-serif text-2xl lowercase">firstocean</span>
+          </Link>
 
-        <div className="flex items-center gap-8">
-          <Link
-            href="/approach"
-            className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
-          >
-            Approach
-            <SlashIcon className="w-3 h-3" />
-          </Link>
-          <Link
-            href="/contact"
-            className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
-          >
-            Contact Us
-            <SlashIcon className="w-3 h-3" />
-          </Link>
-          <button
-            type="button"
-            className="lg:hidden"
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-            onClick={() => setMenuOpen(true)}
-          >
-            <MenuSlashIcon className="w-6 h-6" />
-          </button>
+          <div className="flex items-center gap-8">
+            <Link
+              href="/approach"
+              className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
+            >
+              Approach
+              <SlashIcon className="w-3 h-3" />
+            </Link>
+            <Link
+              href="/contact"
+              className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
+            >
+              Contact Us
+              <SlashIcon className="w-3 h-3" />
+            </Link>
+            <button
+              type="button"
+              className="lg:hidden"
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen(true)}
+            >
+              <MenuSlashIcon className="w-6 h-6" />
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[60] bg-white text-brand flex flex-col">
+        <div className="lg:hidden fixed inset-0 z-[100] bg-white text-brand flex flex-col">
           <div className="px-6 md:px-10 py-6 flex items-center">
             <button
               type="button"
@@ -123,6 +125,6 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
-    </header>
+    </>
   );
 }

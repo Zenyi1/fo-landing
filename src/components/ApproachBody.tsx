@@ -55,7 +55,7 @@ export function ApproachBody() {
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /the opportunity
               </p>
-              <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
+              <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
                 Approved everywhere that matters. Available almost nowhere.
               </h2>
             </div>
@@ -89,7 +89,7 @@ export function ApproachBody() {
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /sourcing
               </p>
-              <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
+              <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
                 Finding the right asset is the hard part.
               </h2>
               <div className="mt-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
@@ -115,7 +115,7 @@ export function ApproachBody() {
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
                 /bridge &amp; approve
               </p>
-              <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
+              <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
                 One body of evidence. Many regulators.
               </h2>
               <div className="mt-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
@@ -166,7 +166,7 @@ export function ApproachBody() {
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/60">
                 /how we operate
               </p>
-              <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
+              <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
                 Work that doesn&apos;t fit in one discipline.
               </h2>
               <p className="mt-8 text-[17px] md:text-[19px] leading-[1.6] text-white/85">
@@ -211,7 +211,7 @@ export function ApproachBody() {
           <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
             /why now
           </p>
-          <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0] max-w-[1000px]">
+          <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words max-w-[1000px]">
             Four tailwinds converging in the same 24 months.
           </h2>
 
