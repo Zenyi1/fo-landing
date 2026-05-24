@@ -11,6 +11,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const hasDarkHero = pathname === "/";
   const [scrolled, setScrolled] = useState(!hasDarkHero);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     if (!hasDarkHero) return;
@@ -21,6 +22,21 @@ export function SiteHeader() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [hasDarkHero]);
+
+  //close menu on route change
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  //lock body scroll while menu is open
+  useEffect(() => {
+    if (!menuOpen) return;
+    const original = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = original;
+    };
+  }, [menuOpen]);
 
   return (
     <header
@@ -64,13 +80,42 @@ export function SiteHeader() {
           </Link>
           <button
             type="button"
-            className="lg:hidden"
-            aria-label="Open menu"
+            className="lg:hidden relative z-[60]"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((v) => !v)}
           >
             <MenuSlashIcon className="w-6 h-6" />
           </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <div className="lg:hidden fixed inset-0 top-0 z-40 bg-white text-brand flex flex-col">
+          <div className="flex-1 flex flex-col items-center justify-center gap-10 px-6">
+            <Link
+              href="/"
+              className="font-serif text-3xl lowercase hover:opacity-70 transition-opacity"
+            >
+              Home
+            </Link>
+            <Link
+              href="/approach"
+              className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
+            >
+              Approach
+              <SlashIcon className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
+            >
+              Contact Us
+              <SlashIcon className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
