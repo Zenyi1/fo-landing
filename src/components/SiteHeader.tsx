@@ -2,10 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { SlashIcon, MenuSlashIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
+
+function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden fill="none" {...props}>
+      <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -49,18 +56,7 @@ export function SiteHeader() {
     >
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
         <Link href="/" className="flex items-center" aria-label="FirstOcean">
-          {scrolled ? (
-            <Image
-              src="/seo/fo.jpeg"
-              alt="FirstOcean"
-              width={40}
-              height={40}
-              priority
-              className="w-10 h-10 rounded object-cover"
-            />
-          ) : (
-            <span className="font-serif text-2xl lowercase">firstocean</span>
-          )}
+          <span className="font-serif text-2xl lowercase">firstocean</span>
         </Link>
 
         <div className="flex items-center gap-8">
@@ -80,10 +76,10 @@ export function SiteHeader() {
           </Link>
           <button
             type="button"
-            className="lg:hidden relative z-[70]"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="lg:hidden"
+            aria-label="Open menu"
             aria-expanded={menuOpen}
-            onClick={() => setMenuOpen((v) => !v)}
+            onClick={() => setMenuOpen(true)}
           >
             <MenuSlashIcon className="w-6 h-6" />
           </button>
@@ -91,21 +87,40 @@ export function SiteHeader() {
       </div>
 
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 z-[60] bg-white text-brand flex flex-col items-center justify-center gap-10 px-6">
-          <Link
-            href="/approach"
-            className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
-          >
-            Approach
-            <SlashIcon className="w-4 h-4" />
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
-          >
-            Contact Us
-            <SlashIcon className="w-4 h-4" />
-          </Link>
+        <div className="lg:hidden fixed inset-0 z-[60] bg-white text-brand flex flex-col">
+          <div className="px-6 md:px-10 py-6 flex items-center">
+            <button
+              type="button"
+              aria-label="Close menu"
+              onClick={() => setMenuOpen(false)}
+              className="hover:opacity-70 transition-opacity"
+            >
+              <CloseIcon className="w-6 h-6" />
+            </button>
+          </div>
+          <nav className="flex-1 flex flex-col items-center justify-center gap-10 px-6">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
+            >
+              Home
+              <SlashIcon className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/approach"
+              className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
+            >
+              Approach
+              <SlashIcon className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
+            >
+              Contact Us
+              <SlashIcon className="w-4 h-4" />
+            </Link>
+          </nav>
         </div>
       )}
     </header>
