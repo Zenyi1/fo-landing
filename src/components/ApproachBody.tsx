@@ -9,31 +9,31 @@ const PILLARS = [
     n: '01',
     title: 'Asset identification',
     body:
-      'Combing the world’s approved-drug registers for therapeutics with the right combination of clinical maturity, indication and payer fit, manufacturing feasibility and unallocated rights. The signal-to-noise is brutal; most candidates fail at least one of these criteria.',
+      'Combing the world’s approved-drug registers for assets with the right combination of clinical maturity, payer fit, manufacturing feasibility and unallocated rights.',
   },
   {
     n: '02',
     title: 'Clinical and regulatory translation',
     body:
-      'Reading an approval issued in one jurisdiction and mapping it onto the evidence expectations, label conventions and standard of care of a market that sees the disease differently. Scientific and legal work in equal measure.',
+      'Mapping an approval issued in one jurisdiction onto the evidence, label and standard-of-care expectations of a market that sees the disease differently.',
   },
   {
     n: '03',
     title: 'Partnerships',
     body:
-      'Earning trust with the rights holders who control the original approval, and with the in-country operators who control distribution. Both relationships take years to build and seconds to lose.',
+      'Earning trust with the rights holders who control the original approval, and with the in-country operators who control distribution.',
   },
   {
     n: '04',
     title: 'Regulatory navigation',
     body:
-      'Working alongside each national authority through dossier preparation, deficiency responses, label localisation and post-market commitments. Every authority on its own clock, in its own language, with its own conventions.',
+      'Working alongside each national authority through dossier preparation, deficiency responses and label localisation, each on its own clock and in its own language.',
   },
   {
     n: '05',
     title: 'Local commercialisation',
     body:
-      'Standing up the in-country supply chain, clinical engagement, payer access and patient awareness needed to actually treat people once an approval lands. Approvals on paper aren’t medicine in patients.',
+      'Standing up the supply chain, clinical engagement, payer access and patient awareness needed to actually treat people once an approval lands.',
   },
 ];
 
@@ -56,12 +56,15 @@ export function ApproachBody() {
                 /the opportunity
               </p>
               <h2 className="mt-4 font-serif text-[40px] md:text-[56px] lg:text-[72px] leading-[1.0]">
-                Decades of unmet need, still waiting.
+                Approved everywhere that matters. Available almost nowhere.
               </h2>
             </div>
-            <div className="md:col-span-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
+            <div className="md:col-span-8 space-y-8 text-[17px] md:text-[19px] leading-[1.6]">
+              <p className="font-serif text-[26px] md:text-[34px] leading-[1.25] text-approach">
+                74% of FDA-approved novel drugs from the past decade are not commercially available across LATAM, ME, or SEA.
+              </p>
               <p>
-                Between 2005 and 2022, dozens of drugs were approved in Japan that never reached the United States. The broader universe is much larger: hundreds of therapeutics already cleared by the FDA, EMA, PMDA and Health Canada have never been brought into the emerging markets where they are clinically needed and commercially viable.
+                The broader universe is much larger: hundreds of therapeutics already cleared by the FDA, EMA, PMDA and Health Canada have never been brought into the emerging markets where they are clinically needed and commercially viable.
               </p>
               <p>
                 The global rights typically sit unallocated inside US and European developers whose teams are focused on the next blockbuster, not on the markets we serve. The therapies are real, the patient populations are real, and the regulatory pathways to reach them now exist; the work that closes the gap is what does not.
@@ -91,13 +94,13 @@ export function ApproachBody() {
               </h2>
               <div className="mt-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
                 <p>
-                  Each year the world&apos;s strictest regulators approve thousands of new therapeutics. Only a small fraction are both clinically meaningful and commercially viable in emerging markets. Identifying that fraction is not a matter of reading a label; it requires reconciling clinical evidence, payer behaviour, treatment standards, manufacturing feasibility and rights availability across jurisdictions with very different healthcare systems, languages and standards of care.
+                  Each year, the FDA, EMA, and PMDA approve over 200 new therapeutics. Only a fraction are both clinically meaningful and commercially viable in emerging markets, and identifying them is not a labelling exercise. It requires reconciling clinical evidence, payer behaviour, treatment standards, manufacturing feasibility, and rights availability across jurisdictions with materially different healthcare systems, languages, and standards of care.
                 </p>
                 <p>
-                  Global pharma is structurally uninterested in this work. Their thresholds, including minimum deal size, first-in-class only, and global rights, leave high-quality therapies stranded outside their pipelines. The opportunity is real; the depth of judgement needed to surface it is what keeps the field thin.
+                  Global pharma is structurally not positioned for this work. Minimum deal sizes, first-in-class mandates, and global-rights requirements leave high-quality therapies stranded outside their pipelines. The opportunity is real; the depth of judgement required to surface it is what keeps the field thin.
                 </p>
                 <p>
-                  Doing it well demands equal parts scientific judgement, regulatory fluency and local market intelligence. Most teams have one of the three; building all three under one roof is the work of years.
+                  Doing it well demands scientific judgement, regulatory fluency, and local market intelligence in equal measure. Most teams have one of the three.
                 </p>
               </div>
             </div>
@@ -216,28 +219,28 @@ export function ApproachBody() {
             <div>
               <h3 className="font-serif text-[24px] md:text-[28px]">US pricing pressure</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
-                The Inflation Reduction Act (Aug 2022) gave Medicare drug-price negotiation power for the first time; ZS Consulting projects ~31% pharma-revenue compression and 135 fewer approvals through 2039. Trump&apos;s May 2025 MFN executive order layered on a further squeeze, with 17 major manufacturers committing to most-favored-nation pricing in Medicaid.
+                The Inflation Reduction Act gave Medicare drug-price negotiation power for the first time; ZS Consulting projects ~31% revenue compression and 135 fewer approvals through 2039. The May 2025 MFN executive order added a further squeeze, with 17 major manufacturers committing to most-favored-nation pricing in Medicaid.
               </p>
             </div>
 
             <div>
               <h3 className="font-serif text-[24px] md:text-[28px]">Emerging-market growth</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
-                IQVIA projects LATAM pharma at a 22% CAGR through 2027. MENA pharma is forecast to grow from ~$57B in 2025 to ~$78B by 2033. BCG estimates ~$275B of Western patent-cliff revenue at risk between 2025 and 2030; capital and demand are rotating into the markets we operate in.
+                IQVIA projects LATAM pharma at a 22% CAGR through 2027. MENA pharma is forecast to grow from ~$57B to ~$78B by 2033. BCG estimates ~$275B of Western patent-cliff revenue at risk between 2025 and 2030.
               </p>
             </div>
 
             <div>
               <h3 className="font-serif text-[24px] md:text-[28px]">Reliance pathways</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
-                Brazil&apos;s ANVISA finalised its reliance framework via RDC 913/2024. Mexico&apos;s COFEPRIS, Saudi SFDA Verification and Singapore HSA Abridged are now operational. For the first time, a single FDA, EMA, PMDA or Health Canada decision can form the basis of submissions across more than fifteen emerging markets.
+                Brazil&apos;s ANVISA finalised its framework via RDC 913/2024. Mexico&apos;s COFEPRIS, Saudi SFDA Verification and Singapore HSA Abridged are now operational. A single FDA, EMA, PMDA or Health Canada decision can now form the basis of submissions across more than fifteen emerging markets.
               </p>
             </div>
 
             <div>
               <h3 className="font-serif text-[24px] md:text-[28px]">AI capability</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
-                Bessemer estimates the outsourced pharma-services market at $150B+, with only ~5% of pharma companies capturing measurable AI value. Dossier translation, regulatory analysis, deficiency-response drafting and multi-jurisdiction submission tracking are now technically automatable — the field is lagging and we get to compound the gap.
+                Bessemer puts the outsourced pharma-services market at $150B+, with only ~5% of pharma capturing measurable AI value. Dossier translation, regulatory analysis and multi-jurisdiction submission tracking are now automatable; the field is lagging.
               </p>
             </div>
           </div>
