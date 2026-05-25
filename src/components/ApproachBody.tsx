@@ -56,12 +56,12 @@ export function ApproachBody() {
                 /the opportunity
               </p>
               <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
-                Approved everywhere that matters. Available almost nowhere.
+                Approved by the world&apos;s top regulators. Sold almost nowhere else.
               </h2>
             </div>
             <div className="md:col-span-8 space-y-8 text-[17px] md:text-[19px] leading-[1.6]">
               <p className="font-serif text-[26px] md:text-[34px] leading-[1.25] text-approach">
-                Roughly three-quarters of FDA-approved novel drugs from the past decade are not commercially available — neither registered nor launched in most cases — across LATAM, MENA or Southeast Asia.
+                Roughly three-quarters of FDA-approved novel drugs from the past decade are not commercially available across LATAM, MENA or Southeast Asia. In most cases they have never been registered or launched there at all.
               </p>
               <p>
                 The broader universe is larger still: hundreds of therapeutics already cleared by the FDA, EMA, PMDA or Health Canada have never been brought into the emerging markets where they are clinically needed and commercially viable.
@@ -90,7 +90,7 @@ export function ApproachBody() {
                 /sourcing
               </p>
               <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
-                Identifying the asset is the first filter. Acquiring it is the gate.
+                Identifying assets is the first filter. Acquiring them is the gate.
               </h2>
               <div className="mt-8 space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
                 <p>
@@ -123,7 +123,7 @@ export function ApproachBody() {
                   An approval issued by the FDA, EMA, PMDA or Health Canada is increasingly recognised, in part, by the national authorities of dozens of emerging markets through reliance pathways operationalised in the last two years. The same body of clinical evidence can now anchor submissions across LATAM, MENA and Southeast Asia.
                 </p>
                 <p>
-                  Recognition is not approval. A reliance pathway shortens — but does not replace — local review. Pricing, post-market commitments, label adaptation, and in some markets bridging data, remain national. The saving is measured in months of timeline and millions in avoided duplicated clinical work; it is not a free pass. Moving an asset cleanly through fifteen jurisdictions is craft as much as science, done market by market by people who have done it before.
+                  Recognition is not approval. A reliance pathway shortens local review but does not replace it. Pricing, post-market commitments, label adaptation, and in some markets bridging data, remain national. The saving is measured in months of timeline and millions in avoided duplicated clinical work; it is not a free pass. Moving an asset cleanly through fifteen jurisdictions is craft as much as science, done market by market by people who have done it before.
                 </p>
               </div>
             </div>
@@ -233,7 +233,7 @@ export function ApproachBody() {
             <div>
               <h3 className="font-serif text-[24px] md:text-[28px]">Reliance pathways</h3>
               <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">
-                Brazil&apos;s ANVISA finalised its framework via RDC 913/2024. Mexico&apos;s COFEPRIS, Saudi SFDA Verification and Singapore HSA Abridged are now operational. A single FDA, EMA, PMDA or Health Canada decision shortens local review across more than fifteen emerging markets — typically by months, sometimes by years — without removing local pricing, labelling or post-market obligations.
+                Brazil&apos;s ANVISA finalised its framework via RDC 913/2024. Mexico&apos;s COFEPRIS, Saudi SFDA Verification and Singapore HSA Abridged are now operational. A single FDA, EMA, PMDA or Health Canada decision shortens local review across more than fifteen emerging markets, typically by months and sometimes by years, without removing local pricing, labelling or post-market obligations.
               </p>
             </div>
 
