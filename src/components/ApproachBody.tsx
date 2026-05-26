@@ -15,7 +15,7 @@ const FUNCTIONS = [
     n: '02',
     title: 'Acquisition',
     body:
-      'In-licensing and distribution agreements with the originators who hold ex-US and ex-EU rights. Structured to work for a developer whose primary market is the US or EU and a launch whose primary market is not.',
+      'In-licensing and distribution agreements with the originators who hold ex-US and ex-EU rights. Terms structured so the originator protects its core US or EU franchise while the asset reaches the emerging markets it was never going to be launched in.',
   },
   {
     n: '03',
