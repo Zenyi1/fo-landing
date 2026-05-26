@@ -1,5 +1,6 @@
 'use client';
 
+import { PlayIcon } from '@/components/icons';
 import { useRouter } from 'next/navigation';
 
 export function HomepageHero() {
@@ -38,6 +39,18 @@ export function HomepageHero() {
       <span className="hidden lg:inline-block absolute left-10 bottom-12 text-xs uppercase tracking-wider text-white -rotate-90 origin-left z-10 whitespace-nowrap">
         Scroll
       </span>
+
+      <button
+        onClick={() =>
+          document
+            .getElementById('stats')
+            ?.scrollIntoView({ behavior: 'smooth' })
+        }
+        className="absolute bottom-12 right-6 md:right-12 w-14 h-14 md:w-16 md:h-16 rounded-full bg-brand grid place-items-center text-white hover:opacity-90 transition-opacity z-10"
+        aria-label="Scroll to next section"
+      >
+        <PlayIcon className="w-5 h-5 ml-0.5" />
+      </button>
     </section>
   );
 }

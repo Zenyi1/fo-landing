@@ -31,29 +31,6 @@ const FUNCTIONS = [
   },
 ];
 
-const SHIFTS = [
-  {
-    title: 'US revenue compression',
-    body:
-      'The Inflation Reduction Act and the 2025 most-favored-nation executive order are projected to compress US revenue on affected molecules by approximately 30%. Originators are more willing to license rights they were never going to commercialise themselves.',
-  },
-  {
-    title: 'Emerging-market demand',
-    body:
-      'IQVIA forecasts double-digit nominal growth in LATAM pharma through 2027. MENA pharma is on track to reach approximately $78B by 2033, with the GCC alone forecast above $36B.',
-  },
-  {
-    title: 'Reliance pathways',
-    body:
-      'ANVISA finalised its framework via RDC 913/2024. COFEPRIS, SFDA Verification and HSA Abridged are now operational. The infrastructure for cross-jurisdictional recognition exists for the first time.',
-  },
-  {
-    title: 'Sovereign drug-security mandates',
-    body:
-      'Vision 2030 has elevated drug security and biotech localisation to national priorities in Saudi Arabia, with comparable agendas across the GCC and in several LATAM and SEA markets. The strategic preference favours partners who can place approved therapies in-country.',
-  },
-];
-
 export function ApproachBody() {
   return (
     <>
@@ -176,30 +153,6 @@ export function ApproachBody() {
               Recognition is not approval. Pricing, labelling and post-market commitments remain national, but the duplication is removed. Timelines compress from years to months, and the cost of redundant clinical work is avoided.
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="bg-white text-approach py-24 md:py-40">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-10">
-          <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
-            /why now
-          </p>
-          <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words max-w-[1000px]">
-            Four shifts in the same 24 months.
-          </h2>
-
-          <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-20 md:gap-y-16">
-            {SHIFTS.map((s) => (
-              <div key={s.title}>
-                <h3 className="font-serif text-[24px] md:text-[28px]">{s.title}</h3>
-                <p className="mt-4 text-[16px] md:text-[17px] leading-[1.6]">{s.body}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-16 md:mt-20 max-w-[1000px] font-serif text-[22px] md:text-[28px] leading-[1.3] text-approach">
-            The four shifts are independent, but they converge on the same conclusion: the window for this work has opened, and it has not been open before.
-          </p>
         </div>
       </section>
 
