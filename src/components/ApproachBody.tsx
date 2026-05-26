@@ -157,7 +157,7 @@ export function ApproachBody() {
             /work with us
           </p>
           <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words max-w-[1000px]">
-            Two ways in.
+            Start the conversation.
           </h2>
 
           <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-20 border-t border-white/15 pt-12">
