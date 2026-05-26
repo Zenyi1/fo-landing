@@ -73,44 +73,39 @@ export function ApproachBody() {
 
       <section className="bg-approach text-white py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
-            <div className="md:col-span-4">
-              <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/60">
-                /what we do
-              </p>
-              <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
-                Four functions, run in series, across multiple assets and jurisdictions.
-              </h2>
-            </div>
-            <div className="md:col-span-8">
-              <div className="grid grid-cols-1 sm:grid-cols-2">
-                {FUNCTIONS.map((p, i) => {
-                  const inLastCol = i % 2 === 1;
-                  const hasRightNeighbor = !inLastCol && i + 1 < FUNCTIONS.length;
-                  const hasBelowNeighbor = i + 2 < FUNCTIONS.length;
-                  const isLast = i === FUNCTIONS.length - 1;
-                  return (
-                    <div
-                      key={p.n}
-                      className={cn(
-                        'p-8 md:p-10',
-                        !isLast && 'border-b border-white/15 sm:border-b-0',
-                        hasBelowNeighbor && 'sm:border-b sm:border-white/15',
-                        hasRightNeighbor && 'sm:border-r sm:border-white/15',
-                      )}
-                    >
-                      <div className="font-serif text-[28px] md:text-[34px] text-white/70">{p.n}</div>
-                      <h3 className="mt-3 font-serif text-[24px] md:text-[28px] leading-[1.15] text-white">
-                        {p.title}
-                      </h3>
-                      <p className="mt-4 text-[14px] md:text-[15px] leading-[1.6] text-white/85">
-                        {p.body}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+          <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/60">
+            /what we do
+          </p>
+          <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words max-w-[1100px]">
+            Four functions, run in series, across multiple assets and jurisdictions.
+          </h2>
+
+          <div className="mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 border-t border-white/15">
+            {FUNCTIONS.map((p, i) => {
+              const inLastCol = i % 2 === 1;
+              const hasRightNeighbor = !inLastCol && i + 1 < FUNCTIONS.length;
+              const hasBelowNeighbor = i + 2 < FUNCTIONS.length;
+              const isLast = i === FUNCTIONS.length - 1;
+              return (
+                <div
+                  key={p.n}
+                  className={cn(
+                    'p-8 md:p-10',
+                    !isLast && 'border-b border-white/15 sm:border-b-0',
+                    hasBelowNeighbor && 'sm:border-b sm:border-white/15',
+                    hasRightNeighbor && 'sm:border-r sm:border-white/15',
+                  )}
+                >
+                  <div className="font-serif text-[28px] md:text-[34px] text-white/70">{p.n}</div>
+                  <h3 className="mt-3 font-serif text-[24px] md:text-[28px] leading-[1.15] text-white">
+                    {p.title}
+                  </h3>
+                  <p className="mt-4 text-[14px] md:text-[15px] leading-[1.6] text-white/85">
+                    {p.body}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
