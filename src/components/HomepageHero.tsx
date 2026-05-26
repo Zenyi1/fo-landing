@@ -20,11 +20,11 @@ export function HomepageHero() {
 
       <div className="relative z-10 min-h-screen flex flex-col justify-center pl-10 md:pl-20 lg:pl-[120px] pr-6 md:pr-12 py-32">
         <h1 className="font-serif text-[48px] md:text-[72px] lg:text-[90px] leading-[1.15] lg:leading-[1.25] text-white max-w-4xl">
-          Proven medicines<br />New patients
+          Proven medicines.<br />New patients.
         </h1>
 
         <p className="mt-8 max-w-[720px] text-[20px] md:text-[24px] lg:text-[28px] leading-[1.5] text-white">
-          Hundreds of approved therapies never reach the markets that need them most. Firstocean changes that.
+          Innovative de-risked therapeutics never reach the markets that need them most. Firstocean changes that.
         </p>
         <button
           type="button"
