@@ -56,7 +56,7 @@ export function ApproachBody() {
                 /the opportunity
               </p>
               <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
-                Approved by the world&apos;s top regulators. <br />Sold almost nowhere else.
+                Approved by the world&apos;s top regulators <br />Sold almost nowhere else.
               </h2>
             </div>
             <div className="md:col-span-8 space-y-8 text-[17px] md:text-[19px] leading-[1.6]">
