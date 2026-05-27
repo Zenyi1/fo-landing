@@ -3,8 +3,16 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact · firstocean",
-  description: "Get in touch with the FirstOcean team.",
+  title: "Contact",
+  description:
+    "Get in touch with First Ocean — partner with us, invest with us, work with us, or reach our media team.",
+  openGraph: {
+    title: "Contact · First Ocean",
+    description:
+      "Partner, invest, work with us, or reach our media team at First Ocean.",
+    url: "https://first-ocean.com/contact",
+    images: [{ url: "/seo/fo.jpeg", width: 1024, height: 1024 }],
+  },
 };
 
 const CATEGORIES = [
