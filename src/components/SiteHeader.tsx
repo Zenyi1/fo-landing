@@ -2,9 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SlashIcon, MenuSlashIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import { locales, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
 function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -14,28 +16,32 @@ function CloseIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
-export function SiteHeader() {
+type Props = {
+  locale: Locale;
+  dict: Dictionary["nav"];
+};
+
+export function SiteHeader({ locale, dict }: Props) {
   const pathname = usePathname();
-  const hasDarkHero = pathname === "/";
-  const [scrolled, setScrolled] = useState(!hasDarkHero);
+  const router = useRouter();
+  const isHome = pathname === `/${locale}` || pathname === `/${locale}/`;
+  const [scrolled, setScrolled] = useState(!isHome);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (!hasDarkHero) return;
+    if (!isHome) return;
     const onScroll = () => {
       setScrolled(window.scrollY > window.innerHeight - 100);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [hasDarkHero]);
+  }, [isHome]);
 
-  //close menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
-  //lock body scroll while menu is open
   useEffect(() => {
     if (!menuOpen) return;
     const original = document.body.style.overflow;
@@ -44,6 +50,20 @@ export function SiteHeader() {
       document.body.style.overflow = original;
     };
   }, [menuOpen]);
+
+  function switchLocale(target: Locale) {
+    if (target === locale) return;
+    document.cookie = `locale=${target}; path=/; max-age=31536000; samesite=lax`;
+    const segments = pathname.split("/");
+    if (segments[1] && (locales as readonly string[]).includes(segments[1])) {
+      segments[1] = target;
+    } else {
+      segments.splice(1, 0, target);
+    }
+    router.push(segments.join("/") || `/${target}`);
+  }
+
+  const localePrefix = `/${locale}`;
 
   return (
     <>
@@ -56,29 +76,32 @@ export function SiteHeader() {
         )}
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center" aria-label="FirstOcean">
+          <Link href={localePrefix} className="flex items-center" aria-label="FirstOcean">
             <span className="font-serif text-2xl lowercase">firstocean</span>
           </Link>
 
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6 lg:gap-8">
             <Link
-              href="/approach"
+              href={`${localePrefix}/approach`}
               className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
             >
-              Approach
+              {dict.approach}
               <SlashIcon className="w-3 h-3" />
             </Link>
             <Link
-              href="/contact"
+              href={`${localePrefix}/contact`}
               className="hidden lg:inline-flex items-center gap-3 text-base hover:opacity-70 transition-opacity"
             >
-              Contact Us
+              {dict.contact}
               <SlashIcon className="w-3 h-3" />
             </Link>
+
+            <LocaleToggle current={locale} onChange={switchLocale} />
+
             <button
               type="button"
               className="lg:hidden"
-              aria-label="Open menu"
+              aria-label={dict.openMenu}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen(true)}
             >
@@ -93,7 +116,7 @@ export function SiteHeader() {
           <div className="px-6 md:px-10 py-6 flex items-center">
             <button
               type="button"
-              aria-label="Close menu"
+              aria-label={dict.closeMenu}
               onClick={() => setMenuOpen(false)}
               className="hover:opacity-70 transition-opacity"
             >
@@ -102,29 +125,58 @@ export function SiteHeader() {
           </div>
           <nav className="flex-1 flex flex-col items-center justify-center gap-10 px-6">
             <Link
-              href="/"
+              href={localePrefix}
               className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
             >
-              Home
+              {dict.home}
               <SlashIcon className="w-4 h-4" />
             </Link>
             <Link
-              href="/approach"
+              href={`${localePrefix}/approach`}
               className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
             >
-              Approach
+              {dict.approach}
               <SlashIcon className="w-4 h-4" />
             </Link>
             <Link
-              href="/contact"
+              href={`${localePrefix}/contact`}
               className="inline-flex items-center gap-3 text-2xl hover:opacity-70 transition-opacity"
             >
-              Contact Us
+              {dict.contact}
               <SlashIcon className="w-4 h-4" />
             </Link>
           </nav>
         </div>
       )}
     </>
+  );
+}
+
+function LocaleToggle({
+  current,
+  onChange,
+}: {
+  current: Locale;
+  onChange: (l: Locale) => void;
+}) {
+  return (
+    <div className="inline-flex items-center text-xs md:text-sm tracking-wider uppercase select-none">
+      {locales.map((l, i) => (
+        <span key={l} className="flex items-center">
+          {i > 0 && <span className="mx-1 opacity-40">/</span>}
+          <button
+            type="button"
+            onClick={() => onChange(l)}
+            aria-current={l === current ? "true" : undefined}
+            className={cn(
+              "transition-opacity",
+              l === current ? "opacity-100 font-medium" : "opacity-50 hover:opacity-80"
+            )}
+          >
+            {l}
+          </button>
+        </span>
+      ))}
+    </div>
   );
 }

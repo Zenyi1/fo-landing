@@ -3,41 +3,18 @@
 import Link from 'next/link';
 import { SlashIcon } from '@/components/icons';
 import { cn } from '@/lib/utils';
+import type { Locale } from '@/lib/i18n/config';
+import type { Dictionary } from '@/lib/i18n/get-dictionary';
 
-const FUNCTIONS = [
-  {
-    n: '01',
-    title: 'Identification',
-    body:
-      'Screening approved-drug registers of the FDA, EMA, PMDA and Health Canada against clinical fit, payer behaviour, manufacturing feasibility and rights availability in the markets we serve.',
-  },
-  {
-    n: '02',
-    title: 'Acquisition',
-    body:
-      'In-licensing and distribution agreements with the originators who hold ex-US and ex-EU rights. Terms structured so the originator protects its core US or EU franchise while the asset reaches the emerging markets it was never going to be launched in.',
-  },
-  {
-    n: '03',
-    title: 'Regulatory translation',
-    body:
-      'Adapting an approval issued in one jurisdiction to the evidence package, label and standard-of-care expectations of fifteen others through the reliance pathways that recognise the underlying decision.',
-  },
-  {
-    n: '04',
-    title: 'In-country execution',
-    body:
-      'Partnering with the operators who control distribution, tender access, cold-chain logistics and clinical engagement, so that an approval becomes a registered product on a national formulary.',
-  },
-];
+type Props = { locale: Locale; dict: Dictionary['approach'] };
 
-export function ApproachBody() {
+export function ApproachBody({ locale, dict }: Props) {
   return (
     <>
       <section className="relative bg-approach">
         <img
           src="/images/approach/earth-night.jpg"
-          alt="Earth at night, viewed from orbit"
+          alt={dict.earthAlt}
           className="w-full h-[60vh] md:h-[80vh] object-cover"
         />
       </section>
@@ -47,24 +24,20 @@ export function ApproachBody() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-start">
             <div className="md:col-span-5">
               <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
-                /the gap today
+                {dict.gapKicker}
               </p>
               <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words">
-                A regulatory frontier the industry has not yet crossed.
+                {dict.gapHeadline}
               </h2>
             </div>
             <div className="md:col-span-7 space-y-8 text-[17px] md:text-[19px] leading-[1.6]">
               <p className="font-serif text-[26px] md:text-[34px] leading-[1.25] text-approach">
-                Approximately 75% of novel drugs approved by the FDA over the past decade are not commercially available in LATAM, MENA or Southeast Asia.
+                {dict.gapStat}
               </p>
-              <p>
-                The broader pool is larger: hundreds of therapeutics cleared by the four reference regulators have never been registered in the emerging markets where they are clinically needed.
-              </p>
-              <p>
-                The constraint is not scientific, regulatory or commercial. It is operational. Ex-US and ex-EU rights sit with originators whose priorities lie elsewhere. Reliance pathways now exist but require local execution. Patient populations are large and growing but fragmented across jurisdictions with materially different healthcare systems.
-              </p>
+              <p>{dict.gapBody1}</p>
+              <p>{dict.gapBody2}</p>
               <p className="font-serif text-[22px] md:text-[26px] leading-[1.3] text-approach">
-                First Ocean exists to close this gap.
+                {dict.gapClose}
               </p>
             </div>
           </div>
@@ -74,18 +47,18 @@ export function ApproachBody() {
       <section className="bg-approach text-white py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/60">
-            /what we do
+            {dict.functionsKicker}
           </p>
           <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words max-w-[1100px]">
-            Four functions, run in series, across multiple assets and jurisdictions.
+            {dict.functionsHeadline}
           </h2>
 
           <div className="mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 border-t border-white/15">
-            {FUNCTIONS.map((p, i) => {
+            {dict.functions.map((p, i) => {
               const inLastCol = i % 2 === 1;
-              const hasRightNeighbor = !inLastCol && i + 1 < FUNCTIONS.length;
-              const hasBelowNeighbor = i + 2 < FUNCTIONS.length;
-              const isLast = i === FUNCTIONS.length - 1;
+              const hasRightNeighbor = !inLastCol && i + 1 < dict.functions.length;
+              const hasBelowNeighbor = i + 2 < dict.functions.length;
+              const isLast = i === dict.functions.length - 1;
               return (
                 <div
                   key={p.n}
@@ -113,40 +86,30 @@ export function ApproachBody() {
       <section className="bg-white text-approach py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-approach/60">
-            /the markets we serve
+            {dict.marketsKicker}
           </p>
           <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words max-w-[1000px]">
-            Three regions. Twelve jurisdictions. One body of evidence.
+            {dict.marketsHeadline}
           </h2>
 
           <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 border-t border-brand/15 pt-12 text-[14px] md:text-[15px] leading-[1.55]">
             <div>
               <div className="text-[11px] tracking-[0.18em] uppercase text-approach/60">LATAM</div>
-              <p className="mt-3 text-approach">
-                Brazil (ANVISA) · Mexico (COFEPRIS).
-              </p>
+              <p className="mt-3 text-approach">{dict.marketsLatam}</p>
             </div>
             <div>
               <div className="text-[11px] tracking-[0.18em] uppercase text-approach/60">MENA</div>
-              <p className="mt-3 text-approach">
-                Saudi Arabia (SFDA Verification) · UAE (MOHAP) · Egypt (EDA) · Jordan · Israel, recognising FDA and EMA decisions.
-              </p>
+              <p className="mt-3 text-approach">{dict.marketsMena}</p>
             </div>
             <div>
               <div className="text-[11px] tracking-[0.18em] uppercase text-approach/60">SEA</div>
-              <p className="mt-3 text-approach">
-                Singapore (HSA Abridged) · Malaysia (NPRA) · Thailand (TFDA) · Philippines (FDA-PH) · Vietnam (DAV).
-              </p>
+              <p className="mt-3 text-approach">{dict.marketsSea}</p>
             </div>
           </div>
 
           <div className="mt-16 md:mt-20 max-w-[1000px] space-y-6 text-[17px] md:text-[19px] leading-[1.6]">
-            <p>
-              A single FDA, EMA or PMDA approval can now anchor submissions across all twelve. Local regulators rely on the reference regulator&apos;s evaluation of the underlying clinical dossier, supplemented by the post-market and real-world evidence accumulated since the original approval.
-            </p>
-            <p>
-              Recognition is not approval. Pricing, labelling and post-market commitments remain national, but the duplication is removed. Timelines compress from years to months, and the cost of redundant clinical work is avoided.
-            </p>
+            <p>{dict.marketsBody1}</p>
+            <p>{dict.marketsBody2}</p>
           </div>
         </div>
       </section>
@@ -154,32 +117,32 @@ export function ApproachBody() {
       <section className="bg-approach text-white py-24 md:py-40">
         <div className="max-w-[1280px] mx-auto px-6 md:px-10">
           <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/60">
-            /work with us
+            {dict.workKicker}
           </p>
           <h2 className="mt-4 font-serif text-[34px] sm:text-[40px] md:text-[56px] lg:text-[72px] leading-[1.05] break-words max-w-[1000px]">
-            Start the conversation.
+            {dict.workHeadline}
           </h2>
 
           <div className="mt-16 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-x-20 border-t border-white/15 pt-12">
             <div>
-              <div className="text-[11px] tracking-[0.18em] uppercase text-white/60">For originators</div>
+              <div className="text-[11px] tracking-[0.18em] uppercase text-white/60">{dict.forOriginators}</div>
               <p className="mt-6 text-[17px] md:text-[19px] leading-[1.6] text-white/90">
-                We acquire the rights you are not pursuing, on terms that protect your primary markets and surface incremental value from assets already in your portfolio.
+                {dict.forOriginatorsBody}
               </p>
             </div>
             <div>
-              <div className="text-[11px] tracking-[0.18em] uppercase text-white/60">For investors and co-investors</div>
+              <div className="text-[11px] tracking-[0.18em] uppercase text-white/60">{dict.forInvestors}</div>
               <p className="mt-6 text-[17px] md:text-[19px] leading-[1.6] text-white/90">
-                We invest in the only function in this value chain that no one else is running at scale, in the 24 months that the regulatory and commercial conditions for it have existed.
+                {dict.forInvestorsBody}
               </p>
             </div>
           </div>
 
           <Link
-            href="/contact"
+            href={`/${locale}/contact`}
             className="mt-20 md:mt-28 inline-flex items-center gap-3 text-base md:text-lg text-white hover:opacity-70 transition-opacity"
           >
-            Talk to us <SlashIcon className="w-3 h-3" />
+            {dict.talkToUs} <SlashIcon className="w-3 h-3" />
           </Link>
         </div>
       </section>

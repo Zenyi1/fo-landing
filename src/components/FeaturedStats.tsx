@@ -5,13 +5,10 @@ import Link from "next/link";
 import { SlashIcon } from "@/components/icons";
 import { ImageRotator } from "@/components/ImageRotator";
 import { cn } from "@/lib/utils";
+import type { Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
-const STATS: { value: string; label: string; align: "left" | "right" }[] = [
-  { value: "2 in 3", label: "FDA-approved drugs never reach LATAM, MENA, or SEA", align: "left" },
-  { value: "450+", label: "Identified Assets", align: "right" },
-  { value: "$390Bn+", label: "Untapped Value", align: "left" },
-  { value: "440M+", label: "Potential Patients", align: "right" },
-];
+type Props = { locale: Locale; dict: Dictionary["home"] };
 
 function SlideIn({
   children,
@@ -56,7 +53,7 @@ function SlideIn({
   );
 }
 
-export function FeaturedStats() {
+export function FeaturedStats({ locale, dict }: Props) {
   return (
     <section id="stats" className="relative overflow-hidden bg-brand text-white py-24 md:py-40">
       <ImageRotator />
@@ -64,48 +61,51 @@ export function FeaturedStats() {
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-10">
         <SlideIn from="left">
           <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/70">
-            /the problem
+            {dict.problemKicker}
           </p>
           <p className="mt-6 font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2] max-w-[1100px]">
-            Hundreds of de-risked therapies, approved by the FDA, EMA, and PMDA, never reach the emerging markets where demand is greatest.
+            {dict.problemBody}
           </p>
         </SlideIn>
 
         <div className="mt-24 md:mt-40 space-y-16 md:space-y-24">
-          {STATS.map((stat) => (
-            <SlideIn key={stat.label} from={stat.align}>
-              <div
-                className={cn(
-                  "border-b border-white/30 pb-8",
-                  stat.align === "right"
-                    ? "md:ml-auto md:max-w-[55%] md:text-left"
-                    : "md:max-w-[55%]"
-                )}
-              >
-                <div className="font-serif leading-[0.9] text-white text-[72px] md:text-[120px] lg:text-[165px]">
-                  {stat.value}
+          {dict.stats.map((stat, i) => {
+            const align: "left" | "right" = i % 2 === 0 ? "left" : "right";
+            return (
+              <SlideIn key={stat.label} from={align}>
+                <div
+                  className={cn(
+                    "border-b border-white/30 pb-8",
+                    align === "right"
+                      ? "md:ml-auto md:max-w-[55%] md:text-left"
+                      : "md:max-w-[55%]"
+                  )}
+                >
+                  <div className="font-serif leading-[0.9] text-white text-[72px] md:text-[120px] lg:text-[165px]">
+                    {stat.value}
+                  </div>
+                  <div className="mt-4 md:mt-6 text-[12px] md:text-sm tracking-[0.15em] uppercase text-white">
+                    {stat.label}
+                  </div>
                 </div>
-                <div className="mt-4 md:mt-6 text-[12px] md:text-sm tracking-[0.15em] uppercase text-white">
-                  {stat.label}
-                </div>
-              </div>
-            </SlideIn>
-          ))}
+              </SlideIn>
+            );
+          })}
         </div>
 
         <SlideIn from="left">
           <div className="mt-24 md:mt-40 max-w-[1100px]">
             <p className="text-[11px] md:text-xs tracking-[0.25em] uppercase text-white/70">
-              /our solution
+              {dict.solutionKicker}
             </p>
             <p className="mt-6 font-serif text-[32px] md:text-[48px] lg:text-[60px] leading-[1.2]">
-              Firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners.
+              {dict.solutionBody}
             </p>
             <Link
-              href="/contact"
+              href={`/${locale}/contact`}
               className="inline-flex items-center gap-3 mt-12 md:mt-16 text-base md:text-lg text-white hover:opacity-70 transition-opacity"
             >
-              Contact Us <SlashIcon className="w-3 h-3" />
+              {dict.contactLink} <SlashIcon className="w-3 h-3" />
             </Link>
           </div>
         </SlideIn>

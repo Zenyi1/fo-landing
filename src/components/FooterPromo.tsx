@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { SlashIcon } from "@/components/icons";
+import type { Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/lib/i18n/get-dictionary";
 
-export function FooterPromo() {
+type Props = { locale: Locale; dict: Dictionary["home"] };
+
+export function FooterPromo({ locale, dict }: Props) {
   return (
     <section className="relative h-[400px] md:h-[450px] lg:h-[500px] overflow-hidden bg-brand text-white">
       <video
@@ -16,13 +20,13 @@ export function FooterPromo() {
 
       <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-[120px] gap-8 md:gap-10">
         <h2 className="font-serif leading-[0.95] text-white text-[56px] md:text-[96px] lg:text-[140px]">
-          Work with us
+          {dict.workWithUs}
         </h2>
         <Link
-          href="/contact"
+          href={`/${locale}/contact`}
           className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-white text-base text-white hover:bg-white hover:text-brand transition-colors w-fit"
         >
-          Contact Us <SlashIcon className="w-3 h-3" />
+          {dict.contactLink} <SlashIcon className="w-3 h-3" />
         </Link>
       </div>
     </section>
