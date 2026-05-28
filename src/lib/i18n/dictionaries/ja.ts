@@ -16,7 +16,7 @@ export const ja: Dictionary = {
     heroHeadline2: "新たな患者へ。",
     heroSubtitle:
       "リスクが低減された革新的な治療薬は、最も必要としている市場には届きません。Firstoceanがそれを変えます。",
-    heroCta: "私たちのアプローチ",
+    heroCta: "私たちの理念を読む",
     scroll: "スクロール",
     scrollAria: "次のセクションへスクロール",
     problemKicker: "/課題",

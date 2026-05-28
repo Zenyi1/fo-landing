@@ -82,7 +82,7 @@ export const en: Dictionary = {
     heroHeadline2: "New patients.",
     heroSubtitle:
       "Innovative de-risked therapeutics never reach the markets that need them most. Firstocean changes that.",
-    heroCta: "Our approach",
+    heroCta: "Read our thesis",
     scroll: "Scroll",
     scrollAria: "Scroll to next section",
     problemKicker: "/the problem",
