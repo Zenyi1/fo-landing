@@ -131,4 +131,13 @@ export const ja: Dictionary = {
       "メッセージはチームに届きました。通常2営業日以内にご返信いたします。",
     genericError: "問題が発生しました",
   },
+  footer: {
+    registeredOffice: "登記上の本店",
+    usAddress: "2810 N Church St STE 88318\nWilmington, DE 19802\nUnited States",
+    londonHq: "ロンドン本社",
+    londonAddress: "Shoreditch Exchange\nSenna Building, Gorsuch Pl\nLondon E2 8JF, United Kingdom",
+    legal:
+      "本ウェブサイトは情報提供のみを目的としており、証券の売却の申し出または購入の申し出の勧誘を構成するものではありません。",
+    rights: "© 2026 First Ocean. 無断転載を禁じます。",
+  },
 };

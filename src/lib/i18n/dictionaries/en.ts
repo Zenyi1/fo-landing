@@ -64,6 +64,14 @@ export type Dictionary = {
     successBody: string;
     genericError: string;
   };
+  footer: {
+    registeredOffice: string;
+    usAddress: string;
+    londonHq: string;
+    londonAddress: string;
+    legal: string;
+    rights: string;
+  };
 };
 
 export const en: Dictionary = {
@@ -196,5 +204,14 @@ export const en: Dictionary = {
     successBody:
       "Your message has reached the team. We typically respond within two business days.",
     genericError: "Something went wrong",
+  },
+  footer: {
+    registeredOffice: "Registered Office",
+    usAddress: "2810 N Church St STE 88318\nWilmington, DE 19802\nUnited States",
+    londonHq: "London Headquarters",
+    londonAddress: "Shoreditch Exchange\nSenna Building, Gorsuch Pl\nLondon E2 8JF, United Kingdom",
+    legal:
+      "This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities.",
+    rights: "© 2026 First Ocean. All rights reserved.",
   },
 };

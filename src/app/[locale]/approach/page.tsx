@@ -4,6 +4,7 @@ import { isLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { SiteHeader } from "@/components/SiteHeader";
 import { FooterPromo } from "@/components/FooterPromo";
+import { SiteFooter } from "@/components/SiteFooter";
 import { ApproachHero } from "@/components/ApproachHero";
 import { ApproachBody } from "@/components/ApproachBody";
 
@@ -48,6 +49,7 @@ export default async function ApproachPage({
         <ApproachBody locale={locale} dict={dict.approach} />
         <FooterPromo locale={locale} dict={dict.home} />
       </main>
+      <SiteFooter dict={dict.footer} />
     </>
   );
 }

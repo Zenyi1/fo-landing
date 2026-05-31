@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { ContactForm } from "@/components/ContactForm";
 
 export async function generateMetadata({
@@ -84,6 +85,7 @@ export default async function ContactPage({
           </div>
         </section>
       </main>
+      <SiteFooter dict={dict.footer} />
     </>
   );
 }

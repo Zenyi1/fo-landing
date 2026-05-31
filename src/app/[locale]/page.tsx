@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { HomepageHero } from "@/components/HomepageHero";
 import { FeaturedStats } from "@/components/FeaturedStats";
 import { FooterPromo } from "@/components/FooterPromo";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export default async function Home({
   params,
@@ -23,6 +24,7 @@ export default async function Home({
         <FeaturedStats locale={locale} dict={dict.home} />
         <FooterPromo locale={locale} dict={dict.home} />
       </main>
+      <SiteFooter dict={dict.footer} />
     </>
   );
 }
