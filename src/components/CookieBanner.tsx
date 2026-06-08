@@ -30,7 +30,7 @@ export function CookieBanner({ locale, dict }: Props) {
           {dict.message}{" "}
           <Link
             href={`/${locale}/legal/cookies`}
-            className="underline hover:text-brand transition-colors"
+            className="underline whitespace-nowrap hover:text-brand transition-colors"
           >
             {dict.learnMore}
           </Link>
