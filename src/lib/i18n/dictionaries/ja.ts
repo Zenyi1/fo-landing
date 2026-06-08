@@ -149,6 +149,13 @@ export const ja: Dictionary = {
       disclosures: "免責事項",
     },
   },
+  cookieBanner: {
+    message:
+      "当サイトでは、サイトの運営、設定の保存、利用状況の把握のためにクッキーを使用しています。",
+    learnMore: "クッキーポリシー",
+    accept: "同意する",
+    decline: "拒否する",
+  },
   legalPages: {
     privacy: {
       metaTitle: "プライバシーポリシー",

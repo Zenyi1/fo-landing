@@ -81,6 +81,12 @@ export type Dictionary = {
       disclosures: string;
     };
   };
+  cookieBanner: {
+    message: string;
+    learnMore: string;
+    accept: string;
+    decline: string;
+  };
   legalPages: {
     privacy: LegalDoc;
     terms: LegalDoc;
@@ -246,6 +252,13 @@ export const en: Dictionary = {
       cookies: "Cookie Policy",
       disclosures: "Disclosures",
     },
+  },
+  cookieBanner: {
+    message:
+      "We use cookies to operate this site, remember your preferences, and understand how it is used.",
+    learnMore: "Cookie Policy",
+    accept: "Accept",
+    decline: "Decline",
   },
   legalPages: {
     privacy: {

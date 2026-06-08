@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Prata } from "next/font/google";
 import { isLocale, locales } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { CookieBanner } from "@/components/CookieBanner";
 import "../globals.css";
 
 const prata = Prata({
@@ -72,10 +73,14 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
+  const dict = getDictionary(locale);
 
   return (
     <html lang={locale} className={`${prata.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <CookieBanner locale={locale} dict={dict.cookieBanner} />
+      </body>
     </html>
   );
 }
