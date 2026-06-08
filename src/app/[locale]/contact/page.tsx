@@ -85,7 +85,7 @@ export default async function ContactPage({
           </div>
         </section>
       </main>
-      <SiteFooter dict={dict.footer} />
+      <SiteFooter locale={locale} dict={dict.footer} />
     </>
   );
 }

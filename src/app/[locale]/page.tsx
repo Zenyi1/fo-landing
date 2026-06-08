@@ -24,7 +24,7 @@ export default async function Home({
         <FeaturedStats locale={locale} dict={dict.home} />
         <FooterPromo locale={locale} dict={dict.home} />
       </main>
-      <SiteFooter dict={dict.footer} />
+      <SiteFooter locale={locale} dict={dict.footer} />
     </>
   );
 }

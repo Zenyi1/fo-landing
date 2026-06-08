@@ -71,7 +71,31 @@ export type Dictionary = {
     londonAddress: string;
     legal: string;
     rights: string;
+    headings: { company: string; legal: string };
+    links: {
+      approach: string;
+      contact: string;
+      privacy: string;
+      terms: string;
+      cookies: string;
+      disclosures: string;
+    };
   };
+  legalPages: {
+    privacy: LegalDoc;
+    terms: LegalDoc;
+    cookies: LegalDoc;
+    disclosures: LegalDoc;
+  };
+};
+
+export type LegalDoc = {
+  metaTitle: string;
+  metaDescription: string;
+  title: string;
+  updated: string;
+  intro: string;
+  sections: { heading: string; body: string[] }[];
 };
 
 export const en: Dictionary = {
@@ -213,5 +237,177 @@ export const en: Dictionary = {
     legal:
       "This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities.",
     rights: "© 2026 First Ocean. All rights reserved.",
+    headings: { company: "Company", legal: "Legal" },
+    links: {
+      approach: "Approach",
+      contact: "Contact Us",
+      privacy: "Privacy Policy",
+      terms: "Terms of Use",
+      cookies: "Cookie Policy",
+      disclosures: "Disclosures",
+    },
+  },
+  legalPages: {
+    privacy: {
+      metaTitle: "Privacy Policy",
+      metaDescription:
+        "How First Ocean collects, uses, and protects personal information when you visit our website or engage with us.",
+      title: "Privacy Policy",
+      updated: "Last updated: 1 June 2026",
+      intro:
+        "This Privacy Policy explains how First Ocean (\"First Ocean\", \"we\", \"us\") collects, uses, and protects personal information when you visit our website or engage with us.",
+      sections: [
+        {
+          heading: "Information we collect",
+          body: [
+            "We collect information you provide directly, such as your name, email address, telephone number, and any message you send through our contact form.",
+            "We also collect limited technical data automatically, including your IP address, browser type, device information, and the pages you view, through cookies and similar technologies.",
+          ],
+        },
+        {
+          heading: "How we use information",
+          body: [
+            "We use your information to respond to enquiries, evaluate potential partnerships and investments, operate and improve our website, and comply with our legal and regulatory obligations.",
+          ],
+        },
+        {
+          heading: "Legal basis for processing",
+          body: [
+            "Where the GDPR or UK GDPR applies, we process personal data on the basis of your consent, our legitimate business interests, or to take steps at your request prior to entering into an agreement.",
+          ],
+        },
+        {
+          heading: "How we share information",
+          body: [
+            "We do not sell your personal information. We may share it with service providers who support our operations, with professional advisers, and with authorities or regulators where required by law.",
+          ],
+        },
+        {
+          heading: "Data retention and security",
+          body: [
+            "We retain personal information only for as long as necessary for the purposes described in this policy, after which it is deleted or anonymised.",
+            "We apply appropriate technical and organisational measures designed to protect personal information against loss, misuse, and unauthorised access.",
+          ],
+        },
+        {
+          heading: "Your rights",
+          body: [
+            "Subject to applicable law, you may request access to, correction of, or deletion of your personal data, restrict or object to its processing, or request portability.",
+            "To exercise these rights, or for any question about this policy, contact us at privacy@first-ocean.com.",
+          ],
+        },
+      ],
+    },
+    terms: {
+      metaTitle: "Terms of Use",
+      metaDescription:
+        "The terms that govern your access to and use of the First Ocean website.",
+      title: "Terms of Use",
+      updated: "Last updated: 1 June 2026",
+      intro:
+        "These Terms of Use govern your access to and use of the First Ocean website. By using this website, you agree to be bound by these terms.",
+      sections: [
+        {
+          heading: "Use of the website",
+          body: [
+            "This website is provided for general information about First Ocean and its activities. You agree to use it only for lawful purposes and not in any way that could damage, disable, or impair the site or interfere with anyone else's use of it.",
+          ],
+        },
+        {
+          heading: "No offer or advice",
+          body: [
+            "Nothing on this website constitutes investment, legal, tax, or other professional advice, nor an offer or solicitation to buy or sell any security or financial instrument in any jurisdiction.",
+          ],
+        },
+        {
+          heading: "Intellectual property",
+          body: [
+            "All content on this website, including text, graphics, logos, and the First Ocean name, is owned by or licensed to First Ocean and is protected by applicable intellectual property laws. You may not reproduce or distribute it without our prior written consent.",
+          ],
+        },
+        {
+          heading: "Third-party links",
+          body: [
+            "This website may contain links to third-party sites. We provide these links for convenience only and are not responsible for the content, products, or practices of those sites.",
+          ],
+        },
+        {
+          heading: "Limitation of liability",
+          body: [
+            "This website is provided \"as is\" and \"as available\" without warranties of any kind. To the fullest extent permitted by law, First Ocean is not liable for any loss or damage arising from your use of, or reliance on, this website.",
+          ],
+        },
+        {
+          heading: "Governing law",
+          body: [
+            "These terms are governed by the laws of England and Wales, and the courts of England and Wales have exclusive jurisdiction over any dispute arising from them.",
+          ],
+        },
+      ],
+    },
+    cookies: {
+      metaTitle: "Cookie Policy",
+      metaDescription:
+        "How First Ocean uses cookies and similar technologies on our website.",
+      title: "Cookie Policy",
+      updated: "Last updated: 1 June 2026",
+      intro:
+        "This Cookie Policy explains how First Ocean uses cookies and similar technologies when you visit our website, and how you can manage them.",
+      sections: [
+        {
+          heading: "What are cookies",
+          body: [
+            "Cookies are small text files placed on your device when you visit a website. They help the site function, remember your preferences, and provide information to site owners.",
+          ],
+        },
+        {
+          heading: "How we use cookies",
+          body: [
+            "We use strictly necessary cookies to operate the site, including remembering your language preference. We also use limited analytics cookies to understand how the site is used so we can improve it.",
+          ],
+        },
+        {
+          heading: "Managing cookies",
+          body: [
+            "You can control or delete cookies through your browser settings, and set most browsers to refuse cookies. Disabling some cookies may affect how parts of this website function.",
+          ],
+        },
+      ],
+    },
+    disclosures: {
+      metaTitle: "Disclosures",
+      metaDescription:
+        "Important legal and regulatory information regarding First Ocean and the content of this website.",
+      title: "Disclosures",
+      updated: "Last updated: 1 June 2026",
+      intro:
+        "The following important legal and regulatory information applies to First Ocean and the content of this website.",
+      sections: [
+        {
+          heading: "Informational purposes only",
+          body: [
+            "The information on this website is provided for general informational purposes only and does not constitute an offer to sell, or a solicitation of an offer to buy, any securities or interests in any fund or investment vehicle.",
+          ],
+        },
+        {
+          heading: "No reliance",
+          body: [
+            "While we aim to keep information accurate and current, First Ocean makes no representation or warranty as to its completeness or accuracy and accepts no liability for any reliance placed upon it.",
+          ],
+        },
+        {
+          heading: "Forward-looking statements",
+          body: [
+            "This website may contain forward-looking statements that involve risk and uncertainty. Actual results may differ materially from those expressed or implied, and past performance is not indicative of future results.",
+          ],
+        },
+        {
+          heading: "Jurisdiction",
+          body: [
+            "First Ocean operates through its affiliates. The products and services described may not be available in all jurisdictions and are offered only where lawful to do so.",
+          ],
+        },
+      ],
+    },
   },
 };

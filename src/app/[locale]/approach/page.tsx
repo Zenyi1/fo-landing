@@ -49,7 +49,7 @@ export default async function ApproachPage({
         <ApproachBody locale={locale} dict={dict.approach} />
         <FooterPromo locale={locale} dict={dict.home} />
       </main>
-      <SiteFooter dict={dict.footer} />
+      <SiteFooter locale={locale} dict={dict.footer} />
     </>
   );
 }
