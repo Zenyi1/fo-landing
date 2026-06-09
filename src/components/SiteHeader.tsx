@@ -76,7 +76,7 @@ export function SiteHeader({ locale, dict }: Props) {
         )}
       >
         <div className="max-w-[1440px] mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
-          <Link href={localePrefix} className="flex items-center" aria-label="FirstOcean">
+          <Link href={localePrefix} className="flex items-center" aria-label="firstocean">
             <span className="font-serif text-2xl lowercase">firstocean</span>
           </Link>
 

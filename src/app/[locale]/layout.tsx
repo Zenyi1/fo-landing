@@ -30,9 +30,9 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL("https://first-ocean.com"),
-    title: { default: d.metaTitle, template: "%s · First Ocean" },
+    title: { default: d.metaTitle, template: "%s · firstocean" },
     description: d.metaDescription,
-    applicationName: "First Ocean",
+    applicationName: "firstocean",
     alternates: {
       canonical: `/${locale}`,
       languages: { en: "/en", ja: "/ja" },
@@ -48,7 +48,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       url: `https://first-ocean.com/${locale}`,
-      siteName: "First Ocean",
+      siteName: "firstocean",
       title: d.metaTitle,
       description: d.metaDescription,
       locale: locale === "ja" ? "ja_JP" : "en_US",

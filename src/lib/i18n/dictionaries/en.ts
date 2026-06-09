@@ -113,9 +113,9 @@ export const en: Dictionary = {
     closeMenu: "Close menu",
   },
   home: {
-    metaTitle: "First Ocean",
+    metaTitle: "firstocean",
     metaDescription:
-      "First Ocean is a global, diversified alternative investment firm with the mission to deliver high-quality returns for our investors.",
+      "firstocean is a global, diversified alternative investment firm with the mission to deliver high-quality returns for our investors.",
     heroHeadline1: "Proven medicines.",
     heroHeadline2: "New patients.",
     heroSubtitle:
@@ -134,19 +134,19 @@ export const en: Dictionary = {
     ],
     solutionKicker: "/our solution",
     solutionBody:
-      "Firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners.",
+      "firstocean is the AI sourcing engine that resolves it: scoring thousands of candidates against patient populations, regulatory pathways, and commercial fit, then routing the best assets to the right partners.",
     contactLink: "Contact Us",
     workWithUs: "Work with us",
   },
   approach: {
     metaTitle: "Approach",
     metaDescription:
-      "FirstOcean's AI sourcing engine scores de-risked, approved therapeutics against patient populations, regulatory pathways, and commercial fit — routing the best assets into LATAM, MENA, and SEA.",
+      "firstocean's AI sourcing engine scores de-risked, approved therapeutics against patient populations, regulatory pathways, and commercial fit — routing the best assets into LATAM, MENA, and SEA.",
     kicker: "/approach",
     headline1: "Identify de-risked assets.",
     headline2: "Bridge them where they're needed.",
     intro:
-      "First Ocean sources therapeutics approved by the FDA, EMA, PMDA and Health Canada, secures the ex-US and ex-EU rights from the originators who hold them, and brings those assets into LATAM, MENA and Southeast Asia through the reliance pathways that now connect them.",
+      "firstocean sources therapeutics approved by the FDA, EMA, PMDA and Health Canada, secures the ex-US and ex-EU rights from the originators who hold them, and brings those assets into LATAM, MENA and Southeast Asia through the reliance pathways that now connect them.",
     earthAlt: "Earth at night, viewed from orbit",
     gapKicker: "/the gap today",
     gapHeadline: "A regulatory frontier the industry has not yet crossed.",
@@ -156,7 +156,7 @@ export const en: Dictionary = {
       "The broader pool is larger: hundreds of therapeutics cleared by the four reference regulators have never been registered in the emerging markets where they are clinically needed.",
     gapBody2:
       "The constraint is not scientific, regulatory or commercial. It is operational. Ex-US and ex-EU rights sit with originators whose priorities lie elsewhere. Reliance pathways now exist but require local execution. Patient populations are large and growing but fragmented across jurisdictions with materially different healthcare systems.",
-    gapClose: "First Ocean exists to close this gap.",
+    gapClose: "firstocean exists to close this gap.",
     functionsKicker: "/what we do",
     functionsHeadline:
       "Four functions, run in series, across multiple assets and jurisdictions.",
@@ -204,13 +204,13 @@ export const en: Dictionary = {
       "We acquire the rights you are not pursuing, on terms that protect your primary markets and surface incremental value from assets already in your portfolio.",
     forInvestors: "For investors and co-investors",
     forInvestorsBody:
-      "We invest in the only function in this value chain that no one else is running at scale, in the 24 months that the regulatory and commercial conditions for it have existed.",
+      "We offer exposure to approved, de-risked therapeutics rather than early-stage science, capturing the value that opens when proven medicines finally reach large, underserved markets.",
     talkToUs: "Talk to us",
   },
   contact: {
     metaTitle: "Contact",
     metaDescription:
-      "Get in touch with First Ocean — partner with us, invest with us, work with us, or reach our media team.",
+      "Get in touch with firstocean — partner with us, invest with us, work with us, or reach our media team.",
     kicker: "/contact",
     headline: "Contact",
     intro: "Any questions? Want to learn more? We look forward to hearing from you.",
@@ -242,7 +242,7 @@ export const en: Dictionary = {
     londonAddress: "Shoreditch Exchange\nSenna Building, Gorsuch Pl\nLondon E2 8JF, United Kingdom",
     legal:
       "This website is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any securities.",
-    rights: "© 2026 First Ocean. All rights reserved.",
+    rights: "© 2026 firstocean. All rights reserved.",
     headings: { company: "Company", legal: "Legal" },
     links: {
       approach: "Approach",
@@ -264,11 +264,11 @@ export const en: Dictionary = {
     privacy: {
       metaTitle: "Privacy Policy",
       metaDescription:
-        "How First Ocean collects, uses, and protects personal information when you visit our website or engage with us.",
+        "How firstocean collects, uses, and protects personal information when you visit our website or engage with us.",
       title: "Privacy Policy",
       updated: "Last updated: 1 June 2026",
       intro:
-        "This Privacy Policy explains how First Ocean (\"First Ocean\", \"we\", \"us\") collects, uses, and protects personal information when you visit our website or engage with us.",
+        "This Privacy Policy explains how firstocean (\"firstocean\", \"we\", \"us\") collects, uses, and protects personal information when you visit our website or engage with us.",
       sections: [
         {
           heading: "Information we collect",
@@ -314,16 +314,16 @@ export const en: Dictionary = {
     terms: {
       metaTitle: "Terms of Use",
       metaDescription:
-        "The terms that govern your access to and use of the First Ocean website.",
+        "The terms that govern your access to and use of the firstocean website.",
       title: "Terms of Use",
       updated: "Last updated: 1 June 2026",
       intro:
-        "These Terms of Use govern your access to and use of the First Ocean website. By using this website, you agree to be bound by these terms.",
+        "These Terms of Use govern your access to and use of the firstocean website. By using this website, you agree to be bound by these terms.",
       sections: [
         {
           heading: "Use of the website",
           body: [
-            "This website is provided for general information about First Ocean and its activities. You agree to use it only for lawful purposes and not in any way that could damage, disable, or impair the site or interfere with anyone else's use of it.",
+            "This website is provided for general information about firstocean and its activities. You agree to use it only for lawful purposes and not in any way that could damage, disable, or impair the site or interfere with anyone else's use of it.",
           ],
         },
         {
@@ -335,7 +335,7 @@ export const en: Dictionary = {
         {
           heading: "Intellectual property",
           body: [
-            "All content on this website, including text, graphics, logos, and the First Ocean name, is owned by or licensed to First Ocean and is protected by applicable intellectual property laws. You may not reproduce or distribute it without our prior written consent.",
+            "All content on this website, including text, graphics, logos, and the firstocean name, is owned by or licensed to firstocean and is protected by applicable intellectual property laws. You may not reproduce or distribute it without our prior written consent.",
           ],
         },
         {
@@ -347,7 +347,7 @@ export const en: Dictionary = {
         {
           heading: "Limitation of liability",
           body: [
-            "This website is provided \"as is\" and \"as available\" without warranties of any kind. To the fullest extent permitted by law, First Ocean is not liable for any loss or damage arising from your use of, or reliance on, this website.",
+            "This website is provided \"as is\" and \"as available\" without warranties of any kind. To the fullest extent permitted by law, firstocean is not liable for any loss or damage arising from your use of, or reliance on, this website.",
           ],
         },
         {
@@ -361,11 +361,11 @@ export const en: Dictionary = {
     cookies: {
       metaTitle: "Cookie Policy",
       metaDescription:
-        "How First Ocean uses cookies and similar technologies on our website.",
+        "How firstocean uses cookies and similar technologies on our website.",
       title: "Cookie Policy",
       updated: "Last updated: 1 June 2026",
       intro:
-        "This Cookie Policy explains how First Ocean uses cookies and similar technologies when you visit our website, and how you can manage them.",
+        "This Cookie Policy explains how firstocean uses cookies and similar technologies when you visit our website, and how you can manage them.",
       sections: [
         {
           heading: "What are cookies",
@@ -390,11 +390,11 @@ export const en: Dictionary = {
     disclosures: {
       metaTitle: "Disclosures",
       metaDescription:
-        "Important legal and regulatory information regarding First Ocean and the content of this website.",
+        "Important legal and regulatory information regarding firstocean and the content of this website.",
       title: "Disclosures",
       updated: "Last updated: 1 June 2026",
       intro:
-        "The following important legal and regulatory information applies to First Ocean and the content of this website.",
+        "The following important legal and regulatory information applies to firstocean and the content of this website.",
       sections: [
         {
           heading: "Informational purposes only",
@@ -405,7 +405,7 @@ export const en: Dictionary = {
         {
           heading: "No reliance",
           body: [
-            "While we aim to keep information accurate and current, First Ocean makes no representation or warranty as to its completeness or accuracy and accepts no liability for any reliance placed upon it.",
+            "While we aim to keep information accurate and current, firstocean makes no representation or warranty as to its completeness or accuracy and accepts no liability for any reliance placed upon it.",
           ],
         },
         {
@@ -417,7 +417,7 @@ export const en: Dictionary = {
         {
           heading: "Jurisdiction",
           body: [
-            "First Ocean operates through its affiliates. The products and services described may not be available in all jurisdictions and are offered only where lawful to do so.",
+            "firstocean operates through its affiliates. The products and services described may not be available in all jurisdictions and are offered only where lawful to do so.",
           ],
         },
       ],

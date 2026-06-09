@@ -32,7 +32,7 @@ export async function generateMetadata({
       languages: { en: `/en/legal/${slug}`, ja: `/ja/legal/${slug}` },
     },
     openGraph: {
-      title: `${d.metaTitle} · First Ocean`,
+      title: `${d.metaTitle} · firstocean`,
       description: d.metaDescription,
       url: `https://first-ocean.com/${locale}/legal/${slug}`,
       images: [{ url: "/seo/fo.jpeg", width: 1024, height: 1024 }],
