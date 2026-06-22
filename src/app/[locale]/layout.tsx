@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Prata } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { isLocale, locales } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/get-dictionary";
 import { CookieBanner } from "@/components/CookieBanner";
@@ -80,6 +81,7 @@ export default async function LocaleLayout({
       <body className="min-h-full flex flex-col">
         {children}
         <CookieBanner locale={locale} dict={dict.cookieBanner} />
+        <SpeedInsights />
       </body>
     </html>
   );
