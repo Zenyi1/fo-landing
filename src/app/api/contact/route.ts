@@ -32,12 +32,13 @@ export async function POST(req: Request) {
 
   const name = String(body.name ?? "").trim();
   const email = String(body.email ?? "").trim();
-  const phone = String(body.phone ?? "").trim();
-  const message = String(body.message ?? "").trim();
+  const company = String(body.company ?? "").trim();
+  const industry = String(body.industry ?? "").trim();
+  const teamSize = String(body.teamSize ?? "").trim();
 
-  if (!name || !email || !message) {
+  if (!name || !email) {
     return NextResponse.json(
-      { error: "Name, email and message are required" },
+      { error: "Name and email are required" },
       { status: 400 }
     );
   }
@@ -49,29 +50,28 @@ export async function POST(req: Request) {
   const resend = new Resend(apiKey);
 
   const html = `
-    <h2>New contact form submission</h2>
+    <h2>New early access request</h2>
     <p><strong>Name:</strong> ${escape(name)}</p>
-    <p><strong>Email:</strong> ${escape(email)}</p>
-    <p><strong>Phone:</strong> ${escape(phone) || "(not provided)"}</p>
-    <p><strong>Message:</strong></p>
-    <p style="white-space:pre-wrap">${escape(message)}</p>
+    <p><strong>Work email:</strong> ${escape(email)}</p>
+    <p><strong>Company:</strong> ${escape(company) || "(not provided)"}</p>
+    <p><strong>Industry:</strong> ${escape(industry) || "(not provided)"}</p>
+    <p><strong>Team size:</strong> ${escape(teamSize) || "(not provided)"}</p>
   `;
 
-  const text = `New contact form submission
+  const text = `New early access request
 
 Name: ${name}
-Email: ${email}
-Phone: ${phone || "(not provided)"}
-
-Message:
-${message}`;
+Work email: ${email}
+Company: ${company || "(not provided)"}
+Industry: ${industry || "(not provided)"}
+Team size: ${teamSize || "(not provided)"}`;
 
   try {
     const { error } = await resend.emails.send({
       from: FROM,
       to: TO,
       replyTo: email,
-      subject: `Contact form: ${name}`,
+      subject: `Early access: ${name}${company ? ` (${company})` : ""}`,
       html,
       text,
     });

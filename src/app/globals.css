@@ -7,15 +7,17 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
   --color-brand: var(--brand);
-  --color-brand-light: var(--brand-light);
+  --color-brand-strong: var(--brand-strong);
   --color-approach: var(--approach);
-  --color-cream: var(--cream);
+  --color-footer: var(--footer);
   --color-ink-on-dark: var(--ink-on-dark);
 
-  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-serif: var(--font-prata), "Prata", "Times New Roman", serif;
-  --font-heading: var(--font-serif);
+  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-serif: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-heading: var(--font-inter);
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -51,41 +53,42 @@
 }
 
 :root {
-  /* mlp.com brand */
-  --brand: #1434CB;
-  --brand-light: #7A8AE8;
-  --approach: #3D5E7E;
-  --cream: #FFF7F0;
-  --ink-on-dark: #FFFFFF;
+  /* firstocean palette — white body, ink text, deep-blue accent, navy footer */
+  --ink: #0b1120;         /* primary text / headline */
+  --ink-soft: #4a5670;    /* secondary text */
+  --brand: #1e3a8a;       /* deep-blue accent: buttons, links, focus, visual */
+  --brand-strong: #16295f;/* accent hover */
+  --footer: #0b1b4d;      /* deep-navy footer block */
+  --ink-on-dark: #ffffff;
 
-  --background: #FFFFFF;
-  --foreground: var(--brand);
+  --background: #ffffff;
+  --foreground: var(--ink);
 
-  --card: #FFFFFF;
-  --card-foreground: var(--brand);
-  --popover: #FFFFFF;
-  --popover-foreground: var(--brand);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
   --primary: var(--brand);
-  --primary-foreground: #FFFFFF;
+  --primary-foreground: #ffffff;
   --secondary: oklch(0.97 0 0);
-  --secondary-foreground: var(--brand);
+  --secondary-foreground: var(--ink);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);
-  --accent-foreground: var(--brand);
+  --accent-foreground: var(--ink);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: rgba(20, 52, 203, 0.2);
+  --border: rgba(11, 17, 32, 0.12);
   --input: oklch(0.922 0 0);
   --ring: var(--brand);
 
   --radius: 0.25rem;
 
   --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: var(--brand);
+  --sidebar-foreground: var(--ink);
   --sidebar-primary: var(--brand);
-  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: var(--brand);
+  --sidebar-accent-foreground: var(--ink);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
@@ -96,7 +99,7 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
-    color: var(--brand);
+    color: var(--ink);
     overflow-x: hidden;
   }
   html {
@@ -104,8 +107,9 @@
     overflow-x: hidden;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-serif);
-    font-weight: 400;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    letter-spacing: -0.02em;
     color: inherit;
   }
 }
@@ -114,33 +118,28 @@
   .font-serif {
     font-family: var(--font-serif);
   }
+  .text-ink {
+    color: var(--ink);
+  }
+  .text-ink-soft {
+    color: var(--ink-soft);
+  }
   .text-brand {
     color: var(--brand);
   }
-  .text-brand-light {
-    color: var(--brand-light);
-  }
   .text-approach {
-    color: var(--approach);
+    color: var(--ink-soft);
   }
   .bg-approach {
-    background-color: var(--approach);
+    background-color: var(--ink-soft);
   }
   .bg-brand {
     background-color: var(--brand);
   }
-  .bg-cream {
-    background-color: var(--cream);
-  }
-  /* Trailing slash divider used across mlp.com — paired with link/button text */
-  .with-slash::after {
-    content: "";
-    display: inline-block;
-    width: 1px;
-    height: 1.1em;
-    margin-left: 0.85em;
-    background: currentColor;
-    transform: rotate(20deg) translateY(0.1em);
-    vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
