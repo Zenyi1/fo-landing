@@ -45,6 +45,16 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "firstocean",
+  url: "https://first-ocean.com",
+  description,
+  logo: "https://first-ocean.com/seo/fo.jpeg",
+  email: "hugo@first-ocean.com",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -53,6 +63,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased`}>
       <body className="min-h-full bg-[#071a2b]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {children}
         <Analytics />
       </body>
