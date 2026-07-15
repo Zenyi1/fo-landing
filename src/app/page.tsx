@@ -29,24 +29,21 @@ export default function Home() {
             </h2>
             <div className="mt-10 space-y-8 text-[18px] leading-[1.7] text-ink md:text-[20px]">
               <p>
-                Somewhere, a regulator has already signed off. The trials are done, the risk retired,
-                the medicine proven safe and effective. The hardest work is behind it. And still, for
-                more than 440 million patients around the world, that medicine simply never arrives.
+                For more than 440 million patients, the medicine they need exists. Regulators have
+                approved it and trials have proven it works. No one has built a route to the markets
+                where those patients live.
               </p>
               <p>
-                The gap is not scientific. It is a failure of routing. Proven therapeutics stall short
-                of the patients who need them, not for any clinical reason, but because the routes to
-                market were never built. Thousands de-risked assets sit idle. For originators, that
-                is value locked inside franchises they were never going to launch everywhere. For
-                distributors and in-licensors, it is access to medicines that already work, rather than
-                early-stage science that still might.
+                Thousands of de-risked therapeutics sit idle for that reason. For originators, each
+                one is value locked inside a franchise they have no plans to launch in most countries.
+                For distributors and in-licensors, each one is a medicine with approval and evidence
+                behind it, safer to commercialize than early-stage science.
               </p>
               <p>
-                firstocean is the infrastructure that closes that distance. It is the platform where
-                originators see every viable option to bring an approved therapeutic to market and to
-                distribution, and where distributors and in-licensors receive qualified inbound that is
-                already proven and commercially viable. Medicines that exist become medicines that
-                arrive, everywhere.
+                firstocean connects the two. Originators use the platform to map viable routes to
+                market and distribution for an approved therapeutic. Distributors and in-licensors
+                receive qualified inbound with regulatory proof and a commercial case attached. Deals
+                close, and medicines reach markets their originators had written off.
               </p>
             </div>
 
