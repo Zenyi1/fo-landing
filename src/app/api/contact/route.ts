@@ -3,7 +3,7 @@ import { Resend } from "resend";
 
 export const runtime = "nodejs";
 
-const TO = "hugo@first-ocean.com";
+const TO = "zenyi@first-ocean.com";
 const FROM = process.env.CONTACT_FROM ?? "firstocean <onboarding@resend.dev>";
 
 function escape(s: string) {
