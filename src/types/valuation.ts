@@ -59,13 +59,11 @@ export const PEAK_SALES = [
   "Not sure yet",
 ] as const;
 
-export const PATIENT_POPULATIONS = [
-  "Under 50k patients",
-  "50k to 500k",
-  "500k to 5M",
-  "5M to 50M",
-  "Over 50M",
-  "Not sure yet",
+export const LMIC_BURDEN = [
+  "Mostly high-income populations",
+  "Fairly even worldwide",
+  "Mostly low- and middle-income countries",
+  "Not sure",
 ] as const;
 
 export const FOOTPRINTS = [

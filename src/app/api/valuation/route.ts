@@ -8,7 +8,7 @@ import {
   YEARS_APPROVED,
   ANNUAL_SALES,
   PEAK_SALES,
-  PATIENT_POPULATIONS,
+  LMIC_BURDEN,
   FOOTPRINTS,
 } from "@/types/valuation";
 
@@ -28,7 +28,7 @@ const CLINICAL_FIELDS = {
   therapeuticArea: THERAPEUTIC_AREAS,
   assetType: ASSET_TYPES,
   peakSales: PEAK_SALES,
-  patientPopulation: PATIENT_POPULATIONS,
+  lmicBurden: LMIC_BURDEN,
   coreMarkets: FOOTPRINTS,
 } as const;
 
@@ -40,7 +40,7 @@ Count only emerging markets: exclude high-income markets such as the US, Canada,
 
 const SYSTEM_CLINICAL = `You are a commercial analyst at firstocean, a platform that helps pharmaceutical originators monetize therapeutics in emerging markets. Given a de-identified profile of a clinical-stage or preclinical therapeutic, estimate what the originator could realistically realize today by out-licensing or selling emerging-market rights (Latin America, Africa, the Middle East, South and Southeast Asia, Central Asia, Eastern Europe) that sit outside their planned core markets. Return the total risk-adjusted deal value in USD millions (upfront plus development and sales milestones, at typical regional licensing terms).
 
-Count only emerging markets: exclude high-income markets such as the US, Canada, Western Europe, Japan and Australia from both the deal value and the market count, even when they sit outside the planned core markets. Ground the estimate in the profile: expected peak sales, phase probability of reaching approval (roughly 5 to 10 percent from preclinical, about 10 percent from Phase 1, 15 to 30 percent from Phase 2, 50 to 60 percent from Phase 3, varying by therapeutic area), and the lead-indication patient population as a proxy for LMIC disease burden. A large patient population concentrated in low- and middle-income countries raises emerging-market value beyond what core-market peak sales alone imply; a small rare-disease population lowers it. Parallel filing means emerging-market registration can start during late-stage trials, which raises the value of these rights before approval. Work through it before answering: estimate plausible peak annual sales in the emerging markets in scope, multiply by the phase probability of approval, then take typical regional out-licensing economics (a low-double-digit percentage of that risk-adjusted value, combining upfront and milestones). When peak sales or patient population is "Not sure yet", do not assume a blockbuster: widen your uncertainty, lean to the low end, and infer conservatively from the therapeutic area and asset type. Earlier stages are worth far less. Compute a precise figure from the inputs; do not output a round number that is a multiple of 5 or 10. Also estimate how many emerging markets are viable for parallel filing or regional licensing of this asset, an integer between 8 and 54.`;
+Count only emerging markets: exclude high-income markets such as the US, Canada, Western Europe, Japan and Australia from both the deal value and the market count, even when they sit outside the planned core markets. Ground the estimate in the profile: expected peak sales, phase probability of reaching approval (roughly 5 to 10 percent from preclinical, about 10 percent from Phase 1, 15 to 30 percent from Phase 2, 50 to 60 percent from Phase 3, varying by therapeutic area), and where the lead indication's disease burden concentrates. When the burden falls mostly on low- and middle-income countries, emerging-market value rises well beyond what core-market peak sales alone imply; when it falls mostly on high-income populations, it is lower. Use the therapeutic area to sanity-check this. Parallel filing means emerging-market registration can start during late-stage trials, which raises the value of these rights before approval. Work through it before answering: estimate plausible peak annual sales in the emerging markets in scope, multiply by the phase probability of approval, then take typical regional out-licensing economics (a low-double-digit percentage of that risk-adjusted value, combining upfront and milestones). When peak sales is "Not sure yet" or the disease burden concentration is "Not sure", do not assume a blockbuster: widen your uncertainty, lean to the low end, and infer conservatively from the therapeutic area and asset type. Earlier stages are worth far less. Compute a precise figure from the inputs; do not output a round number that is a multiple of 5 or 10. Also estimate how many emerging markets are viable for parallel filing or regional licensing of this asset, an integer between 8 and 54.`;
 
 const SCHEMA = {
   type: "object",
@@ -92,14 +92,12 @@ function heuristic(inputs: Inputs) {
     [DEV_STAGES[2]]: 0.22,
     [DEV_STAGES[3]]: 0.55,
   };
-  // disease burden proxy: bigger patient population lifts em value, rare disease lowers it
-  const popFactor: Record<string, number> = {
-    [PATIENT_POPULATIONS[0]]: 0.6,
-    [PATIENT_POPULATIONS[1]]: 0.8,
-    [PATIENT_POPULATIONS[2]]: 1.0,
-    [PATIENT_POPULATIONS[3]]: 1.25,
-    [PATIENT_POPULATIONS[4]]: 1.5,
-    [PATIENT_POPULATIONS[5]]: 1.0, // "not sure yet": neutral prior
+  // disease burden proxy: lmic-concentrated burden lifts em value, high-income burden lowers it
+  const burdenFactor: Record<string, number> = {
+    [LMIC_BURDEN[0]]: 0.6, // mostly high-income
+    [LMIC_BURDEN[1]]: 1.0, // fairly even
+    [LMIC_BURDEN[2]]: 1.5, // mostly lmic
+    [LMIC_BURDEN[3]]: 1.0, // "not sure": neutral prior
   };
   let hash = 0;
   for (const ch of Object.values(inputs).join("|")) {
@@ -112,7 +110,7 @@ function heuristic(inputs: Inputs) {
       peakMid[inputs.peakSales] *
       footprintFactor[inputs.coreMarkets] *
       phasePos[inputs.devStage] *
-      popFactor[inputs.patientPopulation] *
+      burdenFactor[inputs.lmicBurden] *
       1.8 *
       jitter;
     return { value_musd: clamp(value, 1, 1500), markets: 10 + (hash % 25) };
@@ -129,7 +127,7 @@ Development stage: ${inputs.devStage}
 Therapeutic area: ${inputs.therapeuticArea}
 Asset type: ${inputs.assetType}
 Expected peak annual sales at maturity: ${inputs.peakSales}
-Lead-indication patient population (global): ${inputs.patientPopulation}
+Where the lead-indication disease burden concentrates: ${inputs.lmicBurden}
 Planned core commercial markets: ${inputs.coreMarkets}`
     : `Asset profile:
 Therapeutic area: ${inputs.therapeuticArea}

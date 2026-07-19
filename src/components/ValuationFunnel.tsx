@@ -9,7 +9,7 @@ import {
   YEARS_APPROVED,
   ANNUAL_SALES,
   PEAK_SALES,
-  PATIENT_POPULATIONS,
+  LMIC_BURDEN,
   FOOTPRINTS,
 } from "@/types/valuation";
 
@@ -49,7 +49,7 @@ const FIELD_LABELS: Record<string, string> = {
   yearsApproved: "Since approval",
   annualSales: "Annual sales",
   peakSales: "Peak sales",
-  patientPopulation: "Patients",
+  lmicBurden: "Disease burden",
   coreMarkets: "Core markets",
   footprint: "Footprint",
 };
@@ -136,7 +136,7 @@ export function ValuationFunnel() {
             {clinical ? (
               <>
                 <Select label="Expected peak annual sales" name="peakSales" options={PEAK_SALES} answers={answers} />
-                <Select label="Lead-indication patient population" name="patientPopulation" options={PATIENT_POPULATIONS} answers={answers} />
+                <Select label="Where the disease burden falls" name="lmicBurden" options={LMIC_BURDEN} answers={answers} />
                 <Select label="Planned core markets" name="coreMarkets" options={FOOTPRINTS} answers={answers} />
               </>
             ) : (
