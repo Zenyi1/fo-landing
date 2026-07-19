@@ -95,8 +95,8 @@ export function ValuationFunnel() {
           </h1>
           <p className="mt-3 text-[15px] leading-[1.55] text-white/70 md:text-[16px]">
             {clinical
-              ? "A few questions about your therapeutic. One number: what your emerging-market rights could fetch before approval."
-              : "A few questions about your therapeutic. One number: the untapped annual revenue waiting in emerging markets."}
+              ? "Fill in the basics about your asset and we'll put a number on its rights outside your core markets."
+              : "Fill in the basics about your asset and we'll estimate what it could be earning each year outside your core markets."}
           </p>
           <form onSubmit={onSubmit} className="mt-7 grid gap-4 md:grid-cols-2">
             <Select label="Development stage" name="devStage" options={DEV_STAGES} value={devStage} onChange={setDevStage} />
@@ -123,8 +123,7 @@ export function ValuationFunnel() {
               Get the number
             </button>
             <p className="text-[13px] leading-[1.5] text-white/60 md:col-span-2">
-              No name, no molecule, no email. The estimate is directional and based
-              on market analogues.
+              You stay anonymous. We never ask for your name, compound, or email. The estimate is a rough benchmark built from comparable launches.
             </p>
           </form>
         </div>
