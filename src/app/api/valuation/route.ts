@@ -5,7 +5,7 @@ import {
   THERAPEUTIC_AREAS,
   ASSET_TYPES,
   APPROVALS,
-  YEARS_APPROVED,
+  PATENT_LIFE,
   ANNUAL_SALES,
   PEAK_SALES,
   LMIC_BURDEN,
@@ -19,9 +19,10 @@ const APPROVED_FIELDS = {
   therapeuticArea: THERAPEUTIC_AREAS,
   assetType: ASSET_TYPES,
   approvals: APPROVALS,
-  yearsApproved: YEARS_APPROVED,
+  patentLife: PATENT_LIFE,
   annualSales: ANNUAL_SALES,
   footprint: FOOTPRINTS,
+  lmicBurden: LMIC_BURDEN,
 } as const;
 
 const CLINICAL_FIELDS = {
@@ -36,7 +37,7 @@ type Inputs = Record<string, string>;
 
 const SYSTEM_APPROVED = `You are a commercial analyst at firstocean, a platform that helps pharmaceutical originators commercialize approved therapeutics in emerging markets. Given a de-identified profile of an approved therapeutic, estimate the untapped annual revenue opportunity in USD millions across emerging markets where the asset is not yet commercialized (Latin America, Africa, the Middle East, South and Southeast Asia, Central Asia, Eastern Europe).
 
-Count only emerging markets: exclude high-income markets such as the US, Canada, Western Europe, Japan and Australia from both the revenue figure and the market count, even when the asset is not commercialized there. Ground the estimate in the profile: current sales scale, disease burden in low- and middle-income countries, regulatory strength, and remaining exclusivity. Work through it before answering: take the current annual net sales implied by the profile, apply the emerging-market opportunity percentage appropriate to the disease burden and remaining exclusivity (typically 10 to 45 percent, higher for infectious disease and vaccines given LMIC disease burden, lower when the asset already has broad global reach), and report the result. Compute a precise figure from the inputs; do not output a round number that is a multiple of 5 or 10. Also estimate how many emerging markets are commercially viable for this asset, an integer between 12 and 54.`;
+Count only emerging markets: exclude high-income markets such as the US, Canada, Western Europe, Japan and Australia from both the revenue figure and the market count, even when the asset is not commercialized there. Ground the estimate in the profile: current sales scale, where the lead indication's disease burden concentrates, regulatory strength, and remaining patent life. When the burden falls mostly on low- and middle-income countries the emerging-market opportunity is larger; when it falls mostly on high-income populations it is smaller. Remaining patent life gates the branded opportunity: with little or no patent life left, generic competition erodes the branded opportunity in emerging markets, so lean sharply lower. Work through it before answering: take the current annual net sales implied by the profile, apply the emerging-market opportunity percentage appropriate to the disease-burden concentration and remaining patent life (typically 10 to 45 percent, higher for infectious disease and vaccines given LMIC disease burden, lower when the asset already has broad global reach or is near or past patent expiry), and report the result. Compute a precise figure from the inputs; do not output a round number that is a multiple of 5 or 10. Also estimate how many emerging markets are commercially viable for this asset, an integer between 12 and 54.`;
 
 const SYSTEM_CLINICAL = `You are a commercial analyst at firstocean, a platform that helps pharmaceutical originators monetize therapeutics in emerging markets. Given a de-identified profile of a clinical-stage or preclinical therapeutic, estimate what the originator could realistically realize today by out-licensing or selling emerging-market rights (Latin America, Africa, the Middle East, South and Southeast Asia, Central Asia, Eastern Europe) that sit outside their planned core markets. Return the total risk-adjusted deal value in USD millions (upfront plus development and sales milestones, at typical regional licensing terms).
 
@@ -99,6 +100,14 @@ function heuristic(inputs: Inputs) {
     [LMIC_BURDEN[2]]: 1.5, // mostly lmic
     [LMIC_BURDEN[3]]: 1.0, // "not sure": neutral prior
   };
+  // remaining patent life gates the branded opportunity; off-patent collapses it
+  const patentFactor: Record<string, number> = {
+    [PATENT_LIFE[0]]: 1.0, // over 10 years
+    [PATENT_LIFE[1]]: 0.9, // 5 to 10
+    [PATENT_LIFE[2]]: 0.7, // 2 to 5
+    [PATENT_LIFE[3]]: 0.45, // under 2
+    [PATENT_LIFE[4]]: 0.15, // none, off patent
+  };
   let hash = 0;
   for (const ch of Object.values(inputs).join("|")) {
     hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
@@ -115,7 +124,12 @@ function heuristic(inputs: Inputs) {
       jitter;
     return { value_musd: clamp(value, 1, 1500), markets: 10 + (hash % 25) };
   }
-  const value = salesMid[inputs.annualSales] * footprintFactor[inputs.footprint] * jitter;
+  const value =
+    salesMid[inputs.annualSales] *
+    footprintFactor[inputs.footprint] *
+    burdenFactor[inputs.lmicBurden] *
+    patentFactor[inputs.patentLife] *
+    jitter;
   return { value_musd: clamp(value, 2, 3000), markets: 24 + (hash % 23) };
 }
 
@@ -133,9 +147,10 @@ Planned core commercial markets: ${inputs.coreMarkets}`
 Therapeutic area: ${inputs.therapeuticArea}
 Asset type: ${inputs.assetType}
 Regulatory approvals: ${inputs.approvals}
-Time since first approval: ${inputs.yearsApproved}
+Remaining patent life: ${inputs.patentLife}
 Annual net sales in current markets: ${inputs.annualSales}
-Current commercial footprint: ${inputs.footprint}`;
+Current commercial footprint: ${inputs.footprint}
+Where the lead-indication disease burden concentrates: ${inputs.lmicBurden}`;
 
   const client = new Anthropic();
   const response = await client.messages.create(

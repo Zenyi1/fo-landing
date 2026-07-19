@@ -33,11 +33,12 @@ export const APPROVALS = [
   "Other stringent regulator",
 ] as const;
 
-export const YEARS_APPROVED = [
-  "Under 2 years",
-  "2 to 5 years",
-  "5 to 10 years",
+export const PATENT_LIFE = [
   "Over 10 years",
+  "5 to 10 years",
+  "2 to 5 years",
+  "Under 2 years",
+  "None, off patent",
 ] as const;
 
 export const ANNUAL_SALES = [

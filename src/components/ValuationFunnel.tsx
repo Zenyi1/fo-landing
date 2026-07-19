@@ -6,7 +6,7 @@ import {
   THERAPEUTIC_AREAS,
   ASSET_TYPES,
   APPROVALS,
-  YEARS_APPROVED,
+  PATENT_LIFE,
   ANNUAL_SALES,
   PEAK_SALES,
   LMIC_BURDEN,
@@ -46,7 +46,7 @@ const FIELD_LABELS: Record<string, string> = {
   therapeuticArea: "Area",
   assetType: "Type",
   approvals: "Approvals",
-  yearsApproved: "Since approval",
+  patentLife: "Patent life",
   annualSales: "Annual sales",
   peakSales: "Peak sales",
   lmicBurden: "Disease burden",
@@ -142,9 +142,10 @@ export function ValuationFunnel() {
             ) : (
               <>
                 <Select label="Regulatory approvals" name="approvals" options={APPROVALS} answers={answers} />
-                <Select label="Time since first approval" name="yearsApproved" options={YEARS_APPROVED} answers={answers} />
+                <Select label="Remaining patent life" name="patentLife" options={PATENT_LIFE} answers={answers} />
                 <Select label="Annual net sales in current markets" name="annualSales" options={ANNUAL_SALES} answers={answers} />
                 <Select label="Current commercial footprint" name="footprint" options={FOOTPRINTS} answers={answers} />
+                <Select label="Where the disease burden falls" name="lmicBurden" options={LMIC_BURDEN} answers={answers} />
               </>
             )}
             <button
