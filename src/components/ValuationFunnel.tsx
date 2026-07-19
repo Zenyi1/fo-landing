@@ -38,18 +38,28 @@ function formatValue(musd: number) {
   return `$${Math.round(musd)}M`;
 }
 
-// attach the estimate and profile to the booking so we know what number a lead saw.
-// calendly captures utm params in the event details; they are not shown in the booking form.
+// attach the estimate and every answer to the booking so we know what number a lead saw
+// and the full profile behind it. calendly captures utm params via analytics, webhooks and
+// integrations; they are not shown in the booking form.
+const FIELD_LABELS: Record<string, string> = {
+  devStage: "Stage",
+  therapeuticArea: "Area",
+  assetType: "Type",
+  approvals: "Approvals",
+  yearsApproved: "Since approval",
+  annualSales: "Annual sales",
+  peakSales: "Peak sales",
+  patientPopulation: "Patients",
+  coreMarkets: "Core markets",
+  footprint: "Footprint",
+};
+
 function schedulingUrl(answers: Record<string, string>, result: Result) {
-  const summary = [
-    answers.devStage,
-    answers.therapeuticArea,
-    answers.assetType,
-    `est ${formatValue(result.valueMusd)}`,
-    `${result.markets} markets`,
-  ]
-    .filter(Boolean)
+  const profile = Object.keys(FIELD_LABELS)
+    .filter((k) => answers[k])
+    .map((k) => `${FIELD_LABELS[k]}: ${answers[k]}`)
     .join(" · ");
+  const summary = `Estimate ${formatValue(result.valueMusd)} across ${result.markets} markets · ${profile}`;
   const params = new URLSearchParams({
     utm_source: "originators",
     utm_medium: "valuation-funnel",
