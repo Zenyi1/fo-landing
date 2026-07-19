@@ -38,6 +38,27 @@ function formatValue(musd: number) {
   return `$${Math.round(musd)}M`;
 }
 
+// attach the estimate and profile to the booking so we know what number a lead saw.
+// calendly captures utm params in the event details; they are not shown in the booking form.
+function schedulingUrl(answers: Record<string, string>, result: Result) {
+  const summary = [
+    answers.devStage,
+    answers.therapeuticArea,
+    answers.assetType,
+    `est ${formatValue(result.valueMusd)}`,
+    `${result.markets} markets`,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+  const params = new URLSearchParams({
+    utm_source: "originators",
+    utm_medium: "valuation-funnel",
+    utm_campaign: "fo-estimate",
+    utm_content: summary,
+  });
+  return `${CALENDLY_URL}?${params.toString()}`;
+}
+
 export function ValuationFunnel() {
   const [stage, setStage] = useState<Stage>("form");
   const [result, setResult] = useState<Result | null>(null);
@@ -73,7 +94,7 @@ export function ValuationFunnel() {
     <AnimatedHeight>
       <div aria-live="polite">
         {stage === "loading" && <LoadingSteps />}
-        {stage === "result" && result && <ResultView result={result} clinical={clinical} />}
+        {stage === "result" && result && <ResultView result={result} clinical={clinical} answers={answers} />}
         {stage === "error" && (
           <div className="text-center">
             <p className="text-[17px] text-white/80">
@@ -186,7 +207,15 @@ function LoadingSteps() {
   );
 }
 
-function ResultView({ result, clinical }: { result: Result; clinical: boolean }) {
+function ResultView({
+  result,
+  clinical,
+  answers,
+}: {
+  result: Result;
+  clinical: boolean;
+  answers: Record<string, string>;
+}) {
   const display = useCountUp(result.valueMusd);
 
   return (
@@ -206,7 +235,7 @@ function ResultView({ result, clinical }: { result: Result; clinical: boolean })
           : `across ${result.markets} emerging markets your asset has not reached.`}
       </p>
       <a
-        href={CALENDLY_URL}
+        href={schedulingUrl(answers, result)}
         target="_blank"
         rel="noopener noreferrer"
         className={`mt-10 inline-flex items-center bg-[#4a72e8] px-8 py-4 font-sans text-[17px] font-semibold text-white transition-colors hover:bg-[#3a5fd0] ${focusRing}`}
