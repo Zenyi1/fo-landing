@@ -135,7 +135,7 @@ export function ValuationFunnel() {
             <Select label="Asset type" name="assetType" options={ASSET_TYPES} answers={answers} />
             {clinical ? (
               <>
-                <Select label="Expected peak annual sales" name="peakSales" options={PEAK_SALES} answers={answers} />
+                <Select label="Expected worldwide peak sales" name="peakSales" options={PEAK_SALES} answers={answers} />
                 <Select label="Where the disease burden falls" name="lmicBurden" options={LMIC_BURDEN} answers={answers} />
                 <Select label="Planned core markets" name="coreMarkets" options={FOOTPRINTS} answers={answers} />
               </>

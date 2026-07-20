@@ -37,11 +37,11 @@ type Inputs = Record<string, string>;
 
 const SYSTEM_APPROVED = `You are a commercial analyst at firstocean, a platform that helps pharmaceutical originators commercialize approved therapeutics in emerging markets. Given a de-identified profile of an approved therapeutic, estimate the untapped annual revenue opportunity in USD millions across emerging markets where the asset is not yet commercialized (Latin America, Africa, the Middle East, South and Southeast Asia, Central Asia, Eastern Europe).
 
-Count only emerging markets: exclude high-income markets such as the US, Canada, Western Europe, Japan and Australia from both the revenue figure and the market count, even when the asset is not commercialized there. Ground the estimate in the profile: current sales scale, where the lead indication's disease burden concentrates, regulatory strength, and remaining patent life. When the burden falls mostly on low- and middle-income countries the emerging-market opportunity is larger; when it falls mostly on high-income populations it is smaller. Remaining patent life gates the branded opportunity: with little or no patent life left, generic competition erodes the branded opportunity in emerging markets, so lean sharply lower. Work through it before answering: take the current annual net sales implied by the profile, apply the emerging-market opportunity percentage appropriate to the disease-burden concentration and remaining patent life (typically 10 to 45 percent, higher for infectious disease and vaccines given LMIC disease burden, lower when the asset already has broad global reach or is near or past patent expiry), and report the result. Compute a precise figure from the inputs; do not output a round number that is a multiple of 5 or 10. Also estimate how many emerging markets are commercially viable for this asset, an integer between 12 and 54.`;
+Count only emerging markets: exclude high-income markets such as the US, Canada, Western Europe, Japan and Australia from both the revenue figure and the market count, even when the asset is not commercialized there. Ground the estimate in the profile: current sales scale, where the lead indication's disease burden concentrates, regulatory strength, and remaining patent life. When the burden falls mostly on low- and middle-income countries the emerging-market opportunity is larger; when it falls mostly on high-income populations it is smaller. Remaining patent life gates the branded opportunity: with little or no patent life left, generic competition erodes the branded opportunity in emerging markets, so lean sharply lower. Weigh the asset type as a distribution-feasibility signal: small molecules are cheapest to reach emerging markets with, cold-chain biologics and especially cell or gene therapies are harder and reach fewer markets, while vaccines travel well given large public-tender demand. Work through it before answering: take the current annual net sales implied by the profile, apply the emerging-market opportunity percentage appropriate to the disease-burden concentration and remaining patent life (typically 10 to 45 percent, higher for infectious disease and vaccines given LMIC disease burden, lower when the asset already has broad global reach or is near or past patent expiry), and report the result. Compute a precise figure from the inputs; do not output a round number that is a multiple of 5 or 10. Also estimate how many emerging markets are commercially viable for this asset, an integer between 12 and 54.`;
 
 const SYSTEM_CLINICAL = `You are a commercial analyst at firstocean, a platform that helps pharmaceutical originators monetize therapeutics in emerging markets. Given a de-identified profile of a clinical-stage or preclinical therapeutic, estimate what the originator could realistically realize today by out-licensing or selling emerging-market rights (Latin America, Africa, the Middle East, South and Southeast Asia, Central Asia, Eastern Europe) that sit outside their planned core markets. Return the total risk-adjusted deal value in USD millions (upfront plus development and sales milestones, at typical regional licensing terms).
 
-Count only emerging markets: exclude high-income markets such as the US, Canada, Western Europe, Japan and Australia from both the deal value and the market count, even when they sit outside the planned core markets. Ground the estimate in the profile: expected peak sales, phase probability of reaching approval (roughly 5 to 10 percent from preclinical, about 10 percent from Phase 1, 15 to 30 percent from Phase 2, 50 to 60 percent from Phase 3, varying by therapeutic area), and where the lead indication's disease burden concentrates. When the burden falls mostly on low- and middle-income countries, emerging-market value rises well beyond what core-market peak sales alone imply; when it falls mostly on high-income populations, it is lower. Use the therapeutic area to sanity-check this. Parallel filing means emerging-market registration can start during late-stage trials, which raises the value of these rights before approval. Work through it before answering: estimate plausible peak annual sales in the emerging markets in scope, multiply by the phase probability of approval, then take typical regional out-licensing economics (a low-double-digit percentage of that risk-adjusted value, combining upfront and milestones). When peak sales is "Not sure yet" or the disease burden concentration is "Not sure", do not assume a blockbuster: widen your uncertainty, lean to the low end, and infer conservatively from the therapeutic area and asset type. Earlier stages are worth far less. Compute a precise figure from the inputs; do not output a round number that is a multiple of 5 or 10. Also estimate how many emerging markets are viable for parallel filing or regional licensing of this asset, an integer between 8 and 54.`;
+Count only emerging markets: exclude high-income markets such as the US, Canada, Western Europe, Japan and Australia from both the deal value and the market count, even when they sit outside the planned core markets. Ground the estimate in the profile: expected peak sales, phase probability of reaching approval (roughly 5 to 10 percent from preclinical, about 10 percent from Phase 1, 15 to 30 percent from Phase 2, 50 to 60 percent from Phase 3, varying by therapeutic area), and where the lead indication's disease burden concentrates. When the burden falls mostly on low- and middle-income countries, emerging-market value rises well beyond what core-market peak sales alone imply; when it falls mostly on high-income populations, it is lower. Use the therapeutic area to sanity-check this. Weigh the asset type as a distribution-feasibility signal: small molecules are cheapest to reach emerging markets with, cold-chain biologics and especially cell or gene therapies are harder and reach fewer markets, while vaccines travel well given large public-tender demand. Parallel filing means emerging-market registration can start during late-stage trials, which raises the value of these rights before approval. Work through it before answering: estimate plausible peak annual sales in the emerging markets in scope, multiply by the phase probability of approval, then take typical regional out-licensing economics (a low-double-digit percentage of that risk-adjusted value, combining upfront and milestones). When peak sales is "Not sure yet" or the disease burden concentration is "Not sure", do not assume a blockbuster: widen your uncertainty, lean to the low end, and infer conservatively from the therapeutic area and asset type. Earlier stages are worth far less. Compute a precise figure from the inputs; do not output a round number that is a multiple of 5 or 10. Also estimate how many emerging markets are viable for parallel filing or regional licensing of this asset, an integer between 8 and 54.`;
 
 const SCHEMA = {
   type: "object",
@@ -108,6 +108,14 @@ function heuristic(inputs: Inputs) {
     [PATENT_LIFE[3]]: 0.45, // under 2
     [PATENT_LIFE[4]]: 0.15, // none, off patent
   };
+  // distribution feasibility in emerging markets; cold-chain and infrastructure-heavy modalities are harder to reach
+  const modalityFactor: Record<string, number> = {
+    [ASSET_TYPES[0]]: 1.0, // small molecule: oral, stable, easiest
+    [ASSET_TYPES[1]]: 0.85, // biologic: cold chain, higher cost
+    [ASSET_TYPES[2]]: 1.0, // vaccine: cold chain but large lmic tender demand
+    [ASSET_TYPES[3]]: 0.5, // cell or gene therapy: infrastructure-heavy, limited em reach
+    [ASSET_TYPES[4]]: 0.9, // other
+  };
   let hash = 0;
   for (const ch of Object.values(inputs).join("|")) {
     hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
@@ -120,6 +128,7 @@ function heuristic(inputs: Inputs) {
       footprintFactor[inputs.coreMarkets] *
       phasePos[inputs.devStage] *
       burdenFactor[inputs.lmicBurden] *
+      modalityFactor[inputs.assetType] *
       1.8 *
       jitter;
     return { value_musd: clamp(value, 1, 1500), markets: 10 + (hash % 25) };
@@ -129,6 +138,7 @@ function heuristic(inputs: Inputs) {
     footprintFactor[inputs.footprint] *
     burdenFactor[inputs.lmicBurden] *
     patentFactor[inputs.patentLife] *
+    modalityFactor[inputs.assetType] *
     jitter;
   return { value_musd: clamp(value, 2, 3000), markets: 24 + (hash % 23) };
 }
@@ -140,7 +150,7 @@ async function fromClaude(inputs: Inputs) {
 Development stage: ${inputs.devStage}
 Therapeutic area: ${inputs.therapeuticArea}
 Asset type: ${inputs.assetType}
-Expected peak annual sales at maturity: ${inputs.peakSales}
+Expected worldwide peak annual sales at maturity: ${inputs.peakSales}
 Where the lead-indication disease burden concentrates: ${inputs.lmicBurden}
 Planned core commercial markets: ${inputs.coreMarkets}`
     : `Asset profile:
