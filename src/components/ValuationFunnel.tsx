@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
+import { track } from "@vercel/analytics";
 import {
   DEV_STAGES,
   THERAPEUTIC_AREAS,
@@ -81,6 +82,12 @@ export function ValuationFunnel() {
     const data = Object.fromEntries(new FormData(e.currentTarget)) as Record<string, string>;
     setAnswers(data);
     setStage("loading");
+    track("valuation_submitted", {
+      devStage: data.devStage ?? "",
+      therapeuticArea: data.therapeuticArea ?? "",
+      assetType: data.assetType ?? "",
+      clinical,
+    });
 
     const started = Date.now();
     try {
@@ -95,8 +102,14 @@ export function ValuationFunnel() {
       if (remaining > 0) await new Promise((r) => setTimeout(r, remaining));
       setResult(json);
       setStage("result");
+      track("valuation_result", {
+        clinical,
+        valueMusd: json.valueMusd,
+        markets: json.markets,
+      });
     } catch {
       setStage("error");
+      track("valuation_error", { clinical });
     }
   }
 
@@ -249,6 +262,7 @@ function ResultView({
         href={schedulingUrl(answers, result)}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => track("valuation_book_click", { clinical })}
         className={`mt-10 inline-flex items-center bg-[#4a72e8] px-8 py-4 font-sans text-[17px] font-semibold text-white transition-colors hover:bg-[#3a5fd0] ${focusRing}`}
       >
         Schedule a call to unlock it

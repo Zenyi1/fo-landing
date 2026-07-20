@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -43,6 +44,11 @@ export function EnquiryForm() {
         throw new Error(body.error ?? GENERIC_ERROR);
       }
 
+      // only categorical fields, never name/email/company
+      track("early_access_submitted", {
+        industry: String(data.industry ?? ""),
+        teamSize: String(data.teamSize ?? ""),
+      });
       setStatus("success");
       form.reset();
     } catch (err) {
