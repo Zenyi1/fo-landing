@@ -20,6 +20,7 @@ export const THERAPEUTIC_AREAS = [
 
 export const ASSET_TYPES = [
   "Small molecule",
+  "Peptide",
   "Biologic",
   "Vaccine",
   "Cell or gene therapy",
