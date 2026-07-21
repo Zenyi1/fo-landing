@@ -10,7 +10,9 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
     if (!key) return;
     posthog.init(key, {
-      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
+      // first-party path, rewritten to posthog in next.config so ad blockers don't drop it
+      api_host: "/ingest",
+      ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.posthog.com",
       // no person profile until we explicitly identify, keeps anonymous visitors anonymous
       person_profiles: "identified_only",
       // we drive pageviews ourselves for app-router client navigation
