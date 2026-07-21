@@ -61,10 +61,17 @@ export const PEAK_SALES = [
 ] as const;
 
 export const LMIC_BURDEN = [
-  "Mostly high-income populations",
-  "Fairly even worldwide",
+  "Mostly high-income countries",
+  "Spread evenly worldwide",
   "Mostly low- and middle-income countries",
   "Not sure",
+] as const;
+
+export const EM_DEALS = [
+  "None",
+  "One or two markets licensed",
+  "Several regions licensed",
+  "Most regions licensed",
 ] as const;
 
 export const FOOTPRINTS = [

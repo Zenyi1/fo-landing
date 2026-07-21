@@ -12,6 +12,7 @@ import {
   PEAK_SALES,
   LMIC_BURDEN,
   FOOTPRINTS,
+  EM_DEALS,
 } from "@/types/valuation";
 
 const CALENDLY_URL = "https://calendly.com/zenyi-first-ocean/30min";
@@ -50,9 +51,10 @@ const FIELD_LABELS: Record<string, string> = {
   patentLife: "Patent life",
   annualSales: "Annual sales",
   peakSales: "Peak sales",
-  lmicBurden: "Disease burden",
+  lmicBurden: "Patients",
   coreMarkets: "Core markets",
   footprint: "Footprint",
+  emDeals: "EM deals",
 };
 
 function schedulingUrl(answers: Record<string, string>, result: Result) {
@@ -120,12 +122,12 @@ export function ValuationFunnel() {
         {stage === "result" && result && <ResultView result={result} clinical={clinical} answers={answers} />}
         {stage === "error" && (
           <div className="text-center">
-            <p className="text-[17px] text-white/80">
+            <p className="text-[17px] text-ink">
               Something went wrong. Please try again.
             </p>
             <button
               onClick={() => setStage("form")}
-              className={`mt-6 inline-flex items-center bg-[#4a72e8] px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[#3a5fd0] ${focusRing}`}
+              className={`mt-6 inline-flex items-center rounded-lg bg-[#4a72e8] px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[#3a5fd0] ${focusRing}`}
             >
               Back to the form
             </button>
@@ -134,23 +136,24 @@ export function ValuationFunnel() {
       </div>
       {stage === "form" && (
         <div className="mx-auto w-full max-w-[560px]">
-          <h1 className="font-sans text-[26px] font-semibold leading-[1.12] tracking-[-0.02em] text-white md:text-[34px]">
-            Your asset is worth more than its core markets.
+          <h1 className="font-sans text-[26px] font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-[34px]">
+            Your asset is worth more than just its core markets.
           </h1>
-          <p className="mt-3 text-[15px] leading-[1.55] text-white/70 md:text-[16px]">
+          <p className="mt-3 text-[15px] leading-[1.55] text-ink md:text-[16px]">
             {clinical
               ? "Fill in the basics about your asset and we'll put a number on its rights outside your core markets."
               : "Fill in the basics about your asset and we'll estimate what it could be earning each year outside your core markets."}
           </p>
-          <form onSubmit={onSubmit} className="mt-7 grid gap-4 md:grid-cols-2">
+          <form onSubmit={onSubmit} className="mt-7 grid gap-4 lg:grid-cols-2">
             <Select label="Development stage" name="devStage" options={DEV_STAGES} value={devStage} onChange={setDevStage} />
             <Select label="Therapeutic area" name="therapeuticArea" options={THERAPEUTIC_AREAS} answers={answers} />
             <Select label="Asset type" name="assetType" options={ASSET_TYPES} answers={answers} />
             {clinical ? (
               <>
                 <Select label="Expected worldwide peak sales" name="peakSales" options={PEAK_SALES} answers={answers} />
-                <Select label="Where the disease burden falls" name="lmicBurden" options={LMIC_BURDEN} answers={answers} />
+                <Select label="Where most patients live" name="lmicBurden" options={LMIC_BURDEN} answers={answers} />
                 <Select label="Planned core markets" name="coreMarkets" options={FOOTPRINTS} answers={answers} />
+                <Select label="Existing emerging-market deals" name="emDeals" options={EM_DEALS} answers={answers} />
               </>
             ) : (
               <>
@@ -158,17 +161,18 @@ export function ValuationFunnel() {
                 <Select label="Remaining patent life" name="patentLife" options={PATENT_LIFE} answers={answers} />
                 <Select label="Annual net sales in current markets" name="annualSales" options={ANNUAL_SALES} answers={answers} />
                 <Select label="Current commercial footprint" name="footprint" options={FOOTPRINTS} answers={answers} />
-                <Select label="Where the disease burden falls" name="lmicBurden" options={LMIC_BURDEN} answers={answers} />
+                <Select label="Where most patients live" name="lmicBurden" options={LMIC_BURDEN} answers={answers} />
+                <Select label="Existing emerging-market deals" name="emDeals" options={EM_DEALS} answers={answers} />
               </>
             )}
             <button
               type="submit"
-              className={`mt-1 inline-flex w-fit items-center bg-[#4a72e8] px-7 py-3 font-sans text-[15px] font-semibold text-white transition-colors hover:bg-[#3a5fd0] md:col-span-2 ${focusRing}`}
+              className={`mt-1 inline-flex w-fit items-center rounded-lg bg-[#4a72e8] px-7 py-3 font-sans text-[15px] font-semibold text-white transition-colors hover:bg-[#3a5fd0] lg:col-span-2 ${focusRing}`}
             >
               Get the number
             </button>
-            <p className="text-[13px] leading-[1.5] text-white/60 md:col-span-2">
-              You stay anonymous. We never ask for your name, compound, or email. The estimate is a rough benchmark built from comparable launches.
+            <p className="text-[13px] leading-[1.5] text-ink/55 lg:col-span-2">
+              You stay anonymous. We never ask for your name, compound, or email. The estimate is a directional model, not a formal valuation.
             </p>
           </form>
         </div>
@@ -213,8 +217,8 @@ function LoadingSteps() {
 
   return (
     <div className="flex flex-col items-center text-center">
-      <div className="h-10 w-10 animate-spin rounded-full border-2 border-white/15 border-t-[#2dd4bf] motion-reduce:animate-none" />
-      <p className="mt-8 text-[17px] font-medium text-white/85 md:text-[19px]">
+      <div className="h-10 w-10 animate-spin rounded-full border-2 border-ink/15 border-t-[#0d9488] motion-reduce:animate-none" />
+      <p className="mt-8 text-[17px] font-medium text-ink md:text-[19px]">
         {LOADING_STEPS[step]}
       </p>
       <div className="mt-6 flex gap-2">
@@ -222,7 +226,7 @@ function LoadingSteps() {
           <span
             key={i}
             className={`h-1.5 w-1.5 rounded-full transition-colors duration-500 ${
-              i <= step ? "bg-[#2dd4bf]" : "bg-white/20"
+              i <= step ? "bg-[#0d9488]" : "bg-ink/15"
             }`}
           />
         ))}
@@ -244,16 +248,16 @@ function ResultView({
 
   return (
     <div className="mx-auto flex w-full max-w-[640px] flex-col items-center text-center">
-      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#2dd4bf]">
+      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#0d9488]">
         {clinical
           ? "Estimated value of your emerging-market rights"
           : "Estimated untapped annual revenue"}
       </p>
-      <p className="mt-4 font-sans text-[72px] font-semibold leading-none tracking-[-0.03em] text-white md:text-[120px]">
+      <p className="mt-4 font-sans text-[72px] font-semibold leading-none tracking-[-0.03em] text-ink md:text-[120px]">
         <span aria-hidden>{formatValue(display)}</span>
         <span className="sr-only">{formatValue(result.valueMusd)}</span>
       </p>
-      <p className="mt-6 max-w-[36ch] text-[17px] leading-[1.6] text-white/75 md:text-[19px]">
+      <p className="mt-6 max-w-[36ch] text-[17px] leading-[1.6] text-ink md:text-[19px]">
         {clinical
           ? `from licensing across ${result.markets} emerging markets while your asset is still in development.`
           : `across ${result.markets} emerging markets your asset has not reached.`}
@@ -263,16 +267,18 @@ function ResultView({
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => track("valuation_book_click", { clinical })}
-        className={`mt-10 inline-flex items-center bg-[#4a72e8] px-8 py-4 font-sans text-[17px] font-semibold text-white transition-colors hover:bg-[#3a5fd0] ${focusRing}`}
+        className={`mt-10 inline-flex items-center rounded-lg bg-[#4a72e8] px-8 py-4 font-sans text-[17px] font-semibold text-white transition-colors hover:bg-[#3a5fd0] ${focusRing}`}
       >
-        Schedule a call to unlock it
+        Get the market-by-market breakdown
       </a>
-      <p className="mt-5 max-w-[44ch] text-[14px] leading-[1.6] text-white/60">
-        On the call we walk through the market-by-market breakdown behind this
-        number and the route to capture it.
+      <p className="mt-5 max-w-[44ch] text-[14px] leading-[1.6] text-ink">
+        A 30-minute call. We walk through which markets drive this number and
+        the route to capture them.
       </p>
-      <p className="mt-10 text-[12px] text-white/60">
-        Directional estimate based on market analogues, not a formal valuation.
+      <p className="mt-10 max-w-[52ch] text-[12px] leading-[1.6] text-ink/50">
+        Directional estimate, not a formal valuation. Covers Latin America,
+        Africa, the Middle East, South and Southeast Asia, Central Asia and
+        Eastern Europe. Excludes China.
       </p>
     </div>
   );
@@ -299,8 +305,8 @@ function useCountUp(target: number, durationMs = 1400) {
 }
 
 const selectClass =
-  "w-full appearance-none border border-white/10 bg-white/[0.07] px-4 py-2.5 pr-10 font-sans text-[15px] font-medium text-white outline-none transition-colors hover:border-white/25 focus:border-[#2dd4bf] " +
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2dd4bf]";
+  "w-full appearance-none rounded-lg border border-black/15 bg-white px-4 py-2.5 pr-10 font-sans text-[15px] font-medium text-ink shadow-sm outline-none transition-colors hover:border-black/30 focus:border-[#0d9488] " +
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0d9488]";
 
 function Select({
   label,
@@ -319,7 +325,7 @@ function Select({
 }) {
   return (
     <label className="block">
-      <span className="font-sans text-[13px] font-medium text-white/60">{label}</span>
+      <span className="font-sans text-[13px] font-medium text-ink">{label}</span>
       <div className="relative mt-2">
         <select
           name={name}
@@ -331,13 +337,13 @@ function Select({
           className={selectClass}
         >
           {options.map((o) => (
-            <option key={o} value={o} className="bg-[#0a1730] text-white">
+            <option key={o} value={o} className="bg-white text-ink">
               {o}
             </option>
           ))}
         </select>
         <svg
-          className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-white/40"
+          className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-ink/50"
           width="14"
           height="14"
           viewBox="0 0 24 24"
