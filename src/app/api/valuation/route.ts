@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import Anthropic from "@anthropic-ai/sdk";
-import { Resend } from "resend";
 import {
   DEV_STAGES,
   THERAPEUTIC_AREAS,

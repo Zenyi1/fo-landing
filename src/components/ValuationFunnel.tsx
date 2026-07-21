@@ -137,7 +137,7 @@ export function ValuationFunnel() {
       {stage === "form" && (
         <div className="mx-auto w-full max-w-[560px]">
           <h1 className="font-sans text-[26px] font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-[34px]">
-            Your asset is worth more than just its core markets.
+            Your asset is worth more than JUST its core markets.
           </h1>
           <p className="mt-3 text-[15px] leading-[1.55] text-ink md:text-[16px]">
             {clinical
@@ -275,6 +275,13 @@ function ResultView({
         A 30-minute call. We walk through which markets drive this number and
         the route to capture them.
       </p>
+      <a
+        href="/#early-access"
+        onClick={() => track("valuation_early_access_click", { clinical })}
+        className={`mt-4 text-[15px] font-medium text-[#4a72e8] underline-offset-4 hover:underline ${focusRing}`}
+      >
+        Not ready for a call? Join the waitlist for early access to the platform.
+      </a>
       <p className="mt-10 max-w-[52ch] text-[12px] leading-[1.6] text-ink/50">
         Directional estimate, not a formal valuation. Covers Latin America,
         Africa, the Middle East, South and Southeast Asia, Central Asia and
