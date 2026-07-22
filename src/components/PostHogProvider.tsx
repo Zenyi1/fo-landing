@@ -5,6 +5,22 @@ import { usePathname, useSearchParams } from "next/navigation";
 import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
 
+// categorical funnel answers are safe to show in replay; everything else (the homepage
+// early-access form's name, email and company) stays masked
+const FUNNEL_FIELDS = new Set([
+  "devStage",
+  "therapeuticArea",
+  "assetType",
+  "approvals",
+  "patentLife",
+  "annualSales",
+  "peakSales",
+  "lmicBurden",
+  "coreMarkets",
+  "footprint",
+  "emDeals",
+]);
+
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
@@ -18,8 +34,13 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       // we drive pageviews ourselves for app-router client navigation
       capture_pageview: false,
       session_recording: {
-        // never record what someone types into the funnel; honours the anonymity promise
+        // mask every field by default, then reveal only the funnel's categorical dropdowns
+        // so we can see what was picked while the homepage form's pii stays hidden
         maskAllInputs: true,
+        maskInputFn: (text, element) => {
+          const name = element?.getAttribute("name");
+          return name && FUNNEL_FIELDS.has(name) ? text : "*".repeat(text.length);
+        },
       },
     });
   }, []);
