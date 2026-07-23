@@ -55,7 +55,7 @@ export default function OriginatorsPage() {
               Most of the world can&rsquo;t access your medicine.
             </h2>
             <p className="mt-5 max-w-[40ch] text-[18px] leading-[1.55] text-white md:text-[21px]">
-              firstocean maps the emerging-market value in any biotech&rsquo;s portfolio, and the route to capture it.
+              Non-dilutive revenue from the markets your portfolio doesn't reach. We price it, structure it, and close it.
             </p>
           </div>
         </div>
