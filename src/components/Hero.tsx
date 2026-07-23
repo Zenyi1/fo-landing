@@ -30,6 +30,12 @@ export function Hero() {
           <span className="text-[#4a72e8]">firstocean</span> is the infrastructure that takes proven
           medicines to every market where demand exists.
         </h1>
+        <a
+          href="#early-access"
+          className="mt-10 inline-flex items-center rounded-[10px] bg-white px-7 py-3.5 font-sans text-base font-semibold text-ink transition-colors hover:bg-white/90"
+        >
+          Get early access
+        </a>
       </div>
     </section>
   );

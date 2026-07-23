@@ -82,9 +82,9 @@ export function EnquiryForm() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex w-fit items-center bg-brand px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)] disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex w-fit items-center rounded-[10px] bg-brand px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)] disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {status === "submitting" ? "Sending" : "Get early access"}
+          {status === "submitting" ? "Sending" : "Request access"}
         </button>
         {status === "error" && <p className="text-sm text-red-600">{error}</p>}
       </div>

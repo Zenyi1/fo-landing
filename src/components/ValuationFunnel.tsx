@@ -128,7 +128,7 @@ export function ValuationFunnel() {
             </p>
             <button
               onClick={() => setStage("form")}
-              className={`mt-6 inline-flex items-center rounded-lg bg-[#4a72e8] px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[#3a5fd0] ${focusRing}`}
+              className={`mt-6 inline-flex items-center rounded-[10px] bg-brand px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)] ${focusRing}`}
             >
               Back to the form
             </button>
@@ -168,7 +168,7 @@ export function ValuationFunnel() {
             )}
             <button
               type="submit"
-              className={`mt-1 inline-flex w-fit items-center rounded-lg bg-[#4a72e8] px-7 py-3 font-sans text-[15px] font-semibold text-white transition-colors hover:bg-[#3a5fd0] lg:col-span-2 ${focusRing}`}
+              className={`mt-1 inline-flex w-fit items-center rounded-[10px] bg-brand px-7 py-3 font-sans text-[15px] font-semibold text-white transition-colors hover:bg-[var(--brand-strong)] lg:col-span-2 ${focusRing}`}
             >
               Get the number
             </button>
@@ -268,7 +268,7 @@ function ResultView({
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => track("valuation_book_click", { clinical })}
-        className={`mt-10 inline-flex items-center rounded-lg bg-[#4a72e8] px-8 py-4 font-sans text-[17px] font-semibold text-white transition-colors hover:bg-[#3a5fd0] ${focusRing}`}
+        className={`mt-10 inline-flex items-center rounded-[10px] bg-brand px-8 py-4 font-sans text-[17px] font-semibold text-white transition-colors hover:bg-[var(--brand-strong)] ${focusRing}`}
       >
         Get the market-by-market breakdown
       </a>

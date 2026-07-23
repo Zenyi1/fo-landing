@@ -38,7 +38,7 @@ export default function Home() {
             </div>
 
             <div className="mt-20">
-              <p className="text-[16px] font-semibold text-[#4a72e8]">
+              <p className="text-[20px] font-bold text-brand md:text-[22px]">
                 For drug owners
               </p>
               <h3 className="mt-4 font-sans text-[24px] font-semibold leading-[1.2] tracking-[-0.02em] text-ink md:text-[30px]">
@@ -52,14 +52,14 @@ export default function Home() {
               </p>
               <Link
                 href="/originators"
-                className="mt-8 inline-flex items-center rounded-lg bg-[#4a72e8] px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[#3a5fd0]"
+                className="mt-8 inline-flex items-center rounded-[10px] bg-brand px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
               >
                 See what your asset is worth
               </Link>
             </div>
 
             <div className="mt-20">
-              <p className="text-[16px] font-semibold text-[#4a72e8]">
+              <p className="text-[20px] font-bold text-brand md:text-[22px]">
                 For distributors and in-licensors
               </p>
               <h3 className="mt-4 font-sans text-[24px] font-semibold leading-[1.2] tracking-[-0.02em] text-ink md:text-[30px]">
@@ -71,12 +71,6 @@ export default function Home() {
                 reach you. firstocean qualifies each asset, assembles the evidence, and runs the deal
                 process, so you spend your time evaluating instead of searching.
               </p>
-              <a
-                href="#early-access"
-                className="mt-8 inline-flex items-center rounded-lg bg-[#4a72e8] px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[#3a5fd0]"
-              >
-                Get early access
-              </a>
             </div>
 
             <div id="early-access" className="mt-24 scroll-mt-24">
