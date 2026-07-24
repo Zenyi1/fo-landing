@@ -55,8 +55,23 @@ export default function OriginatorsPage() {
               Most of the world can&rsquo;t access your medicine.
             </h2>
             <p className="mt-5 max-w-[40ch] text-[18px] leading-[1.55] text-white md:text-[21px]">
-              Non-dilutive revenue from the markets your portfolio doesn't reach. We price it, structure it, and close it.
+              firstocean turns unlicensed emerging-market rights into capital.
             </p>
+            {/* reads as a live feed entry; swap the copy when the next deal closes */}
+            <div className="mt-10 rounded-[10px] border border-white/15 bg-white/[0.06] px-5 py-4 text-left backdrop-blur-sm">
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-white/60">
+                  Latest deal
+                </p>
+              </div>
+              <p className="mt-2 max-w-[40ch] text-[15px] leading-[1.5] text-white/90 md:text-[16px]">
+                MENA rights to a Phase 2 asset, licensed at 20% above the internal valuation.
+              </p>
+            </div>
           </div>
         </div>
       </aside>
