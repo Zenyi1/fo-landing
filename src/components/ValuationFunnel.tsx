@@ -313,8 +313,7 @@ function useCountUp(target: number, durationMs = 1400) {
 }
 
 const selectClass =
-  "w-full appearance-none rounded-lg border border-black/15 bg-white px-4 py-2.5 pr-10 font-sans text-[15px] font-medium text-ink shadow-sm outline-none transition-colors hover:border-black/30 focus:border-[#0d9488] " +
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0d9488]";
+  "w-full appearance-none border-b border-ink/20 bg-transparent py-2.5 pr-6 font-sans text-[15px] font-medium text-ink outline-none transition-colors hover:border-ink/40 focus:border-brand";
 
 function Select({
   label,
@@ -351,7 +350,7 @@ function Select({
           ))}
         </select>
         <svg
-          className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-ink/50"
+          className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-ink/50"
           width="14"
           height="14"
           viewBox="0 0 24 24"
