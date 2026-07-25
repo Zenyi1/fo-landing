@@ -3,6 +3,8 @@ import { KB } from '@/lib/regulation/data'
 import { ASSET_PRESETS } from '@/lib/regulation/data/assets'
 import { isRouteEligible } from '@/lib/regulation/solver/eligibility'
 import { Router, type AssetOption, type MarketOption } from '@/components/regulation/Router'
+import { RegulationHero } from '@/components/regulation/RegulationHero'
+import { IntroModal } from '@/components/regulation/IntroModal'
 
 const MFN_THRESHOLD = 60
 
@@ -46,7 +48,45 @@ export default function RegulationPage() {
 
   return (
     <main className="min-h-screen flex flex-col bg-white">
-      <header className="border-b border-[var(--line)]">
+      <IntroModal />
+
+      <RegulationHero
+        markets={KB.markets.length}
+        routes={KB.routes.length}
+        programs={KB.programs.length}
+      />
+
+      <section id="how" className="bg-white border-b border-[var(--line)]">
+        <div className="max-w-[1100px] mx-auto px-6 md:px-10 py-16 md:py-20">
+          <h2 className="max-w-[24ch] text-[26px] md:text-[34px] font-semibold leading-[1.14] tracking-[-0.02em] text-ink">
+            Two networks tie the markets together, and they pull in{' '}
+            <span className="text-brand">opposite directions</span>.
+          </h2>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                h: 'Reliance rewards filing early',
+                p: 'Project Orbis, the Access Consortium, EU-M4all, WHO prequalification and dozens of national verification routes all shortcut review once a stringent regulator has approved.',
+              },
+              {
+                h: 'Reference pricing punishes it',
+                p: 'Countries cap price against a basket of their neighbours, and Most Favoured Nation pegs the US to the lowest comparable price. Launching cheap early is expensive later.',
+              },
+              {
+                h: 'So the order is solved, not looked up',
+                p: 'Minimising time is a shortest path. Minimising cost is set cover, and NP-hard. Both are solved exactly here, in milliseconds, because the hard part is only about a dozen anchors.',
+              },
+            ].map((c) => (
+              <div key={c.h} className="border-t border-[var(--line)] pt-5">
+                <h3 className="text-sm font-semibold text-ink">{c.h}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{c.p}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <header id="router" className="border-b border-[var(--line)] scroll-mt-4">
         <div className="max-w-[1500px] mx-auto px-6 py-5 flex items-baseline justify-between gap-6">
           <div>
             <h1 className="text-lg font-semibold text-ink">Regulatory Pathway Router</h1>
@@ -72,10 +112,10 @@ export default function RegulationPage() {
         <div className="max-w-[1500px] mx-auto px-6 py-8 text-sm space-y-2">
           <p className="font-medium">How to read the numbers</p>
           <p className="text-white/70 max-w-3xl leading-relaxed">
-            Durations are agency clocks in calendar days; real elapsed time runs 1.5–3× longer.
-            Reliance pathways shorten registration, not reimbursement — an approval is not access.
-            Every route carries a confidence level and a link to its regulator source, and rows
-            marked low confidence are estimates rather than published figures.
+            Durations are agency review clocks in calendar days; real elapsed time usually runs
+            1.5–3× longer. Reliance pathways shorten registration, not reimbursement — an approval
+            is not access. Every route carries a confidence level and a link to its regulator source.
+            Rows marked low confidence are estimates rather than published figures.
           </p>
         </div>
       </footer>
