@@ -56,7 +56,7 @@ export default function RegulationPage() {
             </p>
           </div>
           <a
-            href="/api/regulation"
+            href="/regulation/docs"
             className="text-sm text-brand hover:underline whitespace-nowrap"
           >
             API reference →
