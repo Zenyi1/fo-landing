@@ -69,7 +69,7 @@ export default function OriginatorsPage() {
                 </p>
               </div>
               <p className="mt-2 max-w-[40ch] text-[15px] leading-[1.5] text-white/90 md:text-[16px]">
-                MENA rights to a Phase 2 asset, licensed at 20% above the internal valuation.
+                South America rights to a Phase 2 asset, licensed at 31% above the internal valuation.
               </p>
             </div>
           </div>
