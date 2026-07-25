@@ -14,6 +14,10 @@
   --color-approach: var(--approach);
   --color-footer: var(--footer);
   --color-ink-on-dark: var(--ink-on-dark);
+  /* used by the regulatory pathway router at /regulation */
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-warn: var(--warn);
 
   --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
   --font-serif: var(--font-inter), "Inter", system-ui, sans-serif;
@@ -60,6 +64,10 @@
   --brand-strong: #16295f;/* accent hover */
   --footer: #0b1b4d;      /* deep-navy footer block */
   --ink-on-dark: #ffffff;
+  /* regulatory pathway router: neutral fill, hairline rule, caution accent */
+  --surface: #f6f7f9;
+  --line: rgba(11, 17, 32, 0.12);
+  --warn: #b45309;
 
   --background: #ffffff;
   --foreground: var(--ink);
@@ -115,6 +123,11 @@
 }
 
 @layer utilities {
+  /* tabular figures so schedule and cost columns align */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
   .font-serif {
     font-family: var(--font-serif);
   }
