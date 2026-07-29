@@ -2,25 +2,38 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { GameOfLife } from "@/components/GameOfLife";
+import { WaveBackground } from "@/components/WaveBackground";
 
-// Emerging (and a few unreached developed) markets where an approved drug is
-// often simply not sold. The word swaps in on its own fixed-height line so the
+// The markets firstocean distributes into: the largest commercially viable
+// economies across LATAM, MENA and Southeast Asia (top ~8 by GDP each),
+// interleaved by region. The word swaps in on its own fixed-height line so the
 // hero never changes size, however long the market name is.
 const MARKETS = [
-  "Brazil", "Egypt", "Vietnam", "Poland", "Mexico", "Indonesia",
-  "Saudi Arabia", "Nigeria", "Colombia", "the Philippines", "Morocco",
-  "Thailand", "Argentina", "Kenya", "Romania", "Pakistan", "Malaysia",
-  "South Africa", "Peru", "Australia", "Jordan", "Bangladesh", "Chile",
-  "Ukraine", "the UAE", "Algeria", "Serbia", "India",
+  "Brazil", "Saudi Arabia", "Indonesia",
+  "Mexico", "the UAE", "Thailand",
+  "Argentina", "Egypt", "the Philippines",
+  "Colombia", "Vietnam", "South Africa",
+  "Chile", "Qatar", "Malaysia",
+  "Peru", "Kuwait", "Myanmar",
+  "Ecuador", "Algeria", "Morocco", "Turkey"
 ];
-
-const textShadow = "0 1px 22px rgba(3,10,18,0.5), 0 1px 3px rgba(3,10,18,0.4)";
 
 export function Hero() {
   const [i, setI] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [progress, setProgress] = useState(0); // 0 at top, 1 once faded out
 
+  // fade the hero copy out as the page scrolls down
+  useEffect(() => {
+    function onScroll() {
+      setProgress(Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * 0.6))));
+    }
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // rotate the market name
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return; // hold a single market, no motion
@@ -45,19 +58,25 @@ export function Hero() {
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden bg-[#071a2b] text-white"
     >
-      {/* living pixel field, scoped to the hero only */}
+      {/* wave video background (trial), scoped to the hero */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
-        <GameOfLife />
+        <WaveBackground />
+        <div className="absolute inset-0 bg-[#071a2b]/45" />
       </div>
 
       <div
         className="relative z-10 mx-auto w-full max-w-[1160px] px-6 pt-28 md:px-14 md:pt-32"
-        style={{ textShadow }}
+        style={{
+          opacity: 1 - progress,
+          transform: `translateY(${-progress * 28}px)`,
+          transition: "opacity 0.1s linear, transform 0.1s linear",
+          willChange: "opacity, transform",
+        }}
       >
-        <p className="max-w-[20ch] font-sans text-[clamp(1.55rem,3.4vw,2.7rem)] font-semibold leading-[1.08] tracking-[-0.02em]">
-          Your medicine is approved and proven. It&rsquo;s just not sold in
+        <p className="max-w-[24ch] font-sans text-[clamp(1.7rem,4vw,3rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
+          Your drug could be earning in
         </p>
-        <p className="mt-1 min-h-[1.05em] whitespace-nowrap font-sans text-[clamp(2.3rem,8.4vw,6.2rem)] font-semibold leading-[1.05] tracking-[-0.03em]">
+        <p className="mt-1 min-h-[1.02em] whitespace-nowrap font-sans text-[clamp(2.7rem,10vw,7.4rem)] font-semibold leading-[1.0] tracking-[-0.035em]">
           <span
             className="inline-block text-[#88a6f8] transition-all duration-[400ms] ease-out motion-reduce:transition-none"
             style={{
@@ -67,44 +86,46 @@ export function Hero() {
           >
             {MARKETS[i]}
           </span>
-          <span className="text-white">.</span>
         </p>
 
-        <p className="mt-7 max-w-[50ch] text-[clamp(1.05rem,2.1vw,1.3rem)] leading-[1.55] text-white/70">
-          Demand exists in 90+ markets your launch plan will never cover. See what those
-          unused rights are worth, anonymously, in about two minutes. No name, no email,
-          no compound.
-        </p>
-
-        <div className="mt-9 flex flex-wrap items-center gap-3.5">
+        <div className="mt-10 flex flex-wrap items-center gap-3.5">
           <Link
             href="/originators"
-            className="inline-flex items-center gap-2 rounded-[11px] bg-brand px-6 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
+            className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-4 font-sans text-[1.05rem] font-semibold text-[#1e3a8a] transition-colors hover:bg-white/90"
           >
-            See what my rights are worth →
+            See what your drug is worth →
           </Link>
-          <a
-            href="#inlicensors"
-            className="inline-flex items-center gap-2 rounded-[11px] border border-white/25 px-6 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:border-white hover:bg-white/5"
+          <Link
+            href="/distributors"
+            className="inline-flex items-center gap-2 rounded-[11px] border border-white/40 px-7 py-4 font-sans text-[1.05rem] font-semibold text-white transition-colors hover:border-white hover:bg-white/5"
           >
             I&rsquo;m here to license assets →
+          </Link>
+        </div>
+
+        <p className="mt-4 text-[0.9rem] font-medium text-white">
+          See an estimate in about two minutes, anonymously. No name, no email, no compound.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-1.5 text-[0.85rem] text-white">
+          Backed by{" "}
+          <a
+            href="https://www.joinef.com/portfolio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
+          >
+            Entrepreneurs First
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.transposeplatform.vc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
+          >
+            Transpose Platform
           </a>
-        </div>
-
-        <div className="mt-8 flex max-w-[64ch] flex-wrap items-center text-[0.92rem] text-white/70">
-          <span className="text-white">You keep the asset</span>
-          <span className="mx-4 text-white/40">·</span>
-          <span className="text-white">Success fee only, paid on close</span>
-          <span className="mx-4 text-white/40">·</span>
-          <span className="text-white">Core markets never touched</span>
-          <span className="mx-4 text-white/40">·</span>
-          <span className="text-white">Everything under NDA</span>
-        </div>
-
-        <div className="mt-10 flex flex-wrap items-center gap-2.5 text-[0.8rem] text-white/55">
-          Backed by <b className="font-semibold text-white">Entrepreneurs First</b>
-          <span className="text-white/40">·</span>
-          <b className="font-semibold text-white">Transpose Platform</b>
         </div>
       </div>
     </section>

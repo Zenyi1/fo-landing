@@ -1,10 +1,9 @@
+import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
-import { inlicensorCallUrl } from "@/lib/links";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export default function Home() {
-  const year = new Date().getFullYear();
-
   return (
     <div id="page" className="min-h-full">
       <SiteHeader />
@@ -13,68 +12,57 @@ export default function Home() {
 
       {/* everything below the hero is a clean white surface — no pixels */}
       <main className="bg-white text-ink">
+        {/* drug owners — the primary audience */}
+        <section className="mx-auto max-w-[1160px] px-6 py-24 md:px-14 md:py-32">
+          <h2 className="max-w-[22ch] font-sans text-[clamp(2rem,4.6vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
+            Non-dilutive capital from the markets your launch plan will never cover.
+          </h2>
+          <div className="mt-8 max-w-[62ch] space-y-6 text-[clamp(1.1rem,2vw,1.3rem)] leading-[1.6] text-ink">
+            <p>
+              Demand for your medicine exists in far more countries than you will ever enter,
+              approved or still in trials. firstocean prices your asset, finds the local operators
+              to commercialize in 90+ market, and structures the deal with your biotech's priorities first, so your asset earns everywhere
+              demand exists.
+            </p>
+            <p className="font-medium">
+              You keep the asset. You approve every deal. We are paid only when you close.
+            </p>
+          </div>
+          <div className="mt-10">
+            <Link
+              href="/originators"
+              className="inline-flex items-center gap-2 rounded-[11px] bg-brand px-7 py-4 font-sans text-[1.05rem] font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
+            >
+              See what your drug is worth →
+            </Link>
+          </div>
+        </section>
+
+        {/* in-licensors — teaser into the portfolio */}
         <section id="inlicensors" className="scroll-mt-24">
-          <div className="mx-auto max-w-[1160px] px-6 py-24 md:px-14 md:py-36">
-            <h2 className="max-w-[15ch] font-sans text-[clamp(2.2rem,5vw,3.9rem)] font-semibold leading-[1.06] tracking-[-0.025em] text-ink">
-              100+ approved assets, screened before they reach you.
+          <div className="mx-auto max-w-[1160px] px-6 pb-24 md:px-14 md:pb-32">
+            <h2 className="max-w-[20ch] font-sans text-[clamp(2rem,4.6vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
+              Looking to license instead?
             </h2>
-            <p className="mt-6 max-w-[52ch] text-[clamp(1.05rem,2.1vw,1.3rem)] leading-[1.55] text-ink-soft">
-              Each one already approved somewhere, with documented demand in your region. We
-              qualify it, assemble the evidence, and run the process, so you evaluate instead
-              of search.
+            <p className="mt-8 max-w-[62ch] text-[clamp(1.1rem,2vw,1.3rem)] leading-[1.6] text-ink">
+              100+ assets ready to be commercialized across MENA, LATAM, and Southeast Asia.
+              Commercially validated, in many cases clinically de-risked, and screened before they
+              reach you. firstocean qualifies each asset, assembles the evidence, and runs the deal
+              process, so your BD teams focuses on evaluating the most promising assets instead of searching.
             </p>
-            <div className="mt-9">
-              <a
-                href={inlicensorCallUrl()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-[11px] bg-brand px-6 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
+            <div className="mt-10">
+              <Link
+                href="/distributors"
+                className="inline-flex items-center gap-2 rounded-[11px] bg-brand px-7 py-4 font-sans text-[1.05rem] font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
               >
-                Book a call to access the portfolio →
-              </a>
+                See the portfolio →
+              </Link>
             </div>
-            <p className="mt-6 text-[0.95rem] text-ink-soft">
-              A 30-minute call. Shared under standard confidentiality, you see the full dossier
-              once we&rsquo;re both covered.
-            </p>
           </div>
         </section>
       </main>
 
-      <footer className="border-t border-ink/10 bg-white text-ink">
-        <div className="mx-auto max-w-[1160px] px-6 py-16 md:px-14">
-          <div className="flex flex-wrap items-start justify-between gap-x-16 gap-y-8">
-            <div>
-              <div className="text-2xl font-semibold lowercase tracking-tight text-ink">
-                firstocean
-              </div>
-              <div className="mt-2 flex flex-wrap items-center gap-2.5 text-[0.8rem] text-ink-soft">
-                Backed by <b className="font-semibold text-ink">Entrepreneurs First</b>
-                <span className="text-ink-soft/50">·</span>
-                <b className="font-semibold text-ink">Transpose Platform</b>
-              </div>
-            </div>
-            <div className="text-[0.9rem] leading-8 text-ink-soft">
-              <a
-                href="mailto:hugo@first-ocean.com"
-                className="text-ink transition-colors hover:opacity-70"
-              >
-                hugo@first-ocean.com
-              </a>
-              <br />
-              <a href="/originators" className="text-ink transition-colors hover:opacity-70">
-                See what your rights are worth
-              </a>
-            </div>
-          </div>
-          <div className="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-ink/10 pt-6 text-[0.8rem] text-ink-soft">
-            <span>© {year} firstocean. All rights reserved.</span>
-            <span>
-              Latin America · Africa · Middle East · South &amp; Southeast Asia. Excludes China.
-            </span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
