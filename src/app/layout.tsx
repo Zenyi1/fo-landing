@@ -12,7 +12,7 @@ const inter = Inter({
 
 const title = "firstocean";
 const description =
-  "firstocean is the infrastructure that makes proven medicines available to every patient, everywhere.";
+  "See what your approved medicine's unused rights are worth across 90+ emerging markets. Anonymous estimate in about two minutes. Non-dilutive capital while your patent still holds.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://first-ocean.com"),

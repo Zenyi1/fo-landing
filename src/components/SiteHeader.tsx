@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function SiteHeader() {
@@ -31,13 +32,21 @@ export function SiteHeader() {
         >
           firstocean
         </a>
-        <nav className="flex items-center gap-6 md:gap-8">
-          <a href="#about" className={`text-sm font-semibold transition-colors ${linkColor}`}>
-            About
+        <nav className="flex items-center gap-5 md:gap-7">
+          <a
+            href="#inlicensors"
+            className={`hidden text-sm font-semibold transition-colors sm:inline ${linkColor}`}
+          >
+            For in-licensors
           </a>
-          <a href="#early-access" className={`text-sm font-semibold transition-colors ${linkColor}`}>
-            Get early access
-          </a>
+          <Link
+            href="/originators"
+            className={`rounded-[9px] px-4 py-2 text-sm font-semibold transition-colors ${
+              solid ? "bg-brand text-white hover:bg-[var(--brand-strong)]" : "bg-white text-ink hover:bg-white/90"
+            }`}
+          >
+            What are my rights worth?
+          </Link>
         </nav>
       </div>
     </header>

@@ -1,97 +1,74 @@
-import Link from "next/link";
-import { GameOfLife } from "@/components/GameOfLife";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
-import { EnquiryForm } from "@/components/EnquiryForm";
 
 export default function Home() {
   const year = new Date().getFullYear();
 
   return (
-    <div id="top" className="relative min-h-full text-white">
-      {/* dark teal-blue gradient wash, with the cell automaton over it, behind the whole page */}
-      <div
-        className="pointer-events-none fixed inset-0 z-0 bg-gradient-to-br from-[#071a2b] via-[#0a1730] to-[#120a2e]"
-        aria-hidden
-      />
-      <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
-        <GameOfLife />
-      </div>
-
+    <div id="page" className="min-h-full">
       <SiteHeader />
 
-      <main className="relative z-10">
-        <Hero />
+      <Hero />
 
-        <section id="about" className="relative scroll-mt-24 bg-white text-ink">
-          <div className="mx-auto max-w-[680px] px-6 py-24 md:py-32">
-            <h2 className="font-sans text-[30px] font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-[44px]">
-              A data-driven approach to commercialization in emerging markets.
+      {/* everything below the hero is a clean white surface — no pixels */}
+      <main className="bg-white text-ink">
+        <section id="inlicensors" className="scroll-mt-24">
+          <div className="mx-auto max-w-[1160px] px-6 py-24 md:px-14 md:py-36">
+            <h2 className="max-w-[15ch] font-sans text-[clamp(2.2rem,5vw,3.9rem)] font-semibold leading-[1.06] tracking-[-0.025em] text-ink">
+              100+ approved assets, screened before they reach you.
             </h2>
-            <div className="mt-10 space-y-8 text-[18px] leading-[1.7] text-ink md:text-[20px]">
-              <p>
-                For more than 440 million patients, the medicine they need exists. It is approved,
-                proven, and absent from the markets where they live. firstocean closes that gap by
-                connecting the companies that own these medicines with the companies built to
-                commercialize them.
-              </p>
-            </div>
-
-            <div className="mt-20">
-              <p className="text-[20px] font-bold text-brand md:text-[22px]">
-                For drug owners
-              </p>
-              <h3 className="mt-4 font-sans text-[24px] font-semibold leading-[1.2] tracking-[-0.02em] text-ink md:text-[30px]">
-                Non-dilutive capital from the markets your launch plan will never cover.
-              </h3>
-              <p className="mt-5 text-[18px] leading-[1.7] text-ink md:text-[20px]">
-                Demand for your medicine exists in far more countries than you will ever enter, and
-                every year of patent life spent waiting is value you cannot recover. firstocean
-                prices that opportunity, finds the right partners in each market, and structures the
-                deals, so your asset earns everywhere demand exists while protection still holds.
-              </p>
-              <Link
-                href="/originators"
-                className="mt-8 inline-flex items-center rounded-[10px] bg-brand px-7 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
+            <p className="mt-6 max-w-[52ch] text-[clamp(1.05rem,2.1vw,1.3rem)] leading-[1.55] text-ink-soft">
+              Each one already approved somewhere, with documented demand in your region. We
+              qualify it, assemble the evidence, and run the process, so you evaluate instead
+              of search.
+            </p>
+            <div className="mt-9">
+              <a
+                href="mailto:hugo@first-ocean.com?subject=Portfolio%20access%20request"
+                className="inline-flex items-center gap-2 rounded-[11px] bg-brand px-6 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
               >
-                See what your asset is worth
-              </Link>
+                Request portfolio access →
+              </a>
             </div>
-
-            <div className="mt-20">
-              <p className="text-[20px] font-bold text-brand md:text-[22px]">
-                For distributors and in-licensors
-              </p>
-              <h3 className="mt-4 font-sans text-[24px] font-semibold leading-[1.2] tracking-[-0.02em] text-ink md:text-[30px]">
-                The supply is here.
-              </h3>
-              <p className="mt-5 text-[18px] leading-[1.7] text-ink md:text-[20px]">
-                100+ assets ready to be commercialized across MENA, LATAM, and Southeast Asia.
-                Commercially validated, in many cases clinically de-risked, and screened before they
-                reach you. firstocean qualifies each asset, assembles the evidence, and runs the deal
-                process, so you spend your time evaluating instead of searching.
-              </p>
-            </div>
-
-            <div id="early-access" className="mt-24 scroll-mt-24">
-              <h2 className="font-sans text-[28px] font-semibold tracking-[-0.02em] text-ink md:text-[36px]">
-                Get early access
-              </h2>
-              <p className="mt-3 text-[15px] leading-[1.6] text-ink">
-                Tell us about your organization and we will reach out once a spot opens up.
-              </p>
-              <div className="mt-8">
-                <EnquiryForm />
-              </div>
-            </div>
+            <p className="mt-6 text-[0.95rem] text-ink-soft">
+              Shared under standard confidentiality. You see the full dossier once we&rsquo;re both
+              covered.
+            </p>
           </div>
         </section>
       </main>
 
-      <footer className="relative z-10">
-        <div className="flex min-h-[56vh] flex-col justify-end px-6 pb-12 md:px-10 lg:px-16">
-          <div className="flex items-center justify-end text-sm text-white/60">
+      <footer className="border-t border-ink/10 bg-white text-ink">
+        <div className="mx-auto max-w-[1160px] px-6 py-16 md:px-14">
+          <div className="flex flex-wrap items-start justify-between gap-x-16 gap-y-8">
+            <div>
+              <div className="text-2xl font-semibold lowercase tracking-tight text-ink">
+                firstocean
+              </div>
+              <div className="mt-2 flex flex-wrap items-center gap-2.5 text-[0.8rem] text-ink-soft">
+                Backed by <b className="font-semibold text-ink">Entrepreneurs First</b>
+                <span className="text-ink-soft/50">·</span>
+                <b className="font-semibold text-ink">Transpose Platform</b>
+              </div>
+            </div>
+            <div className="text-[0.9rem] leading-8 text-ink-soft">
+              <a
+                href="mailto:hugo@first-ocean.com"
+                className="text-ink transition-colors hover:opacity-70"
+              >
+                hugo@first-ocean.com
+              </a>
+              <br />
+              <a href="/originators" className="text-ink transition-colors hover:opacity-70">
+                See what your rights are worth
+              </a>
+            </div>
+          </div>
+          <div className="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-ink/10 pt-6 text-[0.8rem] text-ink-soft">
             <span>© {year} firstocean. All rights reserved.</span>
+            <span>
+              Latin America · Africa · Middle East · South &amp; Southeast Asia. Excludes China.
+            </span>
           </div>
         </div>
       </footer>
