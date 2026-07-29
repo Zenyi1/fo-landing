@@ -73,7 +73,7 @@ export function Hero() {
           willChange: "opacity, transform",
         }}
       >
-        <p className="max-w-[24ch] font-sans text-[clamp(1.7rem,4vw,3rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
+        <p className="max-w-[24ch] font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
           Your drug could be earning in
         </p>
         <p className="mt-1 min-h-[1.02em] whitespace-nowrap font-sans text-[clamp(2.7rem,10vw,7.4rem)] font-semibold leading-[1.0] tracking-[-0.035em]">
