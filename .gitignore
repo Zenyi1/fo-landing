@@ -50,3 +50,9 @@ temp/
 
 # Large local videos (not committed)
 public/videos/sizzle-reel.mp4
+
+# Graphify knowledge-graph output (regenerable with /graphify)
+graphify-out/
+
+# Local scratch notes
+tech-stack.txt

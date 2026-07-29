@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function SiteHeader() {
@@ -18,8 +19,8 @@ export function SiteHeader() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-        solid ? "border-ink/[0.06] bg-white/80 backdrop-blur-sm" : "border-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        solid ? "bg-white" : ""
       }`}
     >
       <div className="flex h-16 items-center justify-between px-6 md:h-20 md:px-10 lg:px-16">
@@ -31,13 +32,21 @@ export function SiteHeader() {
         >
           firstocean
         </a>
-        <nav className="flex items-center gap-6 md:gap-8">
-          <a href="#about" className={`text-sm font-semibold transition-colors ${linkColor}`}>
-            About
-          </a>
-          <a href="#early-access" className={`text-sm font-semibold transition-colors ${linkColor}`}>
-            Get early access
-          </a>
+        <nav className="flex items-center gap-5 md:gap-7">
+          <Link
+            href="/distributors"
+            className={`hidden text-sm font-semibold transition-colors sm:inline ${linkColor}`}
+          >
+            For in-licensors
+          </Link>
+          <Link
+            href="/originators"
+            className={`rounded-[9px] px-4 py-2 text-sm font-semibold transition-colors ${
+              solid ? "bg-brand text-white hover:bg-[var(--brand-strong)]" : "bg-white text-ink hover:bg-white/90"
+            }`}
+          >
+            What is your drug worth?
+          </Link>
         </nav>
       </div>
     </header>

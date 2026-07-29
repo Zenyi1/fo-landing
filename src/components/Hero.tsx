@@ -1,41 +1,132 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { WaveBackground } from "@/components/WaveBackground";
+
+// The markets firstocean distributes into: the largest commercially viable
+// economies across LATAM, MENA and Southeast Asia (top ~8 by GDP each),
+// interleaved by region. The word swaps in on its own fixed-height line so the
+// hero never changes size, however long the market name is.
+const MARKETS = [
+  "Brazil", "Saudi Arabia", "Indonesia",
+  "Mexico", "the UAE", "Thailand",
+  "Argentina", "Egypt", "the Philippines",
+  "Colombia", "Vietnam", "South Africa",
+  "Chile", "Qatar", "Malaysia",
+  "Peru", "Kuwait", "Myanmar",
+  "Ecuador", "Algeria", "Morocco", "Turkey"
+];
 
 export function Hero() {
+  const [i, setI] = useState(0);
+  const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0); // 0 at top, 1 once faded out
 
+  // fade the hero copy out as the page scrolls down
   useEffect(() => {
     function onScroll() {
-      const p = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * 0.5)));
-      setProgress(p);
+      setProgress(Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * 0.6))));
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // rotate the market name
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return; // hold a single market, no motion
+
+    let swap: ReturnType<typeof setTimeout>;
+    const cycle = setInterval(() => {
+      setVisible(false);
+      swap = setTimeout(() => {
+        setI((n) => (n + 1) % MARKETS.length);
+        setVisible(true);
+      }, 400);
+    }, 2100);
+
+    return () => {
+      clearInterval(cycle);
+      clearTimeout(swap);
+    };
+  }, []);
+
   return (
-    <section className="flex min-h-screen items-center">
+    <section
+      id="top"
+      className="relative flex min-h-screen items-center overflow-hidden bg-[#071a2b] text-white"
+    >
+      {/* wave video background (trial), scoped to the hero */}
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <WaveBackground />
+        <div className="absolute inset-0 bg-[#071a2b]/45" />
+      </div>
+
       <div
-        className="mx-auto w-full max-w-[1100px] px-6 pt-28 md:px-10 md:pt-32"
+        className="relative z-10 mx-auto w-full max-w-[1160px] px-6 pt-28 md:px-14 md:pt-32"
         style={{
           opacity: 1 - progress,
-          transform: `translateY(${-progress * 24}px)`,
+          transform: `translateY(${-progress * 28}px)`,
           transition: "opacity 0.1s linear, transform 0.1s linear",
           willChange: "opacity, transform",
         }}
       >
-        <h1 className="max-w-[16ch] font-sans text-[34px] font-semibold leading-[1.08] tracking-[-0.02em] text-white md:max-w-[20ch] md:text-[58px] lg:text-[72px]">
-          <span className="text-[#4a72e8]">firstocean</span> is the infrastructure that takes proven
-          medicines to every market where demand exists.
-        </h1>
-        <a
-          href="#early-access"
-          className="mt-10 inline-flex items-center rounded-[10px] bg-white px-7 py-3.5 font-sans text-base font-semibold text-ink transition-colors hover:bg-white/90"
-        >
-          Get early access
-        </a>
+        <p className="max-w-[24ch] font-sans text-[clamp(1.7rem,4vw,3rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
+          Your drug could be earning in
+        </p>
+        <p className="mt-1 min-h-[1.02em] whitespace-nowrap font-sans text-[clamp(2.7rem,10vw,7.4rem)] font-semibold leading-[1.0] tracking-[-0.035em]">
+          <span
+            className="inline-block text-[#88a6f8] transition-all duration-[400ms] ease-out motion-reduce:transition-none"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(0.22em)",
+            }}
+          >
+            {MARKETS[i]}
+          </span>
+        </p>
+
+        <div className="mt-10 flex flex-wrap items-center gap-3.5">
+          <Link
+            href="/originators"
+            className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-4 font-sans text-[1.05rem] font-semibold text-[#1e3a8a] transition-colors hover:bg-white/90"
+          >
+            See what your drug is worth →
+          </Link>
+          <Link
+            href="/distributors"
+            className="inline-flex items-center gap-2 rounded-[11px] border border-white/40 px-7 py-4 font-sans text-[1.05rem] font-semibold text-white transition-colors hover:border-white hover:bg-white/5"
+          >
+            I&rsquo;m here to license assets →
+          </Link>
+        </div>
+
+        <p className="mt-4 text-[0.9rem] font-medium text-white">
+          See an estimate in about two minutes, anonymously. No name, no email, no compound.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-1.5 text-[0.85rem] text-white">
+          Backed by{" "}
+          <a
+            href="https://www.joinef.com/portfolio/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
+          >
+            Entrepreneurs First
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.transposeplatform.vc"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
+          >
+            Transpose Platform
+          </a>
+        </div>
       </div>
     </section>
   );
