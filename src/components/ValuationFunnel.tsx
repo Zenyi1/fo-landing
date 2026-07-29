@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { track } from "@vercel/analytics";
+import { CALENDLY_URL } from "@/lib/links";
 import {
   DEV_STAGES,
   THERAPEUTIC_AREAS,
@@ -15,8 +16,6 @@ import {
   FOOTPRINTS,
   EM_DEALS,
 } from "@/types/valuation";
-
-const CALENDLY_URL = "https://calendly.com/zenyi-first-ocean/30min";
 
 const LOADING_STEPS = [
   "Reading your asset profile",

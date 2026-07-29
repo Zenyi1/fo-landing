@@ -1,5 +1,6 @@
 import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
+import { inlicensorCallUrl } from "@/lib/links";
 
 export default function Home() {
   const year = new Date().getFullYear();
@@ -24,15 +25,17 @@ export default function Home() {
             </p>
             <div className="mt-9">
               <a
-                href="mailto:hugo@first-ocean.com?subject=Portfolio%20access%20request"
+                href={inlicensorCallUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-[11px] bg-brand px-6 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
               >
-                Request portfolio access →
+                Book a call to access the portfolio →
               </a>
             </div>
             <p className="mt-6 text-[0.95rem] text-ink-soft">
-              Shared under standard confidentiality. You see the full dossier once we&rsquo;re both
-              covered.
+              A 30-minute call. Shared under standard confidentiality, you see the full dossier
+              once we&rsquo;re both covered.
             </p>
           </div>
         </section>
