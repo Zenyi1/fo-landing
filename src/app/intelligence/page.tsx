@@ -174,10 +174,10 @@ export default function IntelligencePage() {
                 attached.
               </p>
               <p className="text-white">
-                On one sponsor&rsquo;s CRO invoices, a single quarter turned up
-                $97,500: a duplicate charge, a change order billed out of scope,
-                an overbilled rate, and VAT no one had reclaimed. All four were
-                already in the accrual as correct.
+                On one sponsor&rsquo;s programme, a single CRO invoice came in
+                $97,500 over the contracted rate, and it had already cleared into
+                the accrual as correct. We caught it while the vendor still had
+                the paperwork to reverse the charge.
               </p>
             </div>
           </div>
