@@ -163,14 +163,23 @@ export default function IntelligencePage() {
             <h3 className="mt-5 max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
               The party managing your spend is the party billing for it.
             </h3>
-            <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
-              Agents check every invoice against what you contracted and what was
-              actually delivered. Duplicate charges, change orders billed outside
-              scope, overbilling against the contract rate, unrecovered VAT and FX
-              markup on site payments, caught the month they land, while the
-              vendor still has the paperwork to back the charge out. Recoveries
-              post inside your close, with the line-item working attached.
-            </p>
+            <div className="mt-6 max-w-md space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
+              <p>
+                Agents check every invoice against what you contracted and what
+                was actually delivered. Duplicate charges, change orders billed
+                outside scope, overbilling against the contract rate, unrecovered
+                VAT and FX markup on site payments, caught the month they land,
+                while the vendor still has the paperwork to back the charge out.
+                Recoveries post inside your close, with the line-item working
+                attached.
+              </p>
+              <p className="text-white">
+                On one sponsor&rsquo;s CRO invoices, a single quarter turned up
+                $97,500: a duplicate charge, a change order billed out of scope,
+                an overbilled rate, and VAT no one had reclaimed. All four were
+                already in the accrual as correct.
+              </p>
+            </div>
           </div>
           {/* animation */}
           <div className={`${panel} h-[320px] sm:h-[380px] lg:order-1 lg:h-[440px]`}>
@@ -196,12 +205,18 @@ export default function IntelligencePage() {
                 still.
               </p>
               <p>
-                We rebuild it as the trial moves. Enrollment pace, site
-                activation and committed spend give you a projected readout date
-                and a projected cash-out date, updated continuously. You see a
-                programme running hot while there is still time to act, you reach
-                your next readout with cash to spare, and the money we recover
-                along the way is on top.
+                We rebuild it as the trial moves, from the invoices and site
+                activations themselves rather than a vendor status deck.
+                Enrollment pace, committed spend and real burn give you a
+                projected readout date and a projected cash-out date, updated
+                continuously.
+              </p>
+              <p>
+                When a programme is running hot you see it while there is still
+                time to act: flag a change order before it is billed, move a
+                site, or size your next raise around a readout date you can
+                defend. You reach your next readout with cash to spare, and the
+                money we recover along the way is on top.
               </p>
             </div>
           </div>
