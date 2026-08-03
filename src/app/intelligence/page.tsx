@@ -62,12 +62,6 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
 const panel =
   "relative w-full overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]";
 
-// the packet ask — a file transfer that returns something valuable, and puts a
-// real vendor document set on the system, which is what the first conversations
-// actually need
-const packetMailto =
-  "mailto:hugo@first-ocean.com?subject=first%20ocean%20work%20order%20review&body=Attaching%20one%20CRO%20work%20order%2C%20its%20change%20notices%20and%20twelve%20months%20of%20invoices.%20What%20do%20you%20find%3F";
-
 export default function IntelligencePage() {
   const bookUrl = intelligenceCallUrl();
 
@@ -126,27 +120,19 @@ export default function IntelligencePage() {
         <Reveal>
           <Eyebrow>What it is</Eyebrow>
           <h2 className="mt-6 max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
-            Your development programme runs through a dozen vendors&rsquo;
-            invoicing systems.
+            One record per vendor, kept current by agents.
           </h2>
         </Reveal>
         <Reveal
           delay={120}
-          className="mt-7 max-w-2xl space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.15rem]"
+          className="mt-7 max-w-2xl text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.15rem]"
         >
           <p>
-            The trial runs at a CRO. Manufacturing runs at a CDMO. Assays,
-            statistics, submissions and site payments each run somewhere else.
-            Every one of them bills on its own schedule, in its own format,
-            against a contract that has been amended four times.
-          </p>
-          <p className="text-white">
-            Those line items fall in the gap between finance, which owns the
-            money but can&rsquo;t see the trial, and clinical operations, which
-            runs the vendors but doesn&rsquo;t own the P&amp;L. Duplicate charges,
-            scope creep and unrecovered tax live in that gap. We close it with
-            one record per vendor, kept current by agents that read every
-            document as it arrives.
+            first ocean reads every work order, change notice, invoice and
+            payment the moment a vendor sends it, files it against the contract,
+            and reconciles what was billed against what was delivered. Your CRO,
+            CDMO, lab and site spend sits in one place, with the accrual and
+            runway updating as the trial moves.
           </p>
         </Reveal>
       </section>
@@ -250,17 +236,17 @@ export default function IntelligencePage() {
           </h2>
           <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-white/70 sm:text-[1.2rem]">
             We&rsquo;re building with a small number of clinical-stage sponsors.
-            Send us one CRO work order, its change notices and twelve months of
-            invoices. We&rsquo;ll run them through and come back with exactly what
-            we find, in dollars. We&rsquo;ll sign your NDA first, and you get the
-            analysis whether or not you work with us.
+            Bring one CRO work order, its change notices and twelve months of
+            invoices, and we&rsquo;ll show you what&rsquo;s hiding in them.
           </p>
           <div className="mt-9">
             <a
-              href={packetMailto}
+              href={bookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-3.5 text-[1.02rem] font-semibold text-[#0a0b0d] transition-colors hover:bg-white/90"
             >
-              Send us a work order →
+              Book a call →
             </a>
           </div>
         </Reveal>
