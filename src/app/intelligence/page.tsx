@@ -225,7 +225,7 @@ export default function IntelligencePage() {
       >
         <Reveal className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-8 py-14 sm:px-14 sm:py-20">
           <h2 className="max-w-2xl text-balance text-[2rem] font-normal leading-[1.1] tracking-[-0.025em] sm:text-[2.9rem]">
-            Become a design partner.
+            Work with us.
           </h2>
           <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-white/70 sm:text-[1.2rem]">
             We&rsquo;re taking on a small number of clinical-stage sponsors as
