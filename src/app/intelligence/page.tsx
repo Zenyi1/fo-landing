@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { AgentFilingCanvas } from "@/components/AgentFilingCanvas";
 import { ErrorRecoveryCanvas } from "@/components/ErrorRecoveryCanvas";
 import { RunwayCanvas } from "@/components/RunwayCanvas";
+import { BirdsBackground } from "@/components/BirdsBackground";
+import { CountUp } from "@/components/CountUp";
 import { Reveal } from "@/components/Reveal";
 import { intelligenceCallUrl } from "@/lib/links";
 
@@ -66,7 +68,9 @@ export default function IntelligencePage() {
   const bookUrl = intelligenceCallUrl();
 
   return (
-    <main className="min-h-screen w-full bg-[#0a0b0d] text-white">
+    <main className="relative min-h-screen w-full bg-[#0a0b0d] text-white">
+      <BirdsBackground />
+      <div className="relative z-10">
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section className="relative flex min-h-screen w-full flex-col px-8 py-9 sm:px-14 sm:py-12">
         <header className="flex items-center justify-between">
@@ -160,10 +164,10 @@ export default function IntelligencePage() {
                 attached.
               </p>
               <p className="text-white">
-                On one sponsor&rsquo;s programme, a single CRO invoice came in
-                $97,500 over the contracted rate, and it had already cleared into
-                the accrual as correct. We caught it while the vendor still had
-                the paperwork to reverse the charge.
+                On one sponsor&rsquo;s programme, a single CRO invoice came in{" "}
+                <CountUp value={97500} prefix="$" /> over the contracted rate,
+                and it had already cleared into the accrual as correct. We caught
+                it while the vendor still had the paperwork to reverse the charge.
               </p>
             </div>
           </div>
@@ -251,6 +255,7 @@ export default function IntelligencePage() {
           </div>
         </Reveal>
       </section>
+      </div>
     </main>
   );
 }
