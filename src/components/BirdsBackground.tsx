@@ -40,11 +40,24 @@ export function BirdsBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // The global <body> is navy (#071a2b) for the main site; this page is
+    // near-black, so paint the root element to match. Without this the navy
+    // shows through on overscroll ("rubber-banding") past the top or bottom.
+    // Restored when the page unmounts.
+    const root = document.documentElement;
+    const prevRootBg = root.style.backgroundColor;
+    root.style.backgroundColor = "#0a0b0d";
+    const restoreBg = () => {
+      root.style.backgroundColor = prevRootBg;
+    };
+
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!canvas) return restoreBg;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return restoreBg;
+    }
     const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    if (!ctx) return restoreBg;
 
     let w = 0;
     let h = 0;
@@ -109,6 +122,7 @@ export function BirdsBackground() {
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
+      restoreBg();
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", onScroll);
