@@ -12,3 +12,14 @@ export function inlicensorCallUrl() {
   });
   return `${CALENDLY_URL}?${params.toString()}`;
 }
+
+// Book link for the intelligence page (clinical-stage sponsors), tagged so
+// bookings from that page are attributable in analytics.
+export function intelligenceCallUrl() {
+  const params = new URLSearchParams({
+    utm_source: "intelligence",
+    utm_medium: "landing",
+    utm_campaign: "operating-system",
+  });
+  return `${CALENDLY_URL}?${params.toString()}`;
+}
