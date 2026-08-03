@@ -7,7 +7,7 @@ import { intelligenceCallUrl } from "@/lib/links";
 
 const title = "firstocean · intelligence";
 const description =
-  "The operating system for clinical-stage biotech. One record for every vendor: contract, scope, delivery, invoice, accrual. Finance gets a defensible close, clinical operations gets scope control.";
+  "One live record for every dollar your trial spends. Agents read every work order, change notice and invoice, file it against the contract, and flag what doesn't match — so finance gets a defensible close and clinical operations gets scope control.";
 
 export const metadata: Metadata = {
   title,
@@ -53,7 +53,7 @@ function Logo() {
 
 function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <p className="text-[0.8rem] font-medium uppercase tracking-[0.18em] text-white">
+    <p className="font-mono text-[0.78rem] font-medium uppercase tracking-[0.22em] text-white/90">
       {children}
     </p>
   );
@@ -89,12 +89,12 @@ export default function IntelligencePage() {
           {/* left — statement */}
           <div className="max-w-xl pt-10 lg:pt-0">
             <h1 className="text-balance text-[2.6rem] font-normal leading-[1.05] tracking-[-0.03em] sm:text-[3.6rem] lg:text-[4.1rem] lg:leading-[1.02]">
-              The operating system for clinical-stage biotech.
+              One live record for every dollar your trial spends.
             </h1>
             <p className="mt-7 max-w-md text-[1.15rem] font-normal leading-snug text-white/75 sm:text-[1.3rem]">
-              Agents read every work order, change notice and invoice, then file
-              them into one record per vendor. Your CRO, CDMO and lab spend in one
-              place, current.
+              Agents read every work order, change notice and invoice the moment
+              it lands, file it against the contract, and flag what doesn&rsquo;t
+              match. Your CRO, CDMO and lab spend in one place, always current.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <a
@@ -126,7 +126,8 @@ export default function IntelligencePage() {
         <Reveal>
           <Eyebrow>What it is</Eyebrow>
           <h2 className="mt-6 max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
-            Thirty people, a molecule, a bank account.
+            Your company is thirty people. Your spend is a dozen vendors you
+            don&rsquo;t control.
           </h2>
         </Reveal>
         <Reveal
@@ -135,15 +136,17 @@ export default function IntelligencePage() {
         >
           <p>
             The trial runs at a CRO. Manufacturing runs at a CDMO. Assays,
-            statistics, submissions and payments each run somewhere else.
-            Coordinating that spend is the company&rsquo;s actual job, and it
-            falls in the seam between finance, which owns the money without
-            seeing the trial, and clinical operations, which owns the vendors
-            without owning the P&amp;L.
+            statistics, submissions and site payments each run somewhere else —
+            a dozen vendors and thousands of line items, all billing against
+            contracts no one has time to check line by line.
           </p>
           <p className="text-white">
-            The spend leaks in that seam. We close it with one record and a set
-            of agents that keep it current.
+            That spend falls in the gap between finance, which owns the money but
+            can&rsquo;t see the trial, and clinical operations, which runs the
+            vendors but doesn&rsquo;t own the P&amp;L. Duplicate charges, scope
+            creep and unrecovered tax live in that gap. We close it: one record
+            per vendor, kept current by agents that read every document as it
+            arrives.
           </p>
         </Reveal>
       </section>
@@ -161,11 +164,12 @@ export default function IntelligencePage() {
               The party managing your spend is the party billing for it.
             </h3>
             <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
-              Agents read every invoice against what was contracted and what was
-              delivered. Duplicate charges, out-of-scope change orders,
-              unrecovered VAT and FX markups on site payments get caught in the
-              month they happen, while the vendor still has the paperwork.
-              Recovered dollars land inside your close, with the working shown.
+              Agents check every invoice against what you contracted and what was
+              actually delivered. Duplicate charges, change orders billed outside
+              scope, overbilling against the contract rate, unrecovered VAT and FX
+              markup on site payments — caught the month they land, while the
+              vendor still has the paperwork to back the charge out. Recoveries
+              post inside your close, with the line-item working attached.
             </p>
           </div>
           {/* animation */}
@@ -182,13 +186,14 @@ export default function IntelligencePage() {
           <div>
             <Eyebrow>Runway</Eyebrow>
             <h3 className="mt-5 max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
-              The best science shouldn&rsquo;t dilute to cover its own overhead.
+              Every dollar you don&rsquo;t overpay is another week of runway.
             </h3>
             <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
-              Every dollar recovered and every week saved on the close is runway.
-              The accrual updates as the trial moves, so runway stays a live
-              number rather than a quarterly guess, and you raise on your data
-              instead of on your burn.
+              Money you don&rsquo;t overpay is money you don&rsquo;t have to
+              raise. And because the accrual updates as the trial moves — not
+              once a quarter — runway stays a live number instead of a guess. You
+              reach your next data readout with cash to spare, and raise on
+              results rather than against a deadline.
             </p>
           </div>
           {/* animation */}
@@ -202,9 +207,9 @@ export default function IntelligencePage() {
       <section className="mx-auto w-full max-w-5xl px-8 py-16 sm:px-14 sm:py-20">
         <Reveal>
           <p className="max-w-2xl text-[1.2rem] leading-relaxed text-white/80 sm:text-[1.45rem]">
-            Finance gets a defensible close. Clinical operations gets scope
-            control. Both work from the same record, so a variance flag reads as
-            a system output rather than an accusation against a colleague.
+            Finance gets a close it can defend. Clinical operations gets scope it
+            can control. Both read from the same record — so a flagged variance is
+            the system catching an error, not one team second-guessing another.
           </p>
         </Reveal>
       </section>
@@ -221,7 +226,8 @@ export default function IntelligencePage() {
           <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-white/70 sm:text-[1.2rem]">
             We&rsquo;re building with a small number of clinical-stage sponsors.
             Send us one CRO work order, its change notices and twelve months of
-            invoices. We&rsquo;ll come back with what we find.
+            invoices. We&rsquo;ll run them through and come back with exactly what
+            we find — in dollars.
           </p>
           <div className="mt-9">
             <a
