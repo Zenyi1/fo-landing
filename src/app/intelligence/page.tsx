@@ -53,14 +53,6 @@ function Logo() {
   );
 }
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="font-mono text-[0.78rem] font-medium uppercase tracking-[0.22em] text-white/90">
-      {children}
-    </p>
-  );
-}
-
 const panel =
   "relative w-full overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]";
 
@@ -122,8 +114,7 @@ export default function IntelligencePage() {
       {/* ── INTRO ────────────────────────────────────────────── */}
       <section className="mx-auto w-full max-w-5xl px-8 pt-24 sm:px-14 sm:pt-32">
         <Reveal>
-          <Eyebrow>What it is</Eyebrow>
-          <h2 className="mt-6 max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
+          <h2 className="max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
             One record per vendor, kept current by agents.
           </h2>
         </Reveal>
@@ -149,8 +140,7 @@ export default function IntelligencePage() {
         <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* text (first in DOM for mobile, moved right on desktop) */}
           <div className="lg:order-2">
-            <Eyebrow>Reconciliation</Eyebrow>
-            <h3 className="mt-5 max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
+            <h3 className="max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
               The party managing your spend is the party billing for it.
             </h3>
             <div className="mt-6 max-w-md space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
@@ -183,8 +173,7 @@ export default function IntelligencePage() {
         <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* text left */}
           <div>
-            <Eyebrow>Runway</Eyebrow>
-            <h3 className="mt-5 max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
+            <h3 className="max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
               Will the data arrive before the cash runs out?
             </h3>
             <div className="mt-6 max-w-md space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
@@ -236,12 +225,13 @@ export default function IntelligencePage() {
       >
         <Reveal className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-8 py-14 sm:px-14 sm:py-20">
           <h2 className="max-w-2xl text-balance text-[2rem] font-normal leading-[1.1] tracking-[-0.025em] sm:text-[2.9rem]">
-            See it on your own vendors.
+            Become a design partner.
           </h2>
           <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-white/70 sm:text-[1.2rem]">
-            We&rsquo;re building with a small number of clinical-stage sponsors.
-            Bring one CRO work order, its change notices and twelve months of
-            invoices, and we&rsquo;ll show you what&rsquo;s hiding in them.
+            We&rsquo;re taking on a small number of clinical-stage sponsors as
+            design partners. We put your CRO, CDMO and lab spend on one record,
+            build the reconciliation and runway forecast around your close, and
+            your team shapes what we build next.
           </p>
           <div className="mt-9">
             <a
