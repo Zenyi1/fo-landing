@@ -41,14 +41,18 @@ export function BirdsBackground() {
 
   useEffect(() => {
     // The global <body> is navy (#071a2b) for the main site; this page is
-    // near-black, so paint the root element to match. Without this the navy
-    // shows through on overscroll ("rubber-banding") past the top or bottom.
-    // Restored when the page unmounts.
+    // near-black. That body colour is what the browser paints into the
+    // overscroll ("rubber-band") area past the top and bottom, so neutralise it
+    // at the source — on both <html> and <body> — and restore on unmount.
     const root = document.documentElement;
+    const { body } = document;
     const prevRootBg = root.style.backgroundColor;
+    const prevBodyBg = body.style.backgroundColor;
     root.style.backgroundColor = "#0a0b0d";
+    body.style.backgroundColor = "#0a0b0d";
     const restoreBg = () => {
       root.style.backgroundColor = prevRootBg;
+      body.style.backgroundColor = prevBodyBg;
     };
 
     const canvas = canvasRef.current;
