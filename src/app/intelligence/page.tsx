@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { AgentFilingCanvas } from "@/components/AgentFilingCanvas";
 import { ErrorRecoveryCanvas } from "@/components/ErrorRecoveryCanvas";
 import { RunwayCanvas } from "@/components/RunwayCanvas";
+import { BirdsBackground } from "@/components/BirdsBackground";
+import { CountUp } from "@/components/CountUp";
 import { Reveal } from "@/components/Reveal";
 import { intelligenceCallUrl } from "@/lib/links";
 
 const title = "firstocean · intelligence";
 const description =
-  "One live record for every dollar your trial spends. Agents read every work order, change notice and invoice, file it against the contract, and flag what doesn't match — so finance gets a defensible close and clinical operations gets scope control.";
+  "One live record for every dollar your trial spends. Agents read every work order, change notice and invoice, file it against the contract, and flag what doesn't match. Finance gets a defensible close, clinical operations gets scope control.";
 
 export const metadata: Metadata = {
   title,
@@ -51,28 +53,16 @@ function Logo() {
   );
 }
 
-function Eyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="font-mono text-[0.78rem] font-medium uppercase tracking-[0.22em] text-white/90">
-      {children}
-    </p>
-  );
-}
-
 const panel =
   "relative w-full overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]";
-
-// the packet ask — a file transfer that returns something valuable, and puts a
-// real vendor document set on the system, which is what the first conversations
-// actually need
-const packetMailto =
-  "mailto:hugo@first-ocean.com?subject=first%20ocean%20work%20order%20review&body=Attaching%20one%20CRO%20work%20order%2C%20its%20change%20notices%20and%20twelve%20months%20of%20invoices.%20What%20do%20you%20find%3F";
 
 export default function IntelligencePage() {
   const bookUrl = intelligenceCallUrl();
 
   return (
-    <main className="min-h-screen w-full bg-[#0a0b0d] text-white">
+    <main className="relative min-h-screen w-full bg-[#0a0b0d] text-white">
+      <BirdsBackground />
+      <div className="relative z-10">
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section className="relative flex min-h-screen w-full flex-col px-8 py-9 sm:px-14 sm:py-12">
         <header className="flex items-center justify-between">
@@ -124,29 +114,20 @@ export default function IntelligencePage() {
       {/* ── INTRO ────────────────────────────────────────────── */}
       <section className="mx-auto w-full max-w-5xl px-8 pt-24 sm:px-14 sm:pt-32">
         <Reveal>
-          <Eyebrow>What it is</Eyebrow>
-          <h2 className="mt-6 max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
-            Your company is thirty people. Your spend is a dozen vendors you
-            don&rsquo;t control.
+          <h2 className="max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
+            One record per vendor, kept current by agents.
           </h2>
         </Reveal>
         <Reveal
           delay={120}
-          className="mt-7 max-w-2xl space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.15rem]"
+          className="mt-7 max-w-2xl text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.15rem]"
         >
           <p>
-            The trial runs at a CRO. Manufacturing runs at a CDMO. Assays,
-            statistics, submissions and site payments each run somewhere else —
-            a dozen vendors and thousands of line items, all billing against
-            contracts no one has time to check line by line.
-          </p>
-          <p className="text-white">
-            That spend falls in the gap between finance, which owns the money but
-            can&rsquo;t see the trial, and clinical operations, which runs the
-            vendors but doesn&rsquo;t own the P&amp;L. Duplicate charges, scope
-            creep and unrecovered tax live in that gap. We close it: one record
-            per vendor, kept current by agents that read every document as it
-            arrives.
+            first ocean reads every work order, change notice, invoice and
+            payment the moment a vendor sends it, files it against the contract,
+            and reconciles what was billed against what was delivered. Your CRO,
+            CDMO, lab and site spend sits in one place, with the accrual and
+            runway updating as the trial moves.
           </p>
         </Reveal>
       </section>
@@ -159,18 +140,26 @@ export default function IntelligencePage() {
         <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* text (first in DOM for mobile, moved right on desktop) */}
           <div className="lg:order-2">
-            <Eyebrow>Reconciliation</Eyebrow>
-            <h3 className="mt-5 max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
+            <h3 className="max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
               The party managing your spend is the party billing for it.
             </h3>
-            <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
-              Agents check every invoice against what you contracted and what was
-              actually delivered. Duplicate charges, change orders billed outside
-              scope, overbilling against the contract rate, unrecovered VAT and FX
-              markup on site payments — caught the month they land, while the
-              vendor still has the paperwork to back the charge out. Recoveries
-              post inside your close, with the line-item working attached.
-            </p>
+            <div className="mt-6 max-w-md space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
+              <p>
+                Agents check every invoice against what you contracted and what
+                was actually delivered. Duplicate charges, change orders billed
+                outside scope, overbilling against the contract rate, unrecovered
+                VAT and FX markup on site payments, caught the month they land,
+                while the vendor still has the paperwork to back the charge out.
+                Recoveries post inside your close, with the line-item working
+                attached.
+              </p>
+              <p className="text-white">
+                On one sponsor&rsquo;s programme, a single CRO invoice came in{" "}
+                <CountUp value={97500} prefix="$" /> over the contracted rate,
+                and it had already cleared into the accrual as correct. We caught
+                it while the vendor still had the paperwork to reverse the charge.
+              </p>
+            </div>
           </div>
           {/* animation */}
           <div className={`${panel} h-[320px] sm:h-[380px] lg:order-1 lg:h-[440px]`}>
@@ -184,17 +173,31 @@ export default function IntelligencePage() {
         <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* text left */}
           <div>
-            <Eyebrow>Runway</Eyebrow>
-            <h3 className="mt-5 max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
-              Every dollar you don&rsquo;t overpay is another week of runway.
+            <h3 className="max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
+              Will the data arrive before the cash runs out?
             </h3>
-            <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
-              Money you don&rsquo;t overpay is money you don&rsquo;t have to
-              raise. And because the accrual updates as the trial moves — not
-              once a quarter — runway stays a live number instead of a guess. You
-              reach your next data readout with cash to spare, and raise on
-              results rather than against a deadline.
-            </p>
+            <div className="mt-6 max-w-md space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
+              <p>
+                It is the only question that matters, and today it gets answered
+                with a number that is six weeks old. The accrual arrives after
+                the month closes, built from vendor reports that arrive later
+                still.
+              </p>
+              <p>
+                We rebuild it as the trial moves, from the invoices and site
+                activations themselves rather than a vendor status deck.
+                Enrollment pace, committed spend and real burn give you a
+                projected readout date and a projected cash-out date, updated
+                continuously.
+              </p>
+              <p>
+                When a programme is running hot you see it while there is still
+                time to act: flag a change order before it is billed, move a
+                site, or size your next raise around a readout date you can
+                defend. You reach your next readout with cash to spare, and the
+                money we recover along the way is on top.
+              </p>
+            </div>
           </div>
           {/* animation */}
           <div className={`${panel} h-[320px] sm:h-[380px] lg:h-[440px]`}>
@@ -208,8 +211,9 @@ export default function IntelligencePage() {
         <Reveal>
           <p className="max-w-2xl text-[1.2rem] leading-relaxed text-white/80 sm:text-[1.45rem]">
             Finance gets a close it can defend. Clinical operations gets scope it
-            can control. Both read from the same record — so a flagged variance is
-            the system catching an error, not one team second-guessing another.
+            can control. Both read from the same record, so a flagged variance is
+            the system catching an error rather than one team second-guessing
+            another.
           </p>
         </Reveal>
       </section>
@@ -221,24 +225,27 @@ export default function IntelligencePage() {
       >
         <Reveal className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-8 py-14 sm:px-14 sm:py-20">
           <h2 className="max-w-2xl text-balance text-[2rem] font-normal leading-[1.1] tracking-[-0.025em] sm:text-[2.9rem]">
-            See it on your own vendors.
+            Become a design partner.
           </h2>
           <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-white/70 sm:text-[1.2rem]">
-            We&rsquo;re building with a small number of clinical-stage sponsors.
-            Send us one CRO work order, its change notices and twelve months of
-            invoices. We&rsquo;ll run them through and come back with exactly what
-            we find — in dollars.
+            We&rsquo;re taking on a small number of clinical-stage sponsors as
+            design partners. We put your CRO, CDMO and lab spend on one record,
+            build the reconciliation and runway forecast around your close, and
+            your team shapes what we build next.
           </p>
           <div className="mt-9">
             <a
-              href={packetMailto}
+              href={bookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-3.5 text-[1.02rem] font-semibold text-[#0a0b0d] transition-colors hover:bg-white/90"
             >
-              Send us a work order →
+              Book a call →
             </a>
           </div>
         </Reveal>
       </section>
+      </div>
     </main>
   );
 }
