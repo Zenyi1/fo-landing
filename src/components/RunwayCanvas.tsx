@@ -213,7 +213,7 @@ export function RunwayCanvas() {
 
       // timeline direction cue — only when it clears the legend (drops out on
       // narrow canvases rather than overlapping the "projected" label)
-      const tlLabel = "programme timeline →";
+      const tlLabel = "program timeline →";
       ctx.font = `10.5px ${FONT}`;
       if (g.x1 - ctx.measureText(tlLabel).width > lx + 8) {
         ctx.fillStyle = DIM;
@@ -270,7 +270,7 @@ export function RunwayCanvas() {
         ctx.font = `600 11.5px ${FONT}`;
         ctx.textAlign = "center";
         ctx.textBaseline = "top";
-        ctx.fillText("forced raise", mx, g.bar1Y + g.barH + 7);
+        ctx.fillText("late funding decision", mx, g.bar1Y + g.barH + 7);
       }
 
       // ── outcome: raise from strength (bar 2 crosses the flag funded) ──
@@ -287,7 +287,7 @@ export function RunwayCanvas() {
         ctx.font = `600 11.5px ${FONT}`;
         ctx.textAlign = "center";
         ctx.textBaseline = "bottom";
-        ctx.fillText("raise from strength", g.flagX, g.bar2Y - 8 - 16);
+        ctx.fillText("planned funding decision", g.flagX, g.bar2Y - 8 - 16);
       }
     }
 
