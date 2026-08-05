@@ -28,7 +28,7 @@ const RECORDS: { label: string; docs: string[] }[] = [
 ];
 
 const INK = "#e8eaed";
-const DIM = "rgba(232,234,237,0.5)";
+const DIM = "rgba(232,234,237,0.55)";
 const ACCENT = "#88a6f8";
 const HAIRLINE = "rgba(255,255,255,0.06)";
 

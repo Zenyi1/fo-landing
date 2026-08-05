@@ -3,27 +3,29 @@
 import { useEffect, useRef } from "react";
 
 // The vision graphic as a fuel gauge, not a chart. Two horizontal runway bars
-// fill green (months funded) then run empty, both racing to the same fixed "data
-// readout" flag. Without first ocean, the bar empties BEFORE the flag — you raise
-// out of cash, forced and dilutive. With first ocean (recovered spend + a tighter
+// fill (months funded) then run empty, both racing to the same fixed "data
+// readout" flag. Without firstocean, the bar empties BEFORE the flag — you raise
+// out of cash, forced and dilutive. With firstocean (recovered spend + a tighter
 // close), the same money funds you PAST the flag — you cross the readout still
-// funded and raise from strength. The green bracket is the runway we add, with
-// the flag sitting inside it. One dimension only: how far you get before empty.
-// Loops; respects prefers-reduced-motion by drawing the finished state.
+// funded and raise from strength. Each bar is labelled by confidence: actual
+// (burned to today, solid), committed (contracted ahead, medium), projected
+// (forecast beyond, faint) — no hard "+N months" guarantee, just the earlier
+// signal. Loops; respects prefers-reduced-motion by drawing the finished state.
 
 const INK = "#e8eaed";
-const DIM = "rgba(232,234,237,0.5)";
+const DIM = "rgba(232,234,237,0.55)";
 const MONEY = "#5fd0a0";
 const DANGER = "#e8825f";
 const TRACK = "rgba(255,255,255,0.06)";
 const FONT = "ui-sans-serif, system-ui, -apple-system, sans-serif";
 
 // funded fraction of the programme timeline px∈[0,1]
-const BASE_FUNDED = 0.46; // without first ocean: empties here
-const OPT_FUNDED = 0.96; // with first ocean: empties here
+const BASE_FUNDED = 0.46; // without firstocean: empties here
+const OPT_FUNDED = 0.96; // with firstocean: empties here
 const READOUT_PX = 0.68; // data-readout flag, fixed on the timeline
-const TIMELINE_MONTHS = 24;
-const ADDED_MONTHS = Math.round((OPT_FUNDED - BASE_FUNDED) * TIMELINE_MONTHS);
+const TODAY_PX = 0.28; // everything left of here is actual (burned) spend
+const COMMIT_BASE = 0.4; // without firstocean: contracted visibility ends here
+const COMMIT_OPT = 0.62; // with firstocean: contracted visibility reaches further
 
 // animation phases (ms)
 const D = { base: 1100, opt: 1500, mark: 900, hold: 2600 };
@@ -91,8 +93,16 @@ export function RunwayCanvas() {
       ctx.closePath();
     }
 
-    // one runway bar: dim track, green funded portion, optional danger tail
-    function bar(g: Geom, topY: number, funded: number, danger: boolean) {
+    // one runway bar: dim track, then three confidence bands within the funded
+    // portion — actual (solid, burned to today), committed (contracted ahead),
+    // projected (forecast beyond) — plus an optional danger tail past empty.
+    function bar(
+      g: Geom,
+      topY: number,
+      funded: number,
+      danger: boolean,
+      commitPx: number,
+    ) {
       const bw = g.x1 - g.x0;
       const r = g.barH / 2;
       // track
@@ -109,9 +119,17 @@ export function RunwayCanvas() {
         ctx.fillStyle = "rgba(232,130,95,0.16)";
         ctx.fillRect(fx, topY, g.x1 - fx, g.barH);
       }
-      // funded (green)
-      ctx.fillStyle = MONEY;
+      // projected (faint) — the whole funded run, painted first as the floor
+      ctx.fillStyle = "rgba(95,208,160,0.3)";
       ctx.fillRect(g.x0, topY, fx - g.x0, g.barH);
+      // committed (medium) — up to the contracted-visibility point
+      const cx = g.X(Math.min(funded, commitPx));
+      ctx.fillStyle = "rgba(95,208,160,0.6)";
+      ctx.fillRect(g.x0, topY, cx - g.x0, g.barH);
+      // actual (solid) — burned spend up to today
+      const ax = g.X(Math.min(funded, TODAY_PX));
+      ctx.fillStyle = MONEY;
+      ctx.fillRect(g.x0, topY, ax - g.x0, g.barH);
       ctx.restore();
     }
 
@@ -156,15 +174,53 @@ export function RunwayCanvas() {
       // ── the two runway bars fill in sequence ──
       const f1 = BASE_FUNDED * easeOut(clamp01(pt / T1));
       const f2 = OPT_FUNDED * easeOut(clamp01((pt - T1 * 0.5) / D.opt));
-      bar(g, g.bar1Y, f1, true);
-      bar(g, g.bar2Y, f2, false);
+      bar(g, g.bar1Y, f1, true, COMMIT_BASE);
+      bar(g, g.bar2Y, f2, false, COMMIT_OPT);
 
-      // timeline direction cue
+      // ── "today" marker: everything to its left is actual (burned) spend ──
+      const todayX = g.X(TODAY_PX);
+      ctx.strokeStyle = "rgba(232,234,237,0.22)";
+      ctx.setLineDash([3, 4]);
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(todayX, g.bar1Y - 6);
+      ctx.lineTo(todayX, g.bar2Y + g.barH + 6);
+      ctx.stroke();
+      ctx.setLineDash([]);
       ctx.fillStyle = DIM;
       ctx.font = `10.5px ${FONT}`;
-      ctx.textAlign = "right";
+      ctx.textAlign = "center";
       ctx.textBaseline = "bottom";
-      ctx.fillText("programme timeline →", g.x1, h * 0.96);
+      ctx.fillText("today", todayX, g.bar1Y - 8);
+
+      // ── confidence legend: actual · committed · projected ──
+      const legendY = h * 0.955;
+      let lx = g.x0;
+      const swatch = (color: string, label: string) => {
+        ctx.fillStyle = color;
+        rr(lx, legendY - 8, 12, 7, 2);
+        ctx.fill();
+        ctx.fillStyle = DIM;
+        ctx.font = `10.5px ${FONT}`;
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
+        ctx.fillText(label, lx + 16, legendY - 4);
+        lx += 20 + ctx.measureText(label).width + 16;
+      };
+      swatch(MONEY, "actual");
+      swatch("rgba(95,208,160,0.6)", "committed");
+      swatch("rgba(95,208,160,0.3)", "projected");
+
+      // timeline direction cue — only when it clears the legend (drops out on
+      // narrow canvases rather than overlapping the "projected" label)
+      const tlLabel = "programme timeline →";
+      ctx.font = `10.5px ${FONT}`;
+      if (g.x1 - ctx.measureText(tlLabel).width > lx + 8) {
+        ctx.fillStyle = DIM;
+        ctx.textAlign = "right";
+        ctx.textBaseline = "middle";
+        ctx.fillText(tlLabel, g.x1, legendY - 4);
+      }
 
       // ── runway we add: bracket under the second bar ──
       if (pt >= T2) {
@@ -189,7 +245,7 @@ export function RunwayCanvas() {
           ctx.textAlign = "center";
           ctx.textBaseline = "top";
           ctx.fillText(
-            `+${ADDED_MONTHS} months of runway`,
+            "further on the same spend",
             (xa + g.X(OPT_FUNDED)) / 2,
             by + 6,
           );
