@@ -23,7 +23,7 @@ const RECORDS: { label: string; docs: string[] }[] = [
   { label: "Pharmacovigilance", docs: ["SAE report", "Safety update"] },
   { label: "Randomisation", docs: ["Randomisation list", "IRT invoice"] },
   { label: "IMP logistics", docs: ["Shipment", "Depot invoice"] },
-  { label: "Comparator", docs: ["Comparator PO", "Sourcing invoice"] },
+  { label: "Variance + evidence", docs: ["Variance flag", "Evidence pack"] },
   { label: "Sites", docs: ["Site contract", "Site payment"] },
 ];
 
@@ -186,12 +186,12 @@ export function AgentFilingCanvas() {
       ctx.beginPath();
       ctx.arc(L.hubX, L.hubY, 4.5, 0, Math.PI * 2);
       ctx.fill();
-      ctx.globalAlpha = 0.7;
+      ctx.globalAlpha = 0.75;
       ctx.fillStyle = DIM;
       ctx.font = "11px ui-sans-serif, system-ui, -apple-system, sans-serif";
       ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      //ctx.fillText("agent", L.hubX, L.hubY);
+      ctx.textBaseline = "top";
+      ctx.fillText("Vendor spend", L.hubX, L.hubY + 30);
       ctx.restore();
     }
 

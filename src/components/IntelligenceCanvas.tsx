@@ -23,14 +23,12 @@ const SOURCES = ["ERP", "Accounting", "Bank feeds", "CTMS", "Email", "Vendor por
 // what the core fires back out — opportunities and actions, kept short
 type Kind = "flag" | "money" | "accent";
 const INSIGHTS: { label: string; kind: Kind }[] = [
-  { label: "Overbill flagged", kind: "flag" },
-  { label: "Recover $97,500", kind: "money" },
+  { label: "Billed above contract", kind: "flag" },
+  { label: "Evidence attached", kind: "accent" },
+  { label: "$97,500 variance found", kind: "money" },
   { label: "Duplicate caught", kind: "flag" },
   { label: "Accrual reconciled", kind: "accent" },
-  { label: "Off-contract rate", kind: "flag" },
-  { label: "Runway extended", kind: "money" },
-  { label: "VAT to recover", kind: "money" },
-  { label: "Forecast refreshed", kind: "accent" },
+  { label: "Recovery tracked", kind: "money" },
 ];
 const kindColor = (k: Kind) => (k === "flag" ? FLAG : k === "money" ? MONEY : ACCENT);
 
@@ -285,10 +283,10 @@ export function IntelligenceCanvas() {
       ctx.font = `600 10px ${FONT}`;
       ctx.textBaseline = "alphabetic";
       ctx.textAlign = "left";
-      ctx.fillText("YOUR SYSTEMS", L.srcX, h * 0.055);
+      ctx.fillText("YOUR VENDOR SPEND", L.srcX, h * 0.055);
       ctx.textAlign = "right";
       ctx.fillStyle = "rgba(136,166,248,0.75)";
-      ctx.fillText("FIRSTOCEAN ACTS", w * 0.975, h * 0.055);
+      ctx.fillText("AUDIT", w * 0.975, h * 0.055);
     }
 
     let raf = 0;

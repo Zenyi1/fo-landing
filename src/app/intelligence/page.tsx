@@ -4,13 +4,12 @@ import { IntelligenceCanvas } from "@/components/IntelligenceCanvas";
 import { ErrorRecoveryCanvas } from "@/components/ErrorRecoveryCanvas";
 import { RunwayCanvas } from "@/components/RunwayCanvas";
 import { BirdsBackground } from "@/components/BirdsBackground";
-import { CountUp } from "@/components/CountUp";
 import { Reveal } from "@/components/Reveal";
 import { intelligenceCallUrl } from "@/lib/links";
 
 const title = "firstocean · intelligence";
 const description =
-  "Every dollar your clinical trial spends, reconciled. firstocean reconciles CRO, CDMO, lab, site and specialist-vendor spend against contracts, work orders, change orders and invoices. Finance gets a close it can defend. Clinical operations gets scope it can control.";
+  "firstocean checks every outsourced clinical-trial invoice against the contract, work order and delivery record, so Finance catches billing errors before close and Clinical Operations can control scope.";
 
 export const metadata: Metadata = {
   // absolute so the root layout's "%s · firstocean" template doesn't double the suffix
@@ -65,12 +64,12 @@ function Logo() {
 const panel =
   "relative w-full overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]";
 
-// green "recovered" state — never colour alone: a check glyph and the word carry
-// it for anyone who can't read the tint.
+// green "variance found" state. Never colour alone: a check glyph and the word
+// carry it for anyone who can't read the tint.
 function RecoveredPill() {
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-[#5fd0a0]/30 bg-[#5fd0a0]/10 px-2.5 py-1 text-[11px] font-semibold text-[#5fd0a0]">
-      <span aria-hidden>✓</span> Recovered
+      <span aria-hidden>✓</span> Variance found
     </span>
   );
 }
@@ -119,20 +118,13 @@ function WorkflowStep({
 }
 
 function TrustRow() {
-  const items = [
-    "Clinical-stage sponsors",
-    "CRO · CDMO · lab · site · specialist-vendor spend",
-    "Contract-backed audit trail",
-    "Evidence on every flagged variance",
-  ];
   return (
-    <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[0.9rem] text-white/50">
-      {items.map((it, i) => (
-        <span key={it} className="inline-flex items-center gap-3">
-          {i > 0 && <span aria-hidden className="text-white/20">·</span>}
-          {it}
-        </span>
-      ))}
+    <div className="space-y-2 text-[0.95rem] leading-relaxed text-white/55">
+      <p>For clinical-stage sponsors managing CRO, CDMO, lab and site spend.</p>
+      <p>
+        Every flagged variance comes with the contract, invoice and delivery
+        evidence behind it.
+      </p>
     </div>
   );
 }
@@ -160,17 +152,17 @@ export default function IntelligencePage() {
             {/* left — statement */}
             <div className="max-w-xl pt-10 lg:pt-0">
               <h1 className="text-balance text-[2.6rem] font-normal leading-[1.05] tracking-[-0.03em] sm:text-[3.4rem] lg:text-[3.9rem] lg:leading-[1.02]">
-                Every dollar your clinical trial spends, reconciled.
+                Every clinical-trial invoice, checked before close.
               </h1>
               <p className="mt-7 max-w-md text-[1.12rem] font-normal leading-snug text-white/75 sm:text-[1.25rem]">
-                firstocean reconciles CRO, CDMO, lab, site and specialist-vendor
-                spend against contracts, work orders, change orders and
-                invoices. Finance gets a close it can defend. Clinical
-                operations gets scope it can control.
+                firstocean checks every outsourced trial invoice against the
+                contract, work order and delivery record, so Finance catches
+                billing errors before close and Clinical Operations can control
+                scope.
               </p>
               <p className="mt-5 text-[0.92rem] uppercase tracking-[0.14em] text-white/55">
-                For finance &amp; clinical operations teams managing outsourced
-                trial spend
+                For Finance and Clinical Operations teams managing outsourced
+                clinical-trial spend
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-5">
                 <a
@@ -180,12 +172,21 @@ export default function IntelligencePage() {
                   See a sample audit <span aria-hidden>→</span>
                 </a>
               </div>
+              <p className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-white/55">
+                See the exact invoice, contracted rate, billed rate and evidence
+                the audit would return.
+              </p>
             </div>
 
-            {/* right — the product: existing systems stream in, firstocean
-                reconciles, and fires opportunities and actions back out */}
-            <div className={`${panel} h-[380px] sm:h-[440px] lg:h-[560px]`}>
-              <IntelligenceCanvas />
+            {/* right — vendor spend streams in, the audit reconciles it against
+                the contract, and findings fire back out */}
+            <div>
+              <div className={`${panel} h-[380px] sm:h-[440px] lg:h-[560px]`}>
+                <IntelligenceCanvas />
+              </div>
+              <p className="mt-3 text-[0.85rem] text-white/45">
+                Invoices, contracts and delivery records reconciled before close.
+              </p>
             </div>
           </div>
         </section>
@@ -197,7 +198,7 @@ export default function IntelligencePage() {
         >
           <Reveal>
             <h2 className="max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
-              One overbill, recovered before close.
+              One $97,500 variance, found before close.
             </h2>
             <p className="mt-6 max-w-2xl text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.15rem]">
               Your vendors approve their own billing. firstocean independently
@@ -221,14 +222,15 @@ export default function IntelligencePage() {
                 </div>
                 <div className="mt-6 flex flex-wrap items-baseline gap-3">
                   <span className="text-[3.2rem] font-semibold leading-none tracking-[-0.03em] text-[#f0b83e] sm:text-[4rem]">
-                    <CountUp value={97500} prefix="$" />
+                    $97,500
                   </span>
                   <span className="text-[1rem] text-white/55">
-                    recovered variance
+                    above contracted amount
                   </span>
                 </div>
                 <p className="mt-3 text-[0.95rem] text-white/55">
-                  CRO invoice · $497,500 billed vs $400,000 contracted
+                  Illustrative CRO invoice: $497,500 billed vs $400,000
+                  contracted.
                 </p>
               </div>
               <div className="mt-8">
@@ -245,6 +247,10 @@ export default function IntelligencePage() {
                   ]}
                 />
               </div>
+              <p className="mt-6 text-[11px] leading-relaxed text-white/40">
+                Illustrative example. Actual findings depend on the contract,
+                invoice and delivery records provided.
+              </p>
             </div>
 
             {/* before / detected / outcome */}
@@ -252,15 +258,15 @@ export default function IntelligencePage() {
               {[
                 {
                   k: "Before",
-                  v: "A CRO invoice enters $97,500 above the contracted amount, and it has already cleared into the accrual as correct.",
+                  v: "A CRO invoice enters the accrual $97,500 above the contracted amount.",
                 },
                 {
                   k: "Detected",
-                  v: "firstocean catches it while the vendor still has the paperwork to reverse the charge: a change order billed outside the contracted scope.",
+                  v: "firstocean matches the invoice to the contract, work order and delivery record, before the close is final.",
                 },
                 {
                   k: "Outcome",
-                  v: "The recovery posts inside the close, with the supporting line-item working attached.",
+                  v: "Finance gets the variance, the evidence and the recovery action in one record.",
                 },
               ].map((row) => (
                 <div key={row.k} className="border-l-2 border-white/10 pl-5">
@@ -287,7 +293,7 @@ export default function IntelligencePage() {
         <section className="mx-auto w-full max-w-6xl px-8 py-24 sm:px-14 sm:py-28">
           <Reveal>
             <h2 className="max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
-              From source document to reconciled result.
+              From invoice to approved variance.
             </h2>
           </Reveal>
           <Reveal
@@ -296,8 +302,8 @@ export default function IntelligencePage() {
           >
             <WorkflowStep
               n="1"
-              title="Ingest"
-              body="Work orders, change orders, invoices, payments, contracts and site activity land in one place as they arrive."
+              title="Collect the evidence"
+              body="Invoices, contracts, work orders, change orders, payments and delivery records arrive in one place."
               visual={
                 <EvidenceChips
                   items={[
@@ -313,8 +319,8 @@ export default function IntelligencePage() {
             />
             <WorkflowStep
               n="2"
-              title="Reconcile"
-              body="Agents compare what was billed against what was contracted and what was actually delivered."
+              title="Check billed vs contracted"
+              body="Every charge is compared with the approved scope and what the vendor actually delivered."
               visual={
                 <dl className="space-y-2 text-[13px]">
                   <div className="flex items-center justify-between">
@@ -334,8 +340,8 @@ export default function IntelligencePage() {
             />
             <WorkflowStep
               n="3"
-              title="Act"
-              body="Flag the variance, attach the evidence, update the forecast, and track the recovery to close."
+              title="Resolve before close"
+              body="Flag the variance, attach the evidence, update the forecast and track the recovery."
               visual={
                 <div className="flex items-center justify-between rounded-lg border border-[#5fd0a0]/25 bg-[#5fd0a0]/[0.06] px-3 py-2.5">
                   <span className="text-[13px] font-medium text-white/85">
@@ -346,6 +352,12 @@ export default function IntelligencePage() {
               }
             />
           </Reveal>
+          <Reveal delay={160} className="mt-8">
+            <p className="text-[1.05rem] text-white/60">
+              The result is a decision Finance and Clinical Operations can both
+              defend.
+            </p>
+          </Reveal>
         </section>
 
         {/* ── COVERAGE · one record across every vendor ───────── */}
@@ -353,15 +365,12 @@ export default function IntelligencePage() {
           <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
               <h2 className="max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
-                One current record across every vendor.
+                One audit trail for every outsourced vendor.
               </h2>
               <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
-                Agents read each work order, change order, invoice and payment
-                as it arrives. They file every item against the contract and
-                reconcile what was billed with what was delivered. Your CRO,
-                CDMO, lab, site and specialist-vendor spend stays in one current
-                record,
-                with accrual and runway updating as the trial moves.
+                firstocean keeps the contract, invoice, delivery evidence and
+                recovery action together. Finance sees what is committed and
+                payable. Clinical Operations sees what changed and why.
               </p>
             </div>
             <div className={`${panel} h-[340px] sm:h-[420px] lg:h-[480px]`}>
@@ -375,21 +384,19 @@ export default function IntelligencePage() {
           <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
             <div>
               <h2 className="max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
-                Know your cash-out date before the next readout.
+                See committed trial spend before it surprises the close.
               </h2>
               <div className="mt-6 max-w-md space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
                 <p>
-                  Accruals often arrive after the month closes, built from vendor
-                  reports that arrive later still. firstocean rebuilds committed
-                  spend from invoices, site activity and programme pace. Finance
-                  sees the projected readout date, the projected cash-out date,
-                  and the decisions that still have time to change.
+                  Accruals often arrive after the month closes. firstocean
+                  rebuilds committed spend from invoices, site activity and
+                  vendor updates, so Finance can see what is payable now and what
+                  is still coming.
                 </p>
                 <p>
-                  When a programme runs hot, you see it while there is still
-                  time to act: flag a change order before it is billed, move a
-                  site, or size your next raise around a readout date you can
-                  defend.
+                  When a program runs hot, you see it while there is still time
+                  to act: challenge a change order, move a site or adjust the
+                  forecast before the variance becomes a surprise.
                 </p>
               </div>
             </div>
@@ -421,14 +428,12 @@ export default function IntelligencePage() {
         >
           <Reveal className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-8 py-14 sm:px-14 sm:py-20">
             <h2 className="max-w-2xl text-balance text-[2rem] font-normal leading-[1.1] tracking-[-0.025em] sm:text-[2.9rem]">
-              See what your programme would surface.
+              Join the first cohort of sponsors.
             </h2>
             <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-white/70 sm:text-[1.2rem]">
-              We&rsquo;re working with a small number of clinical-stage sponsors
-              to reconcile CRO, CDMO, lab, site and specialist-vendor spend
-              against the underlying
-              contract and delivery record. Bring one programme or one vendor
-              invoice, and we&rsquo;ll show you what the audit would surface.
+              We&rsquo;re onboarding a small number of clinical-stage sponsors.
+              Join the waitlist and we&rsquo;ll reach out to run a sample audit on
+              one of your vendor invoices.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-5">
               <a
@@ -437,7 +442,7 @@ export default function IntelligencePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-3.5 text-[1.02rem] font-semibold text-[#0a0b0d] transition-colors hover:bg-white/90"
               >
-                Talk through your programme
+                Join the waitlist
               </a>
             </div>
           </Reveal>
