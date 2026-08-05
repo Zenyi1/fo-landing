@@ -8,9 +8,12 @@ import { useEffect, useRef } from "react";
 // tally; each loop is one clean story. Respects prefers-reduced-motion by
 // holding the resolved "recovered" frame.
 
+// Lead with the $97,500 CRO change-order case so the number the page tells the
+// story around matches the first thing this loop shows; the rest give the range
+// of errors reconciliation catches.
 const EVENTS = [
+  { doc: "Invoice", vendor: "CRO", issue: "Change order out of scope", amount: 97500 },
   { doc: "Invoice", vendor: "CRO", issue: "Duplicate invoice", amount: 18400 },
-  { doc: "Change notice", vendor: "CRO", issue: "Change order out of scope", amount: 42600 },
   { doc: "Invoice", vendor: "CDMO", issue: "Overbilled vs contract", amount: 27300 },
   { doc: "Payment", vendor: "Central lab", issue: "VAT unrecovered", amount: 9200 },
 ];

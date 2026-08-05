@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 
 // Fades and lifts its children into place the first time they scroll into view.
-// One-shot (it doesn't re-hide on scroll up) and reduced-motion safe.
+// One-shot (it doesn't re-hide on scroll up). Under prefers-reduced-motion the
+// content appears immediately with the transition disabled — no fade, no lift.
 export function Reveal({
   children,
   className = "",
@@ -14,20 +15,22 @@ export function Reveal({
   delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
+  const [state, setState] = useState<"hidden" | "shown" | "instant">("hidden");
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown(true);
+      // matchMedia is client-only, so this must settle in an effect.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setState("instant");
       return;
     }
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
-            setShown(true);
+            setState("shown");
             io.disconnect();
           }
         }
@@ -38,14 +41,18 @@ export function Reveal({
     return () => io.disconnect();
   }, []);
 
+  const visible = state !== "hidden";
   return (
     <div
       ref={ref}
       className={className}
       style={{
-        opacity: shown ? 1 : 0,
-        transform: shown ? "none" : "translateY(26px)",
-        transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : "translateY(26px)",
+        transition:
+          state === "instant"
+            ? "none"
+            : `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
         willChange: "opacity, transform",
       }}
     >
