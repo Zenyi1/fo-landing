@@ -16,8 +16,6 @@ export const metadata: Metadata = {
   title: { absolute: title },
   description,
   alternates: { canonical: "/intelligence" },
-  // deliberately undiscoverable — no index, no follow, no sitemap entry
-  robots: { index: false, follow: false, nocache: true },
   openGraph: {
     type: "website",
     url: "/intelligence",
