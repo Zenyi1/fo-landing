@@ -16,6 +16,9 @@ const nextConfig: NextConfig = {
       { source: "/ja", destination: "/", permanent: true },
       { source: "/en/:path*", destination: "/", permanent: true },
       { source: "/ja/:path*", destination: "/", permanent: true },
+      // the standalone approach and contact pages folded into the homepage
+      { source: "/approach", destination: "/", permanent: true },
+      { source: "/contact", destination: "/", permanent: true },
     ];
   },
 };
