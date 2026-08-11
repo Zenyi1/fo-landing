@@ -139,21 +139,6 @@ export default function PreSeedPost() {
               className="object-cover"
             />
           </div>
-          <figcaption
-            className="mt-3 text-[0.82rem]"
-            style={{ color: "var(--bp-ink-muted)" }}
-          >
-            Photograph by{" "}
-            <a
-              href="https://unsplash.com/@thisisengineering"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline underline-offset-4"
-            >
-              ThisisEngineering
-            </a>{" "}
-            on Unsplash.
-          </figcaption>
         </figure>
 
         {/* One measure, one column. The paragraph rules below are the same set

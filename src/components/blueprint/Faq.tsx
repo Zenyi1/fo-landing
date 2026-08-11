@@ -10,29 +10,32 @@ import { Reveal } from "@/components/Reveal";
 // further up. Nothing is asserted for the first time in the FAQ.
 const QUESTIONS = [
   {
-    q: "Do you train on our data?",
-    a: "No. Your documents are used to run your company and nothing else. We do not train models on them, we do not use them to improve anything shared across customers, and we do not sell or share them with anyone. Where a third-party model provider is involved we work under terms that prohibit training on your content. Ask us to delete it and we will.",
-    href: { label: "Read the privacy policy", to: "/privacy" },
+    q: "what is firstocean?",
+    a: "firstocean is building the operating system for everything a biotech does other than the science. it connects the company’s operating context, then gives agents the ability to run repeatable work with evidence and human oversight.",
   },
   {
-    q: "How long does it take to start?",
-    a: "A day. You send whatever documents you hold and open a channel with us. Your context is structured and the first agents are working on it the day after you hand it over.",
+    q: "why does this need to exist now?",
+    a: "the pace of discovery is increasing, but the coordination layer around discovery is still fragmented. more programs and more external partners create more operating work without creating a system that can see how the pieces fit together.",
   },
   {
-    q: "What do we have to prepare?",
-    a: "Nothing. Contracts, invoices and filings in whatever shape they are in. There is no cleanup on your side, no schema to design and no form for anyone to fill in.",
+    q: "does firstocean replace our team?",
+    a: "no. the system is designed to remove repetitive checking, chasing, reconciliation, and preparation — not judgement, accountability, or scientific direction.",
   },
   {
-    q: "Do we have to change our systems?",
-    a: "No. We read what you already pay for and work in the channel your team already uses. Connecting a system is something we do when it earns its place, not a precondition for starting.",
+    q: "how do agents avoid making things up?",
+    a: "important outputs remain tied to the evidence and rules that produced them. when the record is incomplete or conflicting, the agent surfaces the uncertainty and asks for a decision instead of guessing.",
   },
   {
-    q: "How do we know the agents are right?",
-    a: "Every output arrives with the document it came from, so a figure can be traced back to the clause and the line that produced it. Where something is genuinely ambiguous the agent stops and gives it to a person rather than guessing. You are reviewing evidence, not taking a number on trust.",
+    q: "do we need to replace our existing systems?",
+    a: "no. firstocean is intended to become the operating layer across the systems a company already uses. a new integration is justified only when it makes the loop more complete or removes a real manual step.",
   },
   {
-    q: "Does this replace our finance team?",
-    a: "At this size there is rarely a team to replace. Finance is usually a fractional CFO, a bookkeeper, and whoever in operations sits closest to the vendor. The agents take the reconciling and the chasing that is currently spread across all three, so the people you do have spend their time deciding instead.",
+    q: "what happens as the company changes?",
+    a: "the operating model changes with it. new programs, vendors, rules, exceptions, and workflows become context for the next capability rather than another isolated implementation.",
+  },
+  {
+    q: "why start with operations instead of discovery?",
+    a: "because scientists should spend their time on the science. the work around it is essential, recurring, and increasingly suited to systems that can connect evidence, follow rules, and escalate judgement.",
   },
 ];
 
@@ -66,34 +69,26 @@ export function Faq() {
               className="group border-b"
               style={{ borderColor: "var(--bp-hairline)" }}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] [&::-webkit-details-marker]:hidden">
+              {/* The caret is taken out of the flow and pinned right, so the
+                  question can sit optically centred in the row instead of being
+                  pushed off-centre by the width of an icon. */}
+              <summary className="relative cursor-pointer list-none py-7 pr-10 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] [&::-webkit-details-marker]:hidden">
                 <h3 className="text-[1.15rem] font-medium tracking-[-0.015em] sm:text-[1.32rem]">
                   {item.q}
                 </h3>
                 <CaretDown
                   aria-hidden
-                  className="h-4 w-4 shrink-0 transition-transform duration-200 group-open:rotate-180"
+                  className="absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 transition-transform duration-200 group-open:-translate-y-1/2 group-open:rotate-180"
                   style={{ color: "var(--bp-blue)" }}
                 />
               </summary>
+              {/* Narrower than the left-aligned version was: centred prose has
+                  no straight edge to return to, so a shorter line matters more. */}
               <p
-                className="max-w-[68ch] pb-8 pr-10 text-[1.02rem] leading-relaxed"
+                className="mx-auto max-w-[56ch] pb-8 text-center text-[1.02rem] leading-relaxed"
                 style={{ color: "var(--bp-ink-muted)" }}
               >
                 {item.a}
-                {item.href ? (
-                  <>
-                    {" "}
-                    <a
-                      href={item.href.to}
-                      className="font-medium underline underline-offset-4"
-                      style={{ color: "var(--bp-blue)" }}
-                    >
-                      {item.href.label}
-                    </a>
-                    .
-                  </>
-                ) : null}
               </p>
             </details>
           ))}

@@ -9,6 +9,12 @@ export const LINKEDIN_URL = "https://www.linkedin.com/company/first-ocean";
 
 export const CONTACT_EMAIL = "hugo@first-ocean.com";
 
+/* Home for the operating-system side of the site. Not "/": the proxy only
+   rewrites that to this page for Europe and North America, so a wordmark
+   pointing at the root drops everyone else onto the licensing homepage. This
+   is the explicit route, which lands in the same place from anywhere. */
+export const OS_HOME = "/intelligence";
+
 // Book link for in-licensors / distributors, tagged so bookings from the
 // homepage buy-side CTA are attributable in analytics.
 export function inlicensorCallUrl() {

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 /* ── data ───────────────────────────────────────────────────────────────────
 
-   The whole non-science surface of a clinical-stage biotech, by department.
+   Every department of a clinical-stage biotech except research and discovery.
    The tile face carries the name and one concrete line; the full list of what
    sits inside a department only appears once it is opened.                   */
 
@@ -196,11 +196,42 @@ const DEPARTMENTS: Department[] = [
    break in the same place, and every row sizes to its own content, so the block
    reads as a drawn plan rather than as a table.
 
-   The spans still have to close: 2 for the science cell, then 7 narrow and 6
+   The spans still have to close: 2 for the research cell, then 7 narrow and 6
    wide departments is 21 units, exactly seven rows of three. A wide cell never
    starts in the last column, so no row is left with a hole in it. Below lg
    every cell is one column wide and the 14 of them fill two columns exactly. */
 const WIDE = new Set([2, 3, 6, 7, 10, 11]);
+
+/* One hue per department, laid in so that neighbouring colour means related
+   work: the money departments in sand, the paper ones in clay, the regulated
+   middle of the company in teal through blue, the corporate ones in plum, and
+   the two that mostly keep records in slate. All are low-chroma and all are
+   laid at 20% over white, which holds --bp-ink-muted above 6:1 on every cell.
+   Indexed to DEPARTMENTS. Research and discovery takes none of them: it is the
+   one white cell, which is what marks it. */
+const SAND = "#8a6a2f";
+const CLAY = "#8f4f3c";
+const TEAL = "#2b6f6b";
+const SAGE = "#4a6b3f";
+const BLUE = "var(--bp-blue)";
+const PLUM = "#5f4076";
+const SLATE = "#4a5568";
+
+const TINT = [
+  SAND, // finance
+  SAND, // procurement
+  CLAY, // legal
+  CLAY, // IP
+  TEAL, // clinical operations
+  BLUE, // regulatory
+  BLUE, // quality
+  SAGE, // CMC
+  TEAL, // pharmacovigilance
+  PLUM, // program and portfolio
+  PLUM, // corporate, IR and BD
+  SLATE, // healthcare compliance
+  SLATE, // people and IT
+];
 
 const CELL = "relative flex flex-col";
 const FACE = "relative flex flex-1 flex-col p-6 sm:p-7";
@@ -242,7 +273,7 @@ export function DepartmentGrid() {
   }, []);
 
   // `order` is the cell's place in the build, not its index in DEPARTMENTS —
-  // the science cell is drawn first and counts as 0.
+  // the research cell is drawn first and counts as 0.
   function build(order: number): React.CSSProperties {
     const visible = state !== "hidden";
     return {
@@ -259,37 +290,29 @@ export function DepartmentGrid() {
     <>
       <div
         ref={root}
-        // The cards are white; the section behind them is --bp-wash, which is
-        // only a few percent off white. An ink hairline between them is not
-        // enough to read as an edge at that contrast, so the rules are drawn
-        // in --bp-blue-tint instead: the container's fill shows through the
-        // 1px gaps, and a ring of the same repeats it around the outside.
-        // Blueprint rule rather than grey line, and visible either way.
+        // The rules between cells are the container's own fill showing through
+        // 1px gaps, with a ring of the same around the outside. --bp-blue-tint
+        // rather than an ink hairline: a blueprint rule reads as drawn, and it
+        // holds its edge against both the white cell and the tinted ones.
         className="grid grid-cols-1 gap-px overflow-hidden rounded-[var(--bp-r-md)] sm:grid-cols-2 lg:grid-cols-3"
         style={{
           background: "var(--bp-blue-tint)",
           boxShadow: "0 0 0 1px var(--bp-blue-tint)",
         }}
       >
-        {/* the one department we do not run: the only tinted cell, so it reads as
-          marked rather than as one more tile */}
+        {/* the one department we do not run: the only white cell in a grid of
+          colour, so it reads as the gap in the plan rather than as one more
+          tile. */}
         <div
           className={`${CELL} lg:col-span-2`}
-          style={{
-            background: "color-mix(in srgb, var(--bp-blue) 14%, #fff)",
-            ...build(0),
-          }}
+          style={{ background: "var(--bp-paper)", ...build(0) }}
         >
-          <div
-            aria-hidden
-            className="bp-grid pointer-events-none absolute inset-0"
-          />
           <div className={FACE}>
             <h3
               className="text-[1.4rem] tracking-[-0.02em] sm:text-[1.6rem]"
               style={{ color: "var(--bp-blue)" }}
             >
-              The science
+              Research and discovery
             </h3>
             <p
               className="mt-3 max-w-[42ch] text-[1rem] leading-relaxed"
@@ -305,16 +328,20 @@ export function DepartmentGrid() {
         {DEPARTMENTS.map((d, i) => (
           <div
             key={d.name}
-            className={`${CELL} ${WIDE.has(i) ? "lg:col-span-2" : ""}`}
-            style={{ background: "var(--bp-paper)", ...build(i + 1) }}
+            className={`${CELL} bg-[color-mix(in_srgb,var(--tint)_20%,white)] ${WIDE.has(i) ? "lg:col-span-2" : ""}`}
+            // the hue goes on as a custom property so the face can mix a deeper
+            // pour of the same colour for its hover without restating it
+            style={
+              { "--tint": TINT[i], ...build(i + 1) } as React.CSSProperties
+            }
           >
             {/* the whole face is the control. The button is stretched over it
               rather than wrapped around it, so the heading stays a heading. */}
             <div
-              // not --bp-wash on hover: that is the colour of the section
-              // behind the grid, so a hovered card would sink into it. A trace
-              // of the accent instead, so the card stays white and lifts.
-              className={`${FACE} group cursor-pointer transition-colors hover:bg-[color-mix(in_srgb,var(--bp-blue)_5%,#fff)]`}
+              // hover deepens the cell's own colour rather than washing it
+              // towards a shared one, so the grid keeps its reading of which
+              // departments belong together while a card is under the cursor
+              className={`${FACE} group cursor-pointer transition-colors hover:bg-[color-mix(in_srgb,var(--tint)_32%,white)]`}
             >
               <div className="flex justify-end">
                 <span
@@ -341,13 +368,6 @@ export function DepartmentGrid() {
               >
                 {d.line}
               </p>
-
-              <div
-                className={`mt-auto pt-6 ${LEDGER}`}
-                style={{ color: "var(--bp-ink-muted)" }}
-              >
-                {d.items.length} functions
-              </div>
 
               <button
                 ref={(el) => {

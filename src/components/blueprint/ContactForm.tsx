@@ -158,12 +158,25 @@ export function ContactForm() {
       </div>
 
       <div className="mt-5">
-        <Field
-          id="cta-handover"
-          name="handover"
-          label="What would you hand over first?"
-          optional
-          placeholder="Accrual, vendor invoices, regulatory filings, something else"
+        <label
+          className={LABEL}
+          htmlFor="cta-context"
+          style={{ color: "var(--bp-ink)" }}
+        >
+          Why are you reaching out?
+          <span style={{ color: "var(--bp-ink-muted)" }}> (optional)</span>
+        </label>
+        <textarea
+          id="cta-context"
+          name="context"
+          rows={4}
+          placeholder="Anything that would help us come to the call with context"
+          className={`${FIELD} resize-y leading-relaxed`}
+          style={{
+            borderColor: "var(--bp-hairline-strong)",
+            background: "var(--bp-paper)",
+            color: "var(--bp-ink)",
+          }}
         />
       </div>
 

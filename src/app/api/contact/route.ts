@@ -28,7 +28,7 @@ export async function POST(req: Request) {
   const email = String(body.email ?? "").trim();
   const company = String(body.company ?? "").trim();
   const teamSize = String(body.teamSize ?? "").trim();
-  const handover = String(body.handover ?? "").trim();
+  const context = String(body.context ?? "").trim();
 
   if (!name || !email) {
     return NextResponse.json(
@@ -57,13 +57,14 @@ export async function POST(req: Request) {
     ["Work email", email],
     ["Company", company],
     ["Team size", teamSize],
-    ["Would hand over first", handover],
+    ["Why they are reaching out", context],
   ];
 
+  // the last row is a textarea, so its line breaks have to survive into the HTML
   const html = `<h2>New call request</h2>${rows
     .map(
       ([k, v]) =>
-        `<p><strong>${k}:</strong> ${escape(v) || "(not provided)"}</p>`,
+        `<p><strong>${k}:</strong> ${escape(v).replace(/\n/g, "<br>") || "(not provided)"}</p>`,
     )
     .join("")}`;
 

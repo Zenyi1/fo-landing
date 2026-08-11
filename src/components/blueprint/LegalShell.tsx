@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { BlueprintFooter } from "@/components/blueprint/BlueprintFooter";
+import { OS_HOME } from "@/lib/links";
 
 // Reading shell for /privacy and /terms. Same blueprint tokens as
 // /intelligence, one measure, no decoration: these pages are read, not scanned.
@@ -20,7 +21,7 @@ export function LegalShell({
     >
       <header className="mx-auto flex h-[72px] w-full max-w-[1240px] items-center px-6 sm:px-10">
         <Link
-          href="/"
+          href={OS_HOME}
           className="text-[17px] font-medium lowercase tracking-[-0.015em]"
           style={{ color: "var(--bp-ink)" }}
         >
