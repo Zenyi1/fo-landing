@@ -26,7 +26,7 @@ const STEPS = [
     body: "Agents act on that model and carry routine work the whole way through, stopping at the one step that should stay a person's.",
   },
   {
-    title: "Growth",
+    title: "Learning",
     body: "As you grow we take on more, one domain at a time, until everything the company knows is a single connected record.",
   },
 ];
@@ -40,18 +40,52 @@ const CX = VB.w / 2;
 const CY = VB.h / 2;
 
 /* ── scene 1 · discovery ──────────────────────────────────────────────────
-   Systems on the left, converging into a model that assembles on the right.
-   The chips are the things you already pay for; nothing here asks anyone to
-   fill in a form, which is the whole claim of the step. */
+   The paper a company is actually made of, scattered across the stage. The
+   sheets drift side to side, then draw in and collapse into one record: the
+   orb, with the tide still running inside it. It loops, so the gathering is
+   something the reader watches happen rather than a finished diagram.
 
-const SOURCES = ["Contracts", "Invoices", "eTMF", "Vendor mail", "Ledger"];
-const JUNCTION = { x: 216, y: CY };
+   Positions are a fixed table, not generated: Math.random() at module scope
+   would give the server and the client different scatters and blow up
+   hydration. They avoid a disc of about 80 units around the centre so nothing
+   starts underneath the orb it is travelling to. */
 
-const MODEL = [
-  { label: "company", x: 296, y: 96, leaves: [[352, 58], [380, 112]] },
-  { label: "drug", x: 368, y: CY, leaves: [[424, 142], [424, 196]] },
-  { label: "pipeline", x: 296, y: 238, leaves: [[352, 278], [380, 222]] },
+const DOC_W = 26;
+const DOC_H = 32;
+
+const DOCS = [
+  { x: 18, y: 38 },
+  { x: 66, y: 96 },
+  { x: 14, y: 140 },
+  { x: 58, y: 202 },
+  { x: 20, y: 248 },
+  { x: 104, y: 268 },
+  { x: 96, y: 26 },
+  { x: 154, y: 12 },
+  { x: 236, y: 22 },
+  { x: 312, y: 10 },
+  { x: 372, y: 62 },
+  { x: 424, y: 40 },
+  { x: 416, y: 116 },
+  { x: 380, y: 158 },
+  { x: 428, y: 198 },
+  { x: 366, y: 236 },
+  { x: 306, y: 284 },
+  { x: 226, y: 292 },
+  { x: 148, y: 286 },
 ] as const;
+
+const ORB_R = 46;
+// the waterline sits below the middle of the orb, so the crest reads as a
+// surface rather than as a line cutting the circle in half
+const TIDE_Y = CY + 8;
+
+/* One period of the wave is 44 units - `q` then seven `t`s, each reflecting the
+   previous control point into the next bump. That is what lets the tide loop by
+   translating exactly -44 with no seam. It is drawn wide enough that a full
+   period of travel never pulls its edge out of the orb. */
+const WAVE =
+  "M -66 0 q 11 -9 22 0 t 22 0 t 22 0 t 22 0 t 22 0 t 22 0 t 22 0 t 22 0";
 
 function Label({
   x,
@@ -88,240 +122,323 @@ function Discovery() {
       viewBox={`0 0 ${VB.w} ${VB.h}`}
       className="absolute inset-0 h-full w-full"
       role="img"
-      aria-label="Contracts, invoices, the eTMF, vendor mail and the ledger feed into a model of the company, the drug and the pipeline."
+      aria-label="Contracts, invoices, filings and vendor mail scattered across the page drift, then draw together into one record."
     >
-      {SOURCES.map((label, i) => {
-        const y = 60 + i * 44;
+      <defs>
+        <clipPath id="bp-orb-clip">
+          <circle cx={CX} cy={CY} r={ORB_R} />
+        </clipPath>
+      </defs>
+
+      {DOCS.map((d, i) => {
+        // travel is measured centre to centre, so a sheet lands on the orb
+        // rather than beside it
+        const tx = CX - (d.x + DOC_W / 2);
+        const ty = CY - (d.y + DOC_H / 2);
         return (
           <g
-            key={label}
-            className="bp-fly"
-            style={{ "--d": `${i * 110}ms` } as React.CSSProperties}
+            key={`${d.x}-${d.y}`}
+            className="bp-gather"
+            opacity={0.32}
+            style={
+              {
+                "--tx": `${tx}px`,
+                "--ty": `${ty}px`,
+                // alternating drift, so the field shuffles rather than sliding
+                // one way as a block
+                "--sx": `${i % 2 ? -11 : 11}px`,
+                "--d": `${i * 210}ms`,
+              } as React.CSSProperties
+            }
           >
             <rect
-              x={10}
-              y={y}
-              width={112}
-              height={26}
-              rx={6}
+              x={d.x}
+              y={d.y}
+              width={DOC_W}
+              height={DOC_H}
+              rx={3}
               fill="var(--bp-paper)"
               stroke="currentColor"
-              strokeOpacity={0.3}
+              strokeOpacity={0.45}
             />
-            <text x={24} y={y + 17} fontSize={11} fill="var(--bp-ink)">
-              {label}
-            </text>
-            <line
-              className="bp-draw"
-              x1={122}
-              y1={y + 13}
-              x2={JUNCTION.x}
-              y2={JUNCTION.y}
-              pathLength={1}
-              stroke="currentColor"
-              strokeOpacity={0.3}
-              strokeWidth={1}
-              strokeDasharray="3 3"
-              style={{ "--d": `${380 + i * 90}ms` } as React.CSSProperties}
-            />
+            {[9, 15, 21].map((dy, j) => (
+              <line
+                key={dy}
+                x1={d.x + 6}
+                y1={d.y + dy}
+                x2={d.x + (j === 2 ? 15 : 20)}
+                y2={d.y + dy}
+                stroke="currentColor"
+                strokeOpacity={0.4}
+                strokeWidth={1.4}
+              />
+            ))}
           </g>
         );
       })}
 
-      <circle
-        className="bp-pop"
-        cx={JUNCTION.x}
-        cy={JUNCTION.y}
-        r={5}
-        fill="currentColor"
-        style={{ "--d": "820ms" } as React.CSSProperties}
-      />
+      {/* the record everything lands in */}
+      <g className="bp-pop" style={{ "--d": "700ms" } as React.CSSProperties}>
+        <circle
+          cx={CX}
+          cy={CY}
+          r={ORB_R}
+          fill="var(--bp-paper)"
+          stroke="currentColor"
+          strokeWidth={1.4}
+        />
 
-      {MODEL.map((hub, i) => (
-        <g key={hub.label}>
-          <line
-            className="bp-draw"
-            x1={JUNCTION.x}
-            y1={JUNCTION.y}
-            x2={hub.x}
-            y2={hub.y}
-            pathLength={1}
-            stroke="currentColor"
-            strokeOpacity={0.45}
-            strokeWidth={1}
-            style={{ "--d": `${900 + i * 140}ms` } as React.CSSProperties}
-          />
-          {hub.leaves.map(([lx, ly], j) => (
-            <g key={`${lx}-${ly}`}>
-              <line
-                className="bp-draw"
-                x1={hub.x}
-                y1={hub.y}
-                x2={lx}
-                y2={ly}
-                pathLength={1}
-                stroke="currentColor"
-                strokeOpacity={0.32}
-                strokeWidth={1}
-                style={
-                  {
-                    "--d": `${1180 + i * 140 + j * 90}ms`,
-                  } as React.CSSProperties
-                }
-              />
-              <circle
-                className="bp-pop"
-                cx={lx}
-                cy={ly}
-                r={3}
-                fill="currentColor"
-                fillOpacity={0.75}
-                style={
-                  {
-                    "--d": `${1260 + i * 140 + j * 90}ms`,
-                  } as React.CSSProperties
-                }
-              />
-            </g>
-          ))}
-          <circle
-            className="bp-pop"
-            cx={hub.x}
-            cy={hub.y}
-            r={6}
-            fill="currentColor"
-            style={{ "--d": `${1000 + i * 140}ms` } as React.CSSProperties}
-          />
-          <g
-            className="bp-pop"
-            style={{ "--d": `${1080 + i * 140}ms` } as React.CSSProperties}
-          >
-            <Label x={hub.x} y={hub.y - 13}>
-              {hub.label}
-            </Label>
+        <g clipPath="url(#bp-orb-clip)">
+          <g className="bp-tide">
+            <path
+              d={`${WAVE} V ${VB.h} H -66 Z`}
+              transform={`translate(${CX} ${TIDE_Y})`}
+              fill="currentColor"
+              fillOpacity={0.16}
+            />
+            <path
+              d={WAVE}
+              transform={`translate(${CX} ${TIDE_Y})`}
+              fill="none"
+              stroke="currentColor"
+              strokeOpacity={0.65}
+              strokeWidth={1.4}
+            />
           </g>
         </g>
-      ))}
+
+        {/* redrawn over the tide so the rim stays a clean circle */}
+        <circle
+          cx={CX}
+          cy={CY}
+          r={ORB_R}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.4}
+        />
+      </g>
     </svg>
   );
 }
 
 /* ── scene 2 · execution ──────────────────────────────────────────────────
-   The one scene that is not a drawing. It runs a real chain — invoice in,
-   audited against the protocol, discrepancy found, email drafted — and then
-   stops, because the last step is a person's. The Send button is a real
-   button: the reader is the human in the loop rather than being told there is
-   one. */
+   The one scene that is not a drawing. It plays the chain out: the agent reads
+   the four documents an invoice has to be judged against, one at a time, drafts
+   the challenge it found, and then a pointer arrives and sends it. The ripple
+   is the money going back out the door.
 
-const CHAIN = [
-  {
-    t: "Invoice received",
-    d: "Kelvin CRO · $184,200 · Q3 monitoring",
-  },
-  {
-    t: "Audited against the protocol",
-    d: "Every line matched to the schedule of assessments",
-  },
-  {
-    t: "Discrepancy flagged",
-    d: "42 monitoring visits billed. The protocol schedules 38.",
-  },
+   It runs itself on a phase timer and loops, so nothing here is clickable. The
+   scene used to end on a real Send button the reader pressed; that made the
+   point about a human in the loop better, but it also meant the sequence only
+   ever completed for people who noticed the button.
+
+   Every visual is derived from `phase`, so the restart needs no teardown: at
+   phase 0 nothing is scanned, no draft exists and the pointer is away. */
+
+const DOCUMENTS = [
+  { t: "Work order", d: "Kelvin CRO, Q3 monitoring" },
+  { t: "Protocol v4.2", d: "Schedule of assessments" },
+  { t: "Invoice #KC-1184", d: "$184,200" },
+  { t: "Visit log", d: "42 visits" },
 ];
 
+// phase indices the render reads by name rather than by number
+const P_DRAFT = 1 + DOCUMENTS.length; // 5
+const P_POINTER = P_DRAFT + 1; // 6
+const P_SEND = P_POINTER + 1; // 7
+const P_FADE = P_SEND + 1; // 8
+
+// ms per phase: lead-in, one per document, draft, pointer travel, send, fade
+const PHASE_MS = [520, 660, 660, 660, 660, 1180, 780, 1800, 640];
+
 function Execution() {
-  const [sent, setSent] = useState(false);
+  const [tick, setTick] = useState(0);
+  const [reduced, setReduced] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (reduced) return;
+    const id = setTimeout(
+      () => setTick((t) => (t + 1) % PHASE_MS.length),
+      PHASE_MS[tick],
+    );
+    return () => clearTimeout(id);
+  }, [tick, reduced]);
+
+  // Under reduced motion the loop never runs and the scene rests on the frame
+  // where the work is done, which is the finished state the other scenes also
+  // settle on. Derived rather than pushed into state: forcing the tick would
+  // mean a setState inside the effect.
+  const phase = reduced ? P_SEND : tick;
+  const drafted = phase >= P_DRAFT;
+  const sent = phase >= P_SEND;
 
   return (
-    <div className="absolute inset-0 flex flex-col justify-center gap-3 p-5 sm:p-6">
-      <ol className="flex flex-col gap-2.5">
-        {CHAIN.map((s, i) => (
-          <li
-            key={s.t}
-            className="bp-fly flex items-start gap-3"
-            style={{ "--d": `${i * 260}ms` } as React.CSSProperties}
-          >
-            <span
-              aria-hidden
-              className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full"
-              style={{ background: "currentColor" }}
-            />
-            <span className="min-w-0">
+    <div
+      className="absolute inset-0 flex flex-col justify-center gap-3 p-5 transition-opacity duration-500 sm:p-6"
+      style={{ opacity: phase === P_FADE ? 0 : 1 }}
+    >
+      <ol className="flex flex-col gap-1.5">
+        {DOCUMENTS.map((doc, i) => {
+          // the agent is on this row now; everything above it is already read
+          const reading = phase === i + 1;
+          const read = phase > i + 1;
+          return (
+            <li
+              key={doc.t}
+              className="flex items-center gap-2.5 rounded-[var(--bp-r-sm)] border px-2.5 py-1.5 transition-colors duration-300"
+              style={{
+                borderColor: reading ? "var(--bp-blue)" : "var(--bp-hairline)",
+                background: reading
+                  ? "color-mix(in srgb, var(--bp-blue) 8%, transparent)"
+                  : "var(--bp-paper)",
+              }}
+            >
+              {/* sheet glyph, ticked once the agent has been through it */}
               <span
-                className="block text-[0.82rem] font-medium"
-                style={{ color: "var(--bp-ink)" }}
+                aria-hidden
+                className="grid h-5 w-4 shrink-0 place-items-center rounded-[2px] border text-[0.6rem] leading-none transition-colors duration-300"
+                style={{
+                  borderColor:
+                    reading || read
+                      ? "var(--bp-blue)"
+                      : "var(--bp-hairline-strong)",
+                  background: read ? "var(--bp-blue)" : "transparent",
+                  color: "#ffffff",
+                }}
               >
-                {s.t}
+                {read ? "✓" : ""}
               </span>
-              <span
-                className="block text-[0.78rem] leading-snug"
-                style={{ color: "var(--bp-ink-muted)" }}
-              >
-                {s.d}
+              {/* title and detail share one line: four stacked two-line rows
+                  plus the draft overflow the stage between 1024 and 1200px,
+                  where the column is narrowest but the type is not */}
+              <span className="min-w-0 truncate text-[0.8rem] leading-tight">
+                <span
+                  className="font-medium"
+                  style={{
+                    color: reading ? "var(--bp-blue)" : "var(--bp-ink)",
+                  }}
+                >
+                  {doc.t}
+                </span>
+                <span style={{ color: "var(--bp-ink-muted)" }}>
+                  {" · "}
+                  {doc.d}
+                </span>
               </span>
-            </span>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ol>
 
+      {/* The draft is always in the DOM so the list above never reflows when it
+          arrives — it only fades and lifts into place. */}
       <div
-        className="bp-fly rounded-[var(--bp-r-sm)] border p-3.5"
-        style={
-          {
-            "--d": "800ms",
-            borderColor: "var(--bp-hairline-strong)",
-            background: "var(--bp-paper)",
-          } as React.CSSProperties
-        }
+        className="rounded-[var(--bp-r-sm)] border p-3 transition-all duration-500"
+        style={{
+          borderColor: "var(--bp-hairline-strong)",
+          background: "var(--bp-paper)",
+          opacity: drafted ? 1 : 0,
+          transform: drafted ? "none" : "translateY(8px)",
+        }}
       >
         <p
-          className="text-[0.7rem] uppercase tracking-[0.1em]"
+          className="text-[0.68rem] uppercase tracking-[0.1em]"
           style={{ color: "var(--bp-ink-muted)" }}
         >
           Drafted · to billing@kelvincro.com
         </p>
         <p
-          className="mt-1.5 text-[0.82rem] leading-snug"
+          className="mt-1 text-[0.78rem] leading-snug"
           style={{ color: "var(--bp-ink)" }}
         >
           Visits 39–42 sit outside the schedule of assessments. Please issue a
           credit note for <span className="tnum">$19,400</span>.
         </p>
 
-        <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-          {sent ? (
-            <p
-              role="status"
-              className="text-[0.78rem]"
-              style={{ color: "var(--bp-ink-muted)" }}
-            >
-              Sent. <span className="tnum">$19,400</span> claimed back.
-            </p>
-          ) : (
-            <p
-              className="text-[0.78rem]"
-              style={{ color: "var(--bp-ink-muted)" }}
-            >
-              Waiting on you.
-            </p>
-          )}
-
-          <button
-            type="button"
-            onClick={() => setSent(true)}
-            disabled={sent}
-            className={`${sent ? "" : "bp-await"} inline-flex items-center gap-1.5 whitespace-nowrap rounded-[var(--bp-r-sm)] px-4 py-2 text-[0.82rem] font-medium text-white transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] disabled:opacity-45`}
-            style={{ background: "var(--bp-blue)" }}
+        <div className="mt-2.5 flex flex-wrap items-center justify-between gap-3">
+          <p
+            className="text-[0.74rem]"
+            style={{ color: "var(--bp-ink-muted)" }}
           >
-            {sent ? "Sent" : "Send"}
-            {sent ? null : <span aria-hidden>→</span>}
-          </button>
+            {sent ? (
+              <>
+                Sent. <span className="tnum">$19,400</span> claimed back.
+              </>
+            ) : (
+              "Ready to send."
+            )}
+          </p>
+
+          {/* the pointer and the ripple are anchored to this wrapper, so they
+              land on the button wherever the flex row puts it */}
+          <span className="relative inline-flex">
+            {sent &&
+              !reduced &&
+              [0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  aria-hidden
+                  className="bp-ripple pointer-events-none absolute left-1/2 top-1/2 h-8 w-8 rounded-full border"
+                  style={
+                    {
+                      borderColor: "var(--bp-blue)",
+                      "--d": `${i * 240}ms`,
+                    } as React.CSSProperties
+                  }
+                />
+              ))}
+
+            <span
+              className={`${drafted && !sent ? "bp-await" : ""} inline-flex items-center gap-1.5 whitespace-nowrap rounded-[var(--bp-r-sm)] px-3.5 py-1.5 text-[0.78rem] font-medium text-white transition-transform duration-150`}
+              style={{
+                background: "var(--bp-blue)",
+                // the press, on the frame the pointer arrives
+                transform: phase === P_SEND ? "translateY(1px)" : "none",
+              }}
+            >
+              {sent ? "Sent" : "Send"}
+              {sent ? null : <span aria-hidden>→</span>}
+            </span>
+
+            {/* Positioned from the button's centre rather than from the stage,
+                then nudged so the arrow's tip — its top-left — is what sits on
+                the button rather than its middle. */}
+            <svg
+              aria-hidden
+              viewBox="0 0 12 18"
+              className="pointer-events-none absolute left-1/2 top-1/2 h-4 w-3 transition-all duration-700 ease-out"
+              style={{
+                opacity: phase >= P_POINTER && phase < P_FADE ? 1 : 0,
+                transform:
+                  phase >= P_SEND
+                    ? "translate(-2px, -2px)"
+                    : "translate(46px, 34px)",
+              }}
+            >
+              <path
+                d="M1 1 L1 15 L4.6 11.6 L7 17 L9.4 16 L7 10.8 L11 10.8 Z"
+                fill="var(--bp-ink)"
+                stroke="var(--bp-paper)"
+                strokeWidth={1.2}
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
         </div>
       </div>
     </div>
   );
 }
 
-/* ── scene 3 · growth ─────────────────────────────────────────────────────
+/* ── scene 3 · learning ───────────────────────────────────────────────────
    One node becomes a domain, that domain becomes six, and the six start
    talking to each other. The cross-links land last on purpose: the density is
    the point, not the branches. */
@@ -362,7 +479,7 @@ const CROSS = BRANCHES.map((b, i) => [
   BRANCHES[(i + 1) % BRANCHES.length].leaves[0],
 ]);
 
-function Growth() {
+function Learning() {
   return (
     <svg
       viewBox={`0 0 ${VB.w} ${VB.h}`}
@@ -470,7 +587,7 @@ function Growth() {
 function Scene({ step }: { step: number }) {
   if (step === 0) return <Discovery />;
   if (step === 1) return <Execution />;
-  return <Growth />;
+  return <Learning />;
 }
 
 export function KnowledgeEngine() {
@@ -571,7 +688,7 @@ export function KnowledgeEngine() {
             room at the bottom, so the centred content never sits under it */}
         <div className="px-6 sm:px-10 lg:sticky lg:top-0 lg:flex lg:h-screen lg:items-center lg:py-24">
           <div className="mx-auto grid w-full max-w-[1240px] items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
-            <div>
+            <div className="bp-steps">
               <h2
                 className="max-w-[16ch] text-balance leading-[1.04] tracking-[-0.035em]"
                 style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.5rem)" }}
@@ -579,7 +696,11 @@ export function KnowledgeEngine() {
                 How firstocean works.
               </h2>
 
-              <ol className="mt-10 space-y-1">
+              {/* All three steps stay visible as a row; only the current one is
+                  lit, and only its copy is on the page. Not role="tablist":
+                  these are also driven by scroll position, and tab semantics
+                  would promise arrow-key navigation that does not exist. */}
+              <ol className="mt-9 flex flex-wrap gap-2">
                 {STEPS.map((s, i) => {
                   const active = i === step;
                   return (
@@ -587,33 +708,44 @@ export function KnowledgeEngine() {
                       <button
                         type="button"
                         onClick={() => goTo(i)}
-                        aria-current={active}
-                        className="w-full border-l-2 py-4 pl-5 text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)]"
+                        aria-current={active ? "step" : undefined}
+                        className="font-ledger inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-[0.72rem] uppercase leading-none tracking-[0.12em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)]"
                         style={{
+                          background: active
+                            ? "var(--bp-blue)"
+                            : "var(--bp-paper)",
                           borderColor: active
                             ? "var(--bp-blue)"
                             : "var(--bp-hairline)",
+                          color: active ? "#ffffff" : "var(--bp-ink-muted)",
                         }}
                       >
-                        <h3
-                          className="text-[1.12rem] tracking-[-0.015em]"
+                        <span
+                          aria-hidden
+                          className="h-1.5 w-1.5 rounded-full"
                           style={{
-                            color: active ? "var(--bp-blue)" : "var(--bp-ink)",
+                            background: active
+                              ? "#ffffff"
+                              : "var(--bp-hairline-strong)",
                           }}
-                        >
-                          {s.title}
-                        </h3>
-                        <p
-                          className="mt-1.5 max-w-[46ch] text-[0.98rem] leading-relaxed"
-                          style={{ color: "var(--bp-ink-muted)" }}
-                        >
-                          {s.body}
-                        </p>
+                        />
+                        {s.title}
                       </button>
                     </li>
                   );
                 })}
               </ol>
+
+              {/* key remounts the copy, which is what fades the new step in.
+                  The min-height is the tallest of the three bodies: without it
+                  the centred grid would shift every time the step changes. */}
+              <p
+                key={step}
+                className="bp-fly mt-10 min-h-[10rem] max-w-[38ch] text-[1.18rem] leading-[1.5] sm:text-[1.32rem]"
+                style={{ color: "var(--bp-ink)" }}
+              >
+                {STEPS[step].body}
+              </p>
             </div>
 
             <div

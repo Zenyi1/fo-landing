@@ -130,25 +130,23 @@ export function ContactForm() {
       }}
     >
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field
-          id="cta-name"
-          name="name"
-          label="Name"
-          placeholder="Aoife Brennan"
-        />
+        {/* Generic placeholders on purpose. These read as a worked example, so
+            a named person or a named company reads as a real customer we are
+            claiming rather than as a hint about the format. */}
+        <Field id="cta-name" name="name" label="Name" placeholder="Your name" />
         <Field
           id="cta-company"
           name="company"
           label="Company"
           optional
-          placeholder="Kelvin Therapeutics"
+          placeholder="Your company"
         />
         <Field
           id="cta-email"
           name="email"
           type="email"
           label="Work email"
-          placeholder="aoife@kelvintx.com"
+          placeholder="you@company.com"
         />
         <Field
           id="cta-team"

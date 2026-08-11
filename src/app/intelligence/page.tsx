@@ -14,7 +14,7 @@ import { KnowledgeEngine } from "@/components/blueprint/KnowledgeEngine";
 
 const title = "firstocean · the operating system for therapeutics";
 const description =
-  "Everything it takes to get a molecule to market, except the science. firstocean reads the contracts, invoices, protocols and filings a drug company already runs on, builds one live model of how it works, and puts agents on top of it: finance, legal, clinical operations, regulatory and supply chain.";
+  "The operating system for biotech. firstocean reads the contracts, invoices, protocols and filings a drug company already runs on, builds one live model of how it works, and puts agents on top of it: finance, legal, clinical operations, regulatory and supply chain.";
 
 export const metadata: Metadata = {
   // absolute so the root layout's "%s · firstocean" template doesn't double the suffix
@@ -118,39 +118,52 @@ export default function IntelligencePage() {
       <TopBar />
 
       {/* ══ HERO ═══════════════════════════════════════════════════════════
+          From lg up the hero holds while the pieces gather: the track is taller
+          than the viewport, the hero sticks inside it, and HeroSort reads how
+          far through the track we are to drive the assembly. The page moves on
+          once the square is finished. The id is the contract between the two.
+
+          Below lg there is no track worth pinning to on a phone, so the extra
+          height and the stick are both dropped and the pieces run on a timer.
+
           112px is the strip plus the sticky nav's flow height, so the hero
           still fills exactly one viewport under them. */}
-      <div className="flex min-h-[calc(100dvh-112px)] flex-col">
-        <div className="mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 items-center gap-10 px-6 pb-16 pt-10 sm:px-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pt-14">
-          {/* above the hero pieces: they scatter across the whole hero on the
+      <div id="hero-track" className="relative lg:h-[190vh]">
+        <div className="flex min-h-[calc(100dvh-112px)] flex-col lg:sticky lg:top-0 lg:min-h-[100dvh] lg:pt-[92px]">
+          <div className="mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 items-center gap-10 px-6 pb-16 pt-10 sm:px-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pt-0">
+            {/* above the hero pieces: they scatter across the whole hero on the
               way in, and the headline has to stay readable while they do */}
-          <Reveal className="relative z-10">
-            <h1
-              className="text-balance leading-[0.98] tracking-[-0.04em]"
-              style={{ fontSize: "min(clamp(2.7rem, 5vw, 4.05rem), 12vh)" }}
-            >
-              Everything it takes to get a molecule to market, except the
-              science.
-            </h1>
-            <p
-              className="mt-7 max-w-[36rem] text-[1.1rem] leading-relaxed sm:text-[1.22rem]"
-              style={{ color: "var(--bp-ink-muted)" }}
-            >
-              firstocean reads the contracts, invoices, protocols and filings a
-              drug company already runs on, builds one live model of how the
-              company actually works, and puts agents on top of it. Finance,
-              legal, clinical operations, regulatory, supply chain. The
-              judgement and the science stay yours.
-            </p>
-            {/* one call to action in the hero, deliberately */}
-            <div className="mt-10">
-              <BookButton />
-            </div>
-          </Reveal>
+            <Reveal className="relative z-10">
+              <h1
+                className="text-balance leading-[0.98] tracking-[-0.04em]"
+                style={{ fontSize: "min(clamp(2.7rem, 5vw, 4.05rem), 12vh)" }}
+              >
+                the operating system for biotechs.
+              </h1>
+              <p
+                className="mt-7 max-w-[36rem] text-[1.1rem] leading-relaxed sm:text-[1.22rem]"
+                style={{ color: "var(--bp-ink-muted)" }}
+              >
+                firstocean reads the contracts, invoices, protocols and filings
+                a drug company already runs on, builds one live model of how the
+                company actually works, and puts agents on top of it. Finance,
+                legal, clinical operations, regulatory, supply chain. The
+                judgement and the science stay yours.
+              </p>
+              {/* one call to action in the hero, deliberately */}
+              <div className="mt-10">
+                <BookButton />
+              </div>
+            </Reveal>
 
-          <Reveal delay={140} className="relative z-0 hidden lg:block">
-            <HeroSort />
-          </Reveal>
+            {/* No Reveal here. It fades its children in from zero over 0.7s,
+              which swallowed the whole scattered phase — the pieces run their
+              own entrance. Shown from sm up: only a phone is too narrow for
+              it. */}
+            <div className="relative z-0 hidden sm:block">
+              <HeroSort />
+            </div>
+          </div>
         </div>
       </div>
 
