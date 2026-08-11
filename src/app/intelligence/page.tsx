@@ -12,7 +12,6 @@ import { OnboardingPath } from "@/components/blueprint/OnboardingPath";
 import { Faq } from "@/components/blueprint/Faq";
 import { KnowledgeEngine } from "@/components/blueprint/KnowledgeEngine";
 import { PillBand, PillColumn } from "@/components/blueprint/PillScatter";
-import { TypeCycle } from "@/components/blueprint/TypeCycle";
 
 const title = "firstocean · the operating system for therapeutics";
 const description =
@@ -35,35 +34,26 @@ export const metadata: Metadata = {
   twitter: { card: "summary", title, description, images: ["/seo/fo.jpeg"] },
 };
 
-/* What the headline cycles through. Each is something the page goes on to
-   claim further down, and each is a few words: the line is centred and reflows
-   as it types, so lengths are kept close together to stop it swinging. */
-const CAPABILITIES = [
-  "does the work",
-  "chases the vendors",
-  "closes the books",
-  "files the submission",
-  "audits every invoice",
-  "tracks the trial spend",
-] as const;
-
 /* ── primitives ─────────────────────────────────────────────────────────── */
 
 function Section({
   children,
   wash = false,
   id,
+  // off where the section above already ends in space rather than in a rule
+  rule = true,
 }: {
   children: React.ReactNode;
   wash?: boolean;
   id?: string;
+  rule?: boolean;
 }) {
   return (
     <section
       id={id}
       // scroll-mt clears the sticky nav, so an anchored section lands below it
       // rather than under it
-      className="w-full scroll-mt-[92px] border-t px-6 py-[clamp(80px,12vh,152px)] sm:px-10"
+      className={`w-full scroll-mt-[92px] px-6 py-[clamp(80px,12vh,152px)] sm:px-10 ${rule ? "border-t" : ""}`}
       style={{
         borderColor: "var(--bp-hairline)",
         background: wash ? "var(--bp-wash)" : "var(--bp-paper)",
@@ -85,56 +75,53 @@ export default function IntelligencePage() {
       <TopBar />
 
       {/* ══ HERO ═══════════════════════════════════════════════════════════
-          112px is the strip plus the sticky nav's flow height, so the hero
-          still fills exactly one viewport under them. */}
-      <div className="flex min-h-[calc(100dvh-112px)] flex-col">
-        <div className="mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 items-center gap-10 px-6 pb-16 pt-10 sm:px-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pt-14">
-          {/* above the field: the dots now drift across the whole hero, and the
-              headline has to stay readable while they pass behind it */}
-          <Reveal className="relative z-10 text-center">
+          The field runs full-bleed behind the copy. It is dropped to a third
+          of its strength there and the copy sits on z-10, because the shapes
+          gather around the centre of their own field, which is where centred
+          copy is: they pass behind the headline and have to lose that contest.
+
+          The strip and the nav take 112px ABOVE this block, so what shows of
+          the reel on load is (cut - 112), not the cut. At 255 that is 143px:
+          the reel's own top padding, the line of copy, and the full row of
+          marks, with a little underneath. Enough to see who they are, not so
+          much that the reel reads as the thing being sold. */}
+      <div className="relative flex min-h-[calc(100dvh-255px)] flex-col">
+        <HeroMorph variant="background" />
+
+        <div className="relative z-10 mx-auto flex w-full max-w-[1240px] flex-1 items-center justify-center px-6 pb-16 pt-10 sm:px-10">
+          <Reveal className="text-center">
             <h1
-              className="leading-[0.98] tracking-[-0.04em]"
-              style={{ fontSize: "min(clamp(2.7rem, 5vw, 4.05rem), 12vh)" }}
+              className="text-balance leading-[0.98] tracking-[-0.04em]"
+              style={{ fontSize: "min(clamp(2.7rem, 5.4vw, 4.4rem), 13vh)" }}
             >
-              <span className="block text-balance">
-                <span style={{ color: "var(--bp-blue)" }}>firstocean</span>{" "}
-                learns how your biotech operates.
-              </span>
-              {/* Not text-balance: this line rewrites itself, and balancing
-                  would re-break it on almost every keystroke. */}
-              <span className="mt-3 block">
-                Then it <TypeCycle phrases={CAPABILITIES} />
-              </span>
+              The operating system for biotech work outside the lab.
             </h1>
+            {/* Full-strength ink, not the muted body tone: this sits over the
+                dot field, and a softened grey would be the one thing on the
+                page competing with the backdrop instead of sitting on top of
+                it. Only the wordmark takes the accent. */}
             <p
-              className="mx-auto mt-11 max-w-[36rem] text-[1.1rem] leading-relaxed sm:text-[1.22rem]"
-              style={{ color: "var(--bp-ink-muted)" }}
+              className="mx-auto mt-9 max-w-[40rem] text-[1.1rem] leading-relaxed sm:text-[1.24rem]"
+              style={{ color: "var(--bp-ink)" }}
             >
-              An agent is only as good as what it knows about your company.
-              firstocean turns the contracts, filings and trial data you already
-              have into a model it can act on.
+              <span style={{ color: "var(--bp-blue)" }}>firstocean</span> learns
+              your contracts, filings, trial data, and SOPs, then runs the
+              operational work that slows your team down.
             </p>
-            {/* One call to action, and it sends the reader further down the
-                page rather than to the form. "Book a demo" is already in the
-                sticky nav, so someone who arrives ready to buy has it in reach
-                the whole way down; everyone else needs to see the thing first. */}
-            <div className="mt-10">
+            {/* Uppercased in CSS rather than in the text, so the accessible
+                name stays "book demo" and is not spelled out letter by letter.
+                The dot is decorative: it is a sign of life, not a status. */}
+            <div className="mt-11">
               <a
-                href="#graph"
-                className="inline-flex items-center gap-2 whitespace-nowrap rounded-[var(--bp-r-sm)] px-7 py-3.5 text-[1.02rem] font-medium text-white transition-colors hover:bg-[var(--bp-blue-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] active:translate-y-[1px]"
-                style={{ background: "var(--bp-blue)" }}
+                href="#contact"
+                className="inline-flex items-center gap-3 whitespace-nowrap rounded-full px-8 py-4 text-[0.86rem] font-medium uppercase tracking-[0.09em] text-white transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-ink)] active:translate-y-[1px]"
+                style={{ background: "var(--bp-ink)" }}
               >
-                How does it work? <span aria-hidden>↓</span>
+                <span aria-hidden className="bp-dot" />
+                book demo
               </a>
             </div>
           </Reveal>
-
-          {/* No Reveal here: it fades its children in from zero over 0.7s,
-              which would swallow the opening drift. The field runs its own
-              entrance. Shown from sm up, since only a phone is too narrow. */}
-          <div className="relative z-0 hidden sm:block">
-            <HeroMorph />
-          </div>
         </div>
       </div>
 
@@ -142,7 +129,7 @@ export default function IntelligencePage() {
       <LogoMarquee />
 
       {/* ══ THE PROBLEM ════════════════════════════════════════════════════ */}
-      <Section>
+      <Section rule={false}>
         {/* The copy takes the middle track and the bottles take the two
             outside it, so the clearance either side is the grid's rather than
             something measured against the text. The bands hang off this block,
@@ -152,11 +139,22 @@ export default function IntelligencePage() {
           <PillColumn side="left" />
 
           <Reveal className="relative z-10">
+            {/* A sentence per line, held there rather than left to the
+                balancer. No max-width and no text-balance: both exist to
+                choose the break points, and the break points are decided here.
+
+                The size is solved for the longer of the two lines, at 30
+                characters. Below lg the container is the viewport less its
+                padding, so the vw term governs; from lg up it is the grid's
+                42rem middle track, so the 2.5rem cap does. Both leave the line
+                short of the edge, which is why it never wraps and never
+                overflows on the way down to a phone. */}
             <h2
-              className="mx-auto max-w-[20ch] text-balance text-center leading-[1.02] tracking-[-0.035em]"
-              style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.5rem)" }}
+              className="mx-auto text-center leading-[1.08] tracking-[-0.03em]"
+              style={{ fontSize: "clamp(1.05rem, 5.3vw, 2.5rem)" }}
             >
-              Pharma was built for scarcity. It has an abundance problem.
+              <span className="block">Pharma was built for scarcity.</span>
+              <span className="block">It has an abundance problem.</span>
             </h2>
             <div
               className="mx-auto mt-9 max-w-[62ch] space-y-5 text-center text-[1.08rem] leading-relaxed sm:text-[1.18rem]"
@@ -222,7 +220,7 @@ export default function IntelligencePage() {
       {/* ══ FAQ ════════════════════════════════════════════════════════════
           On paper, not wash: the section above it is washed, and two washed
           bands in a row read as one long surface. */}
-      <Section id="faq">
+      <Section id="faq" wash>
         <Faq />
       </Section>
 

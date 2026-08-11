@@ -66,8 +66,8 @@ export function TopBar() {
 
           <a
             href="#contact"
-            className="whitespace-nowrap rounded-full px-5 py-2.5 text-[0.9rem] font-medium leading-none text-white transition-colors hover:bg-[var(--bp-blue-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] active:translate-y-[1px]"
-            style={{ background: "var(--bp-blue)" }}
+            className="whitespace-nowrap rounded-full px-5 py-2.5 text-[0.9rem] font-medium leading-none text-white transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-ink)] active:translate-y-[1px]"
+            style={{ background: "var(--bp-ink)" }}
           >
             Book a demo
           </a>
