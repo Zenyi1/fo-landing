@@ -23,7 +23,6 @@ const LOGOS = [
   // and would sit as heavy as the NHS mark
   { name: "Pfizer", src: "/logos/pfizer.svg", h: 27, w: 66 },
   { name: "Palantir", src: "/logos/palantir.svg", h: 22, w: 91 },
-  { name: "Averin Capital", src: "/logos/averin.svg", h: 19, w: 72 },
   // A solid blue plate, so it carries far more ink per pixel than the
   // wordmarks around it. Sized down accordingly: matching its height to theirs
   // would make it the loudest thing in the strip.
