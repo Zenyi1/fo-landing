@@ -38,12 +38,11 @@ next-env.d.ts
 # Vercel
 .vercel
 
-# Local settings (not project config)
-.claude/settings.local.json
-
-# User-specific skills (not part of the template)
-.claude/skills/customize/
-.claude/skills/release/
+# Agent tooling. None of this ships with the site: local assistant settings,
+# vendored skill definitions, and the lockfile that can refetch them.
+.claude/
+.agents/
+skills-lock.json
 
 # Local temp files
 temp/

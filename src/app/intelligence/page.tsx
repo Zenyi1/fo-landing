@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
-import { AgentFilingCanvas } from "@/components/AgentFilingCanvas";
-import { IntelligenceCanvas } from "@/components/IntelligenceCanvas";
-import { ErrorRecoveryCanvas } from "@/components/ErrorRecoveryCanvas";
-import { RunwayCanvas } from "@/components/RunwayCanvas";
-import { BirdsBackground } from "@/components/BirdsBackground";
-import { Reveal } from "@/components/Reveal";
-import { intelligenceCallUrl } from "@/lib/links";
+import Image from "next/image";
 
-const title = "firstocean · intelligence";
+import { Reveal } from "@/components/Reveal";
+import { TopBar } from "@/components/blueprint/TopBar";
+import { BlueprintFooter } from "@/components/blueprint/BlueprintFooter";
+import { ContactForm } from "@/components/blueprint/ContactForm";
+import { DepartmentGrid } from "@/components/blueprint/DepartmentGrid";
+import { HeroSort } from "@/components/blueprint/HeroSort";
+import { LogoMarquee } from "@/components/blueprint/LogoMarquee";
+import { OnboardingPath } from "@/components/blueprint/OnboardingPath";
+import { Faq } from "@/components/blueprint/Faq";
+import { KnowledgeEngine } from "@/components/blueprint/KnowledgeEngine";
+
+const title = "firstocean · the operating system for therapeutics";
 const description =
-  "firstocean checks every outsourced clinical-trial invoice against the contract, work order and delivery record, so Finance catches billing errors before close and Clinical Operations can control scope.";
+  "The operating system for biotech. firstocean reads the contracts, invoices, protocols and filings a drug company already runs on, builds one live model of how it works, and puts agents on top of it: finance, legal, clinical operations, regulatory and supply chain.";
 
 export const metadata: Metadata = {
   // absolute so the root layout's "%s · firstocean" template doesn't double the suffix
@@ -25,427 +30,280 @@ export const metadata: Metadata = {
     // child openGraph replaces the root's wholesale, so re-declare the share image
     images: [{ url: "/seo/fo.jpeg", width: 1024, height: 1024 }],
   },
-  twitter: {
-    card: "summary",
-    title,
-    description,
-    images: ["/seo/fo.jpeg"],
-  },
+  twitter: { card: "summary", title, description, images: ["/seo/fo.jpeg"] },
 };
 
-function Logo() {
+/* ── primitives ─────────────────────────────────────────────────────────── */
+
+// Every "Book a demo" on the page lands on the form at the foot of it, so
+// there is one funnel rather than two competing ones. Calendly is still offered
+// from the form's confirmation for anyone who would rather self-schedule.
+function BookButton() {
   return (
-    <span className="inline-flex items-center gap-3 text-white">
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 22 22"
-        fill="none"
-        aria-hidden
-        className="shrink-0"
-      >
-        <circle cx="11" cy="11" r="10" stroke="white" strokeWidth="1" />
-        <path
-          d="M1.6 12.2c2 0 2-1.8 4-1.8s2 1.8 4 1.8 2-1.8 4-1.8 2 1.8 4 1.8"
-          stroke="white"
-          strokeWidth="1"
-          strokeLinecap="round"
-        />
-      </svg>
-      <span className="text-[15px] font-medium tracking-[-0.01em]">
-        firstocean
-      </span>
-    </span>
+    <a
+      href="#contact"
+      className="inline-flex items-center gap-2 whitespace-nowrap rounded-[var(--bp-r-sm)] px-7 py-3.5 text-[1.02rem] font-medium text-white transition-colors hover:bg-[var(--bp-blue-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] active:translate-y-[1px]"
+      style={{ background: "var(--bp-blue)" }}
+    >
+      Book a demo <span aria-hidden>→</span>
+    </a>
   );
 }
 
-const panel =
-  "relative w-full overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.015]";
-
-// green "variance found" state. Never colour alone: a check glyph and the word
-// carry it for anyone who can't read the tint.
-function RecoveredPill() {
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-full border border-[#5fd0a0]/30 bg-[#5fd0a0]/10 px-2.5 py-1 text-[11px] font-semibold text-[#5fd0a0]">
-      <span aria-hidden>✓</span> Variance found
-    </span>
-  );
-}
-
-function EvidenceChips({ items }: { items: string[] }) {
-  return (
-    <div className="flex flex-wrap gap-1.5">
-      {items.map((it) => (
-        <span
-          key={it}
-          className="rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-[11px] text-white/60"
-        >
-          {it}
-        </span>
-      ))}
-    </div>
-  );
-}
-
-// One workflow step: number, title, sentence, and a small concrete visual state.
-function WorkflowStep({
-  n,
-  title,
-  body,
-  visual,
+function Section({
+  children,
+  wash = false,
+  id,
 }: {
-  n: string;
-  title: string;
-  body: string;
-  visual: React.ReactNode;
+  children: React.ReactNode;
+  wash?: boolean;
+  id?: string;
 }) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-white/[0.07] bg-white/[0.015] p-6">
-      <div className="flex items-center gap-3">
-        <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/15 text-[13px] font-semibold text-white/70">
-          {n}
-        </span>
-        <h3 className="text-[1.15rem] font-medium tracking-[-0.01em] text-white">
-          {title}
-        </h3>
-      </div>
-      <p className="mt-3 text-[0.98rem] leading-relaxed text-white/65">{body}</p>
-      <div className="mt-6 flex-1">{visual}</div>
+    <section
+      id={id}
+      // scroll-mt clears the sticky nav, so an anchored section lands below it
+      // rather than under it
+      className="w-full scroll-mt-[92px] border-t px-6 py-[clamp(80px,12vh,152px)] sm:px-10"
+      style={{
+        borderColor: "var(--bp-hairline)",
+        background: wash ? "var(--bp-wash)" : "var(--bp-paper)",
+      }}
+    >
+      <div className="mx-auto w-full max-w-[1240px]">{children}</div>
+    </section>
+  );
+}
+
+// Photographs run at full colour, untreated. See public/plates/CREDITS.md for
+// provenance.
+function Plate({
+  src,
+  alt,
+  className = "",
+  sizes,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  sizes: string;
+  priority?: boolean;
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden ${className}`}
+      style={{ background: "var(--bp-wash)", borderRadius: "var(--bp-r-md)" }}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className="object-cover"
+      />
     </div>
   );
 }
 
-function TrustRow() {
-  return (
-    <div className="space-y-2 text-[0.95rem] leading-relaxed text-white/55">
-      <p>For clinical-stage sponsors managing CRO, CDMO, lab and site spend.</p>
-      <p>
-        Every flagged variance comes with the contract, invoice and delivery
-        evidence behind it.
-      </p>
-    </div>
-  );
-}
+/* ── content ────────────────────────────────────────────────────────────── */
 
 export default function IntelligencePage() {
-  const bookUrl = intelligenceCallUrl();
-
   return (
-    <main className="relative min-h-screen w-full bg-[#0a0b0d] text-white">
-      <BirdsBackground />
-      <div className="relative z-10">
-        {/* ── HERO ───────────────────────────────────────────── */}
-        <section className="relative flex min-h-screen w-full flex-col px-8 py-9 sm:px-14 sm:py-12">
-          <header className="flex items-center justify-between">
-            <Logo />
-            <a
-              href="#audit"
-              className="text-[15px] font-normal text-white/80 underline-offset-[6px] transition-colors hover:text-white hover:underline focus-visible:text-white focus-visible:underline"
-            >
-              See a sample audit
-            </a>
-          </header>
+    <main
+      className="bp-root bp-grain relative w-full"
+      style={{ background: "var(--bp-paper)", color: "var(--bp-ink)" }}
+    >
+      <TopBar />
 
-          <div className="grid flex-1 grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-10">
-            {/* left — statement */}
-            <div className="max-w-xl pt-10 lg:pt-0">
-              <h1 className="text-balance text-[2.6rem] font-normal leading-[1.05] tracking-[-0.03em] sm:text-[3.4rem] lg:text-[3.9rem] lg:leading-[1.02]">
-                Every clinical-trial invoice, checked before close.
+      {/* ══ HERO ═══════════════════════════════════════════════════════════
+          From lg up the hero holds while the pieces gather: the track is taller
+          than the viewport, the hero sticks inside it, and HeroSort reads how
+          far through the track we are to drive the assembly. The page moves on
+          once the square is finished. The id is the contract between the two.
+
+          Below lg there is no track worth pinning to on a phone, so the extra
+          height and the stick are both dropped and the pieces run on a timer.
+
+          112px is the strip plus the sticky nav's flow height, so the hero
+          still fills exactly one viewport under them. */}
+      <div id="hero-track" className="relative lg:h-[190vh]">
+        <div className="flex min-h-[calc(100dvh-112px)] flex-col lg:sticky lg:top-0 lg:min-h-[100dvh] lg:pt-[92px]">
+          <div className="mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 items-center gap-10 px-6 pb-16 pt-10 sm:px-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pt-0">
+            {/* above the hero pieces: they scatter across the whole hero on the
+              way in, and the headline has to stay readable while they do */}
+            <Reveal className="relative z-10">
+              <h1
+                className="text-balance leading-[0.98] tracking-[-0.04em]"
+                style={{ fontSize: "min(clamp(2.7rem, 5vw, 4.05rem), 12vh)" }}
+              >
+                the operating system for biotechs.
               </h1>
-              <p className="mt-7 max-w-md text-[1.12rem] font-normal leading-snug text-white/75 sm:text-[1.25rem]">
-                firstocean checks every outsourced trial invoice against the
-                contract, work order and delivery record, so Finance catches
-                billing errors before close and Clinical Operations can control
-                scope.
+              <p
+                className="mt-7 max-w-[36rem] text-[1.1rem] leading-relaxed sm:text-[1.22rem]"
+                style={{ color: "var(--bp-ink-muted)" }}
+              >
+                firstocean reads the contracts, invoices, protocols and filings
+                a drug company already runs on, builds one live model of how the
+                company actually works, and puts agents on top of it. Finance,
+                legal, clinical operations, regulatory, supply chain. The
+                judgement and the science stay yours.
               </p>
-              <p className="mt-5 text-[0.92rem] uppercase tracking-[0.14em] text-white/55">
-                For Finance and Clinical Operations teams managing outsourced
-                clinical-trial spend
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-5">
-                <a
-                  href="#audit"
-                  className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-3.5 text-[1.02rem] font-semibold text-[#0a0b0d] transition-colors hover:bg-white/90"
-                >
-                  See a sample audit <span aria-hidden>→</span>
-                </a>
+              {/* one call to action in the hero, deliberately */}
+              <div className="mt-10">
+                <BookButton />
               </div>
-              <p className="mt-4 max-w-md text-[0.95rem] leading-relaxed text-white/55">
-                See the exact invoice, contracted rate, billed rate and evidence
-                the audit would return.
-              </p>
-            </div>
+            </Reveal>
 
-            {/* right — vendor spend streams in, the audit reconciles it against
-                the contract, and findings fire back out */}
-            <div>
-              <div className={`${panel} h-[380px] sm:h-[440px] lg:h-[560px]`}>
-                <IntelligenceCanvas />
-              </div>
-              <p className="mt-3 text-[0.85rem] text-white/45">
-                Invoices, contracts and delivery records reconciled before close.
-              </p>
+            {/* No Reveal here. It fades its children in from zero over 0.7s,
+              which swallowed the whole scattered phase — the pieces run their
+              own entrance. Shown from sm up: only a phone is too narrow for
+              it. */}
+            <div className="relative z-0 hidden sm:block">
+              <HeroSort />
             </div>
           </div>
-        </section>
-
-        {/* ── SAMPLE AUDIT · the proof, and the CTA target ────── */}
-        <section
-          id="audit"
-          className="mx-auto w-full max-w-6xl scroll-mt-16 px-8 pt-24 sm:px-14 sm:pt-32"
-        >
-          <Reveal>
-            <h2 className="max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
-              One $97,500 variance, found before close.
-            </h2>
-            <p className="mt-6 max-w-2xl text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.15rem]">
-              Your vendors approve their own billing. firstocean independently
-              checks every invoice line against the contract before Finance
-              closes the period.
-            </p>
-          </Reveal>
-
-          <Reveal
-            delay={120}
-            className="mt-12 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-2 lg:gap-12"
-          >
-            {/* the record */}
-            <div className="flex flex-col justify-between rounded-2xl border border-white/[0.08] bg-white/[0.02] p-7 sm:p-9">
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="text-[0.82rem] uppercase tracking-[0.14em] text-white/55">
-                    Illustrative example
-                  </span>
-                  <RecoveredPill />
-                </div>
-                <div className="mt-6 flex flex-wrap items-baseline gap-3">
-                  <span className="text-[3.2rem] font-semibold leading-none tracking-[-0.03em] text-[#f0b83e] sm:text-[4rem]">
-                    $97,500
-                  </span>
-                  <span className="text-[1rem] text-white/55">
-                    above contracted amount
-                  </span>
-                </div>
-                <p className="mt-3 text-[0.95rem] text-white/55">
-                  Illustrative CRO invoice: $497,500 billed vs $400,000
-                  contracted.
-                </p>
-              </div>
-              <div className="mt-8">
-                <p className="mb-2 text-[11px] uppercase tracking-[0.14em] text-white/55">
-                  Evidence attached
-                </p>
-                <EvidenceChips
-                  items={[
-                    "Contract",
-                    "Work order",
-                    "Change order",
-                    "Delivery record",
-                    "Invoice",
-                  ]}
-                />
-              </div>
-              <p className="mt-6 text-[11px] leading-relaxed text-white/40">
-                Illustrative example. Actual findings depend on the contract,
-                invoice and delivery records provided.
-              </p>
-            </div>
-
-            {/* before / detected / outcome */}
-            <div className="space-y-6">
-              {[
-                {
-                  k: "Before",
-                  v: "A CRO invoice enters the accrual $97,500 above the contracted amount.",
-                },
-                {
-                  k: "Detected",
-                  v: "firstocean matches the invoice to the contract, work order and delivery record, before the close is final.",
-                },
-                {
-                  k: "Outcome",
-                  v: "Finance gets the variance, the evidence and the recovery action in one record.",
-                },
-              ].map((row) => (
-                <div key={row.k} className="border-l-2 border-white/10 pl-5">
-                  <p className="text-[0.82rem] uppercase tracking-[0.14em] text-white/55">
-                    {row.k}
-                  </p>
-                  <p className="mt-1.5 text-[1.05rem] leading-relaxed text-white/80">
-                    {row.v}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* live detection across error types */}
-          <Reveal delay={160} className="mt-10">
-            <div className={`${panel} h-[300px] sm:h-[360px]`}>
-              <ErrorRecoveryCanvas />
-            </div>
-          </Reveal>
-        </section>
-
-        {/* ── WORKFLOW · ingest / reconcile / act ─────────────── */}
-        <section className="mx-auto w-full max-w-6xl px-8 py-24 sm:px-14 sm:py-28">
-          <Reveal>
-            <h2 className="max-w-3xl text-balance text-[2rem] font-normal leading-[1.12] tracking-[-0.025em] sm:text-[2.9rem]">
-              From invoice to approved variance.
-            </h2>
-          </Reveal>
-          <Reveal
-            delay={120}
-            className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3"
-          >
-            <WorkflowStep
-              n="1"
-              title="Collect the evidence"
-              body="Invoices, contracts, work orders, change orders, payments and delivery records arrive in one place."
-              visual={
-                <EvidenceChips
-                  items={[
-                    "Work order",
-                    "Change order",
-                    "Invoice",
-                    "Payment",
-                    "Contract",
-                    "Site activity",
-                  ]}
-                />
-              }
-            />
-            <WorkflowStep
-              n="2"
-              title="Check billed vs contracted"
-              body="Every charge is compared with the approved scope and what the vendor actually delivered."
-              visual={
-                <dl className="space-y-2 text-[13px]">
-                  <div className="flex items-center justify-between">
-                    <dt className="text-white/50">Billed</dt>
-                    <dd className="tabular-nums text-white/80">$497,500</dd>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <dt className="text-white/50">Contracted</dt>
-                    <dd className="tabular-nums text-white/80">$400,000</dd>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <dt className="text-white/50">Delivered</dt>
-                    <dd className="tabular-nums text-white/80">As contracted</dd>
-                  </div>
-                </dl>
-              }
-            />
-            <WorkflowStep
-              n="3"
-              title="Resolve before close"
-              body="Flag the variance, attach the evidence, update the forecast and track the recovery."
-              visual={
-                <div className="flex items-center justify-between rounded-lg border border-[#5fd0a0]/25 bg-[#5fd0a0]/[0.06] px-3 py-2.5">
-                  <span className="text-[13px] font-medium text-white/85">
-                    $97,500 variance
-                  </span>
-                  <RecoveredPill />
-                </div>
-              }
-            />
-          </Reveal>
-          <Reveal delay={160} className="mt-8">
-            <p className="text-[1.05rem] text-white/60">
-              The result is a decision Finance and Clinical Operations can both
-              defend.
-            </p>
-          </Reveal>
-        </section>
-
-        {/* ── COVERAGE · one record across every vendor ───────── */}
-        <section className="mx-auto w-full max-w-6xl px-8 py-20 sm:px-14 sm:py-24">
-          <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <h2 className="max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
-                One audit trail for every outsourced vendor.
-              </h2>
-              <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
-                firstocean keeps the contract, invoice, delivery evidence and
-                recovery action together. Finance sees what is committed and
-                payable. Clinical Operations sees what changed and why.
-              </p>
-            </div>
-            <div className={`${panel} h-[340px] sm:h-[420px] lg:h-[480px]`}>
-              <AgentFilingCanvas />
-            </div>
-          </Reveal>
-        </section>
-
-        {/* ── FORECAST · cash-out before the next readout ─────── */}
-        <section className="mx-auto w-full max-w-6xl px-8 py-20 sm:px-14 sm:py-24">
-          <Reveal className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div>
-              <h2 className="max-w-md text-balance text-[1.7rem] font-normal leading-[1.15] tracking-[-0.02em] sm:text-[2.3rem]">
-                See committed trial spend before it surprises the close.
-              </h2>
-              <div className="mt-6 max-w-md space-y-5 text-[1.05rem] leading-relaxed text-white/70 sm:text-[1.13rem]">
-                <p>
-                  Accruals often arrive after the month closes. firstocean
-                  rebuilds committed spend from invoices, site activity and
-                  vendor updates, so Finance can see what is payable now and what
-                  is still coming.
-                </p>
-                <p>
-                  When a program runs hot, you see it while there is still time
-                  to act: challenge a change order, move a site or adjust the
-                  forecast before the variance becomes a surprise.
-                </p>
-              </div>
-            </div>
-            <div className={`${panel} h-[320px] sm:h-[380px] lg:h-[440px]`}>
-              <RunwayCanvas />
-            </div>
-          </Reveal>
-        </section>
-
-        {/* ── SHARED RECORD · the payoff ──────────────────────── */}
-        <section className="mx-auto w-full max-w-5xl px-8 py-16 sm:px-14 sm:py-20">
-          <Reveal>
-            <p className="max-w-2xl text-[1.2rem] leading-relaxed text-white/80 sm:text-[1.45rem]">
-              Finance gets a close it can defend. Clinical operations gets scope
-              it can control. Both read from the same record, so a flagged
-              variance is the system catching an error rather than one team
-              second-guessing another.
-            </p>
-            <div className="mt-10">
-              <TrustRow />
-            </div>
-          </Reveal>
-        </section>
-
-        {/* ── FINAL CTA ───────────────────────────────────────── */}
-        <section
-          id="contact"
-          className="mx-auto w-full max-w-5xl scroll-mt-16 px-8 pb-28 sm:px-14 sm:pb-36"
-        >
-          <Reveal className="rounded-2xl border border-white/[0.08] bg-white/[0.02] px-8 py-14 sm:px-14 sm:py-20">
-            <h2 className="max-w-2xl text-balance text-[2rem] font-normal leading-[1.1] tracking-[-0.025em] sm:text-[2.9rem]">
-              Join the first cohort of sponsors.
-            </h2>
-            <p className="mt-6 max-w-xl text-[1.1rem] leading-relaxed text-white/70 sm:text-[1.2rem]">
-              We&rsquo;re onboarding a small number of clinical-stage sponsors.
-              Join the waitlist and we&rsquo;ll reach out to run a sample audit on
-              one of your vendor invoices.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-5">
-              <a
-                href={bookUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-3.5 text-[1.02rem] font-semibold text-[#0a0b0d] transition-colors hover:bg-white/90"
-              >
-                Join the waitlist
-              </a>
-            </div>
-          </Reveal>
-        </section>
+        </div>
       </div>
+
+      {/* ══ WHERE WE CAME FROM ═════════════════════════════════════════════ */}
+      <LogoMarquee />
+
+      {/* ══ THE PROBLEM ════════════════════════════════════════════════════ */}
+      <Section>
+        <Reveal>
+          <h2
+            className="max-w-[20ch] text-balance leading-[1.02] tracking-[-0.035em]"
+            style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.5rem)" }}
+          >
+            Pharma was built for scarcity. It has an abundance problem.
+          </h2>
+          <div
+            className="mt-9 max-w-[62ch] space-y-5 text-[1.08rem] leading-relaxed sm:text-[1.18rem]"
+            style={{ color: "var(--bp-ink-muted)" }}
+          >
+            <p>
+              For a century the industry&apos;s constraint was the molecule. Few
+              candidates, years between them, each one precious enough to
+              justify whatever it took to move it. AI-driven discovery has
+              inverted that. Promising compounds now arrive faster than the
+              apparatus around them can absorb.
+            </p>
+            <p>
+              That apparatus has not moved. A trial site is still negotiated one
+              at a time. A submission is still assembled by hand. The constraint
+              has left the bench and settled into the paperwork, and it needs an
+              orchestration layer running at the speed discovery now runs at.
+            </p>
+          </div>
+        </Reveal>
+      </Section>
+
+      {/* ══ THE GRAPH ══════════════════════════════════════════════════════
+          Not wrapped in Section: it pins to the viewport and so has to own its
+          own height and padding. */}
+      <KnowledgeEngine />
+
+      {/* ══ THE DEPARTMENTS ════════════════════════════════════════════════ */}
+      <Section id="departments">
+        <Reveal>
+          <h2
+            className="max-w-[18ch] text-balance leading-[1.04] tracking-[-0.035em]"
+            style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.5rem)" }}
+          >
+            Every department, except one.
+          </h2>
+          <p
+            className="mt-7 max-w-[54ch] text-[1.08rem] leading-relaxed sm:text-[1.15rem]"
+            style={{ color: "var(--bp-ink-muted)" }}
+          >
+            This is the whole surface of a clinical-stage biotech that is not
+            the science. Open any one to see what sits inside it.
+          </p>
+        </Reveal>
+
+        {/* no Reveal wrapper: the grid runs its own cell-by-cell build */}
+        <div className="mt-12">
+          <DepartmentGrid />
+        </div>
+      </Section>
+
+      {/* ══ ONBOARDING ═════════════════════════════════════════════════ */}
+      <Section id="how" wash>
+        <OnboardingPath />
+      </Section>
+
+      {/* ══ THE END STATE ══════════════════════════════════════════════════ */}
+      <Section>
+        <Reveal>
+          <h2
+            className="max-w-[22ch] text-balance leading-[1.02] tracking-[-0.035em]"
+            style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.5rem)" }}
+          >
+            The end state is a company that is only a lab.
+          </h2>
+          <p
+            className="mt-8 max-w-[58ch] text-[1.08rem] leading-relaxed sm:text-[1.18rem]"
+            style={{ color: "var(--bp-ink-muted)" }}
+          >
+            Everything around the science runs itself. The people you hired to
+            do research spend the week doing research, and the company is as
+            large as its ambition rather than as large as its admin.
+          </p>
+        </Reveal>
+        <Reveal delay={120} className="mt-14">
+          <Plate
+            src="/plates/lab.jpg"
+            alt="An empty laboratory at working scale"
+            className="aspect-[8/3] w-full"
+            sizes="(min-width: 1240px) 1240px, 100vw"
+          />
+        </Reveal>
+      </Section>
+
+      {/* ══ FAQ ════════════════════════════════════════════════════════════ */}
+      <Section id="faq" wash>
+        <Faq />
+      </Section>
+
+      {/* ══ CTA ════════════════════════════════════════════════════════════
+          The page's one dark surface. The plate was picked for evenness rather
+          than drama: the white heading sits over its left third, so the
+          brightest patch there is what governs the choice. Under the 40% scrim
+          this one measures 12.9:1 for white text. */}
+      <section id="contact" className="relative isolate scroll-mt-[92px]">
+        <Image
+          src="/plates/ocean.jpg"
+          alt=""
+          aria-hidden
+          fill
+          sizes="100vw"
+          className="-z-10 object-cover"
+        />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-black/40" />
+
+        <div className="mx-auto w-full max-w-[1240px] px-6 py-[clamp(72px,10vh,120px)] sm:px-10">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
+            <div>
+              <h2
+                className="max-w-[16ch] text-balance leading-[1.04] tracking-[-0.035em] text-white"
+                style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.5rem)" }}
+              >
+                Give the week back to the science.
+              </h2>
+              <p className="mt-6 max-w-[42ch] text-[1.08rem] leading-relaxed text-white/80">
+                We will map what your company actually spends its week on, and
+                show you what the agents can take over. Thirty minutes, no
+                obligation.
+              </p>
+            </div>
+            <ContactForm />
+          </div>
+        </div>
+      </section>
+
+      <BlueprintFooter backedBy />
     </main>
   );
 }

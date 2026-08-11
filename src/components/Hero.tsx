@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { WaveBackground } from "@/components/WaveBackground";
+import { BackedBy } from "@/components/BackedBy";
 
 // The markets firstocean distributes into: the largest commercially viable
 // economies across LATAM, MENA and Southeast Asia (top ~8 by GDP each),
@@ -107,26 +108,7 @@ export function Hero() {
           See an estimate in about two minutes, anonymously. No name, no email, no compound.
         </p>
 
-        <div className="mt-8 flex flex-wrap items-center gap-1.5 text-[0.85rem] text-white">
-          Backed by{" "}
-          <a
-            href="https://www.joinef.com/portfolio/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
-          >
-            Entrepreneurs First
-          </a>{" "}
-          and{" "}
-          <a
-            href="https://www.transposeplatform.vc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-white underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
-          >
-            Transpose Platform
-          </a>
-        </div>
+        <BackedBy className="mt-8" />
       </div>
     </section>
   );
