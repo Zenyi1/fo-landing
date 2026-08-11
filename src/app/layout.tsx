@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, IBM_Plex_Mono, Geist } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import "./globals.css";
@@ -7,6 +7,24 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Ledger face for /intelligence: figures, row IDs and eyebrows. Two weights
+// only — a dollar amount set in mono reads as a figure lifted off a document
+// rather than as a marketing stat.
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
+
+// Display and body face for /intelligence. Tighter and lower-contrast than
+// Inter at large sizes, which is what the blueprint headline scale needs.
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
   display: "swap",
 });
 
@@ -62,8 +80,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-[#071a2b]">
+    <html
+      lang="en"
+      className={`${inter.variable} ${plexMono.variable} ${geist.variable} h-full antialiased`}
+    >
+      <body className="min-h-full">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
