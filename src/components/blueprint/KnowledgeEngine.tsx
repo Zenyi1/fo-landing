@@ -607,23 +607,30 @@ function Discovery() {
           marginLeft: -SCENE_W / 2,
           marginTop: -SCENE_H / 2,
           transform: `scale(${scale})`,
-          opacity: scale ? 1 : 0,
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            opacity: fade,
-            transform: `scale(${z * breathe})`,
-            transformOrigin: "50% 52%",
-          }}
-        >
-          {INTAKE_ITEMS.map((it) => (
-            <IntakeCard key={it.i} it={it} t={t} />
-          ))}
-          <Sweep t={t} />
-        </div>
+        {/* Nothing is drawn until the panel has been measured, which cannot
+            happen before mount. The frame would be invisible at scale 0
+            anyway, and holding it back is what keeps the scene off the server:
+            card positions come out of Math.atan2/cos/sin, which the spec only
+            requires engines to approximate, so Node and the browser land on
+            different last bits and React throws the hydrated tree away. */}
+        {scale > 0 && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              opacity: fade,
+              transform: `scale(${z * breathe})`,
+              transformOrigin: "50% 52%",
+            }}
+          >
+            {INTAKE_ITEMS.map((it) => (
+              <IntakeCard key={it.i} it={it} t={t} />
+            ))}
+            <Sweep t={t} />
+          </div>
+        )}
       </div>
     </div>
   );
