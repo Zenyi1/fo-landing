@@ -83,10 +83,14 @@ function LogoRow({ clone = false }: { clone?: boolean }) {
 }
 
 export function LogoMarquee() {
+  /* No rule above or below: space does the separating instead, and it is
+     deliberately lopsided. Tight on top, because the reel belongs to the hero
+     and should sit right under it. Wide underneath, because what follows is a
+     new argument: without that gap the reel and the section below read as one
+     block rather than as the end of one thing and the start of another. */
   return (
     <section
-      className="w-full border-t px-6 py-[clamp(48px,7vh,80px)] sm:px-10"
-      style={{ borderColor: "var(--bp-hairline)" }}
+      className="w-full px-6 pb-[clamp(104px,16vh,200px)] pt-[clamp(16px,2.5vh,28px)] sm:px-10"
       aria-label="Where the team came from"
     >
       <div className="mx-auto w-full max-w-[1240px]">
@@ -100,7 +104,7 @@ export function LogoMarquee() {
         {/* No padding anywhere on the track: its width has to be exactly two
             rows for the -50% to loop cleanly. The edges are handled by the
             fade mask on the wrapper instead. */}
-        <div className="bp-marquee mt-9 overflow-hidden">
+        <div className="bp-marquee mt-7 overflow-hidden">
           <div className="bp-marquee-track flex w-max">
             <LogoRow />
             <LogoRow clone />

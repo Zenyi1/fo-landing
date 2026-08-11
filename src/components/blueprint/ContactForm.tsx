@@ -208,8 +208,8 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={state === "sending"}
-          className="inline-flex items-center gap-2 whitespace-nowrap rounded-[var(--bp-r-sm)] px-6 py-3 text-[0.98rem] font-medium text-white transition-colors hover:bg-[var(--bp-blue-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] active:translate-y-[1px] disabled:opacity-70"
-          style={{ background: "var(--bp-blue)" }}
+          className="inline-flex items-center gap-2 whitespace-nowrap rounded-full px-7 py-3 text-[0.98rem] font-medium text-white transition-opacity hover:opacity-85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-ink)] active:translate-y-[1px] disabled:opacity-50"
+          style={{ background: "var(--bp-ink)" }}
         >
           {state === "sending" ? "Sending" : "Book a demo"}
           <span aria-hidden>→</span>

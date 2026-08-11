@@ -1,189 +1,111 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import type { Icon } from "@phosphor-icons/react";
-import {
-  ArrowsClockwise,
-  ArrowsOutCardinal,
-  Gauge,
-  Lightning,
-  TreeStructure,
-} from "@phosphor-icons/react/dist/ssr";
-
 import { Reveal } from "@/components/Reveal";
 
-/* Five steps, one open at a time, advancing on their own and looping. The run
-   is the point — a loop that is chosen, mapped, made visible, run, and then
-   widened — so the steps stay side by side and the reader watches the open one
-   move along them rather than reading five columns at once.
+/* Five onboarding steps, all of them on screen at once. No carousel, no
+   reveal, no timer: the section exists to answer what happens after you say
+   yes, how fast it starts, and how much of it lands on your team, and none of
+   those can be answered by something the reader has to wait for.
 
-   The bodies are far longer than a five-across grid can hold, which is why the
-   closed steps give their width to the open one instead of each keeping a
-   fifth of the row. */
-type Step = { icon: Icon; title: string; body: string };
+   No state, so this is a Server Component. No icons, no eyebrow and no step
+   numbers either: the icons added a 44px tile to every column, and the other
+   two were the only mono type left in the section. The rail and the reading
+   order carry the sequence without a printed number on each step.
 
-const STEPS: Step[] = [
+   Bodies are held between 77 and 86 characters. At five across each column is
+   about 200px, so that is three lines each and the row reads as one band
+   rather than as five columns of different depth. */
+const STEPS = [
   {
-    // the loop itself, not the act of choosing it: the icon has to say what a
-    // reader is being asked to pick
-    icon: ArrowsClockwise,
-    title: "choose a recurring loop",
-    body: "start with a real operating cycle: a commitment becomes work, work creates evidence, evidence drives a decision, and the decision creates the next action.",
+    title: "Choose one workflow",
+    body: "We map the steps, owners, systems, and exceptions with the team that runs it.",
   },
   {
-    // dependencies and exceptions, so a branching structure rather than a map
-    icon: TreeStructure,
-    title: "map how it actually works",
-    body: "firstocean identifies the systems, people, rules, dependencies, and exceptions that shape the loop in practice",
+    title: "Build the knowledge layer",
+    body: "firstocean learns the contracts, records, rules, and context the workflow depends on.",
   },
   {
-    icon: Gauge,
-    title: "make the state of the work visible",
-    body: "the operating model shows what is known, what is missing, what changed, and what needs attention. each conclusion remains traceable to the underlying evidence.",
+    title: "Connect your team",
+    body: "We work with the people who run it and integrate with the systems they already use.",
   },
   {
-    icon: Lightning,
-    title: "run the repeatable parts",
-    body: "agents handle the checking, reconciliation, preparation, and follow-up that can be performed against clear rules.",
+    title: "Go live with oversight",
+    body: "Agents run the workflow while your team reviews decisions, exceptions, and actions.",
   },
   {
-    icon: ArrowsOutCardinal,
-    title: "close the loop and expand",
-    body: "firstocean comes back to the team with new capabilities shaped by what the company has learned.",
+    title: "Improve and expand",
+    body: "We refine it together, then add new work as firstocean learns how the company operates.",
   },
 ];
 
-// One hold per step, and the bar under the rail is the same six seconds drawn
-// out, so what the reader sees filling is the thing that moves the rail on.
-const CYCLE_MS = 6000;
-
 export function OnboardingPath() {
-  const [active, setActive] = useState(0);
-
-  // Nothing pauses this: the rail sits mid-page, so a pointer resting anywhere
-  // over it while the reader scrolls would hold it still and it would look
-  // broken rather than paused.
-  useEffect(() => {
-    // no auto-advance where motion is unwelcome: the steps still open on click,
-    // so nothing is unreachable
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setTimeout(
-      () => setActive((s) => (s + 1) % STEPS.length),
-      CYCLE_MS,
-    );
-    return () => clearTimeout(id);
-  }, [active]);
-
   return (
     <>
       <Reveal>
         <h2
-          className="max-w-[20ch] text-balance leading-[1.04] tracking-[-0.035em]"
-          style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.5rem)" }}
+          className="leading-[1.06] tracking-[-0.035em]"
+          style={{ fontSize: "clamp(1.85rem, 4.4vw, 3rem)" }}
         >
-          {/* the accent on one word, the same way the hero lifts "firstocean":
-              the page holds one highlight colour and uses it sparingly */}
-          a system that grows{" "}
-          <span style={{ color: "var(--bp-blue)" }}>alongside</span> your
-          team
+          <span className="block">Start with one workflow.</span>
+          <span className="block">
+            Go live in as little as{" "}
+            <span style={{ color: "var(--bp-blue)" }}>a week</span>.
+          </span>
         </h2>
         <p
-          className="mt-7 max-w-[56ch] text-[1.08rem] leading-relaxed sm:text-[1.18rem]"
+          className="mt-6 max-w-[58ch] text-[1.06rem] leading-relaxed sm:text-[1.14rem]"
           style={{ color: "var(--bp-ink-muted)" }}
         >
-          start with one operating loop. build towards the whole company
+          We learn how the work runs today, build the first workflow with your
+          team, and improve it together as firstocean takes on more.
         </p>
       </Reveal>
 
-      <Reveal delay={100} className="mt-12">
-        <div
-          className="rounded-[var(--bp-r-md)] border p-6 sm:p-9"
-          style={{
-            borderColor: "var(--bp-hairline)",
-            background: "var(--bp-paper)",
-          }}
-        >
-          {/* Stacked and opening downward on a phone, side by side and opening
-              sideways from lg up. Both are the same markup keyed off
-              data-active; the widths and the clipping are in globals.css,
-              since a flex-basis cannot be animated from an inline style. */}
-          <ol className="bp-rail flex flex-col gap-2 lg:flex-row lg:gap-3">
-            {STEPS.map((step, i) => {
-              const open = i === active;
-              return (
-                <li
-                  key={step.title}
-                  data-active={open || undefined}
-                  className="rounded-[var(--bp-r-sm)] border p-4 transition-colors duration-500"
-                  style={{
-                    borderColor: open
-                      ? "var(--bp-blue-tint)"
-                      : "var(--bp-hairline)",
-                    background: open
-                      ? "color-mix(in srgb, var(--bp-blue) 4%, #fff)"
-                      : "var(--bp-paper)",
-                  }}
-                >
-                  {/* the whole head is the control, so a closed step on the
-                      rail — which is only its icon — is the thing you click.
-                      Spans rather than a heading and a paragraph: a button may
-                      only hold phrasing content. */}
-                  <button
-                    type="button"
-                    onClick={() => setActive(i)}
-                    aria-expanded={open}
-                    className="flex w-full items-center gap-4 text-left lg:flex-col lg:items-start lg:gap-5"
-                  >
-                    <span
-                      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--bp-r-sm)] transition-colors duration-500"
-                      style={{
-                        background: open
-                          ? "var(--bp-blue)"
-                          : "color-mix(in srgb, var(--bp-blue) 12%, #fff)",
-                        color: open ? "#ffffff" : "var(--bp-blue)",
-                      }}
-                    >
-                      <step.icon className="h-5 w-5" weight="regular" />
-                    </span>
-
-                    <span className="bp-rail-meta block text-[1.05rem] font-medium tracking-[-0.01em]">
-                      {step.title}
-                    </span>
-                  </button>
-
-                  {/* Fixed width once it is on the rail, so the copy is
-                      uncovered by the step opening rather than rewrapped on
-                      every frame of it. */}
-                  <p
-                    className="bp-rail-body mt-3 text-[0.96rem] leading-relaxed lg:mt-5 lg:w-[25rem] xl:w-[40rem]"
-                    style={{ color: "var(--bp-ink-muted)" }}
-                  >
-                    {step.body}
-                  </p>
-                </li>
-              );
-            })}
-          </ol>
-
-          {/* The hold, drawn. It is keyed on the step, so moving on remounts it
-              and the fill starts again from nothing — including on the wrap
-              from the fifth step back to the first. Hidden rather than left
-              sitting empty where motion is unwelcome, since nothing is
-              advancing there for it to measure. */}
+      <Reveal delay={100} className="mt-14">
+        {/* One rail across the whole row rather than a segment per step, so
+            the run cannot break between them, sitting on the centre of the
+            nodes. The line is faint and a brighter segment travels it; the
+            overflow-hidden is what stops that segment escaping either end.
+            Hidden below md, where the steps stack and a horizontal rule would
+            mean nothing. */}
+        <div className="relative">
           <div
             aria-hidden
-            className="mt-8 h-0.5 w-full overflow-hidden motion-reduce:hidden"
-            style={{ background: "var(--bp-hairline)" }}
+            className="absolute left-1 right-0 top-[4px] hidden h-0.5 overflow-hidden rounded-full md:block"
+            style={{
+              background: "color-mix(in srgb, var(--bp-blue) 18%, transparent)",
+            }}
           >
-            <div
-              key={active}
-              className="bp-rail-progress h-full w-full"
-              style={{
-                background: "var(--bp-blue)",
-                animationDuration: `${CYCLE_MS}ms`,
-              }}
-            />
+            <div className="bp-rail-lit h-full" />
           </div>
+
+          {/* Five across from md up and never two rows: the run is the point,
+              and a 3+2 wrap reads as two separate processes. */}
+          <ol className="relative grid grid-cols-1 gap-x-7 gap-y-11 md:grid-cols-5 lg:gap-x-9">
+            {STEPS.map((step, i) => (
+              <li key={step.title}>
+                {/* The light needs 1.3 rail widths to cross, so a node at
+                    fraction f of the rail is reached at ((f + 0.115) / 1.3) of
+                    the 60s cycle. The keyframe peaks 3% in, which is the 1.8
+                    subtracted here. */}
+                <span
+                  aria-hidden
+                  className="bp-rail-node block h-2.5 w-2.5 origin-center rounded-full"
+                  style={{
+                    background: "var(--bp-blue)",
+                    animationDelay: `${(((i / STEPS.length + 0.115) / 1.3) * 60 - 1.8).toFixed(2)}s`,
+                  }}
+                />
+                <h3 className="mt-5 text-[1.02rem] font-medium tracking-[-0.012em]">
+                  {step.title}
+                </h3>
+                <p
+                  className="mt-2.5 text-[0.94rem] leading-relaxed"
+                  style={{ color: "var(--bp-ink-muted)" }}
+                >
+                  {step.body}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </Reveal>
     </>

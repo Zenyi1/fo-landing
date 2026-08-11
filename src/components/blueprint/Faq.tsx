@@ -1,4 +1,4 @@
-import { CaretDown } from "@phosphor-icons/react/dist/ssr";
+import { Plus } from "@phosphor-icons/react/dist/ssr";
 
 import { Reveal } from "@/components/Reveal";
 
@@ -14,8 +14,8 @@ const QUESTIONS = [
     a: "firstocean is building the operating system for everything a biotech does other than the science. it connects the company’s operating context, then gives agents the ability to run repeatable work with evidence and human oversight.",
   },
   {
-    q: "why does this need to exist now?",
-    a: "the pace of discovery is increasing, but the coordination layer around discovery is still fragmented. more programs and more external partners create more operating work without creating a system that can see how the pieces fit together.",
+    q: "what does firstocean look like?",
+    a: "your team does not need another dashboard. there is no new interface to adopt — it is an agentic system that works in the channels and systems you already run, so the work lands where your team already is.",
   },
   {
     q: "does firstocean replace our team?",
@@ -58,41 +58,41 @@ export function Faq() {
       </Reveal>
 
       <Reveal delay={90}>
-        <div
-          className="mt-[clamp(40px,6vh,72px)] border-t"
-          style={{ borderColor: "var(--bp-hairline)" }}
-        >
+        <ul className="mt-[clamp(40px,6vh,72px)] space-y-3">
           {QUESTIONS.map((item, i) => (
-            <details
-              key={item.q}
-              open={i === 0}
-              className="group border-b"
-              style={{ borderColor: "var(--bp-hairline)" }}
-            >
-              {/* The caret is taken out of the flow and pinned right, so the
-                  question can sit optically centred in the row instead of being
-                  pushed off-centre by the width of an icon. */}
-              <summary className="relative cursor-pointer list-none py-7 pr-10 text-center focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] [&::-webkit-details-marker]:hidden">
-                <h3 className="text-[1.15rem] font-medium tracking-[-0.015em] sm:text-[1.32rem]">
-                  {item.q}
-                </h3>
-                <CaretDown
-                  aria-hidden
-                  className="absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 transition-transform duration-200 group-open:-translate-y-1/2 group-open:rotate-180"
-                  style={{ color: "var(--bp-blue)" }}
-                />
-              </summary>
-              {/* Narrower than the left-aligned version was: centred prose has
-                  no straight edge to return to, so a shorter line matters more. */}
-              <p
-                className="mx-auto max-w-[56ch] pb-8 text-center text-[1.02rem] leading-relaxed"
-                style={{ color: "var(--bp-ink-muted)" }}
+            <li key={item.q}>
+              {/* A card each, on the section wash, rather than rows divided by
+                  hairlines: the separation comes from the gap between them, so
+                  nothing needs a rule. */}
+              <details
+                open={i === 0}
+                className="group rounded-[var(--bp-r-md)] px-6 py-1 sm:px-8"
+                style={{ background: "var(--bp-paper)" }}
               >
-                {item.a}
-              </p>
-            </details>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] [&::-webkit-details-marker]:hidden">
+                  {/* lowercase in CSS, so the accessible name keeps its
+                      capitals */}
+                  <h3 className="text-[1.08rem] font-medium lowercase tracking-[-0.015em] sm:text-[1.24rem]">
+                    {item.q}
+                  </h3>
+                  {/* the plus turns into a cross by rotating an eighth turn */}
+                  <Plus
+                    aria-hidden
+                    weight="bold"
+                    className="h-[1.15rem] w-[1.15rem] shrink-0 transition-transform duration-200 group-open:rotate-45"
+                    style={{ color: "var(--bp-ink)" }}
+                  />
+                </summary>
+                <p
+                  className="max-w-[68ch] pb-7 pr-8 text-[1.02rem] leading-relaxed"
+                  style={{ color: "var(--bp-ink-muted)" }}
+                >
+                  {item.a}
+                </p>
+              </details>
+            </li>
           ))}
-        </div>
+        </ul>
       </Reveal>
     </div>
   );
