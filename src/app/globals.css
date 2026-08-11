@@ -139,16 +139,6 @@
   font-family: var(--font-display);
 }
 
-/* The hero pins so the reader drives the piece assembly by scrolling. Under
-   reduced motion the square is painted finished on the first frame, so that
-   extra track height would be nothing but a long scroll past a static image.
-   Unlayered, so it outranks the Tailwind utility that sets the height. */
-@media (prefers-reduced-motion: reduce) {
-  #hero-track {
-    height: auto;
-  }
-}
-
 /* The base layer types headings at Inter 600 by element selector, which an
    inherited family on the page root cannot outrank. These rules are unlayered,
    so they win, and the display scale gets the 500 weight it is drawn for. */
@@ -214,6 +204,33 @@
   }
   .bg-brand {
     background-color: var(--brand);
+  }
+
+  /* The typing caret in the hero headline. Sized in em so it tracks whatever
+     the headline clamps to, and blinks only where motion is welcome. */
+  .bp-caret {
+    display: inline-block;
+    width: 0.055em;
+    min-width: 2px;
+    height: 0.82em;
+    margin-left: 0.07em;
+    vertical-align: -0.06em;
+    background: currentColor;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .bp-caret {
+      animation: bp-blink 1.05s steps(1, end) infinite;
+    }
+  }
+  @keyframes bp-blink {
+    0%,
+    50% {
+      opacity: 1;
+    }
+    50.01%,
+    100% {
+      opacity: 0;
+    }
   }
 
   /* Drafting grid. 32px pitch, drawn from the accent so it reads as blueprint
@@ -410,6 +427,75 @@
     }
   }
 
+  /* Onboarding rail. One step is open at a time; which one is JS, and every
+     rule here keys off the data-active it writes. Stacked on a phone, the open
+     step drops its body below its title. From lg up the steps sit side by side
+     and the closed ones give up their width to the open one. */
+  .bp-rail-body {
+    display: none;
+  }
+  .bp-rail > li[data-active] .bp-rail-body {
+    display: block;
+  }
+
+  @media (min-width: 1024px) {
+    /* held tall enough for the longest body, so the card underneath the rail
+       does not jump as the open step moves along it */
+    .bp-rail {
+      min-height: 15.5rem;
+    }
+
+    /* Only flex-grow animates. Every step keeps the same closed basis, so the
+       open one simply takes all the free space and the widths interpolate
+       without a basis to fight. min-width overrides the automatic minimum
+       size, which is the closed step's own content and would otherwise stop
+       it shrinking to its icon. */
+    .bp-rail > li {
+      flex: 0 1 5.5rem;
+      min-width: 0;
+      overflow: hidden;
+      transition:
+        flex-grow 700ms cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 500ms ease,
+        background-color 500ms ease;
+    }
+    .bp-rail > li[data-active] {
+      flex-grow: 1;
+    }
+
+    /* the closed steps keep their number and title for a screen reader and
+       lose them for everyone else; the icon is what is left on the rail */
+    .bp-rail-meta {
+      transition: opacity 400ms ease;
+    }
+    .bp-rail > li:not([data-active]) .bp-rail-meta {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bp-rail > li,
+    .bp-rail-meta {
+      transition: none;
+    }
+  }
+
+  /* The bar under the rail. Its duration is set inline from the same constant
+     that moves the steps on, so the fill cannot drift out of step with them.
+     A transform, not a width, so it composites and costs no layout. */
+  .bp-rail-progress {
+    transform-origin: left center;
+    animation: bp-rail-run linear forwards;
+  }
+  @keyframes bp-rail-run {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
   /* Provenance strip. The track carries the row twice and slides exactly half
      its own width, so the clone lands on the seam and the loop never shows.
      Transform only, so it composites on its own layer and costs no layout. */
@@ -431,7 +517,9 @@
   }
 
   .bp-marquee-track {
-    animation: bp-marquee 48s linear infinite;
+    /* tied to the row's width, not a fixed pace: ten marks travel about a
+       third further than eight did, so the duration grows with them */
+    animation: bp-marquee 62s linear infinite;
   }
 
   /* hovering holds the strip still long enough to read a mark */

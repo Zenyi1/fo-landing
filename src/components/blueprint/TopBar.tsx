@@ -1,11 +1,13 @@
 import Link from "next/link";
 
+import { OS_HOME } from "@/lib/links";
+
 // Announcement strip plus the floating nav. The strip is in normal flow, so it
 // scrolls away once read; the nav sticks. No JS: sticky and the glass fill are
 // both CSS, which keeps the whole header a Server Component.
 const NAV = [
   { href: "#graph", label: "The model" },
-  { href: "#departments", label: "What we run" },
+  { href: "#departments", label: "What we do" },
   { href: "#how", label: "Getting started" },
   { href: "#faq", label: "FAQ" },
 ];
@@ -18,7 +20,7 @@ export function TopBar() {
         className="group flex w-full items-center justify-center gap-2 px-4 py-2.5 text-[0.82rem] font-medium text-white transition-colors hover:bg-[var(--bp-blue-strong)] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white"
         style={{ background: "var(--bp-blue)" }}
       >
-        firstocean raises its pre-seed
+        firstocean raises pre-seed to build the operating layer for biotech
         <span
           aria-hidden
           className="transition-transform motion-safe:group-hover:translate-x-0.5"
@@ -39,7 +41,7 @@ export function TopBar() {
           }}
         >
           <Link
-            href="/"
+            href={OS_HOME}
             className="text-[17px] font-medium lowercase tracking-[-0.015em]"
             style={{ color: "var(--bp-ink)" }}
           >

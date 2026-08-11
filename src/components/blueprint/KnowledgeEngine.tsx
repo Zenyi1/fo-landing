@@ -23,7 +23,7 @@ const STEPS = [
   },
   {
     title: "Execution",
-    body: "Agents act on that model and carry routine work the whole way through, stopping at the one step that should stay a person's.",
+    body: "Agents reconcile, check, chase, prepare, and escalate. when the evidence is unclear, they stop and hand the decision to a person.",
   },
   {
     title: "Learning",
@@ -705,30 +705,31 @@ export function KnowledgeEngine() {
                   const active = i === step;
                   return (
                     <li key={s.title}>
+                      {/* Ink on paper until it is this step's turn, then the
+                          whole pill inverts. State is carried by the reversal
+                          alone, which is why there is no longer a dot inside
+                          it and why the resting label is full-strength ink
+                          rather than a muted grey: nothing here is disabled,
+                          so nothing should read as faded.
+
+                          font-sans overrides the display face .bp-root sets on
+                          the page, and `lowercase` is a CSS transform rather
+                          than the data, so the accessible name stays capitalised. */}
                       <button
                         type="button"
                         onClick={() => goTo(i)}
                         aria-current={active ? "step" : undefined}
-                        className="font-ledger inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-[0.72rem] uppercase leading-none tracking-[0.12em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)]"
+                        className="inline-flex items-center rounded-full border px-5 py-2.5 font-sans text-[0.92rem] font-medium lowercase leading-none tracking-[-0.005em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)]"
                         style={{
                           background: active
-                            ? "var(--bp-blue)"
+                            ? "var(--bp-ink)"
                             : "var(--bp-paper)",
                           borderColor: active
-                            ? "var(--bp-blue)"
-                            : "var(--bp-hairline)",
-                          color: active ? "#ffffff" : "var(--bp-ink-muted)",
+                            ? "var(--bp-ink)"
+                            : "var(--bp-hairline-strong)",
+                          color: active ? "var(--bp-paper)" : "var(--bp-ink)",
                         }}
                       >
-                        <span
-                          aria-hidden
-                          className="h-1.5 w-1.5 rounded-full"
-                          style={{
-                            background: active
-                              ? "#ffffff"
-                              : "var(--bp-hairline-strong)",
-                          }}
-                        />
                         {s.title}
                       </button>
                     </li>
@@ -756,10 +757,6 @@ export function KnowledgeEngine() {
                 background: "var(--bp-paper)",
               }}
             >
-              <div
-                aria-hidden
-                className="bp-grid pointer-events-none absolute inset-0 opacity-70"
-              />
               {/* key remounts the scene, which replays its entry animation */}
               <Scene key={step} step={step} />
             </div>

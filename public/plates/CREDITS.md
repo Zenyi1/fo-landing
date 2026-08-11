@@ -9,4 +9,4 @@ Re-fetch with `UNSPLASH_ACCESS_KEY=... node scripts/fetch-plates.mjs`.
 - `bench.jpg` — Mitya Abrosimov, https://unsplash.com/photos/6Fxc1d53pog
 - `archive.jpg` — Nana Smirnova, https://unsplash.com/photos/IEiAmhXehwE
 - `lab.jpg` — Trnava University, https://unsplash.com/photos/mCpSF-KnlKY
-- `ocean.jpg` — Mike Yukhtenko, https://unsplash.com/photos/wfh8dDlNFOk
+- `ocean.jpg` — Fernando Jorge, https://unsplash.com/photos/GxymWkdnl4Y
