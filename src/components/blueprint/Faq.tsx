@@ -38,18 +38,27 @@ const QUESTIONS = [
 
 export function Faq() {
   return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] lg:gap-20">
+    <div className="mx-auto w-full max-w-[1000px]">
       <Reveal>
-        <h2
-          className="text-balance leading-[1.04] tracking-[-0.035em]"
-          style={{ fontSize: "clamp(2.1rem, 4.2vw, 3.5rem)" }}
+        <p
+          className="text-center text-[0.72rem] font-medium uppercase tracking-[0.14em]"
+          style={{ color: "var(--bp-blue)" }}
         >
-          Questions.
+          FAQ
+        </p>
+        <h2
+          className="mt-5 text-balance text-center leading-[1.04] tracking-[-0.035em]"
+          style={{ fontSize: "clamp(2.4rem, 5.6vw, 4.25rem)" }}
+        >
+          Common questions
         </h2>
       </Reveal>
 
       <Reveal delay={90}>
-        <div className="border-t" style={{ borderColor: "var(--bp-hairline)" }}>
+        <div
+          className="mt-[clamp(40px,6vh,72px)] border-t"
+          style={{ borderColor: "var(--bp-hairline)" }}
+        >
           {QUESTIONS.map((item, i) => (
             <details
               key={item.q}
@@ -57,8 +66,8 @@ export function Faq() {
               className="group border-b"
               style={{ borderColor: "var(--bp-hairline)" }}
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] [&::-webkit-details-marker]:hidden">
-                <h3 className="text-[1.08rem] tracking-[-0.01em] sm:text-[1.15rem]">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-7 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)] [&::-webkit-details-marker]:hidden">
+                <h3 className="text-[1.15rem] font-medium tracking-[-0.015em] sm:text-[1.32rem]">
                   {item.q}
                 </h3>
                 <CaretDown
@@ -68,7 +77,7 @@ export function Faq() {
                 />
               </summary>
               <p
-                className="max-w-[62ch] pb-6 pr-10 text-[1.02rem] leading-relaxed"
+                className="max-w-[68ch] pb-8 pr-10 text-[1.02rem] leading-relaxed"
                 style={{ color: "var(--bp-ink-muted)" }}
               >
                 {item.a}

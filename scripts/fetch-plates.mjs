@@ -45,14 +45,15 @@ const PLATES = [
     h: 900, // 8:3, closing statement
   },
   {
-    // Chosen for evenness rather than drama. The CTA heading is white and sits
-    // over the left of this plate, so the brightest patch there is what governs
-    // the choice: this one measures 12.9:1 for white under the 40% scrim, where
-    // a more photogenic breaking-wave shot measured 2.0:1 and was unusable.
+    // A calm horizon where the sea dissolves into the sky, rather than the near
+    // black water this used to be. It is a lighter plate, so the scrim carries
+    // more of the legibility: the CTA copy sits over the left of it and the
+    // brightest patch there governs the choice. Under the 50% scrim the heading
+    // measures 7.3:1 and the 80% white body copy 5.4:1.
     file: "ocean.jpg",
-    id: "wfh8dDlNFOk",
-    by: "Mike Yukhtenko",
-    link: "https://unsplash.com/photos/wfh8dDlNFOk",
+    id: "GxymWkdnl4Y",
+    by: "Fernando Jorge",
+    link: "https://unsplash.com/photos/GxymWkdnl4Y",
     w: 2400,
     h: 1030, // ~21:9, CTA backdrop behind the scrim
   },

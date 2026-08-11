@@ -8,9 +8,8 @@
    boxed lockup, which would sit far heavier than everything around it.
 
    Deliberately not grouped by sector — the finance marks are interleaved so
-   the strip reads as a mix rather than as a bank list with a few guests. With
-   five finance marks against three others, one adjacent pair is unavoidable,
-   so it is put at the end where the fade is already softening the row. */
+   the strip reads as a mix rather than as a bank list with a few guests, and
+   the two pharma marks are kept apart from each other and from the NHS. */
 const LOGOS = [
   { name: "Blackstone", src: "/logos/blackstone.svg", h: 18, w: 113 },
   {
@@ -20,6 +19,9 @@ const LOGOS = [
     w: 95,
   },
   { name: "Goldman Sachs", src: "/logos/goldman-sachs.svg", h: 30, w: 72 },
+  // the current lockup rather than the old blue oval, which is a solid plate
+  // and would sit as heavy as the NHS mark
+  { name: "Pfizer", src: "/logos/pfizer.svg", h: 27, w: 66 },
   { name: "Palantir", src: "/logos/palantir.svg", h: 22, w: 91 },
   { name: "Averin Capital", src: "/logos/averin.svg", h: 19, w: 72 },
   // A solid blue plate, so it carries far more ink per pixel than the
@@ -31,6 +33,16 @@ const LOGOS = [
     src: "/logos/american-express.svg",
     h: 27,
     w: 82,
+  },
+  // The script, not the 2023 wordmark: it is the mark people recognise, and
+  // the wordmark is so wide it would run half again as long as Blackstone.
+  // Its letters only fill the middle of the box, so it takes more height than
+  // a wordmark of the same optical size would.
+  {
+    name: "Johnson & Johnson",
+    src: "/logos/johnson-and-johnson.svg",
+    h: 24,
+    w: 132,
   },
   // the only square mark in the set, and a thin outline at that, so it needs
   // more height than the wordmarks to carry the same weight

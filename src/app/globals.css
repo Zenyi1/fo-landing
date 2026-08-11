@@ -139,16 +139,6 @@
   font-family: var(--font-display);
 }
 
-/* The hero pins so the reader drives the piece assembly by scrolling. Under
-   reduced motion the square is painted finished on the first frame, so that
-   extra track height would be nothing but a long scroll past a static image.
-   Unlayered, so it outranks the Tailwind utility that sets the height. */
-@media (prefers-reduced-motion: reduce) {
-  #hero-track {
-    height: auto;
-  }
-}
-
 /* The base layer types headings at Inter 600 by element selector, which an
    inherited family on the page root cannot outrank. These rules are unlayered,
    so they win, and the display scale gets the 500 weight it is drawn for. */
@@ -431,7 +421,9 @@
   }
 
   .bp-marquee-track {
-    animation: bp-marquee 48s linear infinite;
+    /* tied to the row's width, not a fixed pace: ten marks travel about a
+       third further than eight did, so the duration grows with them */
+    animation: bp-marquee 62s linear infinite;
   }
 
   /* hovering holds the strip still long enough to read a mark */

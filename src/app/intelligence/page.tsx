@@ -6,7 +6,7 @@ import { TopBar } from "@/components/blueprint/TopBar";
 import { BlueprintFooter } from "@/components/blueprint/BlueprintFooter";
 import { ContactForm } from "@/components/blueprint/ContactForm";
 import { DepartmentGrid } from "@/components/blueprint/DepartmentGrid";
-import { HeroSort } from "@/components/blueprint/HeroSort";
+import { HeroMorph } from "@/components/blueprint/HeroMorph";
 import { LogoMarquee } from "@/components/blueprint/LogoMarquee";
 import { OnboardingPath } from "@/components/blueprint/OnboardingPath";
 import { Faq } from "@/components/blueprint/Faq";
@@ -118,51 +118,40 @@ export default function IntelligencePage() {
       <TopBar />
 
       {/* ══ HERO ═══════════════════════════════════════════════════════════
-          From lg up the hero holds while the pieces gather: the track is taller
-          than the viewport, the hero sticks inside it, and HeroSort reads how
-          far through the track we are to drive the assembly. The page moves on
-          once the square is finished. The id is the contract between the two.
-
-          Below lg there is no track worth pinning to on a phone, so the extra
-          height and the stick are both dropped and the pieces run on a timer.
-
           112px is the strip plus the sticky nav's flow height, so the hero
           still fills exactly one viewport under them. */}
-      <div id="hero-track" className="relative lg:h-[190vh]">
-        <div className="flex min-h-[calc(100dvh-112px)] flex-col lg:sticky lg:top-0 lg:min-h-[100dvh] lg:pt-[92px]">
-          <div className="mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 items-center gap-10 px-6 pb-16 pt-10 sm:px-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pt-0">
-            {/* above the hero pieces: they scatter across the whole hero on the
-              way in, and the headline has to stay readable while they do */}
-            <Reveal className="relative z-10">
-              <h1
-                className="text-balance leading-[0.98] tracking-[-0.04em]"
-                style={{ fontSize: "min(clamp(2.7rem, 5vw, 4.05rem), 12vh)" }}
-              >
-                the operating system for biotechs.
-              </h1>
-              <p
-                className="mt-7 max-w-[36rem] text-[1.1rem] leading-relaxed sm:text-[1.22rem]"
-                style={{ color: "var(--bp-ink-muted)" }}
-              >
-                firstocean reads the contracts, invoices, protocols and filings
-                a drug company already runs on, builds one live model of how the
-                company actually works, and puts agents on top of it. Finance,
-                legal, clinical operations, regulatory, supply chain. The
-                judgement and the science stay yours.
-              </p>
-              {/* one call to action in the hero, deliberately */}
-              <div className="mt-10">
-                <BookButton />
-              </div>
-            </Reveal>
-
-            {/* No Reveal here. It fades its children in from zero over 0.7s,
-              which swallowed the whole scattered phase — the pieces run their
-              own entrance. Shown from sm up: only a phone is too narrow for
-              it. */}
-            <div className="relative z-0 hidden sm:block">
-              <HeroSort />
+      <div className="flex min-h-[calc(100dvh-112px)] flex-col">
+        <div className="mx-auto grid w-full max-w-[1240px] flex-1 grid-cols-1 items-center gap-10 px-6 pb-16 pt-10 sm:px-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16 lg:pt-14">
+          {/* above the field: the dots now drift across the whole hero, and the
+              headline has to stay readable while they pass behind it */}
+          <Reveal className="relative z-10">
+            <h1
+              className="text-balance leading-[0.98] tracking-[-0.04em]"
+              style={{ fontSize: "min(clamp(2.7rem, 5vw, 4.05rem), 12vh)" }}
+            >
+              the operating system for biotechs.
+            </h1>
+            <p
+              className="mt-7 max-w-[36rem] text-[1.1rem] leading-relaxed sm:text-[1.22rem]"
+              style={{ color: "var(--bp-ink-muted)" }}
+            >
+              firstocean reads the contracts, invoices, protocols and filings a
+              drug company already runs on, builds one live model of how the
+              company actually works, and puts agents on top of it. Finance,
+              legal, clinical operations, regulatory, supply chain. The
+              judgement and the science stay yours.
+            </p>
+            {/* one call to action in the hero, deliberately */}
+            <div className="mt-10">
+              <BookButton />
             </div>
+          </Reveal>
+
+          {/* No Reveal here: it fades its children in from zero over 0.7s,
+              which would swallow the opening drift. The field runs its own
+              entrance. Shown from sm up, since only a phone is too narrow. */}
+          <div className="relative z-0 hidden sm:block">
+            <HeroMorph />
           </div>
         </div>
       </div>
@@ -268,10 +257,10 @@ export default function IntelligencePage() {
       </Section>
 
       {/* ══ CTA ════════════════════════════════════════════════════════════
-          The page's one dark surface. The plate was picked for evenness rather
-          than drama: the white heading sits over its left third, so the
-          brightest patch there is what governs the choice. Under the 40% scrim
-          this one measures 12.9:1 for white text. */}
+          The page's one dark surface. The plate is a calm horizon picked for
+          evenness rather than drama: the white copy sits over its left third,
+          so the brightest patch there is what governs the choice. It is a light
+          photograph, so the scrim runs at 50% to hold the body copy at 5.4:1. */}
       <section id="contact" className="relative isolate scroll-mt-[92px]">
         <Image
           src="/plates/ocean.jpg"
@@ -281,7 +270,7 @@ export default function IntelligencePage() {
           sizes="100vw"
           className="-z-10 object-cover"
         />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-black/40" />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-black/50" />
 
         <div className="mx-auto w-full max-w-[1240px] px-6 py-[clamp(72px,10vh,120px)] sm:px-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-24">
