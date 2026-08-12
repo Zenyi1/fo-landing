@@ -94,7 +94,7 @@ export default function IntelligencePage() {
               className="text-balance leading-[0.98] tracking-[-0.04em]"
               style={{ fontSize: "min(clamp(2.7rem, 5.4vw, 4.4rem), 13vh)" }}
             >
-              The operating system for biotech work outside the lab.
+              AI that runs your biotech&rsquo;s business operations.
             </h1>
             {/* Full-strength ink, not the muted body tone: this sits over the
                 dot field, and a softened grey would be the one thing on the
@@ -104,9 +104,10 @@ export default function IntelligencePage() {
               className="mx-auto mt-9 max-w-[40rem] text-[1.1rem] leading-relaxed sm:text-[1.24rem]"
               style={{ color: "var(--bp-ink)" }}
             >
-              <span style={{ color: "var(--bp-blue)" }}>firstocean</span> learns
-              your contracts, filings, trial data, and SOPs, then runs the
-              operational work that slows your team down.
+              <span style={{ color: "var(--bp-blue)" }}>firstocean</span> maps
+              how your company works across contracts, filings, trial data, and
+              SOPs, then automates the finance, compliance, and operational work
+              around the science.
             </p>
             {/* Uppercased in CSS rather than in the text, so the accessible
                 name stays "book demo" and is not spelled out letter by letter.
