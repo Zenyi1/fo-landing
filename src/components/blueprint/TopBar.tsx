@@ -5,11 +5,14 @@ import { OS_HOME } from "@/lib/links";
 // Announcement strip plus the floating nav. The strip is in normal flow, so it
 // scrolls away once read; the nav sticks. No JS: sticky and the glass fill are
 // both CSS, which keeps the whole header a Server Component.
+// Anchors stay plain <a>; the one route in the list is a Link, so it is
+// prefetched and does not reload the page.
 const NAV = [
   { href: "#graph", label: "The model" },
   { href: "#departments", label: "What we do" },
   { href: "#how", label: "Getting started" },
   { href: "#faq", label: "FAQ" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function TopBar() {
@@ -51,17 +54,24 @@ export function TopBar() {
           {/* the anchors are a desktop affordance; on a phone the page is short
               enough to scroll and the pill keeps only the wordmark and the CTA */}
           <ul className="hidden items-center gap-7 lg:flex">
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="text-[0.92rem] transition-colors hover:text-[color:var(--bp-ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)]"
-                  style={{ color: "var(--bp-ink-muted)" }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
+            {NAV.map((item) => {
+              const className =
+                "text-[0.92rem] transition-colors hover:text-[color:var(--bp-ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)]";
+              const style = { color: "var(--bp-ink-muted)" };
+              return (
+                <li key={item.href}>
+                  {item.href.startsWith("#") ? (
+                    <a href={item.href} className={className} style={style}>
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link href={item.href} className={className} style={style}>
+                      {item.label}
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           <a

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { BlogHeader } from "@/components/blueprint/BlogHeader";
 import { BlueprintFooter } from "@/components/blueprint/BlueprintFooter";
 import { CONTACT_EMAIL } from "@/lib/links";
 
@@ -61,32 +62,7 @@ export default function PreSeedPost() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
       />
 
-      {/* These point at /intelligence rather than /, and should stay that way:
-          "/" only serves this page's context in Europe and North America (see
-          src/proxy.ts), so from anywhere else it would send a reader of this
-          post to the licensing homepage. /intelligence is the same page in
-          every geography, and it is the only path with a #contact anchor. */}
-      <header
-        className="w-full border-b px-6 sm:px-10"
-        style={{ borderColor: "var(--bp-hairline)" }}
-      >
-        <div className="mx-auto flex h-[72px] w-full max-w-[1240px] items-center justify-between">
-          <Link
-            href="/intelligence"
-            className="text-[17px] font-medium lowercase tracking-[-0.015em]"
-            style={{ color: "var(--bp-ink)" }}
-          >
-            firstocean
-          </Link>
-          <Link
-            href="/intelligence"
-            className="text-[0.92rem] transition-colors hover:text-[color:var(--bp-ink)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-blue)]"
-            style={{ color: "var(--bp-ink-muted)" }}
-          >
-            <span aria-hidden>←</span> Back to the site
-          </Link>
-        </div>
-      </header>
+      <BlogHeader backHref="/blog" backLabel="All posts" />
 
       <article className="mx-auto w-full max-w-[1240px] px-6 pb-24 pt-14 sm:px-10 sm:pt-20">
         {/* the title block runs to the reading measure even though the image
