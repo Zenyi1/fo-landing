@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { WaveBackground } from "@/components/WaveBackground";
 import { BackedBy } from "@/components/BackedBy";
+import { originatorCallUrl } from "@/lib/links";
 
 // The markets firstocean distributes into: the largest commercially viable
 // economies across LATAM, MENA and Southeast Asia (top ~8 by GDP each),
@@ -15,8 +16,8 @@ const MARKETS = [
   "Argentina", "Egypt", "the Philippines",
   "Colombia", "Vietnam", "South Africa",
   "Chile", "Qatar", "Malaysia",
-  "Peru", "Kuwait", "Myanmar",
-  "Ecuador", "Algeria", "Morocco", "Turkey"
+  "Peru", "Kuwait", "Jordan",
+  "Ecuador", "Algeria", "Morocco", "Türkiye"
 ];
 
 export function Hero() {
@@ -74,8 +75,8 @@ export function Hero() {
           willChange: "opacity, transform",
         }}
       >
-        <p className="max-w-[24ch] font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
-          Your drug could be earning in
+        <p className="font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
+          Your medicine isn&rsquo;t reaching
         </p>
         <p className="mt-1 min-h-[1.02em] whitespace-nowrap font-sans text-[clamp(2.7rem,10vw,7.4rem)] font-semibold leading-[1.0] tracking-[-0.035em]">
           <span
@@ -89,24 +90,43 @@ export function Hero() {
           </span>
         </p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-3.5">
+        {/* What firstocean actually does, in the hero rather than three
+            sections down: the rotating market states the problem, this states
+            the offer, and a reader who leaves here should still be able to
+            repeat what the company is for.
+
+            Written on the mechanism, not on the contract — no claim here
+            depends on whether firstocean ends up inside the licence or beside
+            it, so none of it goes stale when that is settled. */}
+        <p className="mt-7 max-w-[54ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
+          firstocean is the commercial operation a biotech will not build for
+          itself. Approved and late-stage medicines, taken into{" "}
           <Link
-            href="/originators"
+            href="/markets"
+            className="font-medium underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
+          >
+            53 markets
+          </Link>{" "}
+          a launch plan leaves out, through operators already established in
+          each one.
+        </p>
+
+        <div className="mt-9 flex flex-wrap items-center gap-3.5">
+          <a
+            href={originatorCallUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-4 font-sans text-[1.05rem] font-semibold text-[#1e3a8a] transition-colors hover:bg-white/90"
           >
-            See what your drug is worth →
-          </Link>
+            Talk to us about your asset →
+          </a>
           <Link
-            href="/distributors"
+            href="/originators"
             className="inline-flex items-center gap-2 rounded-[11px] border border-white/40 px-7 py-4 font-sans text-[1.05rem] font-semibold text-white transition-colors hover:border-white hover:bg-white/5"
           >
-            I&rsquo;m here to license assets →
+            See an anonymous estimate →
           </Link>
         </div>
-
-        <p className="mt-4 text-[0.9rem] font-medium text-white">
-          See an estimate in about two minutes, anonymously. No name, no email, no compound.
-        </p>
 
         <BackedBy className="mt-8" />
       </div>

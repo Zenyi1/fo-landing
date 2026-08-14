@@ -5,7 +5,7 @@ import { ValuationFunnel } from "@/components/ValuationFunnel";
 
 const title = "Emerging markets asset valuation";
 const description =
-  "Estimate the emerging-market value of your therapeutic, from preclinical to approved.";
+  "Estimate what your therapeutic is worth outside its core markets, from preclinical to approved. Anonymous, about two minutes.";
 
 export const metadata: Metadata = {
   title,
@@ -43,11 +43,12 @@ export default function OriginatorsPage() {
             firstocean
           </Link>
           <div className="flex flex-1 flex-col items-center justify-center text-center">
-            <h2 className="max-w-[16ch] font-sans text-[30px] font-semibold leading-[1.12] tracking-[-0.02em] md:text-[46px]">
+            <h2 className="text-balance font-sans text-[30px] font-semibold leading-[1.12] tracking-[-0.02em] md:text-[46px]">
               Most of the world can&rsquo;t access your medicine.
             </h2>
             <p className="mt-5 max-w-[40ch] text-[18px] leading-[1.55] text-white md:text-[21px]">
-              firstocean turns unlicensed emerging-market rights into capital.
+              firstocean commercializes approved and late-stage medicines in the
+              markets your launch plan will never cover.
             </p>
           </div>
         </div>

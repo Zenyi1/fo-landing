@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { originatorCallUrl } from "@/lib/links";
 
 export function SiteHeader() {
   const [solid, setSolid] = useState(false);
@@ -37,16 +38,18 @@ export function SiteHeader() {
             href="/distributors"
             className={`hidden text-sm font-semibold transition-colors sm:inline ${linkColor}`}
           >
-            For in-licensors
+            For distributors
           </Link>
-          <Link
-            href="/originators"
+          <a
+            href={originatorCallUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
             className={`rounded-[9px] px-4 py-2 text-sm font-semibold transition-colors ${
               solid ? "bg-brand text-white hover:bg-[var(--brand-strong)]" : "bg-white text-ink hover:bg-white/90"
             }`}
           >
-            What is your drug worth?
-          </Link>
+            Talk to us
+          </a>
         </nav>
       </div>
     </header>

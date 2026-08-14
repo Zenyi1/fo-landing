@@ -1,7 +1,6 @@
 'use client';
 
-import { Suspense, useEffect } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
 
@@ -15,8 +14,9 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
       ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.posthog.com",
       // no person profile until we explicitly identify, keeps anonymous visitors anonymous
       person_profiles: "identified_only",
-      // we drive pageviews ourselves for app-router client navigation
-      capture_pageview: false,
+      // posthog follows app-router client navigation itself. capturing pageviews by
+      // hand instead would switch $pageleave off, and with it session duration
+      capture_pageview: "history_change",
       session_recording: {
         // record all inputs in replay, passwords always stay masked
         maskAllInputs: false,
@@ -25,27 +25,5 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  return (
-    <PHProvider client={posthog}>
-      <Suspense fallback={null}>
-        <PageviewTracker />
-      </Suspense>
-      {children}
-    </PHProvider>
-  );
-}
-
-function PageviewTracker() {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (!process.env.NEXT_PUBLIC_POSTHOG_KEY) return;
-    let url = window.origin + pathname;
-    const qs = searchParams.toString();
-    if (qs) url += `?${qs}`;
-    posthog.capture("$pageview", { $current_url: url });
-  }, [pathname, searchParams]);
-
-  return null;
+  return <PHProvider client={posthog}>{children}</PHProvider>;
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono, Geist } from "next/font/google";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import "./globals.css";
@@ -10,9 +10,8 @@ const inter = Inter({
   display: "swap",
 });
 
-// Ledger face for /intelligence: figures, row IDs and eyebrows. Two weights
-// only — a dollar amount set in mono reads as a figure lifted off a document
-// rather than as a marketing stat.
+// Ledger face: figures, row IDs and eyebrows. Two weights only — a count set in
+// mono reads as a figure lifted off a document rather than as a marketing stat.
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
@@ -20,17 +19,9 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-// Display and body face for /intelligence. Tighter and lower-contrast than
-// Inter at large sizes, which is what the blueprint headline scale needs.
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-  display: "swap",
-});
-
 const title = "firstocean";
 const description =
-  "See what your approved medicine's unused rights are worth across 90+ emerging markets. Anonymous estimate in about two minutes. Non-dilutive capital while your patent still holds.";
+  "firstocean commercializes approved and late-stage medicines in 53 markets across Latin America, the Middle East, Africa, Asia and Eastern Europe, from selection to launch.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://first-ocean.com"),
@@ -82,7 +73,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${plexMono.variable} ${geist.variable} h-full antialiased`}
+      className={`${inter.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <script

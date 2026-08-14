@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { LegalShell } from "@/components/blueprint/LegalShell";
+import { LegalShell } from "@/components/LegalShell";
 import { CONTACT_EMAIL } from "@/lib/links";
 
 export const metadata: Metadata = {
@@ -75,7 +75,6 @@ export default function PrivacyPage() {
           <li>Vercel, for hosting and site analytics</li>
           <li>PostHog, for product analytics and session recording</li>
           <li>Calendly, for scheduling</li>
-          <li>Resend, for sending email</li>
           <li>
             Anthropic, for generating valuation estimates from asset details
           </li>

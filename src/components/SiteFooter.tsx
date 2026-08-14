@@ -37,18 +37,32 @@ export function SiteFooter() {
 
           {/* right: the two paths, top-aligned with the wordmark */}
           <div className="flex flex-col gap-2.5 text-[1rem] text-white sm:items-end sm:text-right">
+            {/* One label per destination, matching the hero and the closing
+                CTA. Two names for the same door reads as two different doors. */}
+            <Link href="/markets" className="w-fit transition-opacity hover:opacity-70">
+              Markets
+            </Link>
             <Link href="/originators" className="w-fit transition-opacity hover:opacity-70">
-              See what my drug is worth
+              See an anonymous estimate
             </Link>
             <Link href="/distributors" className="w-fit transition-opacity hover:opacity-70">
-              Looking to in-license
+              Join the partner network
             </Link>
           </div>
         </div>
 
-        {/* copyright, below everything, bottom-right */}
-        <div className="mt-16 flex justify-end text-[0.8rem] text-white/90">
-          © {year} firstocean. All rights reserved.
+        {/* Copyright and the legal pages, below everything. Privacy and Terms
+            sit here rather than in the column above because the site runs
+            session recording and those pages have to be reachable from every
+            page — this is the only footer the site has. */}
+        <div className="mt-16 flex flex-wrap items-center justify-end gap-x-6 gap-y-2 text-[0.8rem] text-white/90">
+          <Link href="/privacy" className="transition-opacity hover:opacity-70">
+            Privacy
+          </Link>
+          <Link href="/terms" className="transition-opacity hover:opacity-70">
+            Terms
+          </Link>
+          <span>© {year} firstocean. All rights reserved.</span>
         </div>
       </div>
     </footer>

@@ -19,6 +19,12 @@ const nextConfig: NextConfig = {
       // the standalone approach and contact pages folded into the homepage
       { source: "/approach", destination: "/", permanent: true },
       { source: "/contact", destination: "/", permanent: true },
+      // the operating-system page and the blog moved to their own site. Both
+      // were indexed from here, so they redirect rather than 404. Repoint them
+      // at ribo.bio once that domain is live.
+      { source: "/intelligence", destination: "/", permanent: true },
+      { source: "/blog", destination: "/", permanent: true },
+      { source: "/blog/:path*", destination: "/", permanent: true },
     ];
   },
 };

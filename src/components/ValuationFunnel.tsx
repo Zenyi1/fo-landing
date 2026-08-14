@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { track } from "@vercel/analytics";
 import { CALENDLY_URL } from "@/lib/links";
 import {
@@ -27,7 +26,7 @@ const LOADING_STEPS = [
 const MIN_LOADING_MS = 4400;
 
 const focusRing =
-  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2dd4bf]";
+  "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 
 type Result = { valueMusd: number; markets: number };
 type Stage = "form" | "loading" | "result" | "error";
@@ -137,7 +136,7 @@ export function ValuationFunnel() {
       {stage === "form" && (
         <div className="mx-auto w-full max-w-[560px]">
           <h1 className="font-sans text-[26px] font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-[34px]">
-            Your asset is worth more than JUST its core markets.
+            Your asset is worth more than its core markets.
           </h1>
           <p className="mt-3 text-[15px] leading-[1.55] text-ink md:text-[16px]">
             {clinical
@@ -217,7 +216,7 @@ function LoadingSteps() {
 
   return (
     <div className="flex flex-col items-center text-center">
-      <div className="h-10 w-10 animate-spin rounded-full border-2 border-ink/15 border-t-[#0d9488] motion-reduce:animate-none" />
+      <div className="h-10 w-10 animate-spin rounded-full border-2 border-ink/15 border-t-brand motion-reduce:animate-none" />
       <p className="mt-8 text-[17px] font-medium text-ink md:text-[19px]">
         {LOADING_STEPS[step]}
       </p>
@@ -226,7 +225,7 @@ function LoadingSteps() {
           <span
             key={i}
             className={`h-1.5 w-1.5 rounded-full transition-colors duration-500 ${
-              i <= step ? "bg-[#0d9488]" : "bg-ink/15"
+              i <= step ? "bg-brand" : "bg-ink/15"
             }`}
           />
         ))}
@@ -248,7 +247,7 @@ function ResultView({
 
   return (
     <div className="mx-auto flex w-full max-w-[640px] flex-col items-center text-center">
-      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-[#0d9488]">
+      <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-brand">
         {clinical
           ? "Estimated value of your emerging-market rights"
           : "Estimated untapped annual revenue"}
@@ -259,7 +258,7 @@ function ResultView({
       </p>
       <p className="mt-6 max-w-[36ch] text-[17px] leading-[1.6] text-ink md:text-[19px]">
         {clinical
-          ? `from licensing across ${result.markets} emerging markets while your asset is still in development.`
+          ? `from commercializing across ${result.markets} emerging markets while your asset is still in development.`
           : `across ${result.markets} emerging markets your asset has not reached.`}
       </p>
       <a
@@ -273,15 +272,8 @@ function ResultView({
       </a>
       <p className="mt-5 max-w-[44ch] text-[14px] leading-[1.6] text-ink">
         A 30-minute call. We walk through which markets drive this number and
-        the route to capture them.
+        which registration route each one allows.
       </p>
-      <Link
-        href="/#early-access"
-        onClick={() => track("valuation_early_access_click", { clinical })}
-        className={`mt-4 text-[15px] font-medium text-[#4a72e8] underline-offset-4 hover:underline ${focusRing}`}
-      >
-        Not ready for a call? Join the waitlist for early access to the platform.
-      </Link>
       <p className="mt-10 max-w-[52ch] text-[12px] leading-[1.6] text-ink/50">
         Directional estimate, not a formal valuation. Covers Latin America,
         Africa, the Middle East, South and Southeast Asia, Central Asia and
