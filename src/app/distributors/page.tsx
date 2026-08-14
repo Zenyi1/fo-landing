@@ -6,7 +6,7 @@ import { inlicensorCallUrl } from "@/lib/links";
 
 const title = "For in-licensors and distributors";
 const description =
-  "A gated portfolio of 100+ assets ready to license, tailored to your markets and screened before they reach you. Category detail is open; compound, originator, and terms unlock under NDA on a 30-minute call.";
+  "Join firstocean's partner network across MENA, LATAM and Southeast Asia. 100+ screened assets, placed against the registrations and channels you already run.";
 
 export const metadata: Metadata = {
   title,
@@ -71,9 +71,16 @@ export default function DistributorsPage() {
           <div className="absolute inset-0 bg-[#071a2b]/45" />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1160px] px-6 pt-28 md:px-14 md:pt-32">
-          <h1 className="mt-5 max-w-[18ch] font-sans text-[clamp(2.2rem,5vw,3.9rem)] font-semibold leading-[1.06] tracking-[-0.025em] text-white">
-            100+ assets ready to license, screened before they reach you.
+          <h1 className="mt-5 font-sans text-[clamp(2.2rem,5vw,3.9rem)] font-semibold leading-[1.06] tracking-[-0.025em] text-white">
+            <span className="block">You have the market.</span>
+            <span className="block">We bring the medicines.</span>
           </h1>
+          <p className="mt-7 max-w-[54ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
+            firstocean&rsquo;s partner network runs across Latin America, the
+            Middle East, Africa, Asia and Eastern Europe. 100+ assets are
+            screened and ready to place, matched to the registrations, channels
+            and therapeutic areas you already run.
+          </p>
           <div className="mt-9 flex flex-wrap items-center gap-3.5">
             <a
               href={inlicensorCallUrl()}
@@ -81,7 +88,7 @@ export default function DistributorsPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-[11px] bg-white px-7 py-4 font-sans text-[1.05rem] font-semibold text-[#1e3a8a] transition-colors hover:bg-white/90"
             >
-              Book a call to unlock the portfolio →
+              Join the network →
             </a>
             <a
               href="#assets"
@@ -97,18 +104,16 @@ export default function DistributorsPage() {
       <section id="assets" className="scroll-mt-20 bg-white text-ink">
         <div className="mx-auto max-w-[1160px] px-6 py-20 md:px-14 md:py-28">
           <h2 className="font-sans text-[clamp(1.7rem,3.6vw,2.4rem)] font-semibold tracking-[-0.02em] text-ink">
-            Tailored to your portfolio.
+            Matched to what you can already sell.
           </h2>
+          {/* One paragraph, not two: the pair that used to sit here said the
+              same thing twice, down to repeating the de-risked list. */}
           <p className="mt-4 max-w-[70ch] text-[0.98rem] leading-[1.6] text-ink">
-
-            No fee to review. Every asset is de-risked: approved, filed, or in late-stage
-            development, with documented demand. Specifics are released only under a mutual NDA.
-          </p>
-          <p className="mt-4 max-w-[70ch] text-[0.98rem] leading-[1.6] text-ink">
-            De-risked and ready to partner: approved, filed, or in late-stage trials, each with
-            documented demand in the regions you cover. We qualify it, assemble the evidence, and run
-            the process. The preview below is representative. Compound, originator, and terms open
-            under NDA on the call.
+            Every asset is de-risked: approved, filed, or in late-stage trials, each with documented
+            demand in the regions you cover. We assess your registrations, channel coverage and
+            therapeutic areas first, then place the assets that fit them, so what reaches you is a
+            shortlist rather than a catalogue. The preview below is representative. Compound,
+            originator and terms open under NDA on the call, and there is no fee to be assessed.
           </p>
 
           {/* asset cards: category data is readable; compound & originator stay locked */}
@@ -161,11 +166,11 @@ export default function DistributorsPage() {
               </span>
               <div>
                 <p className="font-sans text-[1.15rem] font-semibold tracking-[-0.01em] text-ink">
-                  90+ more assets, tailored to your markets.
+                  90+ more, matched to your capabilities.
                 </p>
                 <p className="mt-1 max-w-[54ch] text-[0.92rem] leading-[1.5] text-ink">
-                  Compound, originator and terms unlock under NDA on a 30-minute call. No fee to
-                  review, and you see everything before anything is committed.
+                  Compound, originator and terms open under NDA on a 30-minute call. No fee to be
+                  assessed, and you see everything before anything is committed.
                 </p>
               </div>
             </div>
@@ -175,7 +180,7 @@ export default function DistributorsPage() {
               rel="noopener noreferrer"
               className="inline-flex shrink-0 items-center gap-2 rounded-[11px] bg-brand px-6 py-3.5 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
             >
-              Book a call to unlock →
+              Join the network →
             </a>
           </div>
         </div>
@@ -184,11 +189,11 @@ export default function DistributorsPage() {
       {/* ============ FINAL CTA (white) ============ */}
       <section className="bg-white text-ink">
         <div className="mx-auto max-w-[1160px] px-6 pb-24 pt-6 text-center md:px-14 md:pb-28 md:pt-10">
-          <h2 className="mx-auto max-w-[18ch] font-sans text-[clamp(2rem,4.4vw,3.2rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
-            See the full portfolio.
+          <h2 className="text-balance font-sans text-[clamp(2rem,4.4vw,3.2rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
+            Tell us what you can sell.
           </h2>
           <p className="mx-auto mt-5 max-w-[46ch] text-[1.05rem] leading-[1.6] text-ink">
-            One call opens 100+ screened assets, ready to license and matched to the markets you cover.
+            One call assesses your markets and opens the 100+ assets that fit them.
           </p>
           <a
             href={inlicensorCallUrl()}
@@ -196,7 +201,7 @@ export default function DistributorsPage() {
             rel="noopener noreferrer"
             className="mt-9 inline-flex items-center gap-2 rounded-[11px] bg-brand px-7 py-4 font-sans text-base font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
           >
-            Book a call to unlock the portfolio →
+            Join the network →
           </a>
         </div>
       </section>

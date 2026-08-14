@@ -81,35 +81,28 @@ function LogoRow({ clone = false }: { clone?: boolean }) {
   );
 }
 
-export function LogoMarquee() {
-  /* No rule above or below: space does the separating instead, and it is
-     deliberately lopsided. Tight on top, because the reel belongs to the hero
-     and should sit right under it. Wide underneath, because what follows is a
-     new argument: without that gap the reel and the section below read as one
-     block rather than as the end of one thing and the start of another. */
+/* Content only — the strip runs on two surfaces whose grids and rhythm differ,
+   so the caller owns the section, its width and its spacing. Off the blueprint
+   the label falls back to the licensing ink ladder. */
+export function LogoMarquee({ className = "" }: { className?: string }) {
   return (
-    <section
-      className="w-full px-6 pb-[clamp(104px,16vh,200px)] pt-[clamp(16px,2.5vh,28px)] sm:px-10"
-      aria-label="Where the team came from"
-    >
-      <div className="mx-auto w-full max-w-[1240px]">
-        <p
-          className="text-[0.95rem] leading-relaxed sm:text-[1.02rem]"
-          style={{ color: "var(--bp-ink-muted)" }}
-        >
-          Bringing pharma, finance and tech backgrounds together.
-        </p>
+    <div className={className}>
+      <p
+        className="text-[0.95rem] leading-relaxed sm:text-[1.02rem]"
+        style={{ color: "var(--bp-ink-muted, var(--ink-soft))" }}
+      >
+        Bringing pharma, finance and tech backgrounds together.
+      </p>
 
-        {/* No padding anywhere on the track: its width has to be exactly two
-            rows for the -50% to loop cleanly. The edges are handled by the
-            fade mask on the wrapper instead. */}
-        <div className="bp-marquee mt-7 overflow-hidden">
-          <div className="bp-marquee-track flex w-max">
-            <LogoRow />
-            <LogoRow clone />
-          </div>
+      {/* No padding anywhere on the track: its width has to be exactly two
+          rows for the -50% to loop cleanly. The edges are handled by the
+          fade mask on the wrapper instead. */}
+      <div className="bp-marquee mt-7 overflow-hidden">
+        <div className="bp-marquee-track flex w-max">
+          <LogoRow />
+          <LogoRow clone />
         </div>
       </div>
-    </section>
+    </div>
   );
 }

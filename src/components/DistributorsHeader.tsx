@@ -50,7 +50,7 @@ export function DistributorsHeader() {
               solid ? "bg-brand text-white hover:bg-[var(--brand-strong)]" : "bg-white text-ink hover:bg-white/90"
             }`}
           >
-            Book a call
+            Join the network
           </a>
         </nav>
       </div>

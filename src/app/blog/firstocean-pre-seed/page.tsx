@@ -44,7 +44,7 @@ const JSON_LD = {
   description,
   datePublished: PUBLISHED,
   image: "https://first-ocean.com/blog/pre-seed-lab.jpg",
-  author: { "@type": "Person", name: "Hugo" },
+  author: { "@type": "Person", name: "Zenyi" },
   publisher: { "@type": "Organization", name: "firstocean" },
   mainEntityOfPage: "https://first-ocean.com/blog/firstocean-pre-seed",
 };
@@ -92,7 +92,7 @@ export default function PreSeedPost() {
             className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.92rem]"
             style={{ color: "var(--bp-ink-muted)" }}
           >
-            <span style={{ color: "var(--bp-ink)" }}>Hugo</span>
+            <span style={{ color: "var(--bp-ink)" }}>Zenyi</span>
             <span aria-hidden>·</span>
             <time dateTime={PUBLISHED}>{PUBLISHED_LABEL}</time>
           </p>
@@ -230,7 +230,7 @@ export default function PreSeedPost() {
             <Link href="/intelligence#contact">book thirty minutes</Link> or
             write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
           </p>
-          <p style={{ color: "var(--bp-ink)" }}>&mdash; Hugo</p>
+          <p style={{ color: "var(--bp-ink)" }}>&mdash; Zenyi</p>
         </div>
       </article>
 

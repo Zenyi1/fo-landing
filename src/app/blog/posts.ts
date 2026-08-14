@@ -25,7 +25,7 @@ export const POSTS: Post[] = [
       "An abstract plot of dense points and lines resolving into a few straight tracks",
     published: "2026-08-11",
     publishedLabel: "11 August 2026",
-    author: "Hugo",
+    author: "Zenyi",
   },
   {
     slug: "firstocean-pre-seed",
@@ -37,6 +37,6 @@ export const POSTS: Post[] = [
     imageAlt: "A researcher working at a laboratory bench",
     published: "2026-08-10",
     publishedLabel: "10 August 2026",
-    author: "Hugo",
+    author: "Zenyi",
   },
 ];

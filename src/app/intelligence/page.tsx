@@ -7,7 +7,7 @@ import { BlueprintFooter } from "@/components/blueprint/BlueprintFooter";
 import { ContactForm } from "@/components/blueprint/ContactForm";
 import { DepartmentGrid } from "@/components/blueprint/DepartmentGrid";
 import { HeroMorph } from "@/components/blueprint/HeroMorph";
-import { LogoMarquee } from "@/components/blueprint/LogoMarquee";
+import { LogoMarquee } from "@/components/LogoMarquee";
 import { OnboardingPath } from "@/components/blueprint/OnboardingPath";
 import { Faq } from "@/components/blueprint/Faq";
 import { KnowledgeEngine } from "@/components/blueprint/KnowledgeEngine";
@@ -69,6 +69,7 @@ function Section({
 export default function IntelligencePage() {
   return (
     <main
+      data-page-variant="intelligence"
       className="bp-root bp-grain relative w-full"
       style={{ background: "var(--bp-paper)", color: "var(--bp-ink)" }}
     >
@@ -126,8 +127,19 @@ export default function IntelligencePage() {
         </div>
       </div>
 
-      {/* ══ WHERE WE CAME FROM ═════════════════════════════════════════════ */}
-      <LogoMarquee />
+      {/* ══ WHERE WE CAME FROM ═════════════════════════════════════════════
+          No rule above or below: space does the separating instead, and it is
+          deliberately lopsided. Tight on top, because the reel belongs to the
+          hero and should sit right under it. Wide underneath, because what
+          follows is a new argument: without that gap the reel and the section
+          below read as one block rather than as the end of one thing and the
+          start of another. */}
+      <section
+        className="w-full px-6 pb-[clamp(104px,16vh,200px)] pt-[clamp(16px,2.5vh,28px)] sm:px-10"
+        aria-label="Where the team came from"
+      >
+        <LogoMarquee className="mx-auto w-full max-w-[1240px]" />
+      </section>
 
       {/* ══ THE PROBLEM ════════════════════════════════════════════════════ */}
       <Section rule={false}>

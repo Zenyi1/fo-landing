@@ -30,7 +30,7 @@ const geist = Geist({
 
 const title = "firstocean";
 const description =
-  "See what your approved medicine's unused rights are worth across 90+ emerging markets. Anonymous estimate in about two minutes. Non-dilutive capital while your patent still holds.";
+  "firstocean commercializes approved and late-stage medicines in 53 markets across Latin America, the Middle East, Africa, Asia and Eastern Europe, from selection to launch.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://first-ocean.com"),

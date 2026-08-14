@@ -26,6 +26,17 @@ export function inlicensorCallUrl() {
   return `${CALENDLY_URL}?${params.toString()}`;
 }
 
+// Book link for drug owners coming off the homepage rather than through the
+// valuation funnel, tagged so the two originator routes stay separable.
+export function originatorCallUrl() {
+  const params = new URLSearchParams({
+    utm_source: "originators",
+    utm_medium: "homepage",
+    utm_campaign: "commercialization",
+  });
+  return `${CALENDLY_URL}?${params.toString()}`;
+}
+
 // Book link for the intelligence page (clinical-stage sponsors), tagged so
 // bookings from that page are attributable in analytics.
 export function intelligenceCallUrl() {
