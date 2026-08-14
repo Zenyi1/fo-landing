@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import "./globals.css";
 
@@ -82,6 +83,7 @@ export default function RootLayout({
         />
         <PostHogProvider>{children}</PostHogProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
