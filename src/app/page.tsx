@@ -18,15 +18,15 @@ import { originatorCallUrl } from "@/lib/links";
 const CONTROL = [
   {
     title: "You choose the territories.",
-    body: "Nothing is entered without your approval, and a market you want held back stays held back.",
+    body: "We enter nothing without your approval, and a market you want held back stays held back.",
   },
   {
     title: "Your reference price is protected.",
-    body: "Pricing in each territory is set against your existing markets, so a launch here does not drag a price down there.",
+    body: "We set the price in each territory against your existing markets, so a launch here does not drag a price down there.",
   },
   {
-    title: "One line of sight.",
-    body: "Registration status, pricing, stock and sales come back to you in one place, not as eleven partner reports.",
+    title: "One reporting line.",
+    body: "Registration status, pricing, stock and sales come back to you in one place, not as a separate report from every partner.",
   },
 ];
 
@@ -61,19 +61,17 @@ export default function Home() {
           <div className="mt-8 max-w-[62ch] space-y-6 text-[clamp(1.1rem,2vw,1.3rem)] leading-[1.6] text-ink">
             <p>
               A launch plan covers the markets that pay for the work: the United
-              States, Western Europe, Japan. Past them the arithmetic stops
-              working. Registering the product, getting a price agreed and
-              standing up a commercial operation costs your regulatory,
+              States, Western Europe, Japan. Registering the product, agreeing a
+              price and building a commercial operation costs your regulatory,
               market-access and commercial teams the same months whether the
               market is worth two hundred million or two.
             </p>
             <p>
               So the medicine never arrives, and an approval you already hold
-              earns nothing outside your core markets. firstocean does that
-              groundwork once, across all 53 markets it covers in parallel
-              rather than one at a time, and carries that cost rather than
-              passing it to your team. That is what makes a small territory worth
-              entering at all.
+              earns nothing outside your core markets. We do that groundwork
+              once, across all 53 markets we cover in parallel rather than one
+              at a time, and carry that cost rather than passing it to your
+              team. That is what makes a small territory worth entering at all.
             </p>
           </div>
         </section>
@@ -117,8 +115,8 @@ export default function Home() {
                 Already selling in these markets?
               </h2>
               <p className="mt-5 text-[1.05rem] leading-[1.6] text-ink">
-                firstocean is building the operator side of this across Latin
-                America, the Middle East, Africa, Asia and Eastern Europe. If you
+                We are building the operator side of this across Latin America,
+                the Middle East, Africa, Asia and Eastern Europe. If you
                 hold registrations, run a channel and carry a salesforce in one
                 of those markets, we bring you medicines that are approved
                 elsewhere and not yet sold in yours, matched to the therapeutic

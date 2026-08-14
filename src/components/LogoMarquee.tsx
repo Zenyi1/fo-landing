@@ -86,7 +86,7 @@ export function LogoMarquee({ className = "" }: { className?: string }) {
   return (
     <div className={className}>
       <p className="text-[0.95rem] leading-relaxed text-ink-soft sm:text-[1.02rem]">
-        Bringing pharma, finance and tech backgrounds together.
+        Where our team worked before.
       </p>
 
       {/* No padding anywhere on the track: its width has to be exactly two
