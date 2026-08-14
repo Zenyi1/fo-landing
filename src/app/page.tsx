@@ -32,7 +32,7 @@ const CONTROL = [
 
 export default function Home() {
   return (
-    <div id="page" data-page-variant="licensing" className="min-h-full">
+    <div id="page" className="min-h-full">
       <SiteHeader />
 
       <Hero />

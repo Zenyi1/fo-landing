@@ -22,17 +22,6 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
         maskAllInputs: false,
         maskInputOptions: { password: true },
       },
-      // proxy.ts serves /intelligence at "/" in some countries, so the url alone cannot
-      // tell the two homepages apart. the marker is server-rendered, so it is already in
-      // the dom by the time the first pageview fires
-      before_send: (event) => {
-        if (!event) return event;
-        const variant = document
-          .querySelector("[data-page-variant]")
-          ?.getAttribute("data-page-variant");
-        if (variant) event.properties.page_variant = variant;
-        return event;
-      },
     });
   }, []);
 

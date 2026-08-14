@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { LegalShell } from "@/components/blueprint/LegalShell";
+import { LegalShell } from "@/components/LegalShell";
 import { CONTACT_EMAIL } from "@/lib/links";
 
 export const metadata: Metadata = {

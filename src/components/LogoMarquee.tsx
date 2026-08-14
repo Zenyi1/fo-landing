@@ -81,24 +81,19 @@ function LogoRow({ clone = false }: { clone?: boolean }) {
   );
 }
 
-/* Content only — the strip runs on two surfaces whose grids and rhythm differ,
-   so the caller owns the section, its width and its spacing. Off the blueprint
-   the label falls back to the licensing ink ladder. */
+/* Content only — the caller owns the section, its width and its spacing. */
 export function LogoMarquee({ className = "" }: { className?: string }) {
   return (
     <div className={className}>
-      <p
-        className="text-[0.95rem] leading-relaxed sm:text-[1.02rem]"
-        style={{ color: "var(--bp-ink-muted, var(--ink-soft))" }}
-      >
+      <p className="text-[0.95rem] leading-relaxed text-ink-soft sm:text-[1.02rem]">
         Bringing pharma, finance and tech backgrounds together.
       </p>
 
       {/* No padding anywhere on the track: its width has to be exactly two
           rows for the -50% to loop cleanly. The edges are handled by the
           fade mask on the wrapper instead. */}
-      <div className="bp-marquee mt-7 overflow-hidden">
-        <div className="bp-marquee-track flex w-max">
+      <div className="marquee mt-7 overflow-hidden">
+        <div className="marquee-track flex w-max">
           <LogoRow />
           <LogoRow clone />
         </div>

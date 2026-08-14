@@ -1,150 +1,37 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: #ffffff;
+  --color-foreground: var(--ink);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-brand: var(--brand);
-  --color-brand-strong: var(--brand-strong);
-  --color-approach: var(--approach);
-  --color-footer: var(--footer);
-  --color-ink-on-dark: var(--ink-on-dark);
-  /* used by the regulatory pathway router at /regulation */
-  --color-surface: var(--surface);
-  --color-line: var(--line);
-  --color-warn: var(--warn);
+  --color-border: var(--line);
+  --color-ring: var(--brand);
 
   --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
-  --font-serif: var(--font-inter), "Inter", system-ui, sans-serif;
-  --font-heading: var(--font-inter);
   --font-ledger:
     var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
-  /* grotesk display face, /intelligence only */
-  --font-display: var(--font-geist), "Geist", system-ui, sans-serif;
-
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* firstocean palette — white body, ink text, deep-blue accent. The four below
+   the rule are read as raw var() rather than through a Tailwind colour: the
+   first three because they only ever appear as arbitrary values, the ink ladder
+   because it exists for the two dark surfaces and nowhere else. */
 :root {
-  /* firstocean palette — white body, ink text, deep-blue accent, navy footer */
   --ink: #0b1120; /* primary text / headline */
   --ink-soft: #4a5670; /* secondary text */
   --brand: #1e3a8a; /* deep-blue accent: buttons, links, focus, visual */
+  --line: rgba(11, 17, 32, 0.12); /* hairline rule, and the default border */
+
   --brand-strong: #16295f; /* accent hover */
-  --footer: #0b1b4d; /* deep-navy footer block */
-  --ink-on-dark: #ffffff;
-  /* regulatory pathway router: neutral fill, hairline rule, caution accent */
-  --surface: #f6f7f9;
-  --line: rgba(11, 17, 32, 0.12);
-  --warn: #b45309;
+  --surface: #f6f7f9; /* neutral fill for the banded sections */
 
-  --background: #ffffff;
-  --foreground: var(--ink);
-
-  --card: #ffffff;
-  --card-foreground: var(--ink);
-  --popover: #ffffff;
-  --popover-foreground: var(--ink);
-  --primary: var(--brand);
-  --primary-foreground: #ffffff;
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: var(--ink);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: var(--ink);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: rgba(11, 17, 32, 0.12);
-  --input: oklch(0.922 0 0);
-  --ring: var(--brand);
-
-  --radius: 0.25rem;
-
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: var(--ink);
-  --sidebar-primary: var(--brand);
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: var(--ink);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-
-  /* ink ladder for the dark surfaces that remain: the homepage hero and the
-     navy wave footer, both of which host <BackedBy tone="dark" /> */
+  /* ink ladder for the dark surfaces: the homepage hero and the navy wave
+     footer, both of which host <BackedBy /> */
   --fo-accent: #88a6f8;
   --fo-ink-1: #e8eaed;
   --fo-line-strong: rgba(167, 176, 187, 0.34);
-}
-
-/* ── blueprint system, /intelligence ────────────────────────────────────────
-   White paper, near-black ink, one steel-blue accent pitched between the site's
-   existing --brand (#1e3a8a) and a drafting blueprint. Scoped to .bp-root, not
-   :root, so the licensing pages keep the palette they already ship.
-   The last three declarations re-point the shared site tokens that <BackedBy />
-   reads, so the page holds ONE accent rather than showing two blues. */
-.bp-root {
-  --bp-paper: #ffffff;
-  --bp-wash: #eef4f8; /* tinted section bands */
-  --bp-ink: #0c0e11; /* headlines */
-  --bp-ink-muted: #4a5058; /* body, 8.1:1 on paper */
-  --bp-blue: #2f6592; /* the one accent, 6.2:1 on paper */
-  --bp-blue-strong: #234e73; /* accent hover */
-  --bp-blue-tint: #a9c4d8; /* rules and grid only, never text */
-  --bp-hairline: rgba(12, 14, 17, 0.12);
-  --bp-hairline-strong: rgba(12, 14, 17, 0.22);
-
-  /* one radius scale, two steps: 10px interactive, 16px surfaces */
-  --bp-r-sm: 10px;
-  --bp-r-md: 16px;
-
-  --brand: var(--bp-blue);
-  --ink-soft: var(--bp-ink-muted);
-  --line: var(--bp-hairline);
-
-  font-family: var(--font-display);
-}
-
-/* The base layer types headings at Inter 600 by element selector, which an
-   inherited family on the page root cannot outrank. These rules are unlayered,
-   so they win, and the display scale gets the 500 weight it is drawn for. */
-.bp-root :is(h1, h2, h3) {
-  font-family: var(--font-display);
-  font-weight: 500;
 }
 
 @layer base {
@@ -153,7 +40,6 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
-    color: var(--ink);
     /* `clip`, not `hidden`: per CSS Overflow 3, an `overflow-x: hidden` /
        `overflow-y: visible` pair promotes the used overflow-y to `auto`, which
        makes <body> a scroll container and stops any `position: sticky`
@@ -179,241 +65,10 @@
 }
 
 @layer utilities {
-  /* tabular figures so schedule and cost columns align */
-  .tnum {
-    font-variant-numeric: tabular-nums;
-  }
-
-  .font-serif {
-    font-family: var(--font-serif);
-  }
-  .text-ink {
-    color: var(--ink);
-  }
-  .text-ink-soft {
-    color: var(--ink-soft);
-  }
-  .text-brand {
-    color: var(--brand);
-  }
-  .text-approach {
-    color: var(--ink-soft);
-  }
-  .bg-approach {
-    background-color: var(--ink-soft);
-  }
-  .bg-brand {
-    background-color: var(--brand);
-  }
-
-  /* The typing caret in the hero headline. Sized in em so it tracks whatever
-     the headline clamps to, and blinks only where motion is welcome. */
-  .bp-caret {
-    display: inline-block;
-    width: 0.055em;
-    min-width: 2px;
-    height: 0.82em;
-    margin-left: 0.07em;
-    vertical-align: -0.06em;
-    background: currentColor;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .bp-caret {
-      animation: bp-blink 1.05s steps(1, end) infinite;
-    }
-  }
-  @keyframes bp-blink {
-    0%,
-    50% {
-      opacity: 1;
-    }
-    50.01%,
-    100% {
-      opacity: 0;
-    }
-  }
-
-  /* The live dot on the hero's call to action. Sized in em so it tracks the
-     button's own text, and currentColor so it is whatever the label is. */
-  .bp-dot {
-    display: inline-block;
-    width: 0.46em;
-    height: 0.46em;
-    border-radius: 9999px;
-    background: currentColor;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .bp-dot {
-      animation: bp-dot 1.6s ease-in-out infinite;
-    }
-  }
-  @keyframes bp-dot {
-    0%,
-    100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.2;
-    }
-  }
-
-  /* Drafting grid. 32px pitch, drawn from the accent so it reads as blueprint
-     rule rather than as a generic UI grid. Decorative: always on a
-     pointer-events-none layer. */
-  .bp-grid {
-    background-image:
-      linear-gradient(
-        to right,
-        color-mix(in srgb, var(--bp-blue) 11%, transparent) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--bp-blue) 11%, transparent) 1px,
-        transparent 1px
-      );
-    background-size: 32px 32px;
-  }
-
-  /* Fine paper tooth over the whole page. Fixed and pointer-events-none so it
-     never repaints with the scroll container (see the skill's DOM-cost rule). */
-  .bp-grain::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: 60;
-    pointer-events: none;
-    opacity: 0.026;
-    background-size: 220px 220px;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-
-  /* The three-scene explainer. Each scene is remounted when it becomes active,
-     so these entry animations replay from the start every cycle without any
-     imperative restart.
-
-     Everything sits inside no-preference and only ADDS entry motion: the
-     untouched styles are the finished frame, so under reduced motion each
-     scene simply appears complete. --d staggers members of a scene. */
-  @media (prefers-reduced-motion: no-preference) {
-    /* .bp-steps is the copy column beside the stage: its paragraph is remounted
-       on step change and fades in the same way the scenes do. */
-    .bp-stage .bp-fly,
-    .bp-steps .bp-fly {
-      animation: bp-fly 620ms cubic-bezier(0.16, 1, 0.3, 1) both;
-      animation-delay: var(--d);
-    }
-    /* A dissection piece flying to its home. --fx and --fy are per piece and
-       never themselves animate, so the transform interpolates from that offset
-       to the element's own `none` without needing @property. */
-    .bp-stage .bp-piece {
-      animation: bp-piece 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
-      animation-delay: var(--d);
-    }
-    /* the pulse that travels an edge, so "the agents act across it" is shown
-       rather than asserted */
-    .bp-stage .bp-run {
-      stroke-dasharray: 0.12 0.88;
-      animation: bp-run 1.9s linear infinite;
-      animation-delay: var(--d);
-    }
-  }
-
-  @keyframes bp-fly {
-    from {
-      opacity: 0;
-      transform: translateX(-16px);
-    }
-  }
-  @keyframes bp-piece {
-    from {
-      opacity: 0;
-      transform: translate(var(--fx, -40px), var(--fy, 0px));
-    }
-  }
-  @keyframes bp-run {
-    from {
-      stroke-dashoffset: 1;
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  /* The onboarding rail. The line is faint; a brighter segment travels it left
-     to right and starts over, and each node flares as the segment reaches it,
-     so the run reads as something moving through the steps rather than as a
-     rule drawn under them.
-
-     Sixty seconds end to end, on purpose. That is slow enough that it never
-     pulls the eye off the copy, which is also why the segment has to be wide
-     and bright and the nodes have to answer it: at this speed a thin gradient
-     on a hairline is invisible, and the flare is what makes the movement
-     legible at all.
-
-     The segment is 30% of the rail, so travelling from just off the left edge
-     to just off the right is 1.3 rail widths, and translateX is a percentage
-     of the ELEMENT, not the parent: 1.3 / 0.3 gives the 433%. */
-  .bp-rail-lit {
-    width: 30%;
-    background: linear-gradient(
-      to right,
-      transparent,
-      color-mix(in srgb, var(--bp-blue) 55%, transparent) 28%,
-      var(--bp-blue) 50%,
-      color-mix(in srgb, var(--bp-blue) 55%, transparent) 72%,
-      transparent
-    );
-  }
-
-  /* Each node holds its normal look until the segment arrives, flares, and
-     settles back. Delays are set inline from the node's own position along the
-     rail, so the flare lands with the light rather than near it. Fill mode is
-     left at none deliberately: `backwards` would apply the lit frame through
-     the whole delay and every node would start bright. */
-  @media (prefers-reduced-motion: no-preference) {
-    .bp-rail-lit {
-      animation: bp-rail-lit 60s linear infinite;
-    }
-    .bp-rail-node {
-      animation: bp-rail-node 60s linear infinite;
-    }
-  }
-  /* nothing is travelling, so a segment parked at the left edge would just
-     read as a stray mark */
-  @media (prefers-reduced-motion: reduce) {
-    .bp-rail-lit {
-      display: none;
-    }
-  }
-  @keyframes bp-rail-lit {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(433%);
-    }
-  }
-  @keyframes bp-rail-node {
-    0% {
-      transform: scale(1);
-      box-shadow: 0 0 0 0 transparent;
-    }
-    3% {
-      transform: scale(1.75);
-      box-shadow: 0 0 0 6px color-mix(in srgb, var(--bp-blue) 16%, transparent);
-    }
-    11%,
-    100% {
-      transform: scale(1);
-      box-shadow: 0 0 0 0 transparent;
-    }
-  }
-
   /* Provenance strip. The track carries the row twice and slides exactly half
      its own width, so the clone lands on the seam and the loop never shows.
      Transform only, so it composites on its own layer and costs no layout. */
-  .bp-marquee {
+  .marquee {
     -webkit-mask-image: linear-gradient(
       to right,
       transparent,
@@ -430,39 +85,39 @@
     );
   }
 
-  .bp-marquee-track {
+  .marquee-track {
     /* tied to the row's width, not a fixed pace: ten marks travel about a
        third further than eight did, so the duration grows with them */
-    animation: bp-marquee 62s linear infinite;
+    animation: marquee 62s linear infinite;
   }
 
   /* hovering holds the strip still long enough to read a mark */
-  .bp-marquee:hover .bp-marquee-track {
+  .marquee:hover .marquee-track {
     animation-play-state: paused;
   }
 
-  @keyframes bp-marquee {
+  @keyframes marquee {
     to {
       transform: translateX(-50%);
     }
   }
 
-  /* Stopped, the clone would just be the same six marks a second time, so
+  /* Stopped, the clone would just be the same nine marks a second time, so
      under reduced motion it is dropped and the row wraps instead. */
   @media (prefers-reduced-motion: reduce) {
-    .bp-marquee {
+    .marquee {
       -webkit-mask-image: none;
       mask-image: none;
     }
-    .bp-marquee-track {
+    .marquee-track {
       width: 100%;
       animation: none;
     }
-    .bp-marquee-track [data-clone] {
+    .marquee-track [data-clone] {
       display: none;
     }
     /* the row itself has to wrap too, or it just overflows the strip */
-    .bp-marquee-track > ul {
+    .marquee-track > ul {
       flex-shrink: 1;
       flex-wrap: wrap;
       row-gap: 1.75rem;
