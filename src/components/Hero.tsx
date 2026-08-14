@@ -76,7 +76,7 @@ export function Hero() {
         }}
       >
         <p className="font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
-          Your medicine isn&rsquo;t reaching
+          We take your medicine to
         </p>
         <p className="mt-1 min-h-[1.02em] whitespace-nowrap font-sans text-[clamp(2.7rem,10vw,7.4rem)] font-semibold leading-[1.0] tracking-[-0.035em]">
           <span
@@ -91,16 +91,21 @@ export function Hero() {
         </p>
 
         {/* What firstocean actually does, in the hero rather than three
-            sections down: the rotating market states the problem, this states
-            the offer, and a reader who leaves here should still be able to
-            repeat what the company is for.
+            sections down: the rotating market names where, this names what, and
+            a reader who leaves here should still be able to repeat what the
+            company is for.
+
+            The headline states a capability rather than diagnosing the reader.
+            "Your medicine isn't reaching Brazil" asserted something we cannot
+            know — plenty of visitors do sell there — and a claim a reader can
+            falsify from their own sales figures costs more than it wins.
 
             Written on the mechanism, not on the contract — no claim here
             depends on whether firstocean ends up inside the licence or beside
             it, so none of it goes stale when that is settled. */}
         <p className="mt-7 max-w-[54ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
-          firstocean is the commercial operation a biotech will not build for
-          itself. Approved and late-stage medicines, taken into{" "}
+          firstocean runs the commercial operation you would otherwise build
+          yourself. We take approved and late-stage medicines into{" "}
           <Link
             href="/markets"
             className="font-medium underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"

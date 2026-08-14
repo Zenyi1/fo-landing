@@ -6,7 +6,7 @@ import { inlicensorCallUrl } from "@/lib/links";
 
 const title = "For in-licensors and distributors";
 const description =
-  "Join firstocean's partner network across MENA, LATAM and Southeast Asia. 100+ screened assets, placed against the registrations and channels you already run.";
+  "Join firstocean's partner network across MENA, LATAM and Southeast Asia. Screened assets from originators in North America and Europe, placed against the registrations and channels you already run.";
 
 export const metadata: Metadata = {
   title,
@@ -76,10 +76,10 @@ export default function DistributorsPage() {
             <span className="block">We bring the medicines.</span>
           </h1>
           <p className="mt-7 max-w-[54ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
-            firstocean&rsquo;s partner network runs across Latin America, the
-            Middle East, Africa, Asia and Eastern Europe. 100+ assets are
-            screened and ready to place, matched to the registrations, channels
-            and therapeutic areas you already run.
+            firstocean is building a partner network across Latin America, the
+            Middle East, Africa, Asia and Eastern Europe. We screen assets from
+            originators in North America and Europe, then place them against the
+            registrations, channels and therapeutic areas you already run.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3.5">
             <a
@@ -109,15 +109,21 @@ export default function DistributorsPage() {
           {/* One paragraph, not two: the pair that used to sit here said the
               same thing twice, down to repeating the de-risked list. */}
           <p className="mt-4 max-w-[70ch] text-[0.98rem] leading-[1.6] text-ink">
-            Every asset is de-risked: approved, filed, or in late-stage trials, each with documented
-            demand in the regions you cover. We assess your registrations, channel coverage and
-            therapeutic areas first, then place the assets that fit them, so what reaches you is a
-            shortlist rather than a catalogue. The preview below is representative. Compound,
+            Every asset we place is approved, filed, or in late-stage trials. We assess your
+            registrations, channel coverage and therapeutic areas first, then place the assets that
+            fit them, so what reaches you is a shortlist rather than a catalogue. Compound,
             originator and terms open under NDA on the call, and there is no fee to be assessed.
           </p>
 
+          {/* The rows are category-level illustrations, not live records, so the
+              grid says so in its own right rather than in a sentence a reader
+              has already scrolled past. */}
+          <p className="mt-10 font-ledger text-[0.82rem] tracking-[-0.01em] text-ink-soft">
+            Example profiles, not live listings. They show the shape of what we place.
+          </p>
+
           {/* asset cards: category data is readable; compound & originator stay locked */}
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ASSETS.slice(0, 6).map((a, i) => (
               <article
                 key={i}
@@ -166,7 +172,7 @@ export default function DistributorsPage() {
               </span>
               <div>
                 <p className="font-sans text-[1.15rem] font-semibold tracking-[-0.01em] text-ink">
-                  90+ more, matched to your capabilities.
+                  The live portfolio, matched to your capabilities.
                 </p>
                 <p className="mt-1 max-w-[54ch] text-[0.92rem] leading-[1.5] text-ink">
                   Compound, originator and terms open under NDA on a 30-minute call. No fee to be
@@ -193,7 +199,7 @@ export default function DistributorsPage() {
             Tell us what you can sell.
           </h2>
           <p className="mx-auto mt-5 max-w-[46ch] text-[1.05rem] leading-[1.6] text-ink">
-            One call assesses your markets and opens the 100+ assets that fit them.
+            One call assesses your markets and opens the assets that fit them.
           </p>
           <a
             href={inlicensorCallUrl()}

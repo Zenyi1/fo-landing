@@ -59,8 +59,8 @@ export function Cascade() {
           <p>
             Most regulators outside the US, Europe and Japan will not re-review a
             dossier a stringent authority has already assessed. They rely on it.
-            That is not a favour, it is published policy, and it is the
-            difference between a decision in weeks and a decision in years.
+            That is published policy, and it is the difference between a
+            decision in weeks and a decision in a year or more.
           </p>
           <p>
             Which lane a market opens depends on what you already hold and what
@@ -71,8 +71,8 @@ export function Cascade() {
             down in the ones you care about.
           </p>
           <p className="font-medium">
-            firstocean solves both maps at once, then cascades your asset across
-            the markets we cover in the order those maps allow.
+            We solve both maps at once, then sequence your entry across the
+            markets we cover in the order those maps allow.
           </p>
         </div>
       </Reveal>

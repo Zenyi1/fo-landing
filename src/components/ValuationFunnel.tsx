@@ -274,7 +274,10 @@ function ResultView({
         A 30-minute call. We walk through which markets drive this number and
         which registration route each one allows.
       </p>
-      <p className="mt-10 max-w-[52ch] text-[12px] leading-[1.6] text-ink/50">
+      {/* A qualifier a reader has to squint at is a qualifier we are hoping
+          they miss. Set at the same weight as the rest of the fine print on
+          the page, not below it. */}
+      <p className="mt-10 max-w-[52ch] text-[13px] leading-[1.6] text-ink/70">
         Directional estimate, not a formal valuation. Covers Latin America,
         Africa, the Middle East, South and Southeast Asia, Central Asia and
         Eastern Europe. Excludes China.

@@ -107,11 +107,12 @@ export default function MarketsPage() {
         </h1>
         <div className="mt-8 max-w-[64ch] space-y-6 text-[clamp(1.05rem,1.8vw,1.2rem)] leading-[1.6] text-ink">
           <p>
-            firstocean is the commercial operation a biotech will not build for
-            itself. We take approved and late-stage medicines into the markets a
-            launch plan leaves out, running the regulatory sequence, the pricing
-            strategy and the partner selection centrally, and the commercial work
-            locally, through operators already established in each market.
+            firstocean runs the commercial operation you would otherwise build
+            yourself. We take approved and late-stage medicines into the markets
+            a launch plan leaves out. The regulatory sequence, the pricing
+            strategy and the partner selection run centrally, and the commercial
+            work runs locally, through operators already established in each
+            market.
           </p>
           <p>
             These are those markets. Not every asset belongs in every one of
