@@ -10,8 +10,6 @@
   --color-ring: var(--brand);
 
   --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
-  --font-ledger:
-    var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
 }
 
 /* firstocean palette — white body, ink text, deep-blue accent. The four below
@@ -27,11 +25,9 @@
   --brand-strong: #16295f; /* accent hover */
   --surface: #f6f7f9; /* neutral fill for the banded sections */
 
-  /* ink ladder for the dark surfaces: the homepage hero and the navy wave
-     footer, both of which host <BackedBy /> */
+  /* accent for the dark surfaces: the hero eyebrow and market caption, and the
+     eyebrow on /originators */
   --fo-accent: #88a6f8;
-  --fo-ink-1: #e8eaed;
-  --fo-line-strong: rgba(167, 176, 187, 0.34);
 }
 
 @layer base {
@@ -61,67 +57,6 @@
     font-weight: 600;
     letter-spacing: -0.02em;
     color: inherit;
-  }
-}
-
-@layer utilities {
-  /* Provenance strip. The track carries the row twice and slides exactly half
-     its own width, so the clone lands on the seam and the loop never shows.
-     Transform only, so it composites on its own layer and costs no layout. */
-  .marquee {
-    -webkit-mask-image: linear-gradient(
-      to right,
-      transparent,
-      #000 5rem,
-      #000 calc(100% - 5rem),
-      transparent
-    );
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      #000 5rem,
-      #000 calc(100% - 5rem),
-      transparent
-    );
-  }
-
-  .marquee-track {
-    /* tied to the row's width, not a fixed pace: ten marks travel about a
-       third further than eight did, so the duration grows with them */
-    animation: marquee 62s linear infinite;
-  }
-
-  /* hovering holds the strip still long enough to read a mark */
-  .marquee:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
-  }
-
-  /* Stopped, the clone would just be the same nine marks a second time, so
-     under reduced motion it is dropped and the row wraps instead. */
-  @media (prefers-reduced-motion: reduce) {
-    .marquee {
-      -webkit-mask-image: none;
-      mask-image: none;
-    }
-    .marquee-track {
-      width: 100%;
-      animation: none;
-    }
-    .marquee-track [data-clone] {
-      display: none;
-    }
-    /* the row itself has to wrap too, or it just overflows the strip */
-    .marquee-track > ul {
-      flex-shrink: 1;
-      flex-wrap: wrap;
-      row-gap: 1.75rem;
-    }
   }
 }
 

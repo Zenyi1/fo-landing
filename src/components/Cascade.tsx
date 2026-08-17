@@ -12,7 +12,7 @@ import { Reveal } from "@/components/Reveal";
    in one does to the price in another. Both are published, both are knowable,
    and across 53 markets neither is tractable by hand. That is the pitch. */
 
-/* The four ways in. The mono line is what the route gets you, which is a
+/* The four ways in. The accent line is what the route gets you, which is a
    published agency figure where one exists rather than anything we promise:
    SFDA verification runs up to 30 working days and abridged up to 60 for a
    product already approved by the FDA or EMA, against 8 to 18 months in the
@@ -29,7 +29,7 @@ const LANES = [
   {
     name: "Recognition",
     gain: "30 to 60 working days",
-    body: "Saudi Arabia's SFDA verifies or abridges against an existing FDA or EMA approval instead of reviewing it again.",
+    body: "Saudi Arabia's SFDA verifies or abridges an existing FDA or EMA approval instead of reviewing it again.",
   },
   {
     name: "WHO collaborative",
@@ -39,12 +39,12 @@ const LANES = [
   {
     name: "Cluster review",
     gain: "One submission, several countries",
-    body: "The Gulf reviews centrally and ASEAN assesses jointly, so a single dossier moves a whole region.",
+    body: "Gulf centralised review. ASEAN common technical dossier. Format is shared; decisions are still national.",
   },
   {
     name: "Regional reference",
     gain: "One approval carries",
-    body: "Latin American regulators rely on an approval from a PAHO reference authority: ANVISA, COFEPRIS, INVIMA.",
+    body: "Latin American regulators rely on a PAHO reference authority: ANVISA, COFEPRIS, INVIMA.",
   },
 ];
 
@@ -53,27 +53,17 @@ export function Cascade() {
     <>
       <Reveal>
         <h2 className="text-balance font-sans text-[clamp(2rem,4.6vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
-          One approval, fifty-three markets.
+          One approval. A sequence, not fifty-three separate builds.
         </h2>
         <div className="mt-8 max-w-[64ch] space-y-6 text-[clamp(1.05rem,1.8vw,1.2rem)] leading-[1.6] text-ink">
           <p>
-            Most regulators outside the US, Europe and Japan will not re-review a
-            dossier a stringent authority has already assessed. They rely on it.
-            That is published policy, and it is the difference between a
-            decision in weeks and a decision in a year or more.
+            Many regulators outside the US, Europe and Japan can rely on a
+            dossier a stringent authority has already assessed, rather than
+            repeating the full review. Price does not follow the same map: many
+            countries set price against a basket, so the wrong first launch
+            drags the price in markets you already care about.
           </p>
-          <p>
-            Which lane a market opens depends on what you already hold and what
-            you register first, because recognition runs in clusters rather than
-            country by country. Price runs on a second map that does not match
-            the first: most countries set price against a basket of other
-            countries, so launching in the wrong market first drags your price
-            down in the ones you care about.
-          </p>
-          <p className="font-medium">
-            We solve both maps at once, then sequence your entry across the
-            markets we cover in the order those maps allow.
-          </p>
+          <p className="font-medium">We sequence both.</p>
         </div>
       </Reveal>
 
@@ -87,7 +77,7 @@ export function Cascade() {
               <h3 className="font-sans text-[1.1rem] font-semibold tracking-[-0.015em] text-ink">
                 {lane.name}
               </h3>
-              <p className="mt-2 font-ledger text-[0.88rem] tracking-[-0.01em] text-brand">
+              <p className="mt-2 text-[0.92rem] font-medium text-brand">
                 {lane.gain}
               </p>
               <p className="mt-4 text-[0.95rem] leading-[1.55] text-ink-soft">
@@ -96,15 +86,6 @@ export function Cascade() {
             </li>
           ))}
         </ul>
-      </Reveal>
-
-      <Reveal delay={120}>
-        <p className="mt-14 max-w-[64ch] text-[1.02rem] leading-[1.6] text-ink-soft">
-          Everywhere else it is a full dossier and a real queue: Brazil&rsquo;s
-          ANVISA runs 15 to 18 months, Indonesia&rsquo;s BPOM 12 to 24. Some of
-          those queues are worth joining anyway. ANVISA is slow, and it is also
-          the approval much of Latin America will then rely on.
-        </p>
       </Reveal>
     </>
   );

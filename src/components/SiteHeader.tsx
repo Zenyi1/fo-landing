@@ -35,10 +35,22 @@ export function SiteHeader() {
         </a>
         <nav className="flex items-center gap-5 md:gap-7">
           <Link
+            href="/markets"
+            className={`hidden text-sm font-semibold transition-colors md:inline ${linkColor}`}
+          >
+            Markets
+          </Link>
+          <Link
+            href="/originators"
+            className={`hidden text-sm font-semibold transition-colors md:inline ${linkColor}`}
+          >
+            For originators
+          </Link>
+          <Link
             href="/distributors"
             className={`hidden text-sm font-semibold transition-colors sm:inline ${linkColor}`}
           >
-            For distributors
+            For operators
           </Link>
           <a
             href={originatorCallUrl()}

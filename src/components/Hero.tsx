@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { WaveBackground } from "@/components/WaveBackground";
-import { BackedBy } from "@/components/BackedBy";
 import { originatorCallUrl } from "@/lib/links";
 
 // The markets firstocean distributes into: the largest commercially viable
 // economies across LATAM, MENA and Southeast Asia (top ~8 by GDP each),
-// interleaved by region. The word swaps in on its own fixed-height line so the
-// hero never changes size, however long the market name is.
+// interleaved by region. The name rotates in a caption under the subhead, not
+// in the headline — a headline that changes every two seconds reads as a
+// consumer app, and the sentence underneath was always the real one.
 const MARKETS = [
   "Brazil", "Saudi Arabia", "Indonesia",
   "Mexico", "the UAE", "Thailand",
@@ -75,12 +75,27 @@ export function Hero() {
           willChange: "opacity, transform",
         }}
       >
-        <p className="font-sans text-[clamp(2.5rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-white">
-          We take your medicine to
+        <h1 className="max-w-[19ch] font-sans text-[clamp(2.5rem,6.4vw,4.9rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
+          The commercial operation you would otherwise have to build.
+        </h1>
+
+        {/* What firstocean actually does, immediately under the headline: the
+            central work, and who does the selling. Written on the mechanism,
+            not on the contract — no claim here depends on whether firstocean
+            ends up inside the licence or beside it. */}
+        <p className="mt-7 max-w-[56ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
+          firstocean takes approved and late-stage medicines into the markets a
+          launch plan leaves out. Registration, price and partner selection run
+          centrally. The selling is done by operators already established in
+          each market.
         </p>
-        <p className="mt-1 min-h-[1.02em] whitespace-nowrap font-sans text-[clamp(2.7rem,10vw,7.4rem)] font-semibold leading-[1.0] tracking-[-0.035em]">
+
+        {/* The rotator, demoted to a caption. Fixed height so the hero never
+            changes size, however long the market name is. */}
+        <p className="mt-5 text-[0.95rem] text-white/70">
+          Today:{" "}
           <span
-            className="inline-block text-[#88a6f8] transition-all duration-[400ms] ease-out motion-reduce:transition-none"
+            className="inline-block text-[color:var(--fo-accent)] transition-all duration-[400ms] ease-out motion-reduce:transition-none"
             style={{
               opacity: visible ? 1 : 0,
               transform: visible ? "translateY(0)" : "translateY(0.22em)",
@@ -88,32 +103,6 @@ export function Hero() {
           >
             {MARKETS[i]}
           </span>
-        </p>
-
-        {/* What firstocean actually does, in the hero rather than three
-            sections down: the rotating market names where, this names what, and
-            a reader who leaves here should still be able to repeat what the
-            company is for.
-
-            The headline states a capability rather than diagnosing the reader.
-            "Your medicine isn't reaching Brazil" asserted something we cannot
-            know — plenty of visitors do sell there — and a claim a reader can
-            falsify from their own sales figures costs more than it wins.
-
-            Written on the mechanism, not on the contract — no claim here
-            depends on whether firstocean ends up inside the licence or beside
-            it, so none of it goes stale when that is settled. */}
-        <p className="mt-7 max-w-[54ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
-          firstocean runs the commercial operation you would otherwise build
-          yourself. We take approved and late-stage medicines into{" "}
-          <Link
-            href="/markets"
-            className="font-medium underline decoration-white/40 underline-offset-4 transition-colors hover:decoration-white"
-          >
-            53 markets
-          </Link>{" "}
-          a launch plan leaves out, through operators already established in
-          each one.
         </p>
 
         <div className="mt-9 flex flex-wrap items-center gap-3.5">
@@ -126,14 +115,12 @@ export function Hero() {
             Talk to us about your asset →
           </a>
           <Link
-            href="/originators"
+            href="/markets"
             className="inline-flex items-center gap-2 rounded-[11px] border border-white/40 px-7 py-4 font-sans text-[1.05rem] font-semibold text-white transition-colors hover:border-white hover:bg-white/5"
           >
-            See an anonymous estimate →
+            See the 53 markets →
           </Link>
         </div>
-
-        <BackedBy className="mt-8" />
       </div>
     </section>
   );

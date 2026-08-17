@@ -43,7 +43,7 @@ const REGIONS = [
   },
   {
     name: "Middle East and North Africa",
-    note: "The Gulf runs a centralised review, and Saudi Arabia's SFDA verifies an existing FDA or EMA approval rather than reviewing it again.",
+    note: "The Gulf runs a centralised review. Saudi Arabia's SFDA verifies an existing FDA or EMA approval rather than reviewing it again.",
     countries: [
       "Algeria", "Bahrain", "Egypt", "Jordan", "Kuwait", "Morocco", "Oman",
       "Qatar", "Saudi Arabia", "Tunisia", "Türkiye", "United Arab Emirates",
@@ -59,7 +59,7 @@ const REGIONS = [
   },
   {
     name: "South and Southeast Asia",
-    note: "ASEAN assesses jointly on a common technical dossier, so one submission can move several of these at once.",
+    note: "ASEAN uses a common technical dossier. One submission format, several national decisions.",
     countries: [
       "India", "Indonesia", "Malaysia", "Pakistan", "Philippines", "Singapore",
       "Sri Lanka", "Thailand", "Vietnam",
@@ -90,14 +90,28 @@ export default function MarketsPage() {
           >
             firstocean
           </Link>
-          <a
-            href={originatorCallUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-[9px] bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
-          >
-            Talk to us
-          </a>
+          <nav className="flex items-center gap-5 md:gap-7">
+            <Link
+              href="/originators"
+              className="hidden text-sm font-semibold text-ink transition-opacity hover:opacity-70 md:inline"
+            >
+              For originators
+            </Link>
+            <Link
+              href="/distributors"
+              className="hidden text-sm font-semibold text-ink transition-opacity hover:opacity-70 sm:inline"
+            >
+              For operators
+            </Link>
+            <a
+              href={originatorCallUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-[9px] bg-brand px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[var(--brand-strong)]"
+            >
+              Talk to us
+            </a>
+          </nav>
         </div>
       </header>
 
@@ -107,16 +121,14 @@ export default function MarketsPage() {
         </h1>
         <div className="mt-8 max-w-[64ch] space-y-6 text-[clamp(1.05rem,1.8vw,1.2rem)] leading-[1.6] text-ink">
           <p>
-            firstocean runs the commercial operation you would otherwise build
-            yourself. We take approved and late-stage medicines into the markets
-            a launch plan leaves out. The regulatory sequence, the pricing
-            strategy and the partner selection run centrally, and the commercial
-            work runs locally, through operators already established in each
-            market.
+            firstocean runs the commercial operation you would otherwise have to
+            build. The regulatory sequence, the pricing strategy and the partner
+            selection run centrally. The commercial work runs locally, through
+            operators already established in each market.
           </p>
           <p>
-            These are those markets. Not every asset belongs in every one of
-            them, and saying which do is the first thing we do.
+            These are the markets. Not every asset belongs in every one of them.
+            Saying which do is the first thing we do.
           </p>
         </div>
 
@@ -127,7 +139,7 @@ export default function MarketsPage() {
                 <h2 className="font-sans text-[clamp(1.3rem,2.4vw,1.7rem)] font-semibold tracking-[-0.02em] text-ink">
                   {region.name}
                 </h2>
-                <p className="font-ledger text-[0.88rem] tracking-[-0.01em] text-ink-soft">
+                <p className="text-[0.92rem] text-ink-soft">
                   {region.countries.length} markets
                 </p>
               </div>
@@ -155,7 +167,7 @@ export default function MarketsPage() {
             Which of these is your asset free in?
           </h2>
           <p className="mt-5 max-w-[58ch] text-[1.05rem] leading-[1.6] text-ink">
-            Tell us what you hold and where your rights are unencumbered. We come
+            Tell us what you hold and where the rights are unencumbered. We come
             back with the markets worth entering, the registration route each one
             allows, and what it takes to launch there.
           </p>

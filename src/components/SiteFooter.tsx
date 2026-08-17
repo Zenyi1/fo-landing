@@ -37,16 +37,16 @@ export function SiteFooter() {
 
           {/* right: the two paths, top-aligned with the wordmark */}
           <div className="flex flex-col gap-2.5 text-[1rem] text-white sm:items-end sm:text-right">
-            {/* One label per destination, matching the hero and the closing
-                CTA. Two names for the same door reads as two different doors. */}
+            {/* Same three labels as the nav. Two names for the same door reads
+                as two different doors. */}
             <Link href="/markets" className="w-fit transition-opacity hover:opacity-70">
               Markets
             </Link>
             <Link href="/originators" className="w-fit transition-opacity hover:opacity-70">
-              See an anonymous estimate
+              For originators
             </Link>
             <Link href="/distributors" className="w-fit transition-opacity hover:opacity-70">
-              Join the partner network
+              For operators
             </Link>
           </div>
         </div>

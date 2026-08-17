@@ -3,9 +3,9 @@ import Link from "next/link";
 import { WaveBackground } from "@/components/WaveBackground";
 import { ValuationFunnel } from "@/components/ValuationFunnel";
 
-const title = "Emerging markets asset valuation";
+const title = "For originators";
 const description =
-  "Estimate what your therapeutic is worth outside its core markets, from preclinical to approved. Anonymous, about two minutes.";
+  "A counterpart for the markets you will not enter yourself. Estimate directional value outside your core markets, anonymously, in about two minutes.";
 
 export const metadata: Metadata = {
   title,
@@ -42,13 +42,19 @@ export default function OriginatorsPage() {
           <Link href="/" className="text-2xl font-semibold lowercase tracking-tight text-white">
             firstocean
           </Link>
+          {/* The page leads with the counterpart, not with the number. The
+              estimate is a directional model and sits to the right of it. */}
           <div className="flex flex-1 flex-col items-center justify-center text-center">
-            <h2 className="text-balance font-sans text-[30px] font-semibold leading-[1.12] tracking-[-0.02em] md:text-[46px]">
-              Most of the world can&rsquo;t access your medicine.
-            </h2>
+            <p className="text-[15px] leading-[1.5] text-[color:var(--fo-accent)] md:text-[16px]">
+              Most of the world cannot access your medicine.
+            </p>
+            <h1 className="mt-5 text-balance font-sans text-[30px] font-semibold leading-[1.12] tracking-[-0.02em] md:text-[46px]">
+              A counterpart for the markets you will not enter yourself.
+            </h1>
             <p className="mt-5 max-w-[40ch] text-[18px] leading-[1.55] text-white md:text-[21px]">
-              firstocean commercializes approved and late-stage medicines in the
-              markets your launch plan will never cover.
+              firstocean commercializes approved and late-stage medicines in 53
+              markets a launch plan leaves out. One reporting line. Local
+              operators. You keep the core.
             </p>
           </div>
         </div>
