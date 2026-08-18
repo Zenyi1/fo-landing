@@ -53,7 +53,7 @@ export function Cascade() {
     <>
       <Reveal>
         <h2 className="text-balance font-sans text-[clamp(2rem,4.6vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
-          One approval. A sequence, not fifty-three separate builds.
+          One approval. A sequence, not a separate build in every market.
         </h2>
         <div className="mt-8 max-w-[64ch] space-y-6 text-[clamp(1.05rem,1.8vw,1.2rem)] leading-[1.6] text-ink">
           <p>

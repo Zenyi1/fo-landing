@@ -118,7 +118,7 @@ export function Hero() {
             href="/markets"
             className="inline-flex items-center gap-2 rounded-[11px] border border-white/40 px-7 py-4 font-sans text-[1.05rem] font-semibold text-white transition-colors hover:border-white hover:bg-white/5"
           >
-            See the 53 markets →
+            See the markets →
           </Link>
         </div>
       </div>

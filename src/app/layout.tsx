@@ -13,7 +13,7 @@ const inter = Inter({
 
 const title = "firstocean | Commercialization partner for international markets";
 const description =
-  "firstocean commercializes approved and late-stage medicines in 53 markets a core launch plan leaves out. One counterpart. Local operators. Registration, price, and launch sequenced together.";
+  "firstocean commercializes approved and late-stage medicines in the markets a core launch plan leaves out. One counterpart. Local operators. Registration, price, and launch sequenced together.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://first-ocean.com"),

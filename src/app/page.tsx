@@ -45,7 +45,7 @@ export default function Home() {
               is almost never where the sentence ends. */}
           <h2 className="font-sans text-[clamp(2rem,4.6vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
             <span className="block">Approved in one market.</span>
-            <span className="block">Absent from fifty-three.</span>
+            <span className="block">Absent from the rest.</span>
           </h2>
           <div className="mt-8 max-w-[62ch] space-y-6 text-[clamp(1.1rem,2vw,1.3rem)] leading-[1.6] text-ink">
             <p>
@@ -56,7 +56,7 @@ export default function Home() {
               you already hold earns nothing outside the core.
             </p>
             <p>
-              firstocean does that work once, across the 53 markets we cover, in
+              firstocean does that work once, across the markets we cover, in
               parallel. That is what makes a smaller territory worth entering.
             </p>
           </div>

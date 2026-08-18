@@ -52,7 +52,7 @@ export default function OriginatorsPage() {
               A counterpart for the markets you will not enter yourself.
             </h1>
             <p className="mt-5 max-w-[40ch] text-[18px] leading-[1.55] text-white md:text-[21px]">
-              firstocean commercializes approved and late-stage medicines in 53
+              firstocean commercializes approved and late-stage medicines in the
               markets a launch plan leaves out. One reporting line. Local
               operators. You keep the core.
             </p>
