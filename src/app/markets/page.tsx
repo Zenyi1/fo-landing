@@ -121,14 +121,9 @@ export default function MarketsPage() {
         </h1>
         <div className="mt-8 max-w-[64ch] space-y-6 text-[clamp(1.05rem,1.8vw,1.2rem)] leading-[1.6] text-ink">
           <p>
-            firstocean runs the commercial operation you would otherwise have to
-            build. The regulatory sequence, the pricing strategy and the partner
+            firstocean runs the commercial operation across geographies outside of your launch plan. We identify where your asset has commercial potential and map out the distribution. The regulatory sequence, the pricing strategy and the partner
             selection run centrally. The commercial work runs locally, through
-            operators already established in each market.
-          </p>
-          <p>
-            These are the markets. Not every asset belongs in every one of them.
-            Saying which do is the first thing we do.
+            vetted operators already established in each market.
           </p>
         </div>
 
