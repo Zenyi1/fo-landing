@@ -4,9 +4,9 @@ import { DistributorsHeader } from "@/components/DistributorsHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { inlicensorCallUrl } from "@/lib/links";
 
-const title = "For in-licensors and distributors";
+const title = "For operators";
 const description =
-  "Join firstocean's partner network across MENA, LATAM and Southeast Asia. Screened assets from originators in North America and Europe, placed against the registrations and channels you already run.";
+  "firstocean places originator assets with operators who already hold registrations, a channel and a salesforce across Latin America, the Middle East, Africa, Asia and Eastern Europe.";
 
 export const metadata: Metadata = {
   title,
@@ -76,10 +76,10 @@ export default function DistributorsPage() {
             <span className="block">We bring the medicines.</span>
           </h1>
           <p className="mt-7 max-w-[54ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
-            firstocean is building a partner network across Latin America, the
-            Middle East, Africa, Asia and Eastern Europe. We screen assets from
-            originators in North America and Europe, then place them against the
-            registrations, channels and therapeutic areas you already run.
+            firstocean places originator assets with operators who already hold
+            registrations, a channel and a salesforce. Latin America, the Middle
+            East, Africa, Asia, Eastern Europe. What reaches you is a shortlist
+            against what you can already sell, not a catalogue.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3.5">
             <a
@@ -109,17 +109,17 @@ export default function DistributorsPage() {
           {/* One paragraph, not two: the pair that used to sit here said the
               same thing twice, down to repeating the de-risked list. */}
           <p className="mt-4 max-w-[70ch] text-[0.98rem] leading-[1.6] text-ink">
-            Every asset we place is approved, filed, or in late-stage trials. We assess your
-            registrations, channel coverage and therapeutic areas first, then place the assets that
-            fit them, so what reaches you is a shortlist rather than a catalogue. Compound,
-            originator and terms open under NDA on the call, and there is no fee to be assessed.
+            Every asset we place is approved, filed, or in late-stage trials. We
+            assess your registrations, coverage and therapeutic areas first.
+            Compound, originator and terms open under NDA on the call. No fee to
+            be assessed.
           </p>
 
           {/* The rows are category-level illustrations, not live records, so the
               grid says so in its own right rather than in a sentence a reader
               has already scrolled past. */}
-          <p className="mt-10 font-ledger text-[0.82rem] tracking-[-0.01em] text-ink-soft">
-            Example profiles, not live listings. They show the shape of what we place.
+          <p className="mt-10 text-[0.88rem] text-ink-soft">
+            Illustrative profiles. Live assets open under NDA.
           </p>
 
           {/* asset cards: category data is readable; compound & originator stay locked */}
@@ -196,11 +196,8 @@ export default function DistributorsPage() {
       <section className="bg-white text-ink">
         <div className="mx-auto max-w-[1160px] px-6 pb-24 pt-6 text-center md:px-14 md:pb-28 md:pt-10">
           <h2 className="text-balance font-sans text-[clamp(2rem,4.4vw,3.2rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
-            Tell us what you can sell.
-          </h2>
-          <p className="mx-auto mt-5 max-w-[46ch] text-[1.05rem] leading-[1.6] text-ink">
             One call assesses your markets and opens the assets that fit them.
-          </p>
+          </h2>
           <a
             href={inlicensorCallUrl()}
             target="_blank"
@@ -209,6 +206,10 @@ export default function DistributorsPage() {
           >
             Join the network →
           </a>
+          <p className="mx-auto mt-6 max-w-[46ch] text-[0.98rem] leading-[1.6] text-ink-soft">
+            Compound, originator and terms on a 30-minute call. No fee to be
+            assessed.
+          </p>
         </div>
       </section>
 

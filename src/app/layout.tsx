@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PostHogProvider } from "@/components/PostHogProvider";
@@ -11,18 +11,9 @@ const inter = Inter({
   display: "swap",
 });
 
-// Ledger face: figures, row IDs and eyebrows. Two weights only — a count set in
-// mono reads as a figure lifted off a document rather than as a marketing stat.
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-plex-mono",
-  display: "swap",
-});
-
-const title = "firstocean";
+const title = "firstocean | Commercialization partner for international markets";
 const description =
-  "firstocean commercializes approved and late-stage medicines in 53 markets across Latin America, the Middle East, Africa, Asia and Eastern Europe, from selection to launch.";
+  "firstocean commercializes approved and late-stage medicines in the markets a core launch plan leaves out. One counterpart. Local operators. Registration, price, and launch sequenced together.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://first-ocean.com"),
@@ -74,7 +65,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <script

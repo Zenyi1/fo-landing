@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Hero } from "@/components/Hero";
-import { LogoMarquee } from "@/components/LogoMarquee";
 import { Cascade } from "@/components/Cascade";
 import { SiteFooter } from "@/components/SiteFooter";
 import { originatorCallUrl } from "@/lib/links";
@@ -17,16 +16,16 @@ import { originatorCallUrl } from "@/lib/links";
    a referencing market can drag the price down in a market that matters. */
 const CONTROL = [
   {
-    title: "You choose the territories.",
-    body: "We enter nothing without your approval, and a market you want held back stays held back.",
+    title: "Territories.",
+    body: "We enter nothing without your approval. A market you want held back stays held back.",
   },
   {
-    title: "Your reference price is protected.",
-    body: "We set the price in each territory against your existing markets, so a launch here does not drag a price down there.",
+    title: "Reference price.",
+    body: "We set price in each territory against your existing markets, so a launch here does not drag a price down there.",
   },
   {
     title: "One reporting line.",
-    body: "Registration status, pricing, stock and sales come back to you in one place, not as a separate report from every partner.",
+    body: "Registration, pricing, stock and sales come back in one place, not as a separate report from every operator.",
   },
 ];
 
@@ -39,16 +38,6 @@ export default function Home() {
 
       {/* everything below the hero is a clean white surface — no pixels */}
       <main className="bg-white text-ink">
-        {/* who is behind this, before any of the argument — the strip belongs to
-            the wave above it, so it sits tight under the fold and leaves the
-            gap underneath to the first section's own top padding */}
-        <section
-          aria-label="Where the team came from"
-          className="mx-auto max-w-[1160px] px-6 pt-16 md:px-14 md:pt-20"
-        >
-          <LogoMarquee />
-        </section>
-
         {/* the gap — why the rights are still sitting there */}
         <section className="mx-auto max-w-[1160px] px-6 py-24 md:px-14 md:py-32">
           {/* Two sentences, one per line, set here rather than left to the
@@ -56,22 +45,19 @@ export default function Home() {
               is almost never where the sentence ends. */}
           <h2 className="font-sans text-[clamp(2rem,4.6vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink">
             <span className="block">Approved in one market.</span>
-            <span className="block">Absent from fifty-three.</span>
+            <span className="block">Absent from the rest.</span>
           </h2>
           <div className="mt-8 max-w-[62ch] space-y-6 text-[clamp(1.1rem,2vw,1.3rem)] leading-[1.6] text-ink">
             <p>
-              A launch plan covers the markets that pay for the work: the United
-              States, Western Europe, Japan. Registering the product, agreeing a
-              price and building a commercial operation costs your regulatory,
-              market-access and commercial teams the same months whether the
-              market is worth two hundred million or two.
+              A launch plan pays for the United States, Western Europe and
+              Japan. Registering, pricing and standing up a commercial operation
+              costs the same months in a market worth two hundred million and a
+              market worth two. So the medicine never arrives, and an approval
+              you already hold earns nothing outside the core.
             </p>
             <p>
-              So the medicine never arrives, and an approval you already hold
-              earns nothing outside your core markets. We do that groundwork
-              once, across all 53 markets we cover in parallel rather than one
-              at a time, and carry that cost rather than passing it to your
-              team. That is what makes a small territory worth entering at all.
+              firstocean does that work once, across the markets we cover, in
+              parallel. That is what makes a smaller territory worth entering.
             </p>
           </div>
         </section>
@@ -102,12 +88,10 @@ export default function Home() {
           </dl>
         </section>
 
-        {/* The one block on the page addressing the other side of the market,
-            and an invitation rather than a claim: firstocean is recruiting the
-            operator network, not reporting on a finished one. Held deliberately
-            quieter than the sections around it, so a biotech reader can see at
-            a glance that it is not aimed at them and a distributor can still
-            find it. */}
+        {/* The one block on the page addressing the other side of the market.
+            Held deliberately quieter than the sections around it, so a biotech
+            reader can see at a glance that it is not aimed at them and an
+            operator can still find it. */}
         <section id="inlicensors" className="scroll-mt-24 bg-[var(--surface)]">
           <div className="mx-auto max-w-[1160px] px-6 py-20 md:px-14 md:py-24">
             <div className="max-w-[70ch] border-t border-ink/15 pt-8">
@@ -115,21 +99,19 @@ export default function Home() {
                 Already selling in these markets?
               </h2>
               <p className="mt-5 text-[1.05rem] leading-[1.6] text-ink">
-                We are building the operator side of this across Latin America,
-                the Middle East, Africa, Asia and Eastern Europe. If you
-                hold registrations, run a channel and carry a salesforce in one
-                of those markets, we bring you medicines that are approved
-                elsewhere and not yet sold in yours, matched to the therapeutic
-                areas you already cover.
+                If you hold registrations, run a channel and carry a salesforce
+                in Latin America, the Middle East, Africa, Asia or Eastern
+                Europe, we bring you medicines that are approved elsewhere and
+                not yet sold in yours, matched to the therapeutic areas you
+                already cover. No fee to be assessed. Nothing is committed until
+                you have seen the terms.
               </p>
               <p className="mt-5 text-[1rem] leading-[1.6] text-ink-soft">
-                No fee to be assessed, and nothing is committed until you have
-                seen the terms.{" "}
                 <Link
                   href="/distributors"
                   className="font-medium text-brand underline underline-offset-4 transition-colors hover:decoration-current"
                 >
-                  Join the partner network
+                  Join the operator network
                 </Link>
                 .
               </p>
@@ -143,11 +125,11 @@ export default function Home() {
             Start with one asset.
           </h2>
           <p className="mx-auto mt-6 max-w-[52ch] text-[clamp(1.05rem,1.9vw,1.25rem)] leading-[1.6] text-ink">
-            Tell us what you hold and where your rights are free. We come back
-            with the markets worth entering and what it takes to launch in each
-            one.
+            Tell us what you hold and where the rights are free. We come back
+            with the markets worth entering, the registration route each one
+            allows, and what it takes to launch.
           </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
+          <div className="mt-10 flex flex-col items-center gap-6">
             <a
               href={originatorCallUrl()}
               target="_blank"
@@ -156,12 +138,17 @@ export default function Home() {
             >
               Talk to us about your asset →
             </a>
-            <Link
-              href="/originators"
-              className="inline-flex items-center gap-2 rounded-[11px] border border-ink/20 px-7 py-4 font-sans text-[1.05rem] font-semibold text-ink transition-colors hover:border-ink/40 hover:bg-ink/[0.03]"
-            >
-              See an anonymous estimate →
-            </Link>
+            {/* The estimate is a directional model, so it sits a rung below a
+                meeting rather than beside it. */}
+            <p className="text-[0.98rem] leading-[1.6] text-ink-soft">
+              Or{" "}
+              <Link
+                href="/originators"
+                className="font-medium text-brand underline underline-offset-4 transition-colors hover:decoration-current"
+              >
+                estimate emerging-market value →
+              </Link>
+            </p>
           </div>
         </section>
       </main>
