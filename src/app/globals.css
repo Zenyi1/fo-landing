@@ -22,6 +22,11 @@
   --brand: #1e3a8a; /* deep-blue accent: buttons, links, focus, visual */
   --line: rgba(11, 17, 32, 0.12); /* hairline rule, and the default border */
 
+  /* Canvas draws with rgba(), so the world map needs its two colours as raw
+     channels rather than hex. Kept next to the palette they mirror. */
+  --world-ink: 11, 17, 32;
+  --world-accent: 30, 58, 138;
+
   --brand-strong: #16295f; /* accent hover */
   --surface: #f6f7f9; /* neutral fill for the banded sections */
 
