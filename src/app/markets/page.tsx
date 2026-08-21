@@ -149,7 +149,7 @@ export default function MarketsPage() {
 
               <div className="max-w-[52ch]">
                 <h2 className="font-sans text-[clamp(1.4rem,2.6vw,1.9rem)] font-semibold tracking-[-0.02em] text-ink">
-                  And that work is no longer expensive.
+                  Regulatory bridging is no longer expensive.
                 </h2>
                 <p className="mt-5 text-[1rem] leading-[1.65] text-ink-soft">
                   Converting a dossier into a compliant local submission used to
