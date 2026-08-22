@@ -171,10 +171,10 @@ export default function MarketsPage() {
         <section className="mx-auto max-w-[1160px] px-6 py-24 md:px-14 md:py-32">
           <div className="max-w-[58ch]">
             <h2 className="text-balance font-sans text-[clamp(1.5rem,2.8vw,2.1rem)] font-semibold tracking-[-0.02em] text-ink">
-              Where is your asset free?
+              Where else could your drug make a difference?
             </h2>
             <p className="mt-5 text-[1.05rem] leading-[1.65] text-ink">
-              Tell us what you hold and where your rights are unencumbered. We
+              Tell us what you hold and where you don't plan on launching yourself. We
               come back with the markets worth entering, the registration route
               each one allows, and what it takes to launch there.
             </p>
