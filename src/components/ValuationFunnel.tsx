@@ -136,12 +136,16 @@ export function ValuationFunnel() {
       {stage === "form" && (
         <div className="mx-auto w-full max-w-[560px]">
           <h2 className="font-sans text-[26px] font-semibold leading-[1.12] tracking-[-0.02em] text-ink md:text-[34px]">
-            Directional value outside the core
+            What your asset is leaving outside the core
           </h2>
+          {/* One qualifier, in the fine print under the button. The draft that
+              stacked three of them — here, under the button, and again on the
+              result — told a commercial lead the number was not worth carrying
+              into a meeting, which is the opposite of what the page is for. */}
           <p className="mt-3 text-[15px] leading-[1.55] text-ink md:text-[16px]">
-            Fill in the basics. We estimate what the unused rights could be
-            earning each year. Anonymous: no name, no compound, no email. A
-            language-model estimate, not a valuation.
+            Fill in the basics. We estimate what the territories you have not
+            licensed could be earning each year. Anonymous: no name, no
+            compound, no email.
           </p>
           <form onSubmit={onSubmit} className="mt-7 grid gap-4 lg:grid-cols-2">
             <Select label="Development stage" name="devStage" options={DEV_STAGES} value={devStage} onChange={setDevStage} />
@@ -171,7 +175,8 @@ export function ValuationFunnel() {
               Get the estimate
             </button>
             <p className="text-[13px] leading-[1.5] text-ink/55 lg:col-span-2">
-              Directional only. Not a formal valuation.
+              Directional only. Not a formal valuation. Latin America, the
+              Middle East and Southeast Asia.
             </p>
           </form>
         </div>
@@ -249,9 +254,9 @@ function ResultView({
       <p className="mt-4 font-sans text-[72px] font-semibold leading-none tracking-[-0.03em] text-ink md:text-[120px]">
         {formatValue(result.valueMusd)}
       </p>
-      <p className="mt-6 max-w-[36ch] text-[17px] leading-[1.6] text-ink md:text-[19px]">
-        Across {result.markets} markets this asset has not reached. Excludes
-        China.
+      <p className="mt-6 max-w-[38ch] text-[17px] leading-[1.6] text-ink md:text-[19px]">
+        A year, across {result.markets} markets this asset has not reached.
+        {clinical ? " Risk-adjusted for approval." : ""}
       </p>
       <a
         href={schedulingUrl(answers, result)}
@@ -270,9 +275,8 @@ function ResultView({
           they miss. Set at the same weight as the rest of the fine print on
           the page, not below it. */}
       <p className="mt-10 max-w-[52ch] text-[13px] leading-[1.6] text-ink/70">
-        Directional estimate, not a formal valuation. Latin America, Africa, the
-        Middle East, South and Southeast Asia, Central Asia and Eastern Europe.
-        Excludes China.
+        Directional estimate, not a formal valuation. Latin America, the Middle
+        East and Southeast Asia. Excludes China.
       </p>
     </div>
   );

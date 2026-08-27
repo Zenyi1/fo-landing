@@ -6,7 +6,7 @@ import { originatorCallUrl } from "@/lib/links";
 
 const title = "Markets";
 const description =
-  "Commercial value in this industry concentrates in three markets. Most of the world's patients live outside them. That is where firstocean works.";
+  "Between 10 and 30 percent of a medicine's lifetime value sits outside the United States, Western Europe and Japan. firstocean holds the licence and runs the commercial operation across Latin America, the Middle East and Southeast Asia.";
 
 export const metadata: Metadata = {
   title,
@@ -25,11 +25,14 @@ export const metadata: Metadata = {
 
 /* This page used to be a list of fifty-three country names under the heading
    "53 markets, named". A list invites the reader to audit the count, which is
-   the wrong argument to be having: the case is not that we are in a particular
-   number of places, it is that commercial value sits in three markets and most
-   patients do not. Naming the three and treating the rest as one territory is
-   the stronger claim, and it is the one that does not go stale as coverage
-   changes. */
+   the wrong argument to be having. It then spent a draft arguing from
+   population — four fifths of the world lives outside the core markets — which
+   is the wrong argument too: a commercial lead knows most of that four fifths
+   cannot pay a branded price, and the page had to contradict itself two
+   paragraphs later to concede that value concentrates in three markets. The
+   argument that survives contact with the buyer is the share of their own
+   asset's lifetime value they are writing off, so that is what the page leads
+   with now. */
 
 export default function MarketsPage() {
   return (
@@ -48,15 +51,9 @@ export default function MarketsPage() {
           <nav className="flex items-center gap-5 md:gap-7">
             <Link
               href="/originators"
-              className="hidden text-sm font-semibold text-ink transition-opacity hover:opacity-70 md:inline"
-            >
-              For originators
-            </Link>
-            <Link
-              href="/distributors"
               className="hidden text-sm font-semibold text-ink transition-opacity hover:opacity-70 sm:inline"
             >
-              For operators
+              For originators
             </Link>
             <a
               href={originatorCallUrl()}
@@ -75,16 +72,18 @@ export default function MarketsPage() {
             visual is the claim rather than decoration under it, so it sits
             beside the prose. */}
         <section className="mx-auto max-w-[1160px] px-6 pt-16 md:px-14 md:pt-24">
-          <h1 className="max-w-[19ch] text-balance font-sans text-[clamp(2.1rem,4.8vw,3.6rem)] font-semibold leading-[1.06] tracking-[-0.025em] text-ink">
-            Most of the world is still waiting. We&rsquo;re changing that.
+          <h1 className="max-w-[22ch] text-balance font-sans text-[clamp(2.1rem,4.8vw,3.6rem)] font-semibold leading-[1.06] tracking-[-0.025em] text-ink">
+            A tenth to a third of a medicine&rsquo;s value is never collected.
           </h1>
           {/* The AI claim belongs above the fold, not three sections down. It
               is stated as a mechanism rather than a label: what the agents do,
               and what that changes about the clock. */}
-          <p className="mt-7 max-w-[56ch] text-[clamp(1.1rem,1.8vw,1.3rem)] leading-[1.55] text-ink-soft">
-            Agents run the regulatory and market-access work that used to take a
-            department, so a launch is limited by the regulator&rsquo;s clock
-            and not by headcount.
+          <p className="mt-7 max-w-[58ch] text-[clamp(1.1rem,1.8vw,1.3rem)] leading-[1.55] text-ink-soft">
+            It sits outside the United States, Western Europe and Japan, where
+            registering a product and standing up a commercial operation costs
+            the same whether the territory returns fifteen million dollars or
+            five hundred. We run that work with agents, so a launch is limited
+            by the regulator&rsquo;s clock and not by headcount.
           </p>
         </section>
 
@@ -93,27 +92,31 @@ export default function MarketsPage() {
             <div className="max-w-[58ch] space-y-6 text-[1.05rem] leading-[1.65] text-ink">
               <p>
                 Commercial value in this industry concentrates in three markets:
-                the United States, Western Europe and Japan. Between them they
-                hold about a fifth of the world&rsquo;s population. The other
-                four fifths live everywhere else, which is both where most
-                patients are and the fastest-growing part of the industry:
-                $350bn in 2024, reaching $550bn by 2030, compounding at roughly
-                10% a year against 6% in developed markets.
+                the United States, Western Europe and Japan. Everywhere else is
+                the fastest-growing part of the industry — $350bn in 2024,
+                reaching $550bn by 2030, compounding at roughly 10% a year
+                against 6% in developed markets — and for most originators it is
+                simply unsold.
               </p>
-              <p className="font-medium">That is where we work.</p>
+              <p className="font-medium">
+                Latin America, the Middle East and Southeast Asia. That is where
+                we work.
+              </p>
               <p>
                 An approval does not travel on its own. Hundreds of medicines
-                cleared by the FDA or the EMA have no licensee across these
-                markets, and patients there never receive them. The science is
-                not in question: it is the same molecule, already approved. The
-                obstacle is that registering it, agreeing a price and building a
-                commercial operation costs about the same whether the territory
-                returns fifteen million dollars or five hundred.
+                cleared by the FDA or the EMA have no licensee anywhere in those
+                three regions. The science is not in question: it is the same
+                molecule, already approved. What stops it is that the cost of
+                entry barely moves with the size of the prize, so the smaller
+                territory never clears the internal bar.
               </p>
               <p>
                 So the footprint never gets built. We build it. We take
                 commercial rights from the originator, own the local entity,
-                hold the registration and run the launch.
+                hold the registration in our own name and carry the compliance
+                obligations that come with selling there. Physical distribution
+                is contracted to licensed local partners. We do not run trials
+                and we do not develop: clinical risk stays with you.
               </p>
             </div>
 
@@ -142,7 +145,8 @@ export default function MarketsPage() {
                   submission across member states. Mexico replaced a decade of
                   one-off bilateral agreements with a single abbreviated route
                   recognising any reference authority, in force since September
-                  2025. What is left of a submission is translation,
+                  2025. On the fastest of these routes a clearance takes about
+                  two months. What is left of a submission is translation,
                   reformatting and local adaptation.
                 </p>
               </div>
@@ -157,11 +161,13 @@ export default function MarketsPage() {
                   every product and every country. We run that layer with
                   purpose-built agents: dossier conversion into local eCTD
                   format, labeling in Arabic, Portuguese and Spanish, safety
-                  case intake, pricing and HTA submissions, agency queries. Our
-                  people do only the work that structurally needs a person in
-                  the room: the national qualified person, the managers who sit
-                  with hospital formulary committees, the medical science
-                  liaisons.
+                  case intake, pricing and HTA submissions, agency queries. The
+                  same layer carries the obligations that never end — renewals,
+                  variations, pharmacovigilance — which is the part a biotech
+                  cannot absorb fifteen times over. Our people do only the work
+                  that structurally needs a person in the room: the national
+                  qualified person, the managers who sit with hospital formulary
+                  committees, the medical science liaisons.
                 </p>
               </div>
             </div>
@@ -174,9 +180,11 @@ export default function MarketsPage() {
               Where else could your drug make a difference?
             </h2>
             <p className="mt-5 text-[1.05rem] leading-[1.65] text-ink">
-              Tell us what you hold and where you don't plan on launching yourself. We
-              come back with the markets worth entering, the registration route
-              each one allows, and what it takes to launch there.
+              Tell us what you hold and where you don&rsquo;t plan on launching
+              yourself. We come back with the markets worth entering, the
+              registration route each one allows, and what it takes to launch
+              there. We are paid out of what the medicine earns in the
+              territory, so there is nothing to pay for the assessment.
             </p>
             <a
               href={originatorCallUrl()}
@@ -186,6 +194,10 @@ export default function MarketsPage() {
             >
               Talk to us about your asset →
             </a>
+            <p className="mt-6 max-w-[54ch] text-[0.92rem] leading-[1.6] text-ink-soft">
+              We work with medicines approved by the FDA or the EMA, and with
+              Phase III assets approaching approval.
+            </p>
           </div>
         </section>
       </main>

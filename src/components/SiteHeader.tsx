@@ -40,17 +40,15 @@ export function SiteHeader() {
           >
             Markets
           </Link>
+          {/* Distributors are deliberately not in this bar. Giving them equal
+              billing with originators reads as a two-sided marketplace, which
+              is the company we are not. They reach the page from the band near
+              the bottom of the homepage and from the footer. */}
           <Link
             href="/originators"
-            className={`hidden text-sm font-semibold transition-colors md:inline ${linkColor}`}
-          >
-            For originators
-          </Link>
-          <Link
-            href="/distributors"
             className={`hidden text-sm font-semibold transition-colors sm:inline ${linkColor}`}
           >
-            For operators
+            For originators
           </Link>
           <a
             href={originatorCallUrl()}
