@@ -5,7 +5,7 @@ import { ValuationFunnel } from "@/components/ValuationFunnel";
 
 const title = "For originators";
 const description =
-  "A counterpart for the markets you will not enter yourself. Estimate directional value outside your core markets, anonymously, in about two minutes.";
+  "A counterpart for the markets you will not enter yourself. Estimate what your asset is leaving outside its core markets, anonymously, in about two minutes.";
 
 export const metadata: Metadata = {
   title,
@@ -45,16 +45,18 @@ export default function OriginatorsPage() {
           {/* The page leads with the counterpart, not with the number. The
               estimate is a directional model and sits to the right of it. */}
           <div className="flex flex-1 flex-col items-center justify-center text-center">
-            <p className="text-[15px] leading-[1.5] text-[color:var(--fo-accent)] md:text-[16px]">
-              Most of the world cannot access your medicine.
+            <p className="max-w-[42ch] text-[15px] leading-[1.5] text-[color:var(--fo-accent)] md:text-[16px]">
+              Between 10 and 30 percent of a medicine&rsquo;s lifetime value
+              sits outside the core markets.
             </p>
             <h1 className="mt-5 text-balance font-sans text-[30px] font-semibold leading-[1.12] tracking-[-0.02em] md:text-[46px]">
               A counterpart for the markets you will not enter yourself.
             </h1>
-            <p className="mt-5 max-w-[40ch] text-[18px] leading-[1.55] text-white md:text-[21px]">
-              firstocean commercializes approved and late-stage medicines in the
-              markets a launch plan leaves out. One reporting line. Local
-              operators. You keep the core.
+            <p className="mt-5 max-w-[42ch] text-[18px] leading-[1.55] text-white md:text-[21px]">
+              firstocean commercializes approved medicines across Latin America,
+              the Middle East and Southeast Asia. We own the local entity, hold
+              the registration and carry the compliance. One contract. You keep
+              the core.
             </p>
           </div>
         </div>

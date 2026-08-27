@@ -37,8 +37,10 @@ export function SiteFooter() {
 
           {/* right: the two paths, top-aligned with the wordmark */}
           <div className="flex flex-col gap-2.5 text-[1rem] text-white sm:items-end sm:text-right">
-            {/* Same three labels as the nav. Two names for the same door reads
-                as two different doors. */}
+            {/* The first two match the nav exactly — two names for the same
+                door reads as two different doors. The third is not in the nav
+                at all; the footer is where a distributor looks once they have
+                worked out this is not a site aimed at them. */}
             <Link href="/markets" className="w-fit transition-opacity hover:opacity-70">
               Markets
             </Link>
@@ -46,7 +48,7 @@ export function SiteFooter() {
               For originators
             </Link>
             <Link href="/distributors" className="w-fit transition-opacity hover:opacity-70">
-              For operators
+              Distribution partners
             </Link>
           </div>
         </div>

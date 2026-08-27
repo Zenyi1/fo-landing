@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { inlicensorCallUrl } from "@/lib/links";
 
 // Same scroll-to-solid behaviour as SiteHeader, but its links resolve
 // site-wide (the homepage header uses in-page anchors that dead-end here).
@@ -42,22 +41,15 @@ export function DistributorsHeader() {
           >
             Markets
           </Link>
+          {/* No CTA in the bar. The page has exactly one button and it is
+              below the headline; a second one competing with it in the header
+              was the marketplace layout talking. */}
           <Link
             href="/originators"
-            className={`hidden text-sm font-semibold transition-colors sm:inline ${linkColor}`}
+            className={`text-sm font-semibold transition-colors ${linkColor}`}
           >
             For originators
           </Link>
-          <a
-            href={inlicensorCallUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`rounded-[9px] px-4 py-2 text-sm font-semibold transition-colors ${
-              solid ? "bg-brand text-white hover:bg-[var(--brand-strong)]" : "bg-white text-ink hover:bg-white/90"
-            }`}
-          >
-            Join the network
-          </a>
         </nav>
       </div>
     </header>

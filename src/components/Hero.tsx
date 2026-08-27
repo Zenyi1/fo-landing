@@ -5,24 +5,7 @@ import Link from "next/link";
 import { WaveBackground } from "@/components/WaveBackground";
 import { originatorCallUrl } from "@/lib/links";
 
-// The markets firstocean distributes into: the largest commercially viable
-// economies across LATAM, MENA and Southeast Asia (top ~8 by GDP each),
-// interleaved by region. The name rotates in a caption under the subhead, not
-// in the headline — a headline that changes every two seconds reads as a
-// consumer app, and the sentence underneath was always the real one.
-const MARKETS = [
-  "Brazil", "Saudi Arabia", "Indonesia",
-  "Mexico", "the UAE", "Thailand",
-  "Argentina", "Egypt", "the Philippines",
-  "Colombia", "Vietnam", "South Africa",
-  "Chile", "Qatar", "Malaysia",
-  "Peru", "Kuwait", "Jordan",
-  "Ecuador", "Algeria", "Morocco", "Türkiye"
-];
-
 export function Hero() {
-  const [i, setI] = useState(0);
-  const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0); // 0 at top, 1 once faded out
 
   // fade the hero copy out as the page scrolls down
@@ -33,26 +16,6 @@ export function Hero() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // rotate the market name
-  useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return; // hold a single market, no motion
-
-    let swap: ReturnType<typeof setTimeout>;
-    const cycle = setInterval(() => {
-      setVisible(false);
-      swap = setTimeout(() => {
-        setI((n) => (n + 1) % MARKETS.length);
-        setVisible(true);
-      }, 400);
-    }, 2100);
-
-    return () => {
-      clearInterval(cycle);
-      clearTimeout(swap);
-    };
   }, []);
 
   return (
@@ -75,34 +38,32 @@ export function Hero() {
           willChange: "opacity, transform",
         }}
       >
-        <h1 className="max-w-[19ch] font-sans text-[clamp(2.5rem,6.4vw,4.9rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
+        {/* The number is the argument. It sits above the headline because it is
+            the only line on the page a commercial lead can carry into an
+            internal meeting unchanged. */}
+        <p className="max-w-[46ch] text-[0.95rem] font-medium leading-[1.5] text-[color:var(--fo-accent)] md:text-[1rem]">
+          Between 10 and 30 percent of a medicine&rsquo;s lifetime value sits
+          outside the United States, Western Europe and Japan.
+        </p>
+
+        <h1 className="mt-5 max-w-[19ch] font-sans text-[clamp(2.5rem,6.4vw,4.9rem)] font-semibold leading-[1.04] tracking-[-0.03em] text-white">
           The commercial operation you would otherwise have to build.
         </h1>
 
-        {/* What firstocean actually does, immediately under the headline: the
-            central work, and who does the selling. Written on the mechanism,
-            not on the contract — no claim here depends on whether firstocean
-            ends up inside the licence or beside it. */}
-        <p className="mt-7 max-w-[56ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
-          firstocean takes approved and late-stage medicines into the markets a
-          launch plan leaves out. Registration, price and partner selection run
-          centrally. The selling is done by operators already established in
-          each market.
+        {/* What firstocean actually is, immediately under the headline: the
+            licence holder. Everything else on the site follows from this
+            sentence, so it says who owns the registration before it says
+            anything about who moves the boxes. */}
+        <p className="mt-7 max-w-[58ch] text-[clamp(1.05rem,1.7vw,1.22rem)] leading-[1.55] text-white">
+          firstocean commercializes approved medicines across Latin America, the
+          Middle East and Southeast Asia. We own the local entity, hold the
+          registration in our own name and carry the compliance obligations that
+          come with selling there. Licensed distributors move the product.
+          Nothing else is handed off.
         </p>
 
-        {/* The rotator, demoted to a caption. Fixed height so the hero never
-            changes size, however long the market name is. */}
         <p className="mt-5 text-[0.95rem] text-white/70">
-          Today:{" "}
-          <span
-            className="inline-block text-[color:var(--fo-accent)] transition-all duration-[400ms] ease-out motion-reduce:transition-none"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? "translateY(0)" : "translateY(0.22em)",
-            }}
-          >
-            {MARKETS[i]}
-          </span>
+          First markets: Brazil, Mexico, Saudi Arabia, the UAE.
         </p>
 
         <div className="mt-9 flex flex-wrap items-center gap-3.5">

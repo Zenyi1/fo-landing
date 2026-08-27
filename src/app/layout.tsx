@@ -11,9 +11,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const title = "firstocean | Commercialization partner for international markets";
+const title =
+  "firstocean | Commercialization across Latin America, the Middle East and Southeast Asia";
 const description =
-  "firstocean commercializes approved and late-stage medicines in the markets a core launch plan leaves out. One counterpart. Local operators. Registration, price, and launch sequenced together.";
+  "Between 10 and 30 percent of a medicine's lifetime value sits outside the United States, Western Europe and Japan. firstocean owns the local entity, holds the registration and runs the commercial operation so that value gets collected.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://first-ocean.com"),

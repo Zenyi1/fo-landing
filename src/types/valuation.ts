@@ -1,10 +1,8 @@
-export const DEV_STAGES = [
-  "Preclinical",
-  "Phase 1",
-  "Phase 2",
-  "Phase 3",
-  "Approved",
-] as const;
+// Approved, or Phase 3 approaching approval. Earlier stages were removed: an
+// estimate priced on probability of approval is an out-licensing valuation, and
+// out-licensing a clinical asset is a different transaction from the one
+// firstocean does — it is the one where somebody takes clinical risk.
+export const DEV_STAGES = ["Phase 3", "Approved"] as const;
 
 export const THERAPEUTIC_AREAS = [
   "Oncology",
