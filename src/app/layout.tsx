@@ -1,49 +1,38 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Hanken_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import "./globals.css";
 
-const inter = Inter({
+const grotesk = Hanken_Grotesk({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-grotesk",
   display: "swap",
 });
 
-const title =
-  "firstocean | Commercialization across Latin America, the Middle East and Southeast Asia";
-const description =
-  "Between 10 and 30 percent of a medicine's lifetime value sits outside the United States, Western Europe and Japan. firstocean owns the local entity, holds the registration and runs the commercial operation so that value gets collected.";
+const description = "The commercial operation you would otherwise have to build.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://first-ocean.com"),
-  title: { default: title, template: "%s · firstocean" },
+  title: "Firstocean",
   description,
   applicationName: "firstocean",
   alternates: { canonical: "/" },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/seo/favicon-32.png", type: "image/png", sizes: "32x32" },
-      { url: "/seo/favicon-192.png", type: "image/png", sizes: "192x192" },
-    ],
-    apple: { url: "/seo/apple-touch-icon.png", sizes: "180x180" },
-  },
   openGraph: {
     type: "website",
     url: "https://first-ocean.com",
     siteName: "firstocean",
-    title,
+    title: "Firstocean",
     description,
     locale: "en_US",
-    images: [{ url: "/seo/fo.jpeg", width: 1024, height: 1024 }],
+    images: [{ url: "/brand/og.jpg", width: 1837, height: 776 }],
   },
   twitter: {
-    card: "summary",
-    title,
+    card: "summary_large_image",
+    title: "Firstocean",
     description,
-    images: ["/seo/fo.jpeg"],
+    images: ["/brand/og.jpg"],
   },
   robots: { index: true, follow: true },
 };
@@ -54,8 +43,7 @@ const jsonLd = {
   name: "firstocean",
   url: "https://first-ocean.com",
   description,
-  logo: "https://first-ocean.com/seo/fo.jpeg",
-  email: "hugo@first-ocean.com",
+  logo: "https://first-ocean.com/brand/og.jpg",
 };
 
 export default function RootLayout({
@@ -64,11 +52,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} h-full antialiased`}
-    >
-      <body className="min-h-full">
+    <html lang="en" className={`${grotesk.variable} antialiased`}>
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

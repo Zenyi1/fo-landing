@@ -1,72 +1,119 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #ffffff;
-  --color-foreground: var(--ink);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-brand: var(--brand);
-  --color-border: var(--line);
-  --color-ring: var(--brand);
-
-  --font-sans: var(--font-inter), "Inter", system-ui, sans-serif;
+  --color-cream: var(--cream);
+  --font-sans: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
 }
 
-/* firstocean palette — white body, ink text, deep-blue accent. The four below
-   the rule are read as raw var() rather than through a Tailwind colour: the
-   first three because they only ever appear as arbitrary values, the ink ladder
-   because it exists for the two dark surfaces and nowhere else. */
+/* firstocean brand — the gradient is the page. Stops 1–3 are the brand kit's
+   exact values; stop 4 extends the gradient into depth below the fold so body
+   text on it clears 4.5:1, which the kit's own end stop (#606b6b) does not. */
 :root {
-  --ink: #0b1120; /* primary text / headline */
-  --ink-soft: #4a5670; /* secondary text */
-  --brand: #1e3a8a; /* deep-blue accent: buttons, links, focus, visual */
-  --line: rgba(11, 17, 32, 0.12); /* hairline rule, and the default border */
-
-  /* Canvas draws with rgba(), so the world map needs its two colours as raw
-     channels rather than hex. Kept next to the palette they mirror. */
-  --world-ink: 11, 17, 32;
-  --world-accent: 30, 58, 138;
-
-  --brand-strong: #16295f; /* accent hover */
-  --surface: #f6f7f9; /* neutral fill for the banded sections */
-
-  /* accent for the dark surfaces: the hero eyebrow and market caption, and the
-     eyebrow on /originators */
-  --fo-accent: #88a6f8;
+  --cream: #e5e3e0;
+  --g-1: #898d8c;
+  --g-2: #74635a;
+  --g-3: #606b6b;
+  --g-4: #454f4f;
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground font-sans;
-    /* `clip`, not `hidden`: per CSS Overflow 3, an `overflow-x: hidden` /
-       `overflow-y: visible` pair promotes the used overflow-y to `auto`, which
-       makes <body> a scroll container and stops any `position: sticky`
-       descendant from ever pinning. `clip` is exempt from that promotion and
-       still blocks horizontal scroll. */
-    overflow-x: clip;
-  }
   html {
     font-family: var(--font-sans);
     overflow-x: clip;
+    background-color: var(--g-4);
+    accent-color: var(--cream);
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  body {
+    min-height: 100svh;
+    /* Stops in svh, not %, so the copy bands land on the same ground at every
+       document height: the brand gradient plays out over the first viewport
+       and settles on the deep stop before any body text begins. */
+    background: linear-gradient(
+      180deg,
+      var(--g-1) 0,
+      var(--g-2) 44svh,
+      var(--g-3) 72svh,
+      var(--g-4) 118svh
+    );
+    color: var(--cream);
     font-family: var(--font-sans);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    color: inherit;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--cream);
+    color: var(--g-2);
+  }
+  :focus-visible {
+    outline: 1px solid var(--cream);
+    outline-offset: 4px;
+  }
+  input,
+  textarea {
+    caret-color: var(--cream);
+  }
+  ::placeholder {
+    color: rgba(229, 227, 224, 0.85);
+    opacity: 1;
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+/* The mark's breath: the crescents drift open and settle closed. Distances are
+   viewBox units (the symbol is 186 wide), so the motion scales with the mark. */
+@keyframes fo-drift-out {
+  to {
+    transform: translateX(3.4px);
+  }
+}
+@keyframes fo-drift-out-small {
+  to {
+    transform: translateX(1.6px);
+  }
+}
+@keyframes fo-drift-out-left {
+  to {
+    transform: translateX(-3.4px);
+  }
+}
+@keyframes fo-drift-out-left-small {
+  to {
+    transform: translateX(-1.6px);
+  }
+}
+.fo-breathe .drift-r-outer {
+  animation: fo-drift-out 7s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+.fo-breathe .drift-r-inner {
+  animation: fo-drift-out-small 7s cubic-bezier(0.45, 0, 0.55, 1) infinite
+    alternate;
+}
+.fo-breathe .drift-l-outer {
+  animation: fo-drift-out-left 7s cubic-bezier(0.45, 0, 0.55, 1) infinite
+    alternate;
+}
+.fo-breathe .drift-l-inner {
+  animation: fo-drift-out-left-small 7s cubic-bezier(0.45, 0, 0.55, 1) infinite
+    alternate;
+}
+
+/* The sent-state echo: one breath, then rest. Iteration count 2 with
+   alternate direction is a single open-and-close cycle. */
+.fo-breathe.fo-once .drift-r-outer,
+.fo-breathe.fo-once .drift-r-inner,
+.fo-breathe.fo-once .drift-l-outer,
+.fo-breathe.fo-once .drift-l-inner {
+  animation-iteration-count: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fo-breathe [class^="drift-"],
+  .fo-breathe [class*=" drift-"] {
+    animation: none;
   }
 }
