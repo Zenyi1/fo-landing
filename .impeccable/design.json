@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-17T00:00:00Z",
+  "title": "Design System: firstocean",
+  "extensions": {
+    "colorMeta": {
+      "cream": { "role": "primary", "displayName": "Cream", "canonical": "#e5e3e0", "tonalRamp": ["oklch(20% 0.004 84)", "oklch(32% 0.004 84)", "oklch(44% 0.004 84)", "oklch(56% 0.004 84)", "oklch(68% 0.004 84)", "oklch(80% 0.004 84)", "oklch(90.6% 0.004 84)", "oklch(96% 0.004 84)"] },
+      "gradient-haze": { "role": "neutral", "displayName": "Gradient Haze", "canonical": "#898d8c", "tonalRamp": ["oklch(15% 0.005 180)", "oklch(26% 0.005 180)", "oklch(37% 0.005 180)", "oklch(48% 0.005 180)", "oklch(62.5% 0.005 180)", "oklch(74% 0.005 180)", "oklch(85% 0.005 180)", "oklch(95% 0.005 180)"] },
+      "gradient-earth": { "role": "neutral", "displayName": "Gradient Earth", "canonical": "#74635a", "tonalRamp": ["oklch(15% 0.028 55)", "oklch(26% 0.028 55)", "oklch(37% 0.028 55)", "oklch(48.6% 0.028 55)", "oklch(60% 0.028 55)", "oklch(72% 0.028 55)", "oklch(84% 0.028 55)", "oklch(95% 0.028 55)"] },
+      "gradient-slate": { "role": "neutral", "displayName": "Gradient Slate", "canonical": "#606b6b", "tonalRamp": ["oklch(15% 0.015 195)", "oklch(26% 0.015 195)", "oklch(37% 0.015 195)", "oklch(49.5% 0.015 195)", "oklch(61% 0.015 195)", "oklch(73% 0.015 195)", "oklch(85% 0.015 195)", "oklch(95% 0.015 195)"] },
+      "gradient-depth": { "role": "neutral", "displayName": "Gradient Depth", "canonical": "#454f4f", "tonalRamp": ["oklch(15% 0.013 195)", "oklch(26% 0.013 195)", "oklch(38.5% 0.013 195)", "oklch(50% 0.013 195)", "oklch(62% 0.013 195)", "oklch(74% 0.013 195)", "oklch(86% 0.013 195)", "oklch(95% 0.013 195)"] }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "The single thesis h1, bottom-left of the first viewport, max 24ch." },
+      "body": { "displayName": "Body", "purpose": "The quiet declarative lines between the mark and the form." },
+      "body-small": { "displayName": "Body Small", "purpose": "Form text and sent/error confirmation copy." },
+      "label": { "displayName": "Label", "purpose": "Uppercase tracked field labels; at 0.9rem, the actions (GET IN TOUCH, SEND)." },
+      "caption": { "displayName": "Caption", "purpose": "Footer lines." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "fo-breath", "value": "7s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate", "purpose": "The mark's crescents drift open and settle closed; outer crescents ±3.4 viewBox units, inner ±1.6. Disabled under prefers-reduced-motion." },
+      { "name": "fo-once", "value": "animation-iteration-count: 2", "purpose": "Applied with fo-breath on the sent-state mark: alternate direction + 2 iterations = exactly one open-and-close breath." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Send Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The only button: square hairline stroke, uppercase tracked label, inverts to cream fill on hover.",
+      "html": "<button class=\"ds-btn-primary\">SEND</button>",
+      "css": ".ds-btn-primary { background: transparent; color: var(--cream, #e5e3e0); border: 1px solid rgba(229,227,224,0.7); border-radius: 0; padding: 12px 32px; font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase; transition: background-color 0.15s, color 0.15s, border-color 0.15s; cursor: pointer; } .ds-btn-primary:hover { background: var(--cream, #e5e3e0); color: #454f4f; border-color: var(--cream, #e5e3e0); } .ds-btn-primary:focus-visible { outline: 1px solid var(--cream, #e5e3e0); outline-offset: 4px; } .ds-btn-primary:disabled { opacity: 0.6; cursor: wait; }"
+    },
+    {
+      "name": "Underline Field",
+      "kind": "input",
+      "refersTo": "input-underline",
+      "description": "Label-over-hairline text field; the bottom border rises from cream/40 to full cream on focus.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Email</span><input class=\"ds-field-input\" type=\"email\" /></label>",
+      "css": ".ds-field { display: grid; gap: 6px; max-width: 34rem; } .ds-field-label { color: var(--cream, #e5e3e0); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; } .ds-field-input { background: transparent; border: 0; border-bottom: 1px solid rgba(229,227,224,0.4); border-radius: 0; padding: 12px 0; color: var(--cream, #e5e3e0); font-size: 1.05rem; line-height: 1.5; caret-color: var(--cream, #e5e3e0); transition: border-color 0.15s; } .ds-field-input::placeholder { color: rgba(229,227,224,0.85); opacity: 1; } .ds-field-input:focus { border-bottom-color: var(--cream, #e5e3e0); outline: none; }"
+    },
+    {
+      "name": "Anchor Action",
+      "kind": "nav",
+      "refersTo": "link-action",
+      "description": "The only navigation pattern: an uppercase tracked link over a cream/70 hairline that fills to full cream on hover.",
+      "html": "<a class=\"ds-link-action\" href=\"#contact\">GET IN TOUCH</a>",
+      "css": ".ds-link-action { color: var(--cream, #e5e3e0); text-decoration: none; font-size: 0.9rem; letter-spacing: 0.14em; text-transform: uppercase; border-bottom: 1px solid rgba(229,227,224,0.7); padding-bottom: 4px; transition: border-color 0.15s; } .ds-link-action:hover { border-bottom-color: var(--cream, #e5e3e0); } .ds-link-action:focus-visible { outline: 1px solid var(--cream, #e5e3e0); outline-offset: 4px; }"
+    },
+    {
+      "name": "Aperture Mark",
+      "kind": "custom",
+      "description": "The five-element brand symbol (paths verbatim from the kit), currentColor cream, with the 7s breath on its crescent pairs.",
+      "html": "<svg class=\"ds-mark ds-mark-breathe\" viewBox=\"49 71 88 44\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M79.72,92.27c0,6.63,2.26,12.74,6.07,17.61.52.67,1.32,1.08,2.17,1.08h10.09c.85,0,1.65-.41,2.17-1.08,3.8-4.88,6.07-10.98,6.07-17.61,0-5.92-1.8-11.42-4.89-16-.51-.76-1.36-1.22-2.28-1.22h-12.23c-.92,0-1.77.47-2.28,1.22-3.09,4.58-4.89,10.08-4.89,16Z\"/><g class=\"ds-drift-r-outer\"><path d=\"M120.85,75.36v35.24c0,.24.27.4.48.27,6.49-4.04,10.73-10.53,10.73-17.89s-4.24-13.85-10.73-17.89c-.21-.13-.48.02-.48.27Z\"/></g><g class=\"ds-drift-r-inner\"><path d=\"M108.37,75.38v35.2c0,.25.28.4.49.26,6-4.04,9.91-10.52,9.91-17.86s-3.91-13.82-9.91-17.86c-.2-.14-.49.01-.49.26Z\"/></g><g class=\"ds-drift-l-outer\"><path d=\"M65.15,75.36v35.24c0,.24-.27.4-.48.27-6.49-4.04-10.73-10.53-10.73-17.89,0-7.36,4.24-13.85,10.73-17.89.21-.13.48.02.48.27Z\"/></g><g class=\"ds-drift-l-inner\"><path d=\"M77.63,75.38v35.2c0,.25-.28.4-.49.26-6-4.04-9.91-10.52-9.91-17.86,0-7.34,3.91-13.82,9.91-17.86.2-.14.49.01.49.26Z\"/></g></svg>",
+      "css": ".ds-mark { width: 180px; color: var(--cream, #e5e3e0); display: block; } @keyframes ds-drift-out { to { transform: translateX(3.4px); } } @keyframes ds-drift-out-small { to { transform: translateX(1.6px); } } @keyframes ds-drift-out-left { to { transform: translateX(-3.4px); } } @keyframes ds-drift-out-left-small { to { transform: translateX(-1.6px); } } .ds-mark-breathe .ds-drift-r-outer { animation: ds-drift-out 7s cubic-bezier(0.45,0,0.55,1) infinite alternate; } .ds-mark-breathe .ds-drift-r-inner { animation: ds-drift-out-small 7s cubic-bezier(0.45,0,0.55,1) infinite alternate; } .ds-mark-breathe .ds-drift-l-outer { animation: ds-drift-out-left 7s cubic-bezier(0.45,0,0.55,1) infinite alternate; } .ds-mark-breathe .ds-drift-l-inner { animation: ds-drift-out-left-small 7s cubic-bezier(0.45,0,0.55,1) infinite alternate; } @media (prefers-reduced-motion: reduce) { .ds-mark-breathe g { animation: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Aperture on Deep Water",
+    "overview": "The identity is the page. There is no hero headline, no card grid, no second color: a full-bleed brand gradient is the only ground, cream is the only ink, and the five-element aperture mark — paths verbatim from the client's logo kit — is the only graphic. The first viewport belongs to the mark, breathing on a seven-second cycle; the words come after, as a handful of quiet declarative lines on the deep end of the gradient. The refused default is the hero-headline-subhead-CTA landing.\n\nEverything structural is drawn with hairlines: the underline on the anchor link, the bottom borders on form fields, the single-stroke button. No fills, no shadows, no rounded corners, no icons. The system reads as an established, deliberate company because nothing on the page competes with the mark.",
+    "keyCharacteristics": [
+      "One ink (cream #e5e3e0) at varying opacity; the gradient supplies all other color.",
+      "The gradient lives on body with svh-unit stops, so copy bands land on the same ground at every document height.",
+      "Square corners and hairline (1px) strokes everywhere; zero shadows.",
+      "Motion belongs to the mark alone: the crescents' 7s breath, echoed once on the form's sent state.",
+      "Uppercase tracked micro-labels (0.14em) are the only typographic ornament."
+    ],
+    "rules": [
+      { "name": "The One-Ink Rule", "body": "Cream is the only foreground color. Hierarchy and state are expressed through opacity of cream, never through a second hue.", "section": "colors" },
+      { "name": "The Ground-Is-The-Brand Rule", "body": "The gradient is painted once, on body, with stops in svh units (0 → 44svh → 72svh → 118svh). Components never paint their own backgrounds; every surface is transparent and sits on the shared ground.", "section": "colors" },
+      { "name": "The No-Shout Rule", "body": "Maximum weight is 500 (medium), on the headline only. Everything else is regular. Uppercase appears only with 0.14em letter-spacing at 0.9rem or below — labels and actions, never sentences.", "section": "typography" },
+      { "name": "The Flat-Water Rule", "body": "Nothing floats. No box-shadow, no overlay surfaces, no cards; the gradient is the only depth in the system.", "section": "elevation" },
+      { "name": "The Hairline Rule", "body": "Strokes are 1px cream, resting at reduced opacity (70% on actionable edges, 40% on idle fields) and rising to full cream on hover/focus. State change is opacity change, animated with a color transition — never thickness, never a new color.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do paint every new surface transparent and let the body gradient be the ground.",
+      "Do draw all structure as 1px cream hairlines, resting at cream/70 (actionable) or cream/40 (idle) and rising to full cream on hover/focus via a color transition.",
+      "Do set all text in Hanken Grotesk, weight 400–500, with uppercase reserved for 0.14em-tracked labels and actions at ≤0.9rem.",
+      "Do keep the mark as the only graphic and currentColor cream as its only fill; reuse the 7s breath (or the fo-once single-breath echo) as the only motion.",
+      "Do honor prefers-reduced-motion for any motion, as the breath and smooth scroll already do."
+    ],
+    "donts": [
+      "Don't introduce a second ink, an accent color, or semantic reds/greens — errors and confirmations are plain cream text.",
+      "Don't add cards, panels, shadows, or rounded corners; the system has zero of each.",
+      "Don't exceed weight 500 or the headline's 2.2rem ceiling; type never competes with the mark.",
+      "Don't animate anything except the mark's crescents.",
+      "Don't redraw or restyle the mark and wordmark paths; they are verbatim from the brand kit (01_Logo)."
+    ]
+  }
+}
