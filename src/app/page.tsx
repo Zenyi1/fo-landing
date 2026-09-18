@@ -9,7 +9,7 @@ import { ContactForm } from "@/components/ContactForm";
 const LINES = [
   "We register and commercialize approved medicines beyond their core markets.",
   "Latin America, the Middle East, Southeast Asia.",
-  "We hold the licence, run the operation, and are paid from what the medicine earns.",
+  "We handle local registration, licensing, and commercial operations. We hold the licence, run the market, and earn from what the medicine sells. You keep the product.",
 ];
 
 export default function Home() {
