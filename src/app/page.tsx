@@ -7,9 +7,7 @@ import { ContactForm } from "@/components/ContactForm";
    quiet lines before the form. */
 
 const LINES = [
-  "We register and commercialize approved medicines beyond their core markets.",
-  "Latin America, the Middle East, Southeast Asia.",
-  "We hold the licence, run the operation, and are paid from what the medicine earns.",
+  "We handle registration, local licensing, and commercial operations. We hold the licence, run the market, and earn from what the medicine sells. You keep the product."
 ];
 
 export default function Home() {
@@ -30,7 +28,7 @@ export default function Home() {
 
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
           <h1 className="max-w-[24ch] text-[clamp(1.45rem,2.6vw,2.2rem)] font-medium leading-[1.2] tracking-[-0.01em] text-cream">
-            The commercial operation you would otherwise have to build.
+            Automate the entry of approved medicines into new markets; from registration to revenue.
           </h1>
           <a
             href="#contact"
