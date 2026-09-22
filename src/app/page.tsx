@@ -7,7 +7,8 @@ import { ContactForm } from "@/components/ContactForm";
    quiet lines before the form. */
 
 const LINES = [
-  "We handle registration, local licensing, and commercial operations. We hold the licence, run the market, and earn from what the medicine sells. You keep the product."
+  "Bringing a new medicine to market takes more than a decade and billions of dollars. Most are only ever launched in the US, Europe and Japan. By the time their patents expire, up to a third of their value has gone unclaimed.",
+  "Our platform lets originators launch in a dozen markets at once, from a single submission."
 ];
 
 export default function Home() {
@@ -28,13 +29,13 @@ export default function Home() {
 
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
           <h1 className="max-w-[24ch] text-[clamp(1.45rem,2.6vw,2.2rem)] font-medium leading-[1.2] tracking-[-0.01em] text-cream">
-            Automate the entry of approved medicines into new markets; from registration to revenue.
+            Automate the entry of therapeutics into new markets; from registration to revenue.
           </h1>
           <a
             href="#contact"
             className="w-fit shrink-0 border-b border-cream/70 pb-1 text-[0.9rem] uppercase tracking-[0.14em] text-cream transition-colors hover:border-cream"
           >
-            Get in touch
+            Lets talk about your drug.
           </a>
         </div>
       </header>
