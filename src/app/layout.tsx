@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk } from "next/font/google";
+import { Hanken_Grotesk, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PostHogProvider } from "@/components/PostHogProvider";
@@ -8,6 +8,16 @@ import "./globals.css";
 const grotesk = Hanken_Grotesk({
   subsets: ["latin"],
   variable: "--font-grotesk",
+  display: "swap",
+});
+
+/* Stand-in for the brand kit's Feature Display Italic (commercial face):
+   the serif-italic voice used for emphasis in headlines. */
+const feature = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: "italic",
+  variable: "--font-feature",
   display: "swap",
 });
 
@@ -52,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${grotesk.variable} antialiased`}>
+    <html lang="en" className={`${grotesk.variable} ${feature.variable} antialiased`}>
       <body>
         <script
           type="application/ld+json"
