@@ -6,16 +6,62 @@ import { ContactForm } from "@/components/ContactForm";
    turn, the photograph masked into the symbol's circle-and-crescent, and the
    tagline pinned small at the bottom. */
 
-const ABOUT = [
-  "Bringing a new medicine to market takes more than a decade and billions of dollars. Most are only ever launched in the US, Europe and Japan. By the time their patents expire, up to a third of their value has gone unclaimed.",
-  "Our platform lets originators launch in a dozen markets at once, from a single submission."
-];
+/* Below the hero the page leaves the gradient: sections sit on the brand
+   kit's secondary colors (Cream, 100 Cream, 200 Cream, Black) with black
+   ink, laid out like the guidelines' own pages — label left, content right.
+   The serif italic voice belongs to the hero alone. */
 
 const SERVICES = [
-  "We register the medicine and become the licence holder in each territory.",
+  "You submit once. Our platform prepares every market's filing from your existing dossier, in parallel.",
+  "We register the medicine in each territory and become the licence holder.",
   "We run the commercial operation on the ground.",
-  "We are paid out of what the medicine earns."
+  "We are paid out of what the medicine earns. Nothing lands on your team."
 ];
+
+const MARKETS = ["Latin America", "Middle East & North Africa", "Southeast Asia"];
+
+/* The hero shape replayed as flat tonal background art, the way the
+   guidelines' Backgrounds page plays with elements from the symbol. */
+function Shapes({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 1550 1000"
+      fill="currentColor"
+      aria-hidden
+      className={`pointer-events-none absolute ${className ?? ""}`}
+    >
+      <circle cx="500" cy="500" r="500" />
+      <path d="M875 20 A480 480 0 0 1 875 980 Z" />
+      <path d="M1272.5 29.6 A537.5 537.5 0 0 1 1272.5 970.4 Z" />
+    </svg>
+  );
+}
+
+function Section({
+  id,
+  label,
+  className,
+  art,
+  children
+}: {
+  id: string;
+  label: string;
+  className: string;
+  art?: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <section id={id} className={`relative overflow-hidden scroll-mt-0 ${className}`}>
+      {art}
+      <div className="relative mx-auto grid w-full max-w-[80rem] gap-8 px-6 py-20 md:grid-cols-[200px_minmax(0,1fr)] md:gap-12 md:px-10 md:py-28">
+        <h2 className="text-[0.8rem] uppercase tracking-[0.14em] opacity-70">
+          {label}
+        </h2>
+        <div>{children}</div>
+      </div>
+    </section>
+  );
+}
 
 const pill =
   "rounded-full border border-cream/25 bg-cream/10 backdrop-blur-md text-cream";
@@ -81,10 +127,10 @@ export default function Home() {
               Services
             </a>
             <a
-              href="#footer"
+              href="#markets"
               className="rounded-full px-5 py-2 text-[0.85rem] transition-colors hover:bg-cream/15"
             >
-              Resources
+              Markets
             </a>
           </nav>
           <a
@@ -106,53 +152,73 @@ export default function Home() {
         </div>
       </header>
 
-      {/* the quiet lines, then the form — on the deep end of the gradient */}
-      <main className="mx-auto w-full max-w-[52rem] px-6 pb-16 pt-28 md:px-10 md:pt-40">
-        <section id="about" className="scroll-mt-16">
-          <h2 className="text-[0.8rem] uppercase tracking-[0.14em] text-cream/80">
-            About us
-          </h2>
-          <div className="mt-7 space-y-7">
-            {ABOUT.map((line) => (
-              <p
-                key={line}
-                className="text-[clamp(1.1rem,1.8vw,1.35rem)] leading-[1.55] text-cream"
-              >
-                {line}
-              </p>
+      <main>
+        <Section id="about" label="About us" className="bg-[#e4e2df] text-[#1c1c1a]">
+          <p className="max-w-[54rem] text-[clamp(1.05rem,1.6vw,1.25rem)] leading-[1.6]">
+            Bringing a new medicine to market takes more than a decade and
+            billions of dollars. Most are only ever launched in the US, Europe
+            and Japan. By the time their patents expire, up to a third of
+            their value has gone unclaimed.
+          </p>
+          <p className="mt-10 max-w-[46rem] text-[clamp(1.5rem,2.7vw,2.2rem)] leading-[1.3] tracking-[-0.01em]">
+            Our platform lets originators launch in a dozen markets at once,
+            from a single submission.
+          </p>
+        </Section>
+
+        <Section id="services" label="Services" className="bg-[#d8d6d3] text-[#1c1c1a]">
+          <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
+            {SERVICES.map((line, i) => (
+              <div key={line}>
+                <p className="text-[0.8rem] tracking-[0.14em] opacity-60">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-3 text-[clamp(1.05rem,1.6vw,1.25rem)] leading-[1.55]">
+                  {line}
+                </p>
+              </div>
             ))}
           </div>
-        </section>
+        </Section>
 
-        <section id="services" className="scroll-mt-16 pt-28 md:pt-36">
-          <h2 className="text-[0.8rem] uppercase tracking-[0.14em] text-cream/80">
-            Services
-          </h2>
-          <div className="mt-7 space-y-7">
-            {SERVICES.map((line) => (
-              <p
-                key={line}
-                className="text-[clamp(1.1rem,1.8vw,1.35rem)] leading-[1.55] text-cream"
+        <Section
+          id="markets"
+          label="Markets"
+          className="bg-[#afaba5] text-[#1c1c1a]"
+          art={
+            <Shapes className="-right-[14rem] top-1/2 w-[64rem] -translate-y-1/2 text-[#1c1c1a] opacity-[0.05]" />
+          }
+        >
+          <ul>
+            {MARKETS.map((m) => (
+              <li
+                key={m}
+                className="border-t border-[#1c1c1a]/25 py-5 text-[clamp(1.4rem,2.4vw,2rem)] leading-[1.2] first:border-t-0 first:pt-0"
               >
-                {line}
-              </p>
+                {m}
+              </li>
             ))}
-          </div>
-        </section>
+          </ul>
+          <p className="mt-10 max-w-[46rem] text-[clamp(1.05rem,1.6vw,1.25rem)] leading-[1.6]">
+            The markets where approved medicines arrive late, or never. You
+            stay focused on your core markets; we carry the rest.
+          </p>
+        </Section>
 
-        <section id="contact" className="scroll-mt-16 pt-28 md:pt-36">
-          <h2 className="text-[0.8rem] uppercase tracking-[0.14em] text-cream/80">
-            Contact
-          </h2>
-          <div className="mt-8">
-            <ContactForm />
-          </div>
-        </section>
-
-        <footer id="footer" className="scroll-mt-16 flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2 pt-28 text-[0.8rem] leading-[1.6] text-cream md:pt-36">
-          <p>Backed by Entrepreneurs First and Transpose Platform.</p>
-          <p>© {year} firstocean</p>
-        </footer>
+        <Section
+          id="contact"
+          label="Contact"
+          className="bg-[#1c1c1a] text-cream"
+          art={
+            <Shapes className="-bottom-[16rem] -left-[18rem] w-[72rem] rotate-180 text-cream opacity-[0.04]" />
+          }
+        >
+          <ContactForm />
+          <footer className="mt-24 flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2 text-[0.8rem] leading-[1.6] text-cream/80">
+            <p>Backed by Entrepreneurs First and Transpose Platform.</p>
+            <p>© {year} firstocean</p>
+          </footer>
+        </Section>
       </main>
     </>
   );

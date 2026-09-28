@@ -22,7 +22,7 @@
   html {
     font-family: var(--font-sans);
     overflow-x: clip;
-    background-color: var(--g-4);
+    background-color: #1c1c1a;
     accent-color: var(--cream);
   }
   body {
@@ -42,11 +42,11 @@
     overflow-x: clip;
   }
   ::selection {
-    background: var(--cream);
-    color: var(--g-2);
+    background: var(--g-2);
+    color: var(--cream);
   }
   :focus-visible {
-    outline: 1px solid var(--cream);
+    outline: 1px solid currentColor;
     outline-offset: 4px;
   }
   input,
