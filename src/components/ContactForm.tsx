@@ -61,9 +61,7 @@ export function ContactForm() {
       {status !== "sent" && (
         <form onSubmit={submit} className="grid max-w-[34rem] gap-7">
           <label className="grid gap-1.5">
-            <span className="text-[0.8rem] uppercase tracking-[0.14em] text-cream">
-              Email
-            </span>
+            <span className="text-[0.95rem] text-cream">Email</span>
             <input
               name="email"
               type="email"
@@ -74,9 +72,7 @@ export function ContactForm() {
             />
           </label>
           <label className="grid gap-1.5">
-            <span className="text-[0.8rem] uppercase tracking-[0.14em] text-cream">
-              Message
-            </span>
+            <span className="text-[0.95rem] text-cream">Message</span>
             <textarea
               name="message"
               required
@@ -89,7 +85,7 @@ export function ContactForm() {
             <button
               type="submit"
               disabled={status === "sending"}
-              className="border border-cream/70 px-8 py-3 text-[0.9rem] uppercase tracking-[0.14em] text-cream transition-colors hover:bg-cream hover:text-[#454f4f] disabled:cursor-wait disabled:opacity-60"
+              className="border border-cream/70 px-8 py-3 text-[0.95rem] text-cream transition-colors hover:bg-cream hover:text-[#1d1c1b] disabled:cursor-wait disabled:opacity-60"
             >
               {status === "sending" ? "Sending…" : "Send"}
             </button>

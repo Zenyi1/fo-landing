@@ -1,14 +1,9 @@
 import { Mark } from "@/components/brand/Mark";
-import { Wordmark } from "@/components/brand/Wordmark";
 import { ContactForm } from "@/components/ContactForm";
-
-/* One page. The identity carries it: the gradient is the ground, the mark
-   breathes in the first viewport, and everything written fits in a handful of
-   quiet lines before the form. */
 
 const LINES = [
   "Bringing a new medicine to market takes more than a decade and billions of dollars. Most are only ever launched in the US, Europe and Japan. By the time their patents expire, up to a third of their value has gone unclaimed.",
-  "Our platform lets originators launch in a dozen markets at once, from a single submission."
+  "Our platform lets originators launch in a dozen markets at once, from a single submission.",
 ];
 
 export default function Home() {
@@ -16,50 +11,55 @@ export default function Home() {
 
   return (
     <>
-      {/* first viewport — the instrument */}
-      <header className="relative flex min-h-svh flex-col p-6 md:p-10">
-        <Wordmark className="w-44 text-cream md:w-52" />
-
-        <div className="flex flex-1 items-center justify-center py-10">
-          <Mark
-            breathe
-            className="w-[min(84vw,118vh)] text-cream md:w-[min(58vw,118vh)]"
-          />
-        </div>
-
-        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-10">
-          <h1 className="max-w-[24ch] text-[clamp(1.45rem,2.6vw,2.2rem)] font-medium leading-[1.2] tracking-[-0.01em] text-cream">
-            Automate the entry of therapeutics into new markets; from registration to revenue.
+      <header className="hero-ground relative min-h-svh overflow-hidden">
+        <Mark breathe className="hero-mark fo-once" />
+        <div className="relative z-10 flex min-h-svh flex-col justify-center px-6 py-8 md:px-14 md:py-12">
+          <p className="absolute top-8 left-6 text-[1.35rem] leading-none tracking-[-0.03em] text-cream md:top-12 md:left-14 md:text-[1.65rem]">
+            Firstocean
+          </p>
+          <h1 className="max-w-[8.2em] text-[clamp(2.65rem,11.2vw,3.5rem)] font-normal leading-[0.96] tracking-[-0.035em] text-cream md:max-w-[12em] md:text-[clamp(3.8rem,5.5vw,5.5rem)]">
+            <span className="md:hidden">
+              Automate
+              <br />
+              the entry of
+              <br />
+              <span className="font-display">therapeutics</span>
+              <br />
+              into <span className="font-display">markets</span>
+            </span>
+            <span className="hidden md:inline">
+              Automate the entry of
+              <br />
+              <span className="font-display">therapeutics</span> into{" "}
+              <span className="font-display">markets</span>
+            </span>
           </h1>
-          <a
-            href="#contact"
-            className="w-fit shrink-0 border-b border-cream/70 pb-1 text-[0.9rem] uppercase tracking-[0.14em] text-cream transition-colors hover:border-cream"
-          >
-            Lets talk about your drug.
-          </a>
         </div>
       </header>
 
-      {/* the few quiet lines, then the form — on the deep end of the gradient */}
-      <main className="mx-auto w-full max-w-[52rem] px-6 pb-16 pt-28 md:px-10 md:pt-40">
-        <div className="space-y-7">
+      <section
+        id="contact"
+        className="bg-[#616b6a] px-6 pb-20 pt-2 md:px-14 md:pb-28 md:pt-0"
+      >
+        <div className="glass relative z-10 -mt-10 max-w-[34rem] px-6 py-8 md:-mt-16 md:px-8 md:py-10">
+          <ContactForm />
+        </div>
+      </section>
+
+      <main className="bg-ink px-6 py-20 md:px-14 md:py-28">
+        <div className="max-w-[40rem] space-y-7">
           {LINES.map((line) => (
             <p
               key={line}
-              className="text-[clamp(1.1rem,1.8vw,1.35rem)] leading-[1.55] text-cream"
+              className="text-[1.125rem] leading-[1.55] text-cream md:text-[1.25rem]"
             >
               {line}
             </p>
           ))}
         </div>
-
-        <section id="contact" className="scroll-mt-16 pt-28 md:pt-36">
-          <ContactForm />
-        </section>
-
-        <footer className="flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2 pt-28 text-[0.8rem] leading-[1.6] text-cream md:pt-36">
+        <footer className="mt-20 flex max-w-[40rem] flex-wrap items-baseline justify-between gap-x-10 gap-y-2 text-[0.95rem] leading-[1.5] text-cream/80 md:mt-28">
           <p>Backed by Entrepreneurs First and Transpose Platform.</p>
-          <p>© {year} firstocean</p>
+          <p>© {year} Firstocean</p>
         </footer>
       </main>
     </>

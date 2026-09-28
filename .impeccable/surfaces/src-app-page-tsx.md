@@ -7,17 +7,17 @@ related_targets: []
 
 # Surface brief — / (single page)
 
-Scope: the entire site, one route. Visitor mode: Persuade (quiet register — presence over argument).
-Audience: pharma originators arriving from LinkedIn/intros, deciding if firstocean is real; action: get in touch via a form that never exposes the email.
-Content budget: brand line + three/four quiet lines (what, where, how paid) + form. Backers may appear in one small line (real: Entrepreneurs First, Transpose Platform).
-Constraints: brand kit is binding (gradient #898D8C→#74635A→#606B6B, cream #E5E3E0, near-black #1D1C1B, aperture mark, neutral grotesk). All other routes deleted. PostHog + Vercel Analytics stay.
-Unresolved: form delivery provider (must not expose hugo@first-ocean.com in markup).
+Scope: the entire site, one route. Visitor mode: Persuade.
+Audience: pharma originators; action: write via the form, which never shows the inbox address.
+Content: the guideline headline, the two existing factual lines, the contact form, and the real backers line.
+Constraints: the 2026 guidelines bind the gradient #898D8C, #74635A, #616B6A, cream, black, the symbol, and glass. Licensed Lay Grotesk and Feature Display files are not in the repo.
+Unresolved: live email delivery still needs a Resend key.
 
 ## Direction contract
 
-THESIS: The identity is the page. The mark, not a headline, owns the first viewport; the refused default is a hero-headline-subhead-CTA landing.
-OWN-WORLD: Full-bleed brand gradient ground; cream #E5E3E0 ink only; five-element aperture mark as the single graphic; one neutral grotesk (Helvetica-class) in two sizes; hairline cream rules; no cards, no shadows, no second accent.
-STORY: A visitor sees an established, deliberate company; reads four quiet lines; writes to us.
-FIRST VIEWPORT: Gradient fills the screen. The aperture mark centered at ~60vh, its four crescents breathing — opening and closing over a slow cycle. Wordmark small top-left. Brand line one sentence bottom-left; "Get in touch" bottom-right scrolls to the form. Signature interaction: the mark's breath (slow scale/translate of the crescents), plus the same pulse echoed once on form submit.
-FORM: The Instrument — candidate 4 of 7 on the ordered list; seed b805c2c8.
+THESIS: The 2026 hero is the page: a cropped symbol and a two-line headline on the brand gradient, not a centered logo with a caption underneath.
+OWN-WORLD: Vertical gradient #898D8C to #74635A to #616B6A, cream #E5E3E0 ink, black #1D1C1B below, Lay Grotesk for the voice and Feature Display Italic for emphasis, glass for the form, the aperture mark cut by the right edge.
+STORY: The visitor reads the market-entry line, writes through the glass form, then can read the two factual lines and the real backers.
+FIRST VIEWPORT: Wordmark “Firstocean” top-left. Headline left, two lines: “Automate the entry of / therapeutics into markets,” with therapeutics and markets in display italic. The mark is enormous, cream, and cropped by the right edge. Signature interaction: the crescents drift once on load, then rest, and echo once when the form is sent.
+FORM: 2026 brand-application hero, the desktop and mobile spreads in the guidelines; seed pinned-guidelines.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.

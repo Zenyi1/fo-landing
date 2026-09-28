@@ -2,47 +2,41 @@
 
 @theme inline {
   --color-cream: var(--cream);
-  --font-sans: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial,
-    sans-serif;
+  --color-ink: var(--ink-black);
+  --font-sans: "Lay Grotesk", var(--font-grotesk), "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  --font-display: "Feature Display", var(--font-display), "Bodoni Moda", Georgia,
+    serif;
 }
 
-/* firstocean brand — the gradient is the page. Stops 1–3 are the brand kit's
-   exact values; stop 4 extends the gradient into depth below the fold so body
-   text on it clears 4.5:1, which the kit's own end stop (#606b6b) does not. */
+/* 2026 guidelines: gradient #898D8C → #74635A → #616B6A, cream ink, black. */
 :root {
   --cream: #e5e3e0;
+  --cream-200: #aea8a2;
+  --ink-black: #1d1c1b;
   --g-1: #898d8c;
   --g-2: #74635a;
-  --g-3: #606b6b;
-  --g-4: #454f4f;
+  --g-3: #616b6a;
 }
 
 @layer base {
   html {
     font-family: var(--font-sans);
     overflow-x: clip;
-    background-color: var(--g-4);
+    background-color: var(--ink-black);
     accent-color: var(--cream);
+    scrollbar-color: var(--cream-200) var(--ink-black);
   }
   body {
     min-height: 100svh;
-    /* Stops in svh, not %, so the copy bands land on the same ground at every
-       document height: the brand gradient plays out over the first viewport
-       and settles on the deep stop before any body text begins. */
-    background: linear-gradient(
-      180deg,
-      var(--g-1) 0,
-      var(--g-2) 44svh,
-      var(--g-3) 72svh,
-      var(--g-4) 118svh
-    );
+    background-color: var(--ink-black);
     color: var(--cream);
     font-family: var(--font-sans);
     overflow-x: clip;
   }
   ::selection {
     background: var(--cream);
-    color: var(--g-2);
+    color: var(--ink-black);
   }
   :focus-visible {
     outline: 1px solid var(--cream);
@@ -53,7 +47,7 @@
     caret-color: var(--cream);
   }
   ::placeholder {
-    color: rgba(229, 227, 224, 0.85);
+    color: rgba(229, 227, 224, 0.72);
     opacity: 1;
   }
 }
@@ -64,8 +58,48 @@
   }
 }
 
-/* The mark's breath: the crescents drift open and settle closed. Distances are
-   viewBox units (the symbol is 186 wide), so the motion scales with the mark. */
+.font-display {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.hero-ground {
+  background: linear-gradient(
+    180deg,
+    var(--g-1) 3%,
+    var(--g-2) 52%,
+    var(--g-3) 100%
+  );
+}
+
+.hero-mark {
+  position: absolute;
+  right: -62vw;
+  bottom: -4vh;
+  width: min(150vw, 40rem);
+  color: var(--cream);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .hero-mark {
+    top: 50%;
+    right: -34vw;
+    bottom: auto;
+    width: min(88vw, 58rem);
+    transform: translateY(-50%);
+  }
+}
+
+.glass {
+  background: rgba(29, 28, 27, 0.42);
+  border: 1px solid rgba(229, 227, 224, 0.38);
+  box-shadow: 0 18px 40px rgba(29, 28, 27, 0.28);
+  backdrop-filter: blur(18px);
+}
+
 @keyframes fo-drift-out {
   to {
     transform: translateX(3.4px);
@@ -102,8 +136,6 @@
     alternate;
 }
 
-/* The sent-state echo: one breath, then rest. Iteration count 2 with
-   alternate direction is a single open-and-close cycle. */
 .fo-breathe.fo-once .drift-r-outer,
 .fo-breathe.fo-once .drift-r-inner,
 .fo-breathe.fo-once .drift-l-outer,
