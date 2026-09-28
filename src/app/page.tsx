@@ -213,6 +213,9 @@ export default function Home() {
             <Shapes className="-bottom-[16rem] -left-[18rem] w-[72rem] rotate-180 text-cream opacity-[0.04]" />
           }
         >
+          <p className="mb-10 text-[clamp(1.5rem,2.7vw,2.2rem)] leading-[1.3] tracking-[-0.01em]">
+            Talk to us about your drug.
+          </p>
           <ContactForm />
           <footer className="mt-24 flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2 text-[0.8rem] leading-[1.6] text-cream/80">
             <p>Backed by Entrepreneurs First and Transpose Platform.</p>
