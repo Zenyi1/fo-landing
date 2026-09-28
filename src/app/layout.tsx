@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk } from "next/font/google";
+import { Bodoni_Moda, Schibsted_Grotesk } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import "./globals.css";
 
-const grotesk = Hanken_Grotesk({
+const grotesk = Schibsted_Grotesk({
   subsets: ["latin"],
+  weight: ["400", "500"],
   variable: "--font-grotesk",
+  display: "swap",
+});
+
+const display = Bodoni_Moda({
+  subsets: ["latin"],
+  style: "italic",
+  weight: "400",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -52,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${grotesk.variable} antialiased`}>
+    <html lang="en" className={`${grotesk.variable} ${display.variable} antialiased`}>
       <body>
         <script
           type="application/ld+json"
