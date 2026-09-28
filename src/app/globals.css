@@ -4,6 +4,7 @@
   --color-cream: var(--cream);
   --font-sans: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial,
     sans-serif;
+  --font-serif: var(--font-feature), Georgia, "Times New Roman", serif;
 }
 
 /* firstocean brand — the gradient is the page. Stops 1–3 are the brand kit's
