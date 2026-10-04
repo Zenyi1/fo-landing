@@ -13,26 +13,22 @@ const body = "text-[clamp(18px,1.45vw,26px)]";
 /* Lede: the one big supporting statement each section opens with. */
 const lede = "text-[clamp(21px,1.9vw,34px)] leading-[1.3]";
 
+/* Three broad services, each in one of the hero gradient's tones. */
 const SCOPE = [
   {
     title: "Market entry",
-    text: "We plan where it makes sense to sell. Patient numbers, the achievable price and the registration route decide which territories we propose.",
-  },
-  {
-    title: "Registration",
-    text: "We prepare the local submission from the dossier you already hold, and file it through our entity. A licensed professional approves it first.",
+    text: "We take your drug into new markets and act as your business development team. We register it, and a licensed professional approves every filing.",
+    color: "#898d8c",
   },
   {
     title: "Pricing and reimbursement",
-    text: "We set the local price and take the product into the reimbursement and tender processes that apply in that market.",
+    text: "We secure the price and the reimbursement in every territory we enter, so health systems pay for your innovation.",
+    color: "#74635a",
   },
   {
     title: "Distribution",
-    text: "Product moves through specialist distributors and logistics partners. We buy from you at the agreed transfer price and sell to health systems, public tenders and private insurers.",
-  },
-  {
-    title: "Safety",
-    text: "For as long as the product is sold, we run adverse-event intake, literature review, periodic reports, renewals and label updates. A licensed professional approves every safety decision.",
+    text: "We move your drug through specialist partners until it reaches every patient who needs it, and we keep it safe on the market for as long as it sells.",
+    color: "#616b6a",
   },
 ];
 
@@ -212,7 +208,7 @@ export default function Home() {
             alt="A clinician in a white coat reading the label of a prescription medicine"
             clipId="fo-clip-hero"
             placement={{ x: -32, y: -187, width: 1788, height: 1191 }}
-            className="w-full lg:-ml-[12%] lg:w-[112%]"
+            className="w-full lg:-ml-[6%] lg:w-[106%]"
             zoom
           />
         </div>
@@ -220,34 +216,42 @@ export default function Home() {
 
       <main>
         <Section id="scope" title="Services">
-          {/* Image left, text right; the image takes the wider column. */}
-          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-center">
-            <Image
-              src="/brand/team.jpg"
-              alt="A team working around a table with laptops and printed reports"
-              width={1800}
-              height={1200}
-              sizes="(min-width: 1024px) 640px, 100vw"
-              className="order-last w-full rounded-2xl lg:order-none"
-            />
-            <p className={`${lede} max-w-[640px]`}>
-              We take your drug into every market where it has demand, at no
-              upfront cost. Monetize new regions in months instead of years.
-            </p>
-          </div>
-          {/* Sticky stack: each card pins below the top of the viewport and
-              the next one scrolls up from the bottom to cover it. */}
-          <div className="mt-10">
-            {SCOPE.map((row) => (
-              <div
+          <p className={`${lede} mt-8 max-w-[760px]`}>
+            We take your drug into every market where it has demand, at no
+            upfront cost. Monetize new regions in months instead of years.
+          </p>
+          {/* Two-by-two grid: three service cards in the brand tones, and
+              one photograph so the section is not all panels. */}
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <article
+              className="rounded-2xl p-8 text-cream lg:p-12"
+              style={{ backgroundColor: SCOPE[0].color }}
+            >
+              <h3 className="text-[clamp(24px,2.2vw,40px)] font-medium">
+                {SCOPE[0].title}
+              </h3>
+              <p className={`${body} mt-3`}>{SCOPE[0].text}</p>
+            </article>
+            <div className="relative min-h-[280px] overflow-hidden rounded-2xl">
+              <Image
+                src="/brand/team.jpg"
+                alt="A team working around a table with laptops and printed reports"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            {SCOPE.slice(1).map((row) => (
+              <article
                 key={row.title}
-                className="sticky top-24 mt-6 flex min-h-[280px] flex-col justify-center rounded-2xl bg-cream-200 p-8 first:mt-0 lg:min-h-[320px] lg:p-14"
+                className="rounded-2xl p-8 text-cream lg:p-12"
+                style={{ backgroundColor: row.color }}
               >
                 <h3 className="text-[clamp(24px,2.2vw,40px)] font-medium">
                   {row.title}
                 </h3>
-                <p className={`${body} mt-3 max-w-[880px]`}>{row.text}</p>
-              </div>
+                <p className={`${body} mt-3`}>{row.text}</p>
+              </article>
             ))}
           </div>
         </Section>
@@ -306,26 +310,31 @@ export default function Home() {
         </Section>
 
         <Section id="who" title="Who this is for">
-          {/* Smaller square image on the left, text in the wide column. */}
-          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center">
+          {/* One wide photograph with the line set over it in the brand
+              type; a bottom scrim keeps the cream text readable. */}
+          <div className="relative mt-8 overflow-hidden rounded-2xl">
             <Image
               src="/brand/scientist.jpg"
               alt="A scientist in a white lab coat holding a vial up to the light"
               width={1800}
               height={1200}
-              sizes="(min-width: 1024px) 480px, 100vw"
-              className="order-last aspect-square w-full rounded-2xl object-cover object-[20%_50%] lg:order-none"
+              sizes="(min-width: 1640px) 1480px, (min-width: 1024px) 1120px, 100vw"
+              className="aspect-[3/2] w-full object-cover object-[center_30%] lg:aspect-[21/9]"
             />
-            <p className={`${lede} max-w-[640px]`}>
-              Biotechs in the US and Europe with a novel drug. 
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
+            <p className="absolute inset-x-0 bottom-0 p-8 text-[clamp(30px,3vw,56px)] leading-[1.1] tracking-[-0.02em] text-cream lg:p-14">
+              A novel drug,{" "}
+              <em className="font-serif text-[1.06em] italic">
+                across the globe.
+              </em>
             </p>
           </div>
         </Section>
 
-        <Section id="contact" title="Talk about an asset">
+        <Section id="contact" title="Tell us about your drug">
           <p className={`${lede} mt-8 max-w-[760px]`}>
-            Send the asset name and the stage. We will say whether we can
-            assess it.
+            If you are a biotech thinking about capturing the full value of
+            your drug at no upfront cost, reach out.
           </p>
           <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:items-center">
             <ContactForm />
