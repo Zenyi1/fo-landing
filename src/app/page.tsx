@@ -13,29 +13,26 @@ const body = "text-[clamp(18px,1.45vw,26px)]";
 /* Lede: the one big supporting statement each section opens with. */
 const lede = "text-[clamp(21px,1.9vw,34px)] leading-[1.3]";
 
-/* Three broad services, each in one of the hero gradient's tones. */
+/* Three broad services. */
 const SCOPE = [
   {
     title: "Market entry",
     text: "We take your drug into new markets and act as your business development team. We register it, and a licensed professional approves every filing.",
-    color: "#898d8c",
   },
   {
     title: "Pricing and reimbursement",
     text: "We secure the price and the reimbursement in every territory we enter, so health systems pay for your innovation.",
-    color: "#74635a",
   },
   {
     title: "Distribution",
     text: "We move your drug through specialist partners until it reaches every patient who needs it, and we keep it safe on the market for as long as it sells.",
-    color: "#616b6a",
   },
 ];
 
 const STEPS = [
   {
     title: "Assessment",
-    text: "Before anyone signs, we forecast patients, price and the registration route for each territory we might take. We only propose a market where that forecast supports a launch.",
+    text: "We assess the assets in your portfolio free, no strings attached. Our models forecast patients, price and the registration route, and we only propose a market where the forecast supports a launch.",
     image: "/brand/map-wall.jpg",
     imageAlt: "A strategist marking territories on a wall map",
   },
@@ -47,36 +44,21 @@ const STEPS = [
   },
   {
     title: "Registration",
-    text: "We draft each local file from your existing dossier: modules, translated labeling, pricing files, and replies to the authority. A licensed professional approves the file before it is submitted. If a question needs data only you hold, it comes back to you.",
+    text: "Software drafts each local file from your existing dossier: modules, translated labeling, pricing files, and replies to the authority. A licensed professional approves every file before it is submitted, and approval lands in months, not years.",
     image: "/brand/label.jpg",
     imageAlt: "A physician reading the label of a prescription medicine bottle",
   },
   {
     title: "Launch",
-    text: "We take on price, reimbursement and supply into the channel. Distributors deliver. You invoice us at the transfer price as product ships.",
+    text: "We take on price, reimbursement and supply into the channel. You sell through us and keep the best margins of any commercialization partner.",
     image: "/brand/distribution.jpg",
     imageAlt: "Medicine cartons and trays of vials on fulfillment shelving",
   },
   {
     title: "The life of the product",
-    text: "Safety, renewals and label maintenance stay with us. The agreement does not end at approval.",
+    text: "Safety, renewals and label maintenance stay with us for as long as the product sells, and a licensed professional approves every safety decision. The agreement does not end at approval.",
     image: "/brand/patient.jpg",
     imageAlt: "An elderly man and his granddaughter sitting together in the sun",
-  },
-];
-
-const SOFTWARE = [
-  {
-    title: "Before we sign",
-    text: "The assessment: patients, price and route, territory by territory.",
-  },
-  {
-    title: "During registration",
-    text: "Draft local modules, translations, pricing files, and draft replies to questions from the authority.",
-  },
-  {
-    title: "On the market",
-    text: "Adverse-event intake, daily literature screening, and draft safety reports, plus the work to keep each licence current.",
   },
 ];
 
@@ -147,27 +129,12 @@ function Section({
   return (
     <section id={id} className="mt-[72px] lg:mt-[120px]">
       <div className={container}>
-        <h2 className="text-[clamp(34px,3.4vw,64px)] leading-[1.1] tracking-[-0.02em]">
+        <h2 className="text-[clamp(34px,3.4vw,64px)] font-medium leading-[1.1] tracking-[-0.02em]">
           {title}
         </h2>
         {children}
       </div>
     </section>
-  );
-}
-
-function Rows({ rows }: { rows: { title: string; text: string }[] }) {
-  return (
-    <div className="mt-10 divide-y divide-cream-200">
-      {rows.map((row) => (
-        <div key={row.title} className="py-9">
-          <h3 className="text-[clamp(22px,1.8vw,32px)] font-medium">
-            {row.title}
-          </h3>
-          <p className={`${body} mt-3 max-w-[880px]`}>{row.text}</p>
-        </div>
-      ))}
-    </div>
   );
 }
 
@@ -191,8 +158,9 @@ export default function Home() {
               <em className="font-serif text-[1.06em] italic">simplified.</em>
             </h1>
             <p className={`${lede} mt-8 max-w-[640px]`}>
-              The first AI-native commercialization platform to plan, scale,
-              and launch therapies worldwide.
+              The first AI-native commercialization platform to{" "}
+              <em className="font-serif italic">plan, scale, and launch</em>{" "}
+              therapies worldwide.
             </p>
             <a
               href="#contact"
@@ -215,18 +183,18 @@ export default function Home() {
       </header>
 
       <main>
-        <Section id="scope" title="Services">
+        <Section id="scope" title="What we do">
           <p className={`${lede} mt-8 max-w-[760px]`}>
             We take your drug into every market where it has demand, at no
-            upfront cost. Monetize new regions in months instead of years.
+            upfront cost.
+          </p>
+          <p className={`${lede} mt-4 max-w-[760px]`}>
+            Book revenue for new regions in months, not years.
           </p>
           {/* Two-by-two grid: three service cards in the brand tones, and
               one photograph so the section is not all panels. */}
           <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            <article
-              className="rounded-2xl p-8 text-cream lg:p-12"
-              style={{ backgroundColor: SCOPE[0].color }}
-            >
+            <article className="rounded-2xl bg-cream-200 p-8 lg:p-12">
               <h3 className="text-[clamp(24px,2.2vw,40px)] font-medium">
                 {SCOPE[0].title}
               </h3>
@@ -244,8 +212,7 @@ export default function Home() {
             {SCOPE.slice(1).map((row) => (
               <article
                 key={row.title}
-                className="rounded-2xl p-8 text-cream lg:p-12"
-                style={{ backgroundColor: row.color }}
+                className="rounded-2xl bg-cream-200 p-8 lg:p-12"
               >
                 <h3 className="text-[clamp(24px,2.2vw,40px)] font-medium">
                   {row.title}
@@ -262,7 +229,7 @@ export default function Home() {
         <section id="agreement" className="fo-steps-wrap mt-[72px] lg:mt-[120px]">
           <div className="fo-steps-pin">
             <div className={container}>
-              <h2 className="text-[clamp(34px,3.4vw,64px)] leading-[1.1] tracking-[-0.02em]">
+              <h2 className="text-[clamp(34px,3.4vw,64px)] font-medium leading-[1.1] tracking-[-0.02em]">
                 Work with us
               </h2>
             </div>
@@ -288,48 +255,73 @@ export default function Home() {
           </div>
         </section>
 
-        <Section id="software" title="Where software does the work">
-          <p className={`${lede} mt-8 max-w-[760px]`}>
-            This is the part a traditional partner staffs with a large writing
-            team. It is not a tool you log into.
-          </p>
-          {/* Full-width cinematic band below the lede, not a side column. */}
-          <Image
-            src="/brand/dossier.jpg"
-            alt="Hands paging through a regulatory dossier binder"
-            width={1800}
-            height={1200}
-            sizes="(min-width: 1640px) 1480px, (min-width: 1024px) 1120px, 100vw"
-            className="fo-drift-r mt-10 aspect-[21/9] w-full rounded-2xl object-cover"
-          />
-          <Rows rows={SOFTWARE} />
-          <p className={`${body} mt-6`}>
-            A licensed professional approves every filing and every safety
-            decision. Software does not submit either.
-          </p>
-        </Section>
-
-        <Section id="who" title="Who this is for">
-          {/* One wide photograph with the line set over it in the brand
-              type; a bottom scrim keeps the cream text readable. */}
-          <div className="relative mt-8 overflow-hidden rounded-2xl">
-            <Image
-              src="/brand/scientist.jpg"
-              alt="A scientist in a white lab coat holding a vial up to the light"
-              width={1800}
-              height={1200}
-              sizes="(min-width: 1640px) 1480px, (min-width: 1024px) 1120px, 100vw"
-              className="aspect-[3/2] w-full object-cover object-[center_30%] lg:aspect-[21/9]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
-            <p className="absolute inset-x-0 bottom-0 p-8 text-[clamp(30px,3vw,56px)] leading-[1.1] tracking-[-0.02em] text-cream lg:p-14">
-              A novel drug,{" "}
-              <em className="font-serif text-[1.06em] italic">
-                across the globe.
-              </em>
+        {/* The platform case as individual statements beside the photograph,
+            with the proof points below. */}
+        <section id="software" className="mt-[72px] lg:mt-[120px]">
+          <div className={container}>
+            <h2 className="text-[clamp(34px,3.4vw,64px)] font-medium leading-[1.1] tracking-[-0.02em]">
+              A new kind of platform
+            </h2>
+            <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center">
+              <div className="divide-y divide-cream-200">
+                <p className={`${lede} pb-5`}>
+                  Pharma veterans and world-class engineers: the first{" "}
+                  <span className="font-medium">
+                    AI-native commercialization team
+                  </span>
+                  .
+                </p>
+                <p className={`${lede} py-5`}>The fastest route to approval.</p>
+                <p className={`${lede} py-5`}>Full ownership of your asset.</p>
+                <p className={`${lede} pt-5`}>
+                  <em className="font-serif italic">
+                    The best margins in the market.
+                  </em>
+                </p>
+              </div>
+              <Image
+                src="/brand/safety.jpg"
+                alt="A professional reading a report at a desk by a tall window"
+                width={1800}
+                height={1200}
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className="w-full rounded-2xl"
+              />
+            </div>
+            <p className={`${lede} mt-12 max-w-[880px]`}>
+              Your team does not spend a single hour on launch work. We take
+              it over end to end, and the platform carries the load.
+            </p>
+            <p className={`${lede} mt-4 max-w-[880px]`}>
+              We already partner with some of the world&apos;s top biotechs to
+              capture the full value of their novel drugs.
             </p>
           </div>
-        </Section>
+        </section>
+
+        {/* No heading here: a plain <section> instead of <Section>, which
+            requires a title and always renders the h2. */}
+        <section id="who" className="mt-[72px] lg:mt-[120px]">
+          <div className={container}>
+            <div className="relative overflow-hidden rounded-2xl">
+              <Image
+                src="/brand/scientist.jpg"
+                alt="A scientist in a white lab coat holding a vial up to the light"
+                width={1800}
+                height={1200}
+                sizes="(min-width: 1640px) 1480px, (min-width: 1024px) 1120px, 100vw"
+                className="aspect-[3/2] w-full object-cover object-[center_30%] lg:aspect-[21/9]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
+              <p className="absolute inset-x-0 bottom-0 p-8 text-[clamp(30px,3vw,56px)] leading-[1.1] tracking-[-0.02em] text-cream lg:p-14">
+                A novel drug,{" "}
+                <em className="font-serif text-[1.06em] italic">
+                  across the globe.
+                </em>
+              </p>
+            </div>
+          </div>
+        </section>
 
         <Section id="contact" title="Tell us about your drug">
           <p className={`${lede} mt-8 max-w-[760px]`}>
