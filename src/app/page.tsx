@@ -1,311 +1,362 @@
-import { Mark } from "@/components/brand/Mark";
+import Image from "next/image";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { ContactForm } from "@/components/ContactForm";
-import { Reveal } from "@/components/Reveal";
 
-/* The hero follows the brand guidelines' "Hero Website" application: glass
-   pill nav on the gradient, grotesk headline with a Feature-Display-italic
-   turn, the photograph masked into the symbol's circle-and-crescent, and the
-   tagline pinned small at the bottom. */
+/* One centered column, 24px side padding mobile / 80px desktop. The column
+   and the type scale are fluid so a 16" screen reads as generous as a 14":
+   1120px of content at lg, up to 1480px on very wide viewports. */
+const container =
+  "mx-auto w-full max-w-[1280px] px-6 lg:px-20 2xl:max-w-[1640px]";
 
-/* Below the hero the page leaves the gradient: sections sit on the brand
-   kit's secondary colors (Cream, 100 Cream, 200 Cream, Black) with black
-   ink, laid out like the guidelines' own pages — label left, content right.
-   The serif italic voice belongs to the hero alone. */
+const body = "text-[clamp(18px,1.45vw,26px)]";
 
-const SERVICES = [
-  "You submit once. Our platform prepares every market's filing from your existing dossier, in parallel.",
-  "We register the medicine in each territory and become the licence holder.",
-  "We run the commercial operation on the ground.",
-  "We are paid out of what the medicine earns. Nothing lands on your team."
+/* Lede: the one big supporting statement each section opens with. */
+const lede = "text-[clamp(21px,1.9vw,34px)] leading-[1.3]";
+
+/* Three broad services. */
+const SCOPE = [
+  {
+    title: "Market entry",
+    text: "We take your drug into new markets and act as your business development team. We register it, and a licensed professional approves every filing.",
+  },
+  {
+    title: "Pricing and reimbursement",
+    text: "We secure the price and the reimbursement in every territory we enter, so health systems pay for your innovation.",
+  },
+  {
+    title: "Distribution",
+    text: "We move your drug through specialist partners until it reaches every patient who needs it, and we keep it safe on the market for as long as it sells.",
+  },
 ];
 
-const PLATFORM = [
+const STEPS = [
   {
-    title: "One dossier, every filing",
-    body: "The platform reads the dossier your medicine was approved with and assembles each market's submission from it — formats, modules, translations — in parallel rather than one country at a time."
+    title: "Assessment",
+    text: "We assess the assets in your portfolio free, no strings attached. Our models forecast patients, price and the registration route, and we only propose a market where the forecast supports a launch.",
+    image: "/brand/map-wall.jpg",
+    imageAlt: "A strategist marking territories on a wall map",
   },
   {
-    title: "Regulation, encoded",
-    body: "Every territory's requirements, timelines and correspondence live in the system, not in institutional memory. AI drafts; our regulatory team signs."
+    title: "Terms",
+    text: "One agreement. It sets the territories, the supply, and the transfer price. Your intellectual property stays yours. There is no upfront fee.",
+    image: "/brand/agreement.jpg",
+    imageAlt: "Two professionals reviewing a printed agreement at a table",
   },
   {
-    title: "The long tail, automated",
-    body: "Renewals, variations, safety reporting — the standing work that usually needs a local office — runs through the platform."
-  }
+    title: "Registration",
+    text: "Software drafts each local file from your existing dossier: modules, translated labeling, pricing files, and replies to the authority. A licensed professional approves every file before it is submitted, and approval lands in months, not years.",
+    image: "/brand/label.jpg",
+    imageAlt: "A physician reading the label of a prescription medicine bottle",
+  },
+  {
+    title: "Launch",
+    text: "We take on price, reimbursement and supply into the channel. You sell through us and keep the best margins of any commercialization partner.",
+    image: "/brand/distribution.jpg",
+    imageAlt: "Medicine cartons and trays of vials on fulfillment shelving",
+  },
+  {
+    title: "The life of the product",
+    text: "Safety, renewals and label maintenance stay with us for as long as the product sells, and a licensed professional approves every safety decision. The agreement does not end at approval.",
+    image: "/brand/patient.jpg",
+    imageAlt: "An elderly man and his granddaughter sitting together in the sun",
+  },
 ];
 
-const MARKETS = ["Latin America", "Middle East & North Africa", "Southeast Asia"];
-
-const PARTNERING = [
-  {
-    q: "Who holds the licence?",
-    a: "We do. firstocean becomes the marketing-authorisation holder in each territory and carries everything that entails. The medicine, the brand and the IP stay yours."
-  },
-  {
-    q: "What do you need from us?",
-    a: "The dossier you already have, and someone to answer the questions only an originator can. The platform does the rest."
-  },
-  {
-    q: "How is firstocean paid?",
-    a: "Out of what the medicine earns in each territory. Our incentive is the same as yours: revenue from markets you would not otherwise enter."
-  },
-  {
-    q: "What happens to our core markets?",
-    a: "Nothing. You stay focused on the US, Europe and Japan; we carry the rest."
-  }
-];
-
-/* The hero shape replayed as flat tonal background art, the way the
-   guidelines' Backgrounds page plays with elements from the symbol. */
-function Shapes({ className }: { className?: string }) {
+/* A photograph clipped into the brand symbol's circle-and-crescent
+   composition — the brand kit's hero treatment. clipId must be unique per
+   use; placement art-directs the photograph inside the shapes in viewBox
+   units; flip mirrors the whole composition. */
+function ShapedImage({
+  src,
+  alt,
+  clipId,
+  flip = false,
+  zoom = false,
+  className,
+  placement,
+}: {
+  src: string;
+  alt: string;
+  clipId: string;
+  flip?: boolean;
+  /* The photograph slow-zooms inside its clip, so the frame is never still. */
+  zoom?: boolean;
+  className?: string;
+  placement: { x: number; y: number; width: number; height: number };
+}) {
   return (
+    /* Shapes span x 0..1550, y 0..1000; the viewBox keeps an 8-unit margin
+       so edges never sit exactly on the frame and get shaved on resize. */
     <svg
-      viewBox="0 0 1550 1000"
-      fill="currentColor"
-      aria-hidden
-      className={`pointer-events-none absolute ${className ?? ""}`}
+      viewBox="-8 -8 1566 1016"
+      role="img"
+      aria-label={alt}
+      className={`${flip ? "-scale-x-100 " : ""}${className ?? ""}`}
     >
-      <circle cx="500" cy="500" r="500" />
-      <path d="M875 20 A480 480 0 0 1 875 980 Z" />
-      <path d="M1272.5 29.6 A537.5 537.5 0 0 1 1272.5 970.4 Z" />
+      <defs>
+        <clipPath id={clipId}>
+          <circle cx="500" cy="500" r="500" />
+          <path d="M875 20 A480 480 0 0 1 875 980 Z" />
+          <path d="M1272.5 29.6 A537.5 537.5 0 0 1 1272.5 970.4 Z" />
+        </clipPath>
+      </defs>
+      {/* The clip sits on the group, not the animated image: animating the
+          clipped element itself makes Safari drop the clip after a resize. */}
+      <g clipPath={`url(#${clipId})`}>
+        <image
+          href={src}
+          x={placement.x}
+          y={placement.y}
+          width={placement.width}
+          height={placement.height}
+          preserveAspectRatio="none"
+          className={zoom ? "fo-zoom" : undefined}
+        />
+      </g>
     </svg>
   );
 }
 
 function Section({
   id,
-  label,
-  className,
-  art,
-  children
+  title,
+  children,
 }: {
   id: string;
-  label: string;
-  className: string;
-  art?: React.ReactNode;
+  title: string;
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className={`relative overflow-hidden scroll-mt-0 ${className}`}>
-      {art}
-      <div className="relative mx-auto grid w-full max-w-[80rem] gap-8 px-6 py-20 md:grid-cols-[200px_minmax(0,1fr)] md:gap-12 md:px-10 md:py-28">
-        <h2 className="text-[0.8rem] uppercase tracking-[0.14em] opacity-70">
-          {label}
+    <section id={id} className="mt-[72px] lg:mt-[120px]">
+      <div className={container}>
+        <h2 className="text-[clamp(34px,3.4vw,64px)] font-medium leading-[1.1] tracking-[-0.02em]">
+          {title}
         </h2>
-        <div>{children}</div>
+        {children}
       </div>
     </section>
   );
 }
 
-const pill =
-  "rounded-full border border-cream/25 bg-cream/10 backdrop-blur-md text-cream";
-
-/* The hero graphic, as constructed in the guidelines: a circle, a true half
-   circle whose flat edge sits inside the circle, and a quarter-circle segment
-   whose flat edge sits inside the half circle. Because each flat edge
-   overlaps the previous shape, the three read as one connected form, and the
-   small wedge notches appear naturally where the arcs part ways. All edges
-   are vector-crisp; the photograph is clipped inside, placed exactly as in
-   the brand deck. */
-function HeroVisual({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 1550 1000"
-      role="img"
-      aria-label="A clinician in a white coat reading the label of a prescription medicine"
-      className={className}
-    >
-      <defs>
-        <clipPath id="fo-hero-clip">
-          <circle cx="500" cy="500" r="500" />
-          <path d="M875 20 A480 480 0 0 1 875 980 Z" />
-          <path d="M1272.5 29.6 A537.5 537.5 0 0 1 1272.5 970.4 Z" />
-        </clipPath>
-      </defs>
-      <image
-        href="/brand/hero.jpg"
-        x="-32"
-        y="-187"
-        width="1788"
-        height="1191"
-        preserveAspectRatio="none"
-        clipPath="url(#fo-hero-clip)"
-      />
-    </svg>
-  );
-}
-
 export default function Home() {
-  const year = new Date().getFullYear();
-
   return (
     <>
-      {/* first viewport — the guidelines' hero */}
-      <header className="relative flex min-h-svh flex-col px-6 pb-6 pt-4 md:px-10 md:pb-10 md:pt-5">
-        <div className="relative flex items-center justify-between gap-4">
-          <Wordmark className="w-40 shrink-0 text-cream md:w-44" />
-          <nav
-            aria-label="Site"
-            className={`${pill} absolute left-1/2 hidden -translate-x-1/2 items-center p-1 md:flex`}
-          >
-            <a
-              href="#about"
-              className="rounded-full px-5 py-2 text-[0.85rem] transition-colors hover:bg-cream/15"
-            >
-              About us
-            </a>
-            <a
-              href="#services"
-              className="rounded-full bg-cream/20 px-5 py-2 text-[0.85rem] transition-colors hover:bg-cream/25"
-            >
-              Services
-            </a>
-            <a
-              href="#markets"
-              className="rounded-full px-5 py-2 text-[0.85rem] transition-colors hover:bg-cream/15"
-            >
-              Markets
-            </a>
-          </nav>
-          <a
-            href="#contact"
-            className={`${pill} px-6 py-2.5 text-[0.85rem] transition-colors hover:bg-cream/20`}
-          >
-            Contact
-          </a>
+      {/* No bar at all: the wordmark sits in the hero's top-left corner. */}
+      <header
+        id="top"
+        className="relative bg-[linear-gradient(180deg,#898d8c,#74635a,#616b6a)] text-cream"
+      >
+        <div className={`${container} absolute inset-x-0 top-0 pt-8`}>
+          <Wordmark className="w-40 text-cream" />
         </div>
-
-        <div className="grid flex-1 items-center gap-10 py-8 md:grid-cols-[minmax(0,0.7fr)_minmax(0,1.3fr)] md:gap-2">
-          <h1 className="mx-auto max-w-[18ch] text-center text-[clamp(1.9rem,2.9vw,2.6rem)] leading-[1.16] tracking-[-0.01em] text-cream md:mx-0 md:max-w-[19ch] md:text-left">
-            Automate the entry of therapeutics{" "}
-            <em className="font-serif text-[1.06em] italic">
-              into new markets
-            </em>
-          </h1>
-          <HeroVisual className="mx-auto w-[min(92vw,24rem)] md:w-[min(53vw,100svh)] md:justify-self-end" />
+        <div
+          className={`${container} grid min-h-svh items-center gap-12 py-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]`}
+        >
+          <div>
+            <h1 className="text-[clamp(44px,4.6vw,88px)] leading-[1.05] tracking-[-0.02em]">
+              Global launch,{" "}
+              <em className="font-serif text-[1.06em] italic">simplified.</em>
+            </h1>
+            <p className={`${lede} mt-8 max-w-[640px]`}>
+              The first AI-native commercialization platform to{" "}
+              <em className="font-serif italic">plan, scale, and launch</em>{" "}
+              therapies worldwide.
+            </p>
+            <a
+              href="#contact"
+              className="mt-10 inline-flex h-14 items-center rounded-full border border-cream/40 bg-white/15 px-8 text-[17px] text-cream backdrop-blur-xl"
+            >
+              Talk to us about your asset
+            </a>
+          </div>
+          {/* Oversized and pulled left toward the text; the right edge stays
+              inside the column so nothing overflows the page. */}
+          <ShapedImage
+            src="/brand/hero.jpg"
+            alt="A clinician in a white coat reading the label of a prescription medicine"
+            clipId="fo-clip-hero"
+            placement={{ x: -32, y: -187, width: 1788, height: 1191 }}
+            className="w-full lg:-ml-[6%] lg:w-[106%]"
+            zoom
+          />
         </div>
       </header>
 
       <main>
-        <Section id="about" label="About us" className="bg-[#e4e2df] text-[#1c1c1a]">
-          <Reveal>
-            <p className="max-w-[54rem] text-[clamp(1.05rem,1.6vw,1.25rem)] leading-[1.6]">
-              Bringing a new medicine to market takes more than a decade and
-              billions of dollars. Most are only ever launched in the US,
-              Europe and Japan. By the time their patents expire, up to a third
-              of their value has gone unclaimed.
-            </p>
-            <p className="mt-10 max-w-[46rem] text-[clamp(1.5rem,2.7vw,2.2rem)] leading-[1.3] tracking-[-0.01em]">
-              Our platform lets originators launch in a dozen markets at once,
-              from a single submission.
-            </p>
-          </Reveal>
-        </Section>
-
-        <Section id="services" label="Services" className="bg-[#d8d6d3] text-[#1c1c1a]">
-          <div className="grid gap-x-12 gap-y-10 md:grid-cols-2">
-            {SERVICES.map((line, i) => (
-              <Reveal key={line} delay={i * 90}>
-                <p className="text-[0.8rem] tracking-[0.14em] opacity-60">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <p className="mt-3 text-[clamp(1.05rem,1.6vw,1.25rem)] leading-[1.55]">
-                  {line}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-
-        <Section id="platform" label="Platform" className="bg-[#1c1c1a] text-cream">
-          <Reveal>
-            <Mark breathe className="w-16 text-cream" />
-            <p className="mt-10 max-w-[46rem] text-[clamp(1.5rem,2.7vw,2.2rem)] leading-[1.3] tracking-[-0.01em]">
-              Where our peers build offices, we built software.
-            </p>
-          </Reveal>
-          <div className="mt-14 grid gap-x-12 gap-y-12 md:grid-cols-3">
-            {PLATFORM.map((p, i) => (
-              <Reveal key={p.title} delay={i * 90}>
-                <h3 className="text-[1.05rem] font-medium leading-[1.4]">
-                  {p.title}
-                </h3>
-                <p className="mt-3 text-[1rem] leading-[1.6] text-cream/80">
-                  {p.body}
-                </p>
-              </Reveal>
-            ))}
-          </div>
-        </Section>
-
-        <Section
-          id="markets"
-          label="Markets"
-          className="bg-[#afaba5] text-[#1c1c1a]"
-          art={
-            <Shapes className="-right-[14rem] top-1/2 w-[64rem] -translate-y-1/2 text-[#1c1c1a] opacity-[0.05]" />
-          }
-        >
-          <ul>
-            {MARKETS.map((m, i) => (
-              <li
-                key={m}
-                className="border-t border-[#1c1c1a]/25 py-5 first:border-t-0 first:pt-0"
+        <Section id="scope" title="What we do">
+          <p className={`${lede} mt-8 max-w-[760px]`}>
+            We take your drug into every market where it has demand, at no
+            upfront cost.
+          </p>
+          <p className={`${lede} mt-4 max-w-[760px]`}>
+            Book revenue for new regions in months, not years.
+          </p>
+          {/* Two-by-two grid: three service cards in the brand tones, and
+              one photograph so the section is not all panels. */}
+          <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <article className="rounded-2xl bg-cream-200 p-8 lg:p-12">
+              <h3 className="text-[clamp(24px,2.2vw,40px)] font-medium">
+                {SCOPE[0].title}
+              </h3>
+              <p className={`${body} mt-3`}>{SCOPE[0].text}</p>
+            </article>
+            <div className="relative min-h-[280px] overflow-hidden rounded-2xl">
+              <Image
+                src="/brand/team.jpg"
+                alt="A team working around a table with laptops and printed reports"
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            {SCOPE.slice(1).map((row) => (
+              <article
+                key={row.title}
+                className="rounded-2xl bg-cream-200 p-8 lg:p-12"
               >
-                <Reveal delay={i * 90}>
-                  <p className="text-[clamp(1.4rem,2.4vw,2rem)] leading-[1.2]">
-                    {m}
-                  </p>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-          <Reveal>
-            <p className="mt-10 max-w-[46rem] text-[clamp(1.05rem,1.6vw,1.25rem)] leading-[1.6]">
-              The markets where approved medicines arrive late, or never.
-            </p>
-          </Reveal>
-        </Section>
-
-        <Section id="partnering" label="Partnering" className="bg-[#e4e2df] text-[#1c1c1a]">
-          <div className="max-w-[54rem]">
-            {PARTNERING.map((item, i) => (
-              <Reveal key={item.q} delay={i * 60}>
-                <div className="border-t border-[#1c1c1a]/20 py-8 first:border-t-0 first:pt-0 md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-8">
-                  <h3 className="text-[1.05rem] font-medium leading-[1.4]">
-                    {item.q}
-                  </h3>
-                  <p className="mt-3 text-[1.05rem] leading-[1.6] md:mt-0">
-                    {item.a}
-                  </p>
-                </div>
-              </Reveal>
+                <h3 className="text-[clamp(24px,2.2vw,40px)] font-medium">
+                  {row.title}
+                </h3>
+                <p className={`${body} mt-3`}>{row.text}</p>
+              </article>
             ))}
           </div>
         </Section>
 
-        <Section
-          id="contact"
-          label="Contact"
-          className="bg-[#1c1c1a] text-cream"
-          art={
-            <Shapes className="-bottom-[16rem] -left-[18rem] w-[72rem] rotate-180 text-cream opacity-[0.04]" />
-          }
-        >
-          <Reveal>
-            <p className="mb-10 text-[clamp(1.5rem,2.7vw,2.2rem)] leading-[1.3] tracking-[-0.01em]">
-              Talk to us about your drug.
+        {/* Work with us: the section pins while vertical scroll drives the
+            step cards sideways; afterwards the page scrolls on vertically.
+            Without scroll-driven animation support it is a swipeable strip. */}
+        <section id="agreement" className="fo-steps-wrap mt-[72px] lg:mt-[120px]">
+          <div className="fo-steps-pin">
+            <div className={container}>
+              <h2 className="text-[clamp(34px,3.4vw,64px)] font-medium leading-[1.1] tracking-[-0.02em]">
+                Work with us
+              </h2>
+            </div>
+            <div className="fo-steps-track mt-10">
+              {STEPS.map((step, i) => (
+                <article key={step.title} className="w-[min(78vw,520px)] shrink-0">
+                  <Image
+                    src={step.image}
+                    alt={step.imageAlt}
+                    width={1800}
+                    height={1200}
+                    sizes="(min-width: 1024px) 520px, 78vw"
+                    className="aspect-[3/2] w-full rounded-2xl object-cover"
+                  />
+                  <p className="mt-6 text-[15px]">{i + 1}</p>
+                  <h3 className="mt-1 text-[clamp(22px,1.8vw,32px)] font-medium">
+                    {step.title}
+                  </h3>
+                  <p className={`${body} mt-3`}>{step.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* The platform case as individual statements beside the photograph,
+            with the proof points below. */}
+        <section id="software" className="mt-[72px] lg:mt-[120px]">
+          <div className={container}>
+            <h2 className="text-[clamp(34px,3.4vw,64px)] font-medium leading-[1.1] tracking-[-0.02em]">
+              A new kind of platform
+            </h2>
+            <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center">
+              <div className="divide-y divide-cream-200">
+                <p className={`${lede} pb-5`}>
+                  Pharma veterans and world-class engineers: the first{" "}
+                  <span className="font-medium">
+                    AI-native commercialization team
+                  </span>
+                  .
+                </p>
+                <p className={`${lede} py-5`}>The fastest route to approval.</p>
+                <p className={`${lede} py-5`}>Full ownership of your asset.</p>
+                <p className={`${lede} pt-5`}>
+                  <em className="font-serif italic">
+                    The best margins in the market.
+                  </em>
+                </p>
+              </div>
+              <Image
+                src="/brand/safety.jpg"
+                alt="A professional reading a report at a desk by a tall window"
+                width={1800}
+                height={1200}
+                sizes="(min-width: 1024px) 560px, 100vw"
+                className="w-full rounded-2xl"
+              />
+            </div>
+            <p className={`${lede} mt-12 max-w-[880px]`}>
+              Your team does not spend a single hour on launch work. We take
+              it over end to end, and the platform carries the load.
             </p>
+            <p className={`${lede} mt-4 max-w-[880px]`}>
+              We already partner with some of the world&apos;s top biotechs to
+              capture the full value of their novel drugs.
+            </p>
+          </div>
+        </section>
+
+        {/* No heading here: a plain <section> instead of <Section>, which
+            requires a title and always renders the h2. */}
+        <section id="who" className="mt-[72px] lg:mt-[120px]">
+          <div className={container}>
+            <div className="relative overflow-hidden rounded-2xl">
+              <Image
+                src="/brand/scientist.jpg"
+                alt="A scientist in a white lab coat holding a vial up to the light"
+                width={1800}
+                height={1200}
+                sizes="(min-width: 1640px) 1480px, (min-width: 1024px) 1120px, 100vw"
+                className="aspect-[3/2] w-full object-cover object-[center_30%] lg:aspect-[21/9]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
+              <p className="absolute inset-x-0 bottom-0 p-8 text-[clamp(30px,3vw,56px)] leading-[1.1] tracking-[-0.02em] text-cream lg:p-14">
+                A novel drug,{" "}
+                <em className="font-serif text-[1.06em] italic">
+                  across the globe.
+                </em>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <Section id="contact" title="Tell us about your drug">
+          <p className={`${lede} mt-8 max-w-[760px]`}>
+            If you are a biotech thinking about capturing the full value of
+            your drug at no upfront cost, reach out.
+          </p>
+          <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:items-center">
             <ContactForm />
-          </Reveal>
-          <footer className="mt-24 flex flex-wrap items-baseline justify-between gap-x-10 gap-y-2 text-[0.8rem] leading-[1.6] text-cream/80">
-            <p>Backed by Entrepreneurs First and Transpose Platform.</p>
-            <p>© {year} firstocean</p>
-          </footer>
+            <Image
+              src="/brand/handshake.jpg"
+              alt="A handshake between two professionals in warm sunlight"
+              width={1800}
+              height={1200}
+              sizes="(min-width: 1024px) 560px, 100vw"
+              className="w-full rounded-2xl"
+            />
+          </div>
         </Section>
       </main>
+
+      <footer className="relative mt-[72px] lg:mt-[120px]">
+        <Image
+          src="/brand/skyline.jpg"
+          alt=""
+          width={1800}
+          height={1200}
+          sizes="100vw"
+          className="h-[320px] w-full object-cover lg:h-[440px]"
+        />
+        <p
+          className={`${container} absolute inset-x-0 bottom-8 text-[13px] text-cream`}
+        >
+          © Firstocean.
+        </p>
+      </footer>
     </>
   );
 }
