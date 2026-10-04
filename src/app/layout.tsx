@@ -21,7 +21,8 @@ const feature = Instrument_Serif({
   display: "swap",
 });
 
-const description = "The commercial operation you would otherwise have to build.";
+const description =
+  "Firstocean is a global commercialization partner for biotechs. We take on registration, pricing, distribution and safety under one agreement. You keep the intellectual property. There is no payment before a sale.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://first-ocean.com"),

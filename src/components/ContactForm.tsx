@@ -1,12 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { Mark } from "@/components/brand/Mark";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
 const field =
-  "w-full border-0 border-b border-cream/40 bg-transparent px-0 py-3 text-[1.05rem] leading-[1.5] text-cream transition-colors focus:border-cream focus:outline-none";
+  "w-full border-b border-ink bg-transparent py-3 text-[clamp(17px,1.35vw,24px)] text-ink";
+const labelClass = "text-[13px]";
+
+const FIELDS = [
+  { name: "name", label: "Name", autoComplete: "name" },
+  { name: "email", label: "Work email", type: "email", autoComplete: "email" },
+  { name: "company", label: "Company", autoComplete: "organization" },
+  { name: "asset", label: "Asset or therapeutic area" },
+] as const;
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -14,18 +21,14 @@ export function ContactForm() {
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
+    const data = new FormData(event.currentTarget);
     setStatus("sending");
     setError("");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: data.get("email"),
-          message: data.get("message"),
-        }),
+        body: JSON.stringify(Object.fromEntries(data)),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => null);
@@ -45,63 +48,57 @@ export function ContactForm() {
   }
 
   return (
-    <div>
+    <div className="max-w-[640px]">
       {/* Mounted from first render so the announcement is actually made when
           the confirmation lands. */}
       <div role="status">
         {status === "sent" && (
-          <div className="flex items-center gap-4 py-6">
-            <Mark breathe className="fo-once w-14 shrink-0 text-cream" />
-            <p className="text-[1.05rem] leading-[1.5] text-cream">
-              Received. We read everything and will reply.
-            </p>
-          </div>
+          <p className="text-[clamp(17px,1.35vw,24px)]">
+            Received. We will reply.
+          </p>
         )}
       </div>
       {status !== "sent" && (
-        <form onSubmit={submit} className="grid max-w-[34rem] gap-7">
+        <form onSubmit={submit} className="grid gap-6">
+          {FIELDS.map((f) => (
+            <label key={f.name} className="grid gap-1.5">
+              <span className={labelClass}>{f.label}</span>
+              <input
+                name={f.name}
+                type={"type" in f ? f.type : "text"}
+                required
+                maxLength={254}
+                autoComplete={"autoComplete" in f ? f.autoComplete : undefined}
+                className={field}
+              />
+            </label>
+          ))}
           <label className="grid gap-1.5">
-            <span className="text-[0.8rem] uppercase tracking-[0.14em] text-cream">
-              Email
-            </span>
-            <input
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              maxLength={254}
-              className={field}
-            />
+            <span className={labelClass}>Stage</span>
+            <select name="stage" required defaultValue="" className={field}>
+              <option value="" disabled>
+                Select
+              </option>
+              <option>Preclinical</option>
+              <option>Phase 1</option>
+              <option>Phase 2</option>
+              <option>Phase 3</option>
+              <option>Filed / under review</option>
+              <option>Approved</option>
+            </select>
           </label>
-          <label className="grid gap-1.5">
-            <span className="text-[0.8rem] uppercase tracking-[0.14em] text-cream">
-              Message
-            </span>
-            <textarea
-              name="message"
-              required
-              rows={4}
-              maxLength={5000}
-              className={`${field} resize-none`}
-            />
-          </label>
-          <div className="flex items-baseline gap-5">
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="rounded-full border border-cream/25 bg-cream/10 px-8 py-3 text-[0.9rem] text-cream backdrop-blur-md transition-colors hover:bg-cream hover:text-[#1c1c1a] disabled:cursor-wait disabled:opacity-60"
-            >
-              {status === "sending" ? "Sending…" : "Send"}
-            </button>
-            {status === "error" && (
-              <p
-                role="alert"
-                className="text-[0.9rem] leading-[1.5] text-cream"
-              >
-                {error}
-              </p>
-            )}
-          </div>
+          <button
+            type="submit"
+            disabled={status === "sending"}
+            className="h-14 w-full rounded-full bg-ink text-[17px] text-cream disabled:cursor-wait disabled:opacity-60"
+          >
+            {status === "sending" ? "Sending…" : "Send"}
+          </button>
+          {status === "error" && (
+            <p role="alert" className="text-[clamp(17px,1.35vw,24px)]">
+              {error}
+            </p>
+          )}
         </form>
       )}
     </div>

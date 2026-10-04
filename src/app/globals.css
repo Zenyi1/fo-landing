@@ -2,60 +2,45 @@
 
 @theme inline {
   --color-cream: var(--cream);
+  --color-cream-200: var(--cream-200);
+  --color-ink: var(--ink);
   --font-sans: var(--font-grotesk), "Helvetica Neue", Helvetica, Arial,
     sans-serif;
   --font-serif: var(--font-feature), Georgia, "Times New Roman", serif;
 }
 
-/* firstocean brand — the gradient is the page. Stops 1–3 are the brand kit's
-   exact values; stop 4 extends the gradient into depth below the fold so body
-   text on it clears 4.5:1, which the kit's own end stop (#606b6b) does not. */
+/* firstocean brand — cream page, black ink. The gradient appears only in the
+   hero. --cream-200 stands in for the brand book's 200 Cream (used for 1px
+   rules only, never text); swap in the exact value when the book's hex is to
+   hand. */
 :root {
   --cream: #e5e3e0;
-  --g-1: #898d8c;
-  --g-2: #74635a;
-  --g-3: #606b6b;
-  --g-4: #454f4f;
+  --cream-200: #d4d1cc;
+  --ink: #1d1c1b;
 }
 
 @layer base {
   html {
     font-family: var(--font-sans);
     overflow-x: clip;
-    background-color: #1c1c1a;
-    accent-color: var(--cream);
+    background-color: var(--cream);
+    accent-color: var(--ink);
   }
   body {
     min-height: 100svh;
-    /* Stops in svh, not %, so the copy bands land on the same ground at every
-       document height: the brand gradient plays out over the first viewport
-       and settles on the deep stop before any body text begins. */
-    background: linear-gradient(
-      180deg,
-      var(--g-1) 0,
-      var(--g-2) 44svh,
-      var(--g-3) 72svh,
-      var(--g-4) 118svh
-    );
-    color: var(--cream);
+    background-color: var(--cream);
+    color: var(--ink);
     font-family: var(--font-sans);
+    line-height: 1.4;
     overflow-x: clip;
   }
   ::selection {
-    background: var(--g-2);
+    background: var(--ink);
     color: var(--cream);
   }
   :focus-visible {
     outline: 1px solid currentColor;
     outline-offset: 4px;
-  }
-  input,
-  textarea {
-    caret-color: var(--cream);
-  }
-  ::placeholder {
-    color: rgba(229, 227, 224, 0.85);
-    opacity: 1;
   }
 }
 
@@ -63,58 +48,91 @@
   html {
     scroll-behavior: smooth;
   }
+
+  /* The hero photograph breathes: a near-imperceptible slow zoom inside its
+     clip, so the first viewport is never fully still. */
+  .fo-zoom {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: fo-slow-zoom 26s cubic-bezier(0.45, 0, 0.55, 1) infinite
+      alternate;
+  }
+
+  /* The wide dossier band tracks horizontally with the scroll while it
+     crosses the viewport. Progressive: browsers without scroll-driven
+     animations keep the static placement. */
+  @supports (animation-timeline: view()) {
+    .fo-drift-r {
+      animation: fo-drift-right linear both;
+      animation-timeline: view();
+    }
+
+    /* Work with us: the tall wrapper provides the scroll distance, the pin
+       holds the section on screen, and vertical progress slides the track. */
+    .fo-steps-wrap {
+      height: 320vh;
+      view-timeline: --fo-steps block;
+    }
+    .fo-steps-pin {
+      position: sticky;
+      top: 0;
+      display: flex;
+      height: 100svh;
+      flex-direction: column;
+      justify-content: center;
+      overflow: clip;
+    }
+    .fo-steps-track {
+      width: max-content;
+      overflow: visible;
+      animation: fo-steps-slide linear both;
+      animation-timeline: --fo-steps;
+      animation-range: contain 0% contain 100%;
+    }
+  }
 }
 
-/* The mark's breath: the crescents drift open and settle closed. Distances are
-   viewBox units (the symbol is 186 wide), so the motion scales with the mark. */
-@keyframes fo-drift-out {
-  to {
-    transform: translateX(3.4px);
+/* Full-bleed track whose side padding mirrors the content container, so the
+   cards start on the grid and end flush with it after the slide. Default
+   (no scroll-driven animations, or reduced motion): a swipeable strip. */
+.fo-steps-track {
+  --fo-pad: 24px;
+  display: flex;
+  gap: 2.5rem;
+  overflow-x: auto;
+  padding-inline: var(--fo-pad);
+}
+@media (min-width: 1024px) {
+  .fo-steps-track {
+    --fo-pad: calc(max(100vw - 1280px, 0px) / 2 + 80px);
   }
 }
-@keyframes fo-drift-out-small {
-  to {
-    transform: translateX(1.6px);
+@media (min-width: 1536px) {
+  .fo-steps-track {
+    --fo-pad: calc(max(100vw - 1640px, 0px) / 2 + 80px);
   }
-}
-@keyframes fo-drift-out-left {
-  to {
-    transform: translateX(-3.4px);
-  }
-}
-@keyframes fo-drift-out-left-small {
-  to {
-    transform: translateX(-1.6px);
-  }
-}
-.fo-breathe .drift-r-outer {
-  animation: fo-drift-out 7s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
-}
-.fo-breathe .drift-r-inner {
-  animation: fo-drift-out-small 7s cubic-bezier(0.45, 0, 0.55, 1) infinite
-    alternate;
-}
-.fo-breathe .drift-l-outer {
-  animation: fo-drift-out-left 7s cubic-bezier(0.45, 0, 0.55, 1) infinite
-    alternate;
-}
-.fo-breathe .drift-l-inner {
-  animation: fo-drift-out-left-small 7s cubic-bezier(0.45, 0, 0.55, 1) infinite
-    alternate;
 }
 
-/* The sent-state echo: one breath, then rest. Iteration count 2 with
-   alternate direction is a single open-and-close cycle. */
-.fo-breathe.fo-once .drift-r-outer,
-.fo-breathe.fo-once .drift-r-inner,
-.fo-breathe.fo-once .drift-l-outer,
-.fo-breathe.fo-once .drift-l-inner {
-  animation-iteration-count: 2;
+@keyframes fo-steps-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100vw - 100%));
+  }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .fo-breathe [class^="drift-"],
-  .fo-breathe [class*=" drift-"] {
-    animation: none;
+@keyframes fo-slow-zoom {
+  to {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes fo-drift-right {
+  from {
+    transform: translateX(-5%);
+  }
+  to {
+    transform: translateX(5%);
   }
 }

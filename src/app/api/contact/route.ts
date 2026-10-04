@@ -7,16 +7,32 @@ export const runtime = "nodejs";
 // integration); RESEND_API_KEY comes from `vercel integration add resend`.
 const TO = "hugo@first-ocean.com";
 
+const STAGES = [
+  "Preclinical",
+  "Phase 1",
+  "Phase 2",
+  "Phase 3",
+  "Filed / under review",
+  "Approved",
+];
+
 export async function POST(request: Request) {
-  let body: { email?: unknown; message?: unknown };
+  let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  const email = typeof body.email === "string" ? body.email.trim() : "";
-  const message = typeof body.message === "string" ? body.message.trim() : "";
+  const read = (key: string) => {
+    const value = body[key];
+    return typeof value === "string" ? value.trim() : "";
+  };
+  const name = read("name");
+  const email = read("email");
+  const company = read("company");
+  const asset = read("asset");
+  const stage = read("stage");
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 254) {
     return NextResponse.json(
@@ -24,16 +40,19 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   }
-  if (!message || message.length > 5000) {
+  if (
+    [name, company, asset].some((v) => !v || v.length > 254) ||
+    !STAGES.includes(stage)
+  ) {
     return NextResponse.json(
-      { error: "Please write a message." },
+      { error: "Please fill in every field." },
       { status: 400 },
     );
   }
 
-  // onboarding@resend.dev only delivers to the Resend account owner's own
-  // address. Before this can reach hugo@, verify first-ocean.com as a sender
-  // domain in Resend and change `from` to an address on it.
+  // Delivery requires first-ocean.com to be a verified sender domain in
+  // Resend (resend.com/domains); the sandbox onboarding@resend.dev sender
+  // only delivers to the Resend account owner's own inbox.
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -41,11 +60,11 @@ export async function POST(request: Request) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      from: "firstocean.com <onboarding@resend.dev>",
+      from: "Firstocean <contact@first-ocean.com>",
       to: [TO],
       reply_to: email,
-      subject: `first-ocean.com — message from ${email}`,
-      text: message,
+      subject: `first-ocean.com — ${asset} (${stage})`,
+      text: `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nAsset: ${asset}\nStage: ${stage}`,
     }),
   });
 
