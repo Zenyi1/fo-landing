@@ -68,26 +68,30 @@
     }
 
     /* Work with us: the tall wrapper provides the scroll distance, the pin
-       holds the section on screen, and vertical progress slides the track. */
-    .fo-steps-wrap {
-      height: 320vh;
-      view-timeline: --fo-steps block;
-    }
-    .fo-steps-pin {
-      position: sticky;
-      top: 0;
-      display: flex;
-      height: 100svh;
-      flex-direction: column;
-      justify-content: center;
-      overflow: clip;
-    }
-    .fo-steps-track {
-      width: max-content;
-      overflow: visible;
-      animation: fo-steps-slide linear both;
-      animation-timeline: --fo-steps;
-      animation-range: contain 0% contain 100%;
+       holds the section on screen, and vertical progress slides the track.
+       Desktop only: on touch screens the pin hijacks vertical scrolling, so
+       phones keep the swipeable strip instead. */
+    @media (min-width: 1024px) {
+      .fo-steps-wrap {
+        height: 320vh;
+        view-timeline: --fo-steps block;
+      }
+      .fo-steps-pin {
+        position: sticky;
+        top: 0;
+        display: flex;
+        height: 100svh;
+        flex-direction: column;
+        justify-content: center;
+        overflow: clip;
+      }
+      .fo-steps-track {
+        width: max-content;
+        overflow: visible;
+        animation: fo-steps-slide linear both;
+        animation-timeline: --fo-steps;
+        animation-range: contain 0% contain 100%;
+      }
     }
   }
 }
@@ -101,6 +105,10 @@
   gap: 2.5rem;
   overflow-x: auto;
   padding-inline: var(--fo-pad);
+  /* Card-by-card swiping where the strip scrolls (mobile); inert once the
+     desktop pin takes over, since the track no longer scrolls there. */
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--fo-pad);
 }
 @media (min-width: 1024px) {
   .fo-steps-track {

@@ -235,7 +235,10 @@ export default function Home() {
             </div>
             <div className="fo-steps-track mt-10">
               {STEPS.map((step, i) => (
-                <article key={step.title} className="w-[min(78vw,520px)] shrink-0">
+                <article
+                  key={step.title}
+                  className="w-[min(78vw,520px,68vh)] shrink-0 snap-start"
+                >
                   <Image
                     src={step.image}
                     alt={step.imageAlt}
@@ -349,7 +352,7 @@ export default function Home() {
           width={1800}
           height={1200}
           sizes="100vw"
-          className="h-[320px] w-full object-cover lg:h-[440px]"
+          className="h-[clamp(280px,30vw,620px)] w-full object-cover"
         />
         <p
           className={`${container} absolute inset-x-0 bottom-8 text-[13px] text-cream`}
