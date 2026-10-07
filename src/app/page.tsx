@@ -17,7 +17,7 @@ const lede = "text-[clamp(21px,1.9vw,34px)] leading-[1.3]";
 const SCOPE = [
   {
     title: "Market entry",
-    text: "We take your drug into new markets and act as your business development team. We register it, and a licensed professional approves every filing.",
+    text: "We find the markets where your drug has demand and act as your business development team. One agreement covers all of them.",
   },
   {
     title: "Pricing and reimbursement",
@@ -44,7 +44,7 @@ const STEPS = [
   },
   {
     title: "Registration",
-    text: "Software drafts each local file from your existing dossier: modules, translated labeling, pricing files, and replies to the authority. A licensed professional approves every file before it is submitted, and approval lands in months, not years.",
+    text: "Regulators in our markets now accept FDA and EMA approvals: no local trials, no repeat review. Software drafts each local file from your dossier, a licensed professional approves it, and approval lands in months, not years.",
     image: "/brand/label.jpg",
     imageAlt: "A physician reading the label of a prescription medicine bottle",
   },
@@ -154,19 +154,21 @@ export default function Home() {
         >
           <div>
             <h1 className="text-[clamp(44px,4.6vw,88px)] leading-[1.05] tracking-[-0.02em]">
-              Global launch,{" "}
-              <em className="font-serif text-[1.06em] italic">simplified.</em>
+              Sell any drug,{" "}
+              <em className="font-serif text-[1.06em] italic">
+                in any market.
+              </em>
             </h1>
             <p className={`${lede} mt-8 max-w-[640px]`}>
-              The first AI-native commercialization platform to{" "}
-              <em className="font-serif italic">plan, scale, and launch</em>{" "}
-              therapies worldwide.
+              Firstocean is the AI-native platform to{" "}
+              <em className="font-serif italic">plan, launch and scale</em>{" "}
+              your asset worldwide.
             </p>
             <a
               href="#contact"
               className="mt-10 inline-flex h-14 items-center rounded-full border border-cream/40 bg-white/15 px-8 text-[17px] text-cream backdrop-blur-xl"
             >
-              Talk to us about your asset
+              Tell us about your drug
             </a>
           </div>
           {/* Oversized and pulled left toward the text; the right edge stays
@@ -185,11 +187,12 @@ export default function Home() {
       <main>
         <Section id="scope" title="What we do">
           <p className={`${lede} mt-8 max-w-[760px]`}>
-            We take your drug into every market where it has demand, at no
-            upfront cost.
+            A third of a drug&apos;s lifetime value sits outside the US and
+            Europe. Most biotechs never collect it.
           </p>
           <p className={`${lede} mt-4 max-w-[760px]`}>
-            Book revenue for new regions in months, not years.
+            We take your drug into every market where it has demand, across
+            the Gulf, Latin America and Southeast Asia, at no upfront cost.
           </p>
           {/* Two-by-two grid: three service cards in the brand tones, and
               one photograph so the section is not all panels. */}
@@ -274,11 +277,11 @@ export default function Home() {
                   </span>
                   .
                 </p>
-                <p className={`${lede} py-5`}>The fastest route to approval.</p>
-                <p className={`${lede} py-5`}>Full ownership of your asset.</p>
+                <p className={`${lede} py-5`}>Launch costs cut by 80%.</p>
+                <p className={`${lede} py-5`}>Filed 10x faster.</p>
                 <p className={`${lede} pt-5`}>
                   <em className="font-serif italic">
-                    The best margins in the market.
+                    Not a single hour of your team&apos;s time.
                   </em>
                 </p>
               </div>
@@ -292,12 +295,8 @@ export default function Home() {
               />
             </div>
             <p className={`${lede} mt-12 max-w-[880px]`}>
-              Your team does not spend a single hour on launch work. We take
-              it over end to end, and the platform carries the load.
-            </p>
-            <p className={`${lede} mt-4 max-w-[880px]`}>
-              We already partner with some of the world&apos;s top biotechs to
-              capture the full value of their novel drugs.
+              Our advisors ran emerging markets at Pfizer and business
+              development at Johnson &amp; Johnson.
             </p>
           </div>
         </section>
@@ -328,8 +327,8 @@ export default function Home() {
 
         <Section id="contact" title="Tell us about your drug">
           <p className={`${lede} mt-8 max-w-[760px]`}>
-            If you are a biotech thinking about capturing the full value of
-            your drug at no upfront cost, reach out.
+            Tell us the asset and the stage. You get a free assessment of
+            what it is worth in every market.
           </p>
           <div className="mt-12 grid gap-10 lg:grid-cols-2 lg:items-center">
             <ContactForm />
